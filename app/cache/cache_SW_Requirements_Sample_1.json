@@ -1300,5 +1300,57 @@
       "related_requirements": "",
       "test_procedure_notes": "Verify via STL_Bus telemetry."
     }
+  ],
+  "LRUSWRS-1001-STEP-16": [
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-16_NORMAL_01",
+      "requirement_id": "LRUSWRS-1001-STEP-16",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRUSWRS-1001-STEP-16.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Range_VOID_Fault = False.",
+      "expected_result": "Act_Disp_Range_VOID_Fault = True; Act_Disp_Range_Contract_Fault = True; Act_Disp_Range_Expand_Fault = True; Contract_Stop_Collection_Complete = True; Expand_Stop_Collection_Complete = True; VOID_Collection_Complete = True; Primary_Harmonize_Calc = nominal in-range value.",
+      "pass_criteria": "Observed software behavior for LRUSWRS-1001-STEP-16 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-16_DC_01",
+      "requirement_id": "LRUSWRS-1001-STEP-16",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRUSWRS-1001-STEP-16.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Range_VOID_Fault = False.",
+      "expected_result": "Act_Disp_Range_VOID_Fault = False; Act_Disp_Range_Contract_Fault = False; Act_Disp_Range_Expand_Fault = False; Contract_Stop_Collection_Complete = False; Expand_Stop_Collection_Complete = False; VOID_Collection_Complete = False; Primary_Harmonize_Calc = nominal in-range value.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRUSWRS-1001-STEP-17": [
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-17_NORMAL_01",
+      "requirement_id": "LRUSWRS-1001-STEP-17",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRUSWRS-1001-STEP-17.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Range_Contract_Fault = False.",
+      "expected_result": "Act_Disp_Range_Contract_Fault = True; Act_Disp_Range_Expand_Fault = True; Contract_Stop_Collection_Complete = True; Expand_Stop_Collection_Complete = True; Spoiler_Harmonize_Calc = nominal in-range value.",
+      "pass_criteria": "Observed software behavior for LRUSWRS-1001-STEP-17 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-17_DC_01",
+      "requirement_id": "LRUSWRS-1001-STEP-17",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRUSWRS-1001-STEP-17.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Range_Contract_Fault = False.",
+      "expected_result": "Act_Disp_Range_Contract_Fault = False; Act_Disp_Range_Expand_Fault = False; Contract_Stop_Collection_Complete = False; Expand_Stop_Collection_Complete = False; Spoiler_Harmonize_Calc = nominal in-range value.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
   ]
 }
