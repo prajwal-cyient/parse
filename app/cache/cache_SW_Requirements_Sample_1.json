@@ -1352,5 +1352,173 @@
       "related_requirements": "",
       "test_procedure_notes": "Verify via STL_Bus telemetry."
     }
+  ],
+  "LRUSWRS-1001-STEP-18": [
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-18_NORMAL_01",
+      "requirement_id": "LRUSWRS-1001-STEP-18",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRUSWRS-1001-STEP-18.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Spoiler_Harmonize_Calc = nominal in-range value; Max_Stroke = nominal in-range value; Act_Disp_Raw_Avg_Expand = nominal in-range value; Act_Disp_Raw_Avg_Contract = nominal in-range value.",
+      "expected_result": "Verify observable outputs for LRUSWRS-1001-STEP-18 match requirement specification; K_Harmonize_New = nominal in-range value.",
+      "pass_criteria": "Observed software behavior for LRUSWRS-1001-STEP-18 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-18_DC_01",
+      "requirement_id": "LRUSWRS-1001-STEP-18",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRUSWRS-1001-STEP-18.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Spoiler_Harmonize_Calc = nominal in-range value; Max_Stroke = nominal in-range value; Act_Disp_Raw_Avg_Expand = nominal in-range value; Act_Disp_Raw_Avg_Contract = nominal in-range value.",
+      "expected_result": "Action suppressed for LRUSWRS-1001-STEP-18; output flag = False; K_Harmonize_New = nominal in-range value.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRUSWRS-1001-STEP-19": [
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-19_NORMAL_01",
+      "requirement_id": "LRUSWRS-1001-STEP-19",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRUSWRS-1001-STEP-19.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Spoiler_Harmonize_Calc = nominal in-range value; Act_Disp_Raw_Avg_Contract = nominal in-range value; K_Harmonize_New = nominal in-range value; Profile_Id = nominal in-range value.",
+      "expected_result": "Harmonize_Offset_Default = True; Harmonize_Offset_New = nominal in-range value.",
+      "pass_criteria": "Observed software behavior for LRUSWRS-1001-STEP-19 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-19_DC_01",
+      "requirement_id": "LRUSWRS-1001-STEP-19",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRUSWRS-1001-STEP-19.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Spoiler_Harmonize_Calc = nominal in-range value; Act_Disp_Raw_Avg_Contract = nominal in-range value; K_Harmonize_New = nominal in-range value; Profile_Id = nominal in-range value.",
+      "expected_result": "Harmonize_Offset_Default = False; Harmonize_Offset_New = nominal in-range value.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRUSWRS-1001-STEP-20": [
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-20_NORMAL_01",
+      "requirement_id": "LRUSWRS-1001-STEP-20",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRUSWRS-1001-STEP-20.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Primary_Harmonize_Calc = nominal in-range value; Profile_Id = nominal in-range value; K_Harmonize_New = nominal in-range value; Act_Disp_Raw_Avg_Expand = nominal in-range value; Act_Disp_Raw_Avg_Contract = nominal in-range value.",
+      "expected_result": "Verify observable outputs for LRUSWRS-1001-STEP-20 match requirement specification.",
+      "pass_criteria": "Observed software behavior for LRUSWRS-1001-STEP-20 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-20_DC_01",
+      "requirement_id": "LRUSWRS-1001-STEP-20",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRUSWRS-1001-STEP-20.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Primary_Harmonize_Calc = nominal in-range value; Profile_Id = nominal in-range value; K_Harmonize_New = nominal in-range value; Act_Disp_Raw_Avg_Expand = nominal in-range value; Act_Disp_Raw_Avg_Contract = nominal in-range value.",
+      "expected_result": "Action suppressed for LRUSWRS-1001-STEP-20; output flag = False.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRUSWRS-1001-STEP-21": [
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-21_NORMAL_01",
+      "requirement_id": "LRUSWRS-1001-STEP-21",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRUSWRS-1001-STEP-21.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Primary_Harmonize_Calc = nominal in-range value; Profile_Id = nominal in-range value; K_Harmonize_New = nominal in-range value; Max_Stroke = nominal in-range value; Act_Disp_Raw_Avg_Expand = nominal in-range value; Act_Disp_Raw_Avg_Contract = nominal in-range value.",
+      "expected_result": "Verify observable outputs for LRUSWRS-1001-STEP-21 match requirement specification.",
+      "pass_criteria": "Observed software behavior for LRUSWRS-1001-STEP-21 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-21_DC_01",
+      "requirement_id": "LRUSWRS-1001-STEP-21",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRUSWRS-1001-STEP-21.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Primary_Harmonize_Calc = nominal in-range value; Profile_Id = nominal in-range value; K_Harmonize_New = nominal in-range value; Max_Stroke = nominal in-range value; Act_Disp_Raw_Avg_Expand = nominal in-range value; Act_Disp_Raw_Avg_Contract = nominal in-range value.",
+      "expected_result": "Action suppressed for LRUSWRS-1001-STEP-21; output flag = False.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRUSWRS-1001-STEP-22": [
+    {
+      "test_case_id": "SWVCP_AAP_TC_LRUSWRS-1001-STEP-22_ATYPE1_01",
+      "requirement_id": "LRUSWRS-1001-STEP-22",
+      "description": "Verify Harmonize_Offset_New calculation for ATYPE-1 with positive K_Harmonize_New and negative Act_Disp_Raw_Avg_VOID.",
+      "test_type": "NORMAL",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_9213; System in baseline operational state; Commanded to VOID Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Primary_Harmonize_Calc = True; Harmonize_Offset_Default = 5.0; Act_Disp_Raw_Avg_VOID = -2.5; K_Harmonize_New = 1.2; Harmonize_Offset_New = True.",
+      "expected_result": "Harmonize_Offset_New = 9.0.",
+      "pass_criteria": "Observed software outputs match expected_result.",
+      "related_requirements": "Table 10695, Rev C: ATYPE-1 LVDT Default Harmonizing Parameters.",
+      "test_procedure_notes": "Read Harmonize_Offset_New from internal register after Primary_Harmonize_Calc triggers; verify value equals 9.0."
+    },
+    {
+      "test_case_id": "SWVCP_AAP_TC_LRUSWRS-1001-STEP-22_ATYPE2_01",
+      "requirement_id": "LRUSWRS-1001-STEP-22",
+      "description": "Verify Harmonize_Offset_New calculation for ATYPE-2 with K_Harmonize_New less than 1 and positive Act_Disp_Raw_Avg_VOID.",
+      "test_type": "NORMAL",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_2; Target LRU: LRU_9213; System in baseline operational state; Commanded to VOID Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Primary_Harmonize_Calc = True; Harmonize_Offset_Default = 4.0; Act_Disp_Raw_Avg_VOID = 1.0; K_Harmonize_New = 0.8; Harmonize_Offset_New = True.",
+      "expected_result": "Harmonize_Offset_New = 2.4.",
+      "pass_criteria": "Observed software outputs match expected_result.",
+      "related_requirements": "Table 10695, Rev C: ATYPE-2 LVDT Default Harmonizing Parameters.",
+      "test_procedure_notes": "Read Harmonize_Offset_New from internal register after Primary_Harmonize_Calc triggers; verify value equals 2.4."
+    },
+    {
+      "test_case_id": "SWVCP_AAP_TC_LRUSWRS-1001-STEP-22_ATYPE3_01",
+      "requirement_id": "LRUSWRS-1001-STEP-22",
+      "description": "Verify Harmonize_Offset_New calculation for ATYPE-3 with K_Harmonize_New equal to 1 and zero Act_Disp_Raw_Avg_VOID.",
+      "test_type": "NORMAL",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_3; Target LRU: LRU_9213; System in baseline operational state; Commanded to VOID Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Primary_Harmonize_Calc = True; Harmonize_Offset_Default = 6.0; Act_Disp_Raw_Avg_VOID = 0.0; K_Harmonize_New = 1.0; Harmonize_Offset_New = True.",
+      "expected_result": "Harmonize_Offset_New = 6.0.",
+      "pass_criteria": "Observed software outputs match expected_result.",
+      "related_requirements": "Table 106939, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters.",
+      "test_procedure_notes": "Read Harmonize_Offset_New from internal register after Primary_Harmonize_Calc triggers; verify value equals 6.0."
+    }
+  ],
+  "LRUSWRS-1001-STEP-23": [
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-23_NORMAL_01",
+      "requirement_id": "LRUSWRS-1001-STEP-23",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRUSWRS-1001-STEP-23.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Primary_Harmonize_Calc = nominal in-range value; Act_Disp_Raw_Avg_Contract = nominal in-range value; Contract_Error = nominal in-range value.",
+      "expected_result": "Verify observable outputs for LRUSWRS-1001-STEP-23 match requirement specification.",
+      "pass_criteria": "Observed software behavior for LRUSWRS-1001-STEP-23 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-23_DC_01",
+      "requirement_id": "LRUSWRS-1001-STEP-23",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRUSWRS-1001-STEP-23.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Primary_Harmonize_Calc = nominal in-range value; Act_Disp_Raw_Avg_Contract = nominal in-range value; Contract_Error = nominal in-range value.",
+      "expected_result": "Action suppressed for LRUSWRS-1001-STEP-23; output flag = False.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
   ]
 }
