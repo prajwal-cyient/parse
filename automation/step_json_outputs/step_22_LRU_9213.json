@@ -1,0 +1,127 @@
+{
+  "step_number": "22",
+  "requirement_id": "LRU-9213",
+  "total_test_cases": 10,
+  "test_cases": [
+    {
+      "test_case_id": "LRU_9213_N1_LRU_1",
+      "requirement_id": "LRU-9213",
+      "description": "Verify that the new LVDT Harmonizing Offset is calculated correctly when Primary_Harmonize_Calc is True.",
+      "test_type": "NORMAL",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_1 (Left Aileron).",
+      "test_inputs": "Primary_Harmonize_Calc = True; Harmonize_Offset_Default = 100.0; Act_Disp_Raw_Avg_VOID = 20.0; K_Harmonize_New = 1.5; Profile_Id = 1; LRU Configuration = LRU_1 (Left Aileron).",
+      "expected_result": "Harmonize_Offset_New is calculated as (100.0 - 20.0) * 1.5 = 120.0.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9213_DC_Condition_LRU_1",
+      "requirement_id": "LRU-9213",
+      "description": "Verify that the new LVDT Harmonizing Offset calculation is not performed when Primary_Harmonize_Calc is False.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_1 (Left Aileron).",
+      "test_inputs": "Primary_Harmonize_Calc = False; Harmonize_Offset_Default = 100.0; Act_Disp_Raw_Avg_VOID = 20.0; K_Harmonize_New = 1.5; Profile_Id = 1; LRU Configuration = LRU_1 (Left Aileron).",
+      "expected_result": "Harmonize_Offset_New is calculated as (100.0 - 20.0) * 1.5 = 120.0. Calculation is NOT performed when Primary_Harmonize_Calc is False.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9213_N1_LRU_2",
+      "requirement_id": "LRU-9213",
+      "description": "Verify that the new LVDT Harmonizing Offset is calculated correctly when Primary_Harmonize_Calc is True.",
+      "test_type": "NORMAL",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_2 (Right Aileron).",
+      "test_inputs": "Primary_Harmonize_Calc = True; Harmonize_Offset_Default = 100.0; Act_Disp_Raw_Avg_VOID = 20.0; K_Harmonize_New = 1.5; Profile_Id = 1; LRU Configuration = LRU_2 (Right Aileron).",
+      "expected_result": "Harmonize_Offset_New is calculated as (100.0 - 20.0) * 1.5 = 120.0.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9213_DC_Condition_LRU_2",
+      "requirement_id": "LRU-9213",
+      "description": "Verify that the new LVDT Harmonizing Offset calculation is not performed when Primary_Harmonize_Calc is False.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_2 (Right Aileron).",
+      "test_inputs": "Primary_Harmonize_Calc = False; Harmonize_Offset_Default = 100.0; Act_Disp_Raw_Avg_VOID = 20.0; K_Harmonize_New = 1.5; Profile_Id = 1; LRU Configuration = LRU_2 (Right Aileron).",
+      "expected_result": "Harmonize_Offset_New is calculated as (100.0 - 20.0) * 1.5 = 120.0. Calculation is NOT performed when Primary_Harmonize_Calc is False.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9213_N1_LRU_5",
+      "requirement_id": "LRU-9213",
+      "description": "Verify that the new LVDT Harmonizing Offset is calculated correctly when Primary_Harmonize_Calc is True.",
+      "test_type": "NORMAL",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_5 (Left Elevator).",
+      "test_inputs": "Primary_Harmonize_Calc = True; Harmonize_Offset_Default = 100.0; Act_Disp_Raw_Avg_VOID = 20.0; K_Harmonize_New = 1.5; Profile_Id = 1; LRU Configuration = LRU_5 (Left Elevator).",
+      "expected_result": "Harmonize_Offset_New is calculated as (100.0 - 20.0) * 1.5 = 120.0.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9213_DC_Condition_LRU_5",
+      "requirement_id": "LRU-9213",
+      "description": "Verify that the new LVDT Harmonizing Offset calculation is not performed when Primary_Harmonize_Calc is False.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_5 (Left Elevator).",
+      "test_inputs": "Primary_Harmonize_Calc = False; Harmonize_Offset_Default = 100.0; Act_Disp_Raw_Avg_VOID = 20.0; K_Harmonize_New = 1.5; Profile_Id = 1; LRU Configuration = LRU_5 (Left Elevator).",
+      "expected_result": "Harmonize_Offset_New is calculated as (100.0 - 20.0) * 1.5 = 120.0. Calculation is NOT performed when Primary_Harmonize_Calc is False.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9213_N1_LRU_6",
+      "requirement_id": "LRU-9213",
+      "description": "Verify that the new LVDT Harmonizing Offset is calculated correctly when Primary_Harmonize_Calc is True.",
+      "test_type": "NORMAL",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_6 (Right Elevator).",
+      "test_inputs": "Primary_Harmonize_Calc = True; Harmonize_Offset_Default = 100.0; Act_Disp_Raw_Avg_VOID = 20.0; K_Harmonize_New = 1.5; Profile_Id = 1; LRU Configuration = LRU_6 (Right Elevator).",
+      "expected_result": "Harmonize_Offset_New is calculated as (100.0 - 20.0) * 1.5 = 120.0.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9213_DC_Condition_LRU_6",
+      "requirement_id": "LRU-9213",
+      "description": "Verify that the new LVDT Harmonizing Offset calculation is not performed when Primary_Harmonize_Calc is False.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_6 (Right Elevator).",
+      "test_inputs": "Primary_Harmonize_Calc = False; Harmonize_Offset_Default = 100.0; Act_Disp_Raw_Avg_VOID = 20.0; K_Harmonize_New = 1.5; Profile_Id = 1; LRU Configuration = LRU_6 (Right Elevator).",
+      "expected_result": "Harmonize_Offset_New is calculated as (100.0 - 20.0) * 1.5 = 120.0. Calculation is NOT performed when Primary_Harmonize_Calc is False.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9213_N1_LRU_7",
+      "requirement_id": "LRU-9213",
+      "description": "Verify that the new LVDT Harmonizing Offset is calculated correctly when Primary_Harmonize_Calc is True.",
+      "test_type": "NORMAL",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_7 (Rudder).",
+      "test_inputs": "Primary_Harmonize_Calc = True; Harmonize_Offset_Default = 100.0; Act_Disp_Raw_Avg_VOID = 20.0; K_Harmonize_New = 1.5; Profile_Id = 1; LRU Configuration = LRU_7 (Rudder).",
+      "expected_result": "Harmonize_Offset_New is calculated as (100.0 - 20.0) * 1.5 = 120.0.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9213_DC_Condition_LRU_7",
+      "requirement_id": "LRU-9213",
+      "description": "Verify that the new LVDT Harmonizing Offset calculation is not performed when Primary_Harmonize_Calc is False.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_7 (Rudder).",
+      "test_inputs": "Primary_Harmonize_Calc = False; Harmonize_Offset_Default = 100.0; Act_Disp_Raw_Avg_VOID = 20.0; K_Harmonize_New = 1.5; Profile_Id = 1; LRU Configuration = LRU_7 (Rudder).",
+      "expected_result": "Harmonize_Offset_New is calculated as (100.0 - 20.0) * 1.5 = 120.0. Calculation is NOT performed when Primary_Harmonize_Calc is False.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    }
+  ]
+}

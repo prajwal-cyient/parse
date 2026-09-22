@@ -1,0 +1,37 @@
+
+1.Requirement
+
+ID :  LRUSWRS-1201
+The LRU software shall repeat the RAM Memory test one time upon a RAM Memory Test failure.
+Req Type :  Verbatim
+Safety Impact :  No
+Safety Rationale :  This is a detailed implementation requirement.:
+
+{
+  "test_cases": [
+    {
+      "test_case_id": "LRUSWRS-1201_N1",
+      "requirement_id": "LRUSWRS-1201",
+      "description": "Verifies the LRU software repeats the RAM Memory test one time upon a RAM Memory Test failure.",
+      "test_type": "NORMAL",
+      "initial_condition": "None",
+      "test_inputs": "RAM Memory Test failure = True.",
+      "expected_result": "RAM Memory Test repeat = 1.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS-1201_DC_Failure",
+      "requirement_id": "LRUSWRS-1201",
+      "description": "Verifies the LRU software does not repeat the RAM Memory test when a RAM Memory Test passes.",
+      "test_type": "DC",
+      "initial_condition": "None",
+      "test_inputs": "RAM Memory Test failure = False.",
+      "expected_result": "RAM Memory Test repeat is not initialized to 1.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    }
+  ]
+}

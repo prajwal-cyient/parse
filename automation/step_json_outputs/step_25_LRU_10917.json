@@ -1,0 +1,31 @@
+{
+  "step_number": "25",
+  "requirement_id": "LRU-10917",
+  "total_test_cases": 2,
+  "test_cases": [
+    {
+      "test_case_id": "LRU_10917_N1_LRU_7",
+      "requirement_id": "LRU-10917",
+      "description": "Verify that when operating as Rudder (LRU-7), the software calculates Lower_Limit_LRU_PSR_New as Lower_Limit_Harmonized based on the configured Profile_Id.",
+      "test_type": "NORMAL",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_7 (Rudder).",
+      "test_inputs": "LRU Configuration = LRU_7 (Rudder).",
+      "expected_result": "Lower_Limit_LRU_PSR_New equals Lower_Limit_Harmonized for the configured Profile_Id.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_10917_DC_Condition_LRU_7",
+      "requirement_id": "LRU-10917",
+      "description": "Verify that when not operating as Rudder (LRU-7), the calculation of Lower_Limit_LRU_PSR_New is not performed.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_7 (Rudder).",
+      "test_inputs": "LRU Configuration = LRU_7 (Rudder).",
+      "expected_result": "Lower_Limit_LRU_PSR_New is NOT performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    }
+  ]
+}

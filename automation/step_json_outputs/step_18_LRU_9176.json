@@ -1,0 +1,55 @@
+{
+  "step_number": "18",
+  "requirement_id": "LRU-9176",
+  "total_test_cases": 4,
+  "test_cases": [
+    {
+      "test_case_id": "LRU_9176_N1_LRU_3",
+      "requirement_id": "LRU-9176",
+      "description": "Verify that when Spoiler_Harmonize_Calc is True, K_Harmonize_New is computed correctly for LRU_3.",
+      "test_type": "NORMAL",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_3 (Left Spoiler).",
+      "test_inputs": "Spoiler_Harmonize_Calc = True; Act_Disp_Raw_Avg_Expand = 10.0; Act_Disp_Raw_Avg_Contract = 5.0; Max_Stroke = 15.0. LRU Configuration = LRU_3 (Left Spoiler).",
+      "expected_result": "K_Harmonize_New is computed as 3.0.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9176_DC_Condition_LRU_3",
+      "requirement_id": "LRU-9176",
+      "description": "Verify that when Spoiler_Harmonize_Calc is False, K_Harmonize_New is not performed for LRU_3.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_3 (Left Spoiler).",
+      "test_inputs": "Spoiler_Harmonize_Calc = False; Act_Disp_Raw_Avg_Expand = 10.0; Act_Disp_Raw_Avg_Contract = 5.0; Max_Stroke = 15.0. LRU Configuration = LRU_3 (Left Spoiler).",
+      "expected_result": "K_Harmonize_New is NOT performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9176_N1_LRU_4",
+      "requirement_id": "LRU-9176",
+      "description": "Verify that when Spoiler_Harmonize_Calc is True, K_Harmonize_New is computed correctly for LRU_4.",
+      "test_type": "NORMAL",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_4 (Right Spoiler).",
+      "test_inputs": "Spoiler_Harmonize_Calc = True; Act_Disp_Raw_Avg_Expand = 12.0; Act_Disp_Raw_Avg_Contract = 6.0; Max_Stroke = 18.0. LRU Configuration = LRU_4 (Right Spoiler).",
+      "expected_result": "K_Harmonize_New is computed as 3.0.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9176_DC_Condition_LRU_4",
+      "requirement_id": "LRU-9176",
+      "description": "Verify that when Spoiler_Harmonize_Calc is False, K_Harmonize_New is not performed for LRU_4.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_4 (Right Spoiler).",
+      "test_inputs": "Spoiler_Harmonize_Calc = False; Act_Disp_Raw_Avg_Expand = 12.0; Act_Disp_Raw_Avg_Contract = 6.0; Max_Stroke = 18.0. LRU Configuration = LRU_4 (Right Spoiler).",
+      "expected_result": "K_Harmonize_New is NOT performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    }
+  ]
+}

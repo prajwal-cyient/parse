@@ -1,0 +1,308 @@
+{
+  "requirement_id": "LRUSWRS-1001",
+  "requirement_title": "Primary/Spoiler Surface Electronic Harmonizing Sequence",
+  "total_steps": 38,
+  "total_test_cases": 3,
+  "steps_breakdown": {
+    "STEP_1_REQUIREMENT_ID_LRU_6135": {
+      "step_number": "1",
+      "requirement_id": "LRU-6135",
+      "step_description": "Requirement ID: LRU-6135",
+      "total_test_cases": 3,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_6135_N1",
+          "test_type": "NORMAL",
+          "initial_condition": "None",
+          "test_inputs": "IVT_Command_ISM = 0x0020, IVT_CmdData_ISM: Harmonize_Contract_Stop_STL = True, Act_Disp_Raw = 50 frames (25 ms) of raw data",
+          "expected_result": "50 frames (25 ms) of Act_Disp_Raw are sampled and averaged.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment.",
+          "requirement_id": "LRU-6135"
+        },
+        {
+          "test_case_id": "LRU_6135_DC_IVT_Command_ISM",
+          "test_type": "DC",
+          "initial_condition": "None",
+          "test_inputs": "IVT_Command_ISM = 0x0030, IVT_CmdData_ISM: Harmonize_Contract_Stop_STL = True, Act_Disp_Raw = 50 frames (25 ms) of raw data",
+          "expected_result": "50 frames (25 ms) of Act_Disp_Raw are NOT sampled and averaged.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment.",
+          "requirement_id": "LRU-6135"
+        },
+        {
+          "test_case_id": "LRU_6135_DC_IVT_CmdData_ISM_Harmonize_Contract_Stop_STL",
+          "test_type": "DC",
+          "initial_condition": "None",
+          "test_inputs": "IVT_Command_ISM = 0x0020, IVT_CmdData_ISM: Harmonize_Contract_Stop_STL = False, Act_Disp_Raw = 50 frames (25 ms) of raw data",
+          "expected_result": "50 frames (25 ms) of Act_Disp_Raw are NOT sampled and averaged.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment.",
+          "requirement_id": "LRU-6135"
+        }
+      ]
+    },
+    "STEP_2_REQUIREMENT_ID_LRU_9169": {
+      "step_number": "2",
+      "requirement_id": "LRU-9169",
+      "step_description": "Requirement ID: LRU-9169",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_3_REQUIREMENT_ID_LRU_9170": {
+      "step_number": "3",
+      "requirement_id": "LRU-9170",
+      "step_description": "Requirement ID: LRU-9170",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_4a_REQUIREMENT_ID_LRU_9171": {
+      "step_number": "4a",
+      "requirement_id": "LRU-9171",
+      "step_description": "Requirement ID: LRU-9171",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_4b_REQUIREMENT_ID_LRU_9171": {
+      "step_number": "4b",
+      "requirement_id": "LRU-9171",
+      "step_description": "Requirement ID: LRU-9171",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_5_REQUIREMENT_ID_LRU_9193": {
+      "step_number": "5",
+      "requirement_id": "LRU-9193",
+      "step_description": "Requirement ID: LRU-9193",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_6_REQUIREMENT_ID_LRU_9184": {
+      "step_number": "6",
+      "requirement_id": "LRU-9184",
+      "step_description": "Requirement ID: LRU-9184",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_7_REQUIREMENT_ID_LRU_9174": {
+      "step_number": "7",
+      "requirement_id": "LRU-9174",
+      "step_description": "Requirement ID: LRU-9174",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_8_REQUIREMENT_ID_LRU_9177": {
+      "step_number": "8",
+      "requirement_id": "LRU-9177",
+      "step_description": "Requirement ID: LRU-9177",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_9a_REQUIREMENT_ID_LRU_9895": {
+      "step_number": "9a",
+      "requirement_id": "LRU-9895",
+      "step_description": "Requirement ID: LRU-9895",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_9b_REQUIREMENT_ID_LRU_9895": {
+      "step_number": "9b",
+      "requirement_id": "LRU-9895",
+      "step_description": "Requirement ID: LRU-9895",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_10_REQUIREMENT_ID_LRU_9238": {
+      "step_number": "10",
+      "requirement_id": "LRU-9238",
+      "step_description": "Requirement ID: LRU-9238",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_11_REQUIREMENT_ID_LRU_9205": {
+      "step_number": "11",
+      "requirement_id": "LRU-9205",
+      "step_description": "Requirement ID: LRU-9205",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_12_REQUIREMENT_ID_LRU_9222": {
+      "step_number": "12",
+      "requirement_id": "LRU-9222",
+      "step_description": "Requirement ID: LRU-9222",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_13_REQUIREMENT_ID_LRU_9209": {
+      "step_number": "13",
+      "requirement_id": "LRU-9209",
+      "step_description": "Requirement ID: LRU-9209",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_14a_REQUIREMENT_ID_LRU_9210": {
+      "step_number": "14a",
+      "requirement_id": "LRU-9210",
+      "step_description": "Requirement ID: LRU-9210",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_14b_REQUIREMENT_ID_LRU_9210": {
+      "step_number": "14b",
+      "requirement_id": "LRU-9210",
+      "step_description": "Requirement ID: LRU-9210",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_15_REQUIREMENT_ID_LRU_9235": {
+      "step_number": "15",
+      "requirement_id": "LRU-9235",
+      "step_description": "Requirement ID: LRU-9235",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_16_REQUIREMENT_ID_LRU_9891": {
+      "step_number": "16",
+      "requirement_id": "LRU-9891",
+      "step_description": "Requirement ID: LRU-9891",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_17_REQUIREMENT_ID_LRU_9892": {
+      "step_number": "17",
+      "requirement_id": "LRU-9892",
+      "step_description": "Requirement ID: LRU-9892",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_18_REQUIREMENT_ID_LRU_9176": {
+      "step_number": "18",
+      "requirement_id": "LRU-9176",
+      "step_description": "Requirement ID: LRU-9176",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_19_REQUIREMENT_ID_LRU_6137": {
+      "step_number": "19",
+      "requirement_id": "LRU-6137",
+      "step_description": "Requirement ID: LRU-6137",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_20_REQUIREMENT_ID_LRU_9212": {
+      "step_number": "20",
+      "requirement_id": "LRU-9212",
+      "step_description": "Requirement ID: LRU-9212",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_21_REQUIREMENT_ID_LRU_9944": {
+      "step_number": "21",
+      "requirement_id": "LRU-9944",
+      "step_description": "Requirement ID: LRU-9944",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_22_REQUIREMENT_ID_LRU_9213": {
+      "step_number": "22",
+      "requirement_id": "LRU-9213",
+      "step_description": "Requirement ID: LRU-9213",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_23_REQUIREMENT_ID_LRU_10915": {
+      "step_number": "23",
+      "requirement_id": "LRU-10915",
+      "step_description": "Requirement ID: LRU-10915",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_24_REQUIREMENT_ID_LRU_10916": {
+      "step_number": "24",
+      "requirement_id": "LRU-10916",
+      "step_description": "Requirement ID: LRU-10916",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_25_REQUIREMENT_ID_LRU_10917": {
+      "step_number": "25",
+      "requirement_id": "LRU-10917",
+      "step_description": "Requirement ID: LRU-10917",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_26_REQUIREMENT_ID_LRU_10918": {
+      "step_number": "26",
+      "requirement_id": "LRU-10918",
+      "step_description": "Requirement ID: LRU-10918",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_27_REQUIREMENT_ID_LRU_10921": {
+      "step_number": "27",
+      "requirement_id": "LRU-10921",
+      "step_description": "Requirement ID: LRU-10921",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_28_REQUIREMENT_ID_LRU_9215": {
+      "step_number": "28",
+      "requirement_id": "LRU-9215",
+      "step_description": "Requirement ID: LRU-9215",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_29_REQUIREMENT_ID_LRU_9225": {
+      "step_number": "29",
+      "requirement_id": "LRU-9225",
+      "step_description": "Requirement ID: LRU-9225",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_30_REQUIREMENT_ID_LRU_9814": {
+      "step_number": "30",
+      "requirement_id": "LRU-9814",
+      "step_description": "Requirement ID: LRU-9814",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_31_REQUIREMENT_ID_LRU_9224": {
+      "step_number": "31",
+      "requirement_id": "LRU-9224",
+      "step_description": "Requirement ID: LRU-9224",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_32_REQUIREMENT_ID_LRU_9249": {
+      "step_number": "32",
+      "requirement_id": "LRU-9249",
+      "step_description": "Requirement ID: LRU-9249",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_33_REQUIREMENT_ID_LRU_9894": {
+      "step_number": "33",
+      "requirement_id": "LRU-9894",
+      "step_description": "Requirement ID: LRU-9894",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_34_REQUIREMENT_ID_LRU_9247": {
+      "step_number": "34",
+      "requirement_id": "LRU-9247",
+      "step_description": "Requirement ID: LRU-9247",
+      "total_test_cases": 0,
+      "test_cases": []
+    },
+    "STEP_35_REQUIREMENT_ID_LRU_9239": {
+      "step_number": "35",
+      "requirement_id": "LRU-9239",
+      "step_description": "Requirement ID: LRU-9239",
+      "total_test_cases": 0,
+      "test_cases": []
+    }
+  }
+}

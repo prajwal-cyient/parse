@@ -1,0 +1,294 @@
+Requirement
+
+ID: LRUSWRS-1001
+
+Text:
+The electronic Harmonizing sequence for both Primary and Spoiler surface types are defined in the table below.  The prerequisite condition for execution of this Harmonizing sequence is that Harmonizing mode (LRUSWRS-1003) must be active.  The steps occur in blocks, 1 to 5, 6 to 10, 11 to 15, followed by 16 to 35.  The first three blocks are started by LRU_2 messages and can occur in any order. The last block occurs automatically after all three of the other blocks are completed.  Not all steps are applicable to both surface types.  The block steps not applicable to both surface types are noted following the requirement.
+The LRU software shall implement the electronic Harmonizing sequence as shown in Table 1001.
+Table 1001:  Primary/Spoiler Surface Electronic Harmonizing Sequence
+Table Row: Step | Electronic Harmonizing Sequence Requirements | LRU-
+Table Row: 1 | Sample 50 frames (25 ms) of Act_Disp_Raw (in) and average them when the following condition is True: (IVT_Command_ISM = 0x0020, IVT_CmdData_ISM: Harmonize_Contract_Stop_STL = True). Note: Act_Disp_Raw is depicted in Figure 4436, Harmonizing_Active_STL is defined in Table 1208, and Harmonize_Contract_Stop_STL is defined in Table 1008. | 6135
+Table Row: 2 | Compute Act_Disp_Raw_Avg_Contract while commanded to the Contract position as follows: [the average of Act_Disp_Raw from Step above] * Harmonize_SFC_Default + Harmonize_Offset_Default. Note: The values of Harmonize_SFC_Default and Harmonize_Offset_Default are defined as a function of Profile_Id in: Table 10695, Rev C: ATYPE-1 & ATYPE-2 LVDT Default Harmonizing Parameters Table 106939, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters Set  Contract_Stop_Collection_Complete = True. | 9169
+Table Row: 3 | Set Act_Disp_Range_Contract_Fault to True if Act_Disp_Raw_Avg_Contract (in) is not within the ranges defined in:   Table 1014, Rev A for ATYPE-1 & ATYPE-2 Contract Harmonizing Range  Table 1015, Rev NC for ATYPE-3 Contract Harmonizing Range | 9170
+Table Row: 4a | Set and transmit IVT Response data on STL_Bus as follows: IVT_Receipt_Envelope = 0x0017,  IVT_Receipt_Content: Contract_Stop_Collection_Complete = True,  Notes:  1) Contract_Stop_Collection_Complete is defined in Table 1007. 2) IVT_Receipt_Content is an accummulation of all applicable Harmonizing status Bits. | 9171
+Table Row: 4b | If Act_Disp_Range_Contract_Fault is True, set and transmit IVT Response data on STL_Bus as follows:  IVT_Receipt_Envelope = 0x0017,   IVT_Receipt_Content: Harmonizing_Failed = True, else IVT_Receipt_Envelope = 0x0017,   IVT_Receipt_Content: Harmonizing_Failed = False.  Notes:  1) Harmonizing_Failed is defined in Table 1007. 2) IVT_Receipt_Content is an accummulation of all applicable Harmonizing status Bits. | 9171
+Table Row: 5 | If Act_Disp_Range_Contract_Fault transitions to True, create an entry in the Fault_History_Table_PSR. Note: This is the only entry of this fault in the Fault_History_Table_PSR for the current power-on session. | 9193
+Table Row: Information Only | If the FCC is commanding the Expand stop position, the LRU_2 subsequently transmits the following on STL_Bus: IVT_Active_STL = True Harmonizing_Active_STL = True IVT_Command_ISM = 0x0020, IVT_CmdData_ISM: Harmonize_Expand_Stop_STL=True.  Note: Harmonize_Expand_Stop_STL is defined in Table 1008. | 9173
+Table Row: 6 | Sample 50 frames (25 ms) of Act_Disp_Raw (in) and average them when the following condition is True: (IVT_Command_ISM = 0x0020, IVT_CmdData_ISM: Harmonize_Expand_Stop_STL = True). Note: Act_Disp_Raw is depicted in Figure 4436 and Harmonize_Expand_Stop_STL are defined in Table 1008. | 9184
+Table Row: 7 | Compute Act_Disp_Raw_Avg_Expand while commanded to the Expanded position as follows:    [the average of Act_Disp_Raw from Step above] * Harmonize_SFC_Default + Harmonize_Offset_Default The values of Harmonize_SFC_Default and Harmonize_Offset_Default are defined as a function of Profile_Id in:  Table 10695, Rev C: ATYPE-1 & ATYPE-2 LVDT Default Harmonizing Parameters  Table 106939, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters Set Expand_Stop_Collection_Complete = True. | 9174
+Table Row: 8 | Set Act_Disp_Range_Expand_Fault to True if Act_Disp_Raw_Avg_Expand (in) is not within the following ranges:   Table 1016, Rev A for ATYPE-1 & ATYPE-2 Expand Harmonizing Range  Table 1017, Rev NC for ATYPE-3 Expand Harmonizing Range | 9177
+Table Row: 9a | Set and transmit IVT Response data on STL_Bus as follows: IVT_Receipt_Envelope = 0x0017,  IVT_Receipt_Content: Expand_Stop_Collection_Complete = True  Notes:  1) Expand_Stop_Collection_Complete is defined in Table 1007. 2) IVT_Receipt_Content is an accummulation of all applicable Harmonizing status Bits. | 9895
+Table Row: 9b | If Act_Disp_Range_Expand_Fault is True, set and transmit IVT Response data on STL_Bus as follows: IVT_Receipt_Envelope = 0x0017,   IVT_Receipt_Content: Harmonizing_Failed = True, else IVT_Receipt_Envelope = 0x0017,   IVT_Receipt_Content: Harmonizing_Failed = False.  Notes:  1) Harmonizing_Failed is defined in Table 1007.  2) IVT_Receipt_Content is an accummulation of all applicable Harmonizing status Bits. | 9895
+Table Row: 10 | If Act_Disp_Range_Expand_Fault transitions to True, create an entry in the Fault_History_Table_PSR. Note: This is the only entry of this fault in the Fault_History_Table_PSR for the current power-on session. | 9238
+Table Row: Information Only | If the FCC is commanding the VOID position, the LRU_2 EBHA channel subsequently transmits on STL_Bus the asserted state of IVT Active and Harmonizing Active, and commands the Collection of Harmonizing data while in the VOID position as follows: IVT_Active_STL = True, Harmonizing_Active_STL = True, IVT_Command_ISM = 0x0020, IVT_CmdData_ISM: Harmonize_VOID_STL = True. | 9208
+Table Row: 11 | Sample 50 frames (25 ms) of Act_Disp_Raw (in) and average them when the following condition is True: IVT_Command_ISM = 0x0020, IVT_CmdData_ISM: Harmonize_VOID_STL = True. Note: Act_Disp_Raw is depicted Figure 4436 and Harmonize_VOID_STL is defined in Table 1008.  Not applicable to LRU_3 and LRU_4. | 9205
+Table Row: 12 | Compute  Act_Disp_Raw_Avg_VOID while commanded to the VOID position as follows: [the average of Act_Disp_Raw from Step above] * Harmonize_SFC_Default + Harmonize_Offset_Default.The values of Harmonize_SFC_Default and Harmonize_Offset_Default are defined as a function of Profile_Id in:   Table 10695, Rev C: ATYPE-1 & ATYPE-2 LVDT Default Harmonizing Parameters  Table 106939, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters  Set VOID_Collection_Complete = True Note:  Not applicable to LRU_3 and LRU_4. | 9222
+Table Row: 13 | Set Act_Disp_Range_VOID_Fault to True if Act_Disp_Raw_Avg_VOID (in) is not within the following range:  Table 1018, Rev A ATYPE-1 & ATYPE-2 VOID Harmonizing Range  Table 1019, Rev NC ATYPE-3 VOID Harmonizing Range Else set Act_Disp_Range_VOID_Fault to False. Note: Not applicable to LRU_3 and LRU_4. | 9209
+Table Row: 14a | Set and transmit IVT Response data on STL_Bus as follows: IVT_Receipt_Envelope = 0x0017,  IVT_Receipt_Content: VOID_Collection_Complete = True,  Notes:  1) VOID_Collection_Complete is defined in Table 1007. 2) IVT_Receipt_Content is an accummulation of all applicable Harmonizing status Bits. 3) Not applicable to LRU_3 and LRU_4. | 9210
+Table Row: 14b | If Act_Disp_Range_VOID_Fault is True, set and transmit IVT Response data on STL_Bus as follows: IVT_Receipt_Envelope = 0x0017,   IVT_Receipt_Content: Harmonizing_Failed = True, else IVT_Receipt_Envelope = 0x0017,   IVT_Receipt_Content: Harmonizing_Failed = False.  Notes:  1) Harmonizing_Failed is defined in Table 1007.  2) IVT_Receipt_Content is an accummulation of all applicable Harmonizing status Bits. 3) Not applicable to LRU_3 and LRU_4. | 9210
+Table Row: 15 | If Act_Disp_Range_VOID_Fault transitions to True, create an entry in the Fault_History_Table_PSR. Notes: 1) Not applicable to LRU_3 and LRU_4. 2) This is the only entry of this fault in the Fault_History_Table_PSR for the current power-on session. | 9235
+Table Row: Information Only | The LRU_2 asserts both Harmonizing Active and IVT Active, and transmits its own Average Expand and Contract LVDT Position on the STL Bus using IVT_Command_ISM and IVT_CmdData_ISM as follows:  IVT_Active_STL = True  Harmonizing_Active_STL = True  IVT_Command_ISM, IVT_CmdData_ISM: LRU_2_Act_Disp_Raw_Avg_Contract_STL  IVT_Command_ISM, IVT_CmdData_ISM: LRU_2_Act_Disp_Raw_Avg_Expand_STL. | 9221
+Table Row: 16 | Set Primary_Harmonize_Calc to True when the following condition is True: Act_Disp_Range_VOID_Fault = False  AND Act_Disp_Range_Contract_Fault = False AND Act_Disp_Range_Expand_Fault = False AND Contract_Stop_Collection_Complete = True AND Expand_Stop_Collection_Complete = True AND VOID_Collection_Complete = True. Note: Not applicable to LRU_3 and LRU_4. | 9891
+Table Row: 17 | For LRU_3 and LRU_4, set Spoiler_Harmonize_Calc to True if the following condition is True: Act_Disp_Range_Contract_Fault = False AND Act_Disp_Range_Expand_Fault = False AND Contract_Stop_Collection_Complete = True AND Expand_Stop_Collection_Complete = True. Note: Not applicable to primary surfaces. | 9892
+Table Row: 18 | If Spoiler_Harmonize_Calc is True then compute  K_Harmonize_New  = Max_Stroke / [Act_Disp_Raw_Avg_Expand  -  Act_Disp_Raw_Avg_Contract]. where Max_Stroke is defined in:   Table 1020, Rev A: ATYPE-1 & ATYPE-2 LRU Harmonizing Max Strokes   Table 1021, Rev A: ATYPE-3 LRU Harmonizing Max Strokes | 9176
+Table Row: 19 | If Spoiler_Harmonize_Calc is True, then calculate the new LVDT Harmonizing Offset as follows:  Harmonize_Offset_New  =  (Harmonize_Offset_Default - Act_Disp_Raw_Avg_Contract)  * K_Harmonize_New.  The value of Harmonize_Offset_Default is defined as a function of Profile_Id in:   Table 10695, Rev C: ATYPE-1 & ATYPE-2 LVDT Default Harmonizing Parameters  Table 106939, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters Note: Not applicable to Primary Surfaces. | 6137
+Table Row: 20 | Calculate the new LVDT Harmonizing Gain when Primary_Harmonize_Calc is True AND Profile_Id is any of the following:  LRU_1,  LRU_2,  LRU_5,   LRU_6. K_Harmonize_New  = (LRU_2_Act_Disp_Raw_Avg_Expand - LRU_2_Act_Disp_Raw_Avg_Contract)                                /(Act_Disp_Raw_Avg_Expand - Act_Disp_Raw_Avg_Contract). Note: Applicable to Elevator or Aileron Surfaces only. | 9212
+Table Row: 21 | Calculate the new LVDT Harmonizing Gain when Primary_Harmonize_Calc is True AND Profile_Id = LRU_7 as follows: K_Harmonize_New  =  Max_Stroke / [Act_Disp_Raw_Avg_Expand (in) – Act_Disp_Raw_Avg_Contract (in)]. where Max_Stroke is defined as a function of Profile_Id in:  Table 1020, Rev A: ATYPE-1 & ATYPE-2 LRU Harmonizing Max Strokes  Table 1021, Rev A: ATYPE-3 LRU Harmonizing Max Strokes Note: Applicable to LRU_7 (Rudder) only. | 9944
+Table Row: 22 | Calculate the new LVDT Harmonizing Offset as follows when Primary_Harmonize_Calc is True: Harmonize_Offset_New  = (Harmonize_Offset_Default - Act_Disp_Raw_Avg_VOID)  * K_Harmonize_New. The value of Harmonize_Offset_Default is defined as a function of Profile_Id in:   Table 10695, Rev C: ATYPE-1 & ATYPE-2 LVDT Default Harmonizing Parameters  Table 106939, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters Note:   Not applicable to OB Spoiler Surfaces. | 9213
+Table Row: 23 | If LRU-1/2/5/6, calculate Lower_Limit_LRU_PSR_New when Primary_Harmonize_Calc by the following equation: Lower_Limit_LRU_PSR_New =  Act_Disp_Raw_Avg_Contract + Contract_Error. The value of Contract_Error is defined in :  Table 10695, Rev C: ATYPE-1 & ATYPE-2 LVDT Default Harmonizing Parameters  Table 106939, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters | 10915
+Table Row: 24 | If LRU-3/4, calculate Upper_Limit_LRU_PSR_New and Lower_Limit_LRU_PSR_New to the fixed values as follows:   Upper_Limit_LRU_PSR_New = Upper_Limit_Harmonized   Lower_Limit_LRU_PSR_New = Lower_Limit_Harmonized    The value of Upper_Limit_Harmonized and Lower_Limit_Harmonized are as a function of Profile_Id in:  Table 1020, Rev A: ATYPE-1 & ATYPE-2 LRU Harmonizing Max Strokes  Table 1021, Rev A: ATYPE-3 LRU Harmonizing Max Strokes Note: Applicable only to Spoiler surfaces. | 10916
+Table Row: 25 | If LRU-7, calculate Lower_Limit_LRU_PSR_New using the following equation:   Lower_Limit_LRU_PSR_New = Lower_Limit_Harmonized  The value of Lower_Limit_Harmonized is defined as a function of Profile_Id in:  Table 1020, Rev A: ATYPE-1 & ATYPE-2 LRU Harmonizing Max Strokes  Table 1021, Rev A: ATYPE-3 LRU Harmonizing Max Strokes Note: Applicable only to Rudder. | 10917
+Table Row: 26 | If LRU-1/2/5/6, calculate Upper_Limit_LRU_PSR_New using the following equation:   Upper_Limit_LRU_PSR_New =  Act_Disp_Raw_Avg_Expand – Expand_Error.  The value of Expand_Error is defined as a function of Profile_Id in: :   Table 10695, Rev C: ATYPE-1 & ATYPE-2 LVDT Default Harmonizing Parameters  Table 106939, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters Note: Applicable only to Ailerons and Elevators. | 10918
+Table Row: 27 | If LRU-7, calculate Upper_Limit_LRU_PSR_New using the following equation:   Upper_Limit_LRU_PSR_New = Upper_Limit_Harmonized The value of Upper_Limit_Harmonized is defined as a function of Profile_Id in:   Table 1020, Rev A: ATYPE-1 & ATYPE-2 LRU Harmonizing Max Strokes  Table 1021, Rev A: ATYPE-3 LRU Harmonizing Max Strokes Note: Applicable only to Rudder. | 10921
+Table Row: 28 | Store new LRU Harmonizing parameters in PSR as follows:   Harmonize_SFC_PSR = K_Harmonize_New  Harmonize_Offset_PSR = Harmonize_Offset_New  Asset_ID_PSR = Asset_ID_STL  Config_LRU_PSR = Profile_ID_Disc_Dbnce_Init  Lower_Limit_LRU_PSR = Lower_Limit_LRU_PSR_New  Upper_Limit_LRU_PSR = Upper_Limit_LRU_PSR_New  CRC_PSR = CRC for data above | 9215
+Table Row: 29 | The LRU reads back the data stored in PSR and re-computes the CRC of the PSR Harmonizing parameters. | 9225
+Table Row: 30 | Perform a CRC check of the following Harmonizing parameters set in PSR to verify it is not corrupted:  Harmonize_Offset_PSR  Harmonize_SFC_PSR  Asset_ID_PSR  Config_LRU_PSR  Lower_Limit_LRU_PSR  Upper_Limit_LRU_PSR. | 9814
+Table Row: 31 | If CRC check as defined in Step above fails, the LRU software sets Harmonizing_PSR_Data_Fault to True, else set  Harmonizing_PSR_Data_Fault to False. | 9224
+Table Row: 32 | If Harmonizing_PSR_Data_Fault transitions to True, then perform the following:  create a Harmonizing_PSR_Data_Fault entry in the Fault_History_Table_PSR   report Harmonizing Failed to the LRU_2 on STL_Bus:  IVT_Receipt_Envelope=0x0017, IVT_Receipt_Content: Harmonizing_Failed = True. Note: Harmonizing_Failed is defined in Table 1007. | 9249
+Table Row: 33 | Set the following to False if Harmonizing_PSR_Data_Fault is False.   LRU_Harmonizing_Needed_PIVT   Corrupt_PSR_Harmonizing_CIP_Fault_Init. | 9894
+Table Row: 34 | If Harmonizing_PSR_Data_Fault is False then perform all of the following assignments:  K_Harmonize_ISM = Harmonize_SFC_PSR   Harmonize_Offset_ISM = Harmonize_Offset_PSR  Lower_Limit_LRU = Lower_Limit_LRU_PSR  Upper_Limit_LRU = Upper_Limit_EBMC_PSR.  Note: These parameters are used in the position control state.  Therefore, one might have to enter the position control state to see the updates. | 9247
+Table Row: Information Only | The LRU_2 EBHA channel commands the LRU to transmit its new Harmonizing parameters including LVDT Harmonizing Gain and LVDT Harmonizing Offset for future Auto-Harmonizing using IVT_Command_ISM and IVT_CmdData_ISM. | 9823
+Table Row: 35 | If the LRU receives the Harmonizing_and_Configuration_Parameters_Request command below on STL_Bus while Harmonizing_PSR_Data_Fault is False AND Step 34 completed : IVT_Command_ISM = 0x0012 AND IVT_CmdData_ISM = 0x0001, then reply on STL_Bus with the following messages (sequence order insignificant):  IVT_Receipt_Envelope = 0x0011, IVT_Receipt_Content: LRU_Harmonizing_Needed_PIVT = False.  IVT_Receipt_Envelope = 0x0012, IVT_Receipt_Content = Config_LRU_PSR (LRU Harmonizing Location and Asset type)  IVT_Receipt_Envelope = 0x0013, IVT_Receipt_Content = Asset_ID_PSR   IVT_Receipt_Envelope = 0x0014, IVT_Receipt_Content = Harmonizing_SFC_PSR  IVT_Receipt_Envelope = 0x0015, IVT_Receipt_Content = Harmonizing_Offset_PSR  IVT_Receipt_Envelope = 0x0018, IVT_Receipt_Content = Lower_Limit_LRU_PSR  IVT_Receipt_Envelope = 0x0019, IVT_Receipt_Content = Upper_Limit_LRU_PSR  IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Complete = True Note: All IVT Response Codes and Data IVT formats are defined in Table 1007. | 9239
+
+====================================================
+STEP 1 – ANALYZE THE REQUIREMENT
+====================================================
+
+Analyze ONLY the supplied requirement.
+
+Identify if present:
+
+• Decisions
+• Boolean conditions
+• Input conditions
+• Output actions
+• State transitions
+• Counters
+• Timers
+• Numeric limits
+• Thresholds
+• Ranges
+• Error conditions
+• Referenced requirements
+
+Do NOT infer behavior from system knowledge or linked documents.
+
+INPUT VARIABLES:
+(extracted inputs)
+
+CONSTANTS:
+None
+
+USED FUNCTIONS (functions this requirement calls - account for their behaviour, boundaries, and interactions when designing test cases):
+LRUSWRS-1003
+
+SOFTWARE LEVEL: B
+REQUIRED COVERAGE: DC (Decision Coverage)
+
+====================================================
+STEP 2 – DETERMINE APPLICABLE TEST TYPES
+====================================================
+
+Generate NORMAL test cases whenever expected functional behaviour is defined.
+
+Generate DC (Decision Coverage) test cases ONLY when the requirement explicitly contains:
+
+• IF
+• ELSE
+• TRUE/FALSE conditions
+• AND
+• OR
+• NOT
+• Conditional behaviour
+
+Generate BOUNDARY test cases ONLY when the requirement contains:
+
+• Timers
+• Counters
+• Numeric limits
+• Thresholds
+• Ranges
+• Frame counts
+
+Generate ROBUSTNESS test cases ONLY when abnormal or invalid inputs or states are explicitly implied by the requirement.
+
+If none apply, generate only NORMAL test cases.
+
+====================================================
+STEP 3 – COVERAGE
+====================================================
+
+Ensure:
+
+• Every requirement clause is verified.
+• Every observable output is verified.
+• Every decision is exercised (when applicable).
+• Every applicable boundary is verified.
+• No duplicate test cases.
+
+If the requirement contains multiple independent outputs or independent verification objectives, generate separate test cases whenever appropriate.
+
+Do NOT collapse independent verification objectives into a single test case if separate verification improves requirement coverage.
+
+====================================================
+FIELD RULES
+====================================================
+
+test_case_id
+
+Format
+
+<requirement_id_with_underscores>_<3-digit-sequence>
+
+Example
+
+LRUSWRS_1003_001
+
+description
+
+Describe the verification objective using terminology from the requirement.
+
+requirement_id
+
+Copy exactly.
+
+test_type
+
+dc | boundary | nominal | robustness
+
+mode
+
+Copy only if explicitly stated.
+
+Otherwise return "".
+
+preconditions
+
+Use ONLY conditions explicitly stated in the requirement.
+
+expected_result
+
+Describe ONLY the observable software behaviour specified by the requirement.
+Preserve exact signal names and values.
+
+pass_criteria
+
+If a verification mechanism is explicitly provided in the requirement, use it.
+
+Otherwise return exactly:
+
+"Compare the observed software output against the expected value(s) stated in expected_result."
+
+related_requirements
+
+Return ONLY requirement IDs explicitly referenced in the supplied requirement.
+
+Otherwise return "".
+
+test_procedure_notes
+
+If the requirement explicitly specifies verification information, copy it.
+
+Otherwise return "".
+
+====================================================
+STRICT RULES
+====================================================
+
+DO
+
+• Use ONLY information present in the supplied requirement.
+• Preserve exact signal names.
+• Generate only applicable test cases.
+• Produce valid JSON.
+
+DO NOT
+
+• Invent TCL scripts.
+• Invent memory addresses.
+• Invent registers.
+• Invent Test Peek indexes.
+• Invent Bus Monitor indexes.
+• Invent operating modes.
+• Invent internal variables.
+• Invent linked requirements.
+• Invent software behaviour.
+• Output markdown.
+• Output explanations.
+• Output reasoning.
+
+====================================================
+OUTPUT FORMAT
+====================================================
+
+{
+  "test_cases": [
+    {
+      "test_case_id": "string",
+      "description": "string",
+      "requirement_id": "string",
+      "test_type": "dc | boundary | nominal | robustness",
+      "mode": "string",
+      "preconditions": "string",
+      "expected_result": "string",
+      "pass_criteria": "string",
+      "related_requirements": "string",
+      "test_procedure_notes": "string"
+    }
+  ]
+}
+
+====================================================
+ONE-SHOT EXAMPLE
+====================================================
+
+Requirement
+
+ID: SAMPLE-0001
+
+Text:
+
+If Sensor_Fault = TRUE, the LRU software shall transmit Fault_Flag = TRUE over STL_Bus.
+
+Expected Output
+
+{
+  "test_cases": [
+    {
+      "test_case_id": "SAMPLE_0001_001",
+      "description": "Verify that the LRU software transmits Fault_Flag = TRUE over STL_Bus when Sensor_Fault = TRUE.",
+      "requirement_id": "SAMPLE-0001",
+      "test_type": "NORMAL",
+      "mode": "",
+      "preconditions": "Sensor_Fault = TRUE.",
+      "expected_result": "Fault_Flag = TRUE is transmitted over STL_Bus.",
+      "pass_criteria": "Compare the observed software output against the expected value(s) stated in expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": ""
+    },
+    {
+      "test_case_id": "SAMPLE_0001_002",
+      "description": "Verify that the LRU software does not transmit Fault_Flag = TRUE over STL_Bus when Sensor_Fault = FALSE.",
+      "requirement_id": "SAMPLE-0001",
+      "test_type": "DC",
+      "mode": "",
+      "preconditions": "Sensor_Fault = FALSE.",
+      "expected_result": "Fault_Flag = TRUE is not transmitted.",
+      "pass_criteria": "Compare the observed software output against the expected value(s) stated in expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": ""
+    }
+  ]
+}
+
+====================================================
+FINAL INSTRUCTION
+====================================================
+
+Analyze ONLY the supplied requirement.
+
+Use the ONE-SHOT EXAMPLE only as a formatting reference.
+
+Do not copy values from the example.
+
+Return ONLY valid JSON matching the schema above.

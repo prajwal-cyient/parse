@@ -1,0 +1,512 @@
+[
+  {
+    "test_case_id": "LRUSWRS-1003_NORMAL_01",
+    "requirement_id": "LRUSWRS-1003",
+    "test_type": "NORMAL",
+    "description": "Verify nominal execution for requirement LRUSWRS-1003.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+    "test_inputs": "IVT_Mode_ModeLgc = True; Harmonizing_Active_STL = True; Timing / Frame Duration = 10 consecutive STL frames.",
+    "expected_result": "Verify observable outputs for LRUSWRS-1003 match requirement specification.",
+    "pass_criteria": "Observed software behavior for LRUSWRS-1003 matches expected result.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+  },
+  {
+    "test_case_id": "LRUSWRS-1003_DC_01",
+    "requirement_id": "LRUSWRS-1003",
+    "test_type": "DC",
+    "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRUSWRS-1003.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+    "test_inputs": "IVT_Mode_ModeLgc = False; Harmonizing_Active_STL = False; Timing / Frame Duration = 10 consecutive STL frames.",
+    "expected_result": "Action suppressed for LRUSWRS-1003; output flag = False.",
+    "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via STL_Bus telemetry."
+  },
+  {
+    "test_case_id": "LRUSWRS-1001-STEP-1_NORMAL_01",
+    "requirement_id": "LRUSWRS-1001-STEP-1",
+    "test_type": "NORMAL",
+    "description": "Verify nominal execution for requirement LRUSWRS-1001-STEP-1.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+    "test_inputs": "IVT_Command_ISM = True; Harmonize_Contract_Stop_STL = nominal in-range value; Command / Envelope = 0x0020; Timing / Frame Duration = 50 frames.",
+    "expected_result": "Verify observable outputs for LRUSWRS-1001-STEP-1 match requirement specification.",
+    "pass_criteria": "Observed software behavior for LRUSWRS-1001-STEP-1 matches expected result.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+  },
+  {
+    "test_case_id": "LRUSWRS-1001-STEP-1_DC_01",
+    "requirement_id": "LRUSWRS-1001-STEP-1",
+    "test_type": "DC",
+    "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRUSWRS-1001-STEP-1.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+    "test_inputs": "IVT_Command_ISM = False; Harmonize_Contract_Stop_STL = nominal in-range value; Command / Envelope = 0x0020; Timing / Frame Duration = 50 frames.",
+    "expected_result": "Action suppressed for LRUSWRS-1001-STEP-1; output flag = False.",
+    "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via STL_Bus telemetry."
+  },
+  {
+    "test_case_id": "LRUSWRS-1001-STEP-2_NORMAL_01",
+    "requirement_id": "LRUSWRS-1001-STEP-2",
+    "test_type": "NORMAL",
+    "description": "Verify nominal execution for requirement LRUSWRS-1001-STEP-2.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+    "test_inputs": "Act_Disp_Raw = nominal in-range value; Harmonize_SFC_Default = per applicable configuration table for the LRU under test; Harmonize_Offset_Default = per applicable configuration table for the LRU under test.",
+    "expected_result": "Harmonize_SFC_Default = True; Harmonize_Offset_Default = True.",
+    "pass_criteria": "Observed software behavior for LRUSWRS-1001-STEP-2 matches expected result.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+  },
+  {
+    "test_case_id": "LRUSWRS-1001-STEP-2_DC_01",
+    "requirement_id": "LRUSWRS-1001-STEP-2",
+    "test_type": "DC",
+    "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRUSWRS-1001-STEP-2.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+    "test_inputs": "Act_Disp_Raw = nominal in-range value; Harmonize_SFC_Default = per applicable configuration table for the LRU under test; Harmonize_Offset_Default = per applicable configuration table for the LRU under test.",
+    "expected_result": "Harmonize_SFC_Default = False; Harmonize_Offset_Default = False.",
+    "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via STL_Bus telemetry."
+  },
+  {
+    "test_case_id": "TC-LRU-9170-CONTRACT-N1",
+    "requirement_id": "LRU-9170",
+    "test_type": "NORMAL",
+    "description": "Clubbed Steps 3, 4A, 4B: Verify that when Act_Disp_Raw_Avg_Contract is within range, Act_Disp_Range_Contract_Fault is False, Contract_Stop_Collection_Complete is True, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+    "test_inputs": "Act_Disp_Raw_Avg_Contract = -12.5 (within Contract Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0.",
+    "expected_result": "Act_Disp_Range_Contract_Fault = False; Contract_Stop_Collection_Complete = True; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Contract_Stop_Collection_Complete = True.",
+    "pass_criteria": "Act_Disp_Range_Contract_Fault equals False, Contract_Stop_Collection_Complete equals True, and IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and internal state variables."
+  },
+  {
+    "test_case_id": "TC-LRU-9170-CONTRACT-FAULT",
+    "requirement_id": "LRU-9170",
+    "test_type": "ROBUSTNESS",
+    "description": "Clubbed Steps 3, 4A, 4B: Verify that when Act_Disp_Raw_Avg_Contract is outside range, Act_Disp_Range_Contract_Fault is True, Contract_Stop_Collection_Complete is False, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017 and Harmonizing_Failed = True.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+    "test_inputs": "Act_Disp_Raw_Avg_Contract = -25.0 (outside Contract Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0.",
+    "expected_result": "Act_Disp_Range_Contract_Fault = True; Harmonizing_Failed = False; Contract_Stop_Collection_Complete = False; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Contract_Stop_Collection_Complete = False.",
+    "pass_criteria": "Act_Disp_Range_Contract_Fault equals True, Contract_Stop_Collection_Complete equals False, and IVT Response transmitted on STL_Bus with Harmonizing_Failed = True.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and NVM fault log."
+  },
+  {
+    "test_case_id": "TC-LRU-9177-EXPAND-N1",
+    "requirement_id": "LRU-9177",
+    "test_type": "NORMAL",
+    "description": "Clubbed Steps 8, 9A, 9B: Verify that when Act_Disp_Raw_Avg_Expand is within range, Act_Disp_Range_Expand_Fault is False, Expand_Stop_Collection_Complete is True, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Expand Position; LRU to be in Harmonizing Mode.",
+    "test_inputs": "Act_Disp_Raw_Avg_Expand = 15.0 (within Expand Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0.",
+    "expected_result": "Act_Disp_Range_Expand_Fault = False; Expand_Stop_Collection_Complete = True; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Expand_Stop_Collection_Complete = True.",
+    "pass_criteria": "Act_Disp_Range_Expand_Fault equals False, Expand_Stop_Collection_Complete equals True, and IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and internal state variables."
+  },
+  {
+    "test_case_id": "TC-LRU-9177-EXPAND-FAULT",
+    "requirement_id": "LRU-9177",
+    "test_type": "ROBUSTNESS",
+    "description": "Clubbed Steps 8, 9A, 9B: Verify that when Act_Disp_Raw_Avg_Expand is outside range, Act_Disp_Range_Expand_Fault is True, Expand_Stop_Collection_Complete is False, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017 and Harmonizing_Failed = True.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Expand Position; LRU to be in Harmonizing Mode.",
+    "test_inputs": "Act_Disp_Raw_Avg_Expand = 30.0 (outside Expand Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0.",
+    "expected_result": "Act_Disp_Range_Expand_Fault = True; Harmonizing_Failed = False; Expand_Stop_Collection_Complete = False; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Expand_Stop_Collection_Complete = False.",
+    "pass_criteria": "Act_Disp_Range_Expand_Fault equals True, Expand_Stop_Collection_Complete equals False, and IVT Response transmitted on STL_Bus with Harmonizing_Failed = True.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and NVM fault log."
+  },
+  {
+    "test_case_id": "SWVCP_AAP_TC_1000_PSR_ALL",
+    "requirement_id": "LRUSWRS-1000",
+    "test_type": "NORMAL",
+    "description": "Verify that upon entry to Harmonizing Mode, all 9 PSR Harmonizing data members (Harmonize_SFC_PSR, Harmonize_Offset_PSR, Config_LRU_PSR, Asset_ID_PSR, Upper_Limit_LRU_PSR, Lower_Limit_LRU_PSR, CRC_PSR, Var_ID_PSR, Label_Version_PSR) reside in PSR with valid configured values in accordance with the Harmonizing PSR specification.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Hardware configured; Precondition: Harmonizing Mode entered; LRU to be in Harmonizing Mode.",
+    "test_inputs": "IVT_Mode_ModeLgc = True; Harmonizing_Active_STL = True.",
+    "expected_result": "All 9 PSR data members (Harmonize_SFC_PSR, Harmonize_Offset_PSR, Config_LRU_PSR, Asset_ID_PSR, Upper_Limit_LRU_PSR, Lower_Limit_LRU_PSR, CRC_PSR, Var_ID_PSR, Label_Version_PSR) reside in PSR with valid configured values matching specification.",
+    "pass_criteria": "Observed PSR storage and STL_Bus values match expected result for all 9 Harmonizing PSR data members.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via PSR memory registers and STL_Bus telemetry."
+  },
+  {
+    "test_case_id": "SWVCP_AAP_TC_1011_TYPE_1_LRU_1",
+    "requirement_id": "LRUSWRS-1011",
+    "asset_type": "ATYPE_1",
+    "target_lru": "LRU_1",
+    "test_type": "NORMAL",
+    "description": "Verify Pin Strapping decode for ATYPE_1 - LRU_1 (Left Aileron): Pin inputs 00010011 decode to Asset_Type = ATYPE_1, LRU_ID = LRU_1, Location_Invert = 1.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Hardware discrete pin strapping configured for TYPE_1_LRU_1 per Table 1011; LRU to be in Harmonizing Mode.",
+    "test_inputs": "Discrete pin strapping inputs: ID7_DSP..ID0_DSP = 00010011; Parity valid; Asset Type = ATYPE_1; LRU = LRU_1.",
+    "expected_result": "Software correctly decodes discrete pins to Asset_Type = ATYPE_1, Target LRU = LRU_1 (Left Aileron), Location_Invert = 1, SurfaceID = TYPE_1_LRU_1. Pin strapping verification successful.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via internal memory registers and STL_Bus telemetry.",
+    "_applicability": {
+      "ATYPE": "ATYPE_1",
+      "LRU": "LRU_1"
+    }
+  },
+  {
+    "test_case_id": "SWVCP_AAP_TC_1011_TYPE_1_LRU_2",
+    "requirement_id": "LRUSWRS-1011",
+    "asset_type": "ATYPE_1",
+    "target_lru": "LRU_2",
+    "test_type": "NORMAL",
+    "description": "Verify Pin Strapping decode for ATYPE_1 - LRU_2 (Right Aileron): Pin inputs 00010101 decode to Asset_Type = ATYPE_1, LRU_ID = LRU_2, Location_Invert = 1.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_2; Hardware discrete pin strapping configured for TYPE_1_LRU_2 per Table 1011; LRU to be in Harmonizing Mode.",
+    "test_inputs": "Discrete pin strapping inputs: ID7_DSP..ID0_DSP = 00010101; Parity valid; Asset Type = ATYPE_1; LRU = LRU_2.",
+    "expected_result": "Software correctly decodes discrete pins to Asset_Type = ATYPE_1, Target LRU = LRU_2 (Right Aileron), Location_Invert = 1, SurfaceID = TYPE_1_LRU_2. Pin strapping verification successful.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via internal memory registers and STL_Bus telemetry.",
+    "_applicability": {
+      "ATYPE": "ATYPE_1",
+      "LRU": "LRU_2"
+    }
+  },
+  {
+    "test_case_id": "SWVCP_AAP_TC_1011_TYPE_1_LRU_3",
+    "requirement_id": "LRUSWRS-1011",
+    "asset_type": "ATYPE_1",
+    "target_lru": "LRU_3",
+    "test_type": "NORMAL",
+    "description": "Verify Pin Strapping decode for ATYPE_1 - LRU_3 (Left Spoiler): Pin inputs 00010110 decode to Asset_Type = ATYPE_1, LRU_ID = LRU_3, Location_Invert = 0.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_3; Hardware discrete pin strapping configured for TYPE_1_LRU_3 per Table 1011; LRU to be in Harmonizing Mode.",
+    "test_inputs": "Discrete pin strapping inputs: ID7_DSP..ID0_DSP = 00010110; Parity valid; Asset Type = ATYPE_1; LRU = LRU_3.",
+    "expected_result": "Software correctly decodes discrete pins to Asset_Type = ATYPE_1, Target LRU = LRU_3 (Left Spoiler), Location_Invert = 0, SurfaceID = TYPE_1_LRU_3. Pin strapping verification successful.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via internal memory registers and STL_Bus telemetry.",
+    "_applicability": {
+      "ATYPE": "ATYPE_1",
+      "LRU": "LRU_3"
+    }
+  },
+  {
+    "test_case_id": "SWVCP_AAP_TC_1011_TYPE_1_LRU_4",
+    "requirement_id": "LRUSWRS-1011",
+    "asset_type": "ATYPE_1",
+    "target_lru": "LRU_4",
+    "test_type": "NORMAL",
+    "description": "Verify Pin Strapping decode for ATYPE_1 - LRU_4 (Right Spoiler): Pin inputs 00011001 decode to Asset_Type = ATYPE_1, LRU_ID = LRU_4, Location_Invert = 1.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_4; Hardware discrete pin strapping configured for TYPE_1_LRU_4 per Table 1011; LRU to be in Harmonizing Mode.",
+    "test_inputs": "Discrete pin strapping inputs: ID7_DSP..ID0_DSP = 00011001; Parity valid; Asset Type = ATYPE_1; LRU = LRU_4.",
+    "expected_result": "Software correctly decodes discrete pins to Asset_Type = ATYPE_1, Target LRU = LRU_4 (Right Spoiler), Location_Invert = 1, SurfaceID = TYPE_1_LRU_4. Pin strapping verification successful.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via internal memory registers and STL_Bus telemetry.",
+    "_applicability": {
+      "ATYPE": "ATYPE_1",
+      "LRU": "LRU_4"
+    }
+  },
+  {
+    "test_case_id": "SWVCP_AAP_TC_1011_TYPE_1_LRU_5",
+    "requirement_id": "LRUSWRS-1011",
+    "asset_type": "ATYPE_1",
+    "target_lru": "LRU_5",
+    "test_type": "NORMAL",
+    "description": "Verify Pin Strapping decode for ATYPE_1 - LRU_5 (Left Elevator): Pin inputs 00011010 decode to Asset_Type = ATYPE_1, LRU_ID = LRU_5, Location_Invert = 0.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_5; Hardware discrete pin strapping configured for TYPE_1_LRU_5 per Table 1011; LRU to be in Harmonizing Mode.",
+    "test_inputs": "Discrete pin strapping inputs: ID7_DSP..ID0_DSP = 00011010; Parity valid; Asset Type = ATYPE_1; LRU = LRU_5.",
+    "expected_result": "Software correctly decodes discrete pins to Asset_Type = ATYPE_1, Target LRU = LRU_5 (Left Elevator), Location_Invert = 0, SurfaceID = TYPE_1_LRU_5. Pin strapping verification successful.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via internal memory registers and STL_Bus telemetry.",
+    "_applicability": {
+      "ATYPE": "ATYPE_1",
+      "LRU": "LRU_5"
+    }
+  },
+  {
+    "test_case_id": "SWVCP_AAP_TC_1011_TYPE_1_LRU_6",
+    "requirement_id": "LRUSWRS-1011",
+    "asset_type": "ATYPE_1",
+    "target_lru": "LRU_6",
+    "test_type": "NORMAL",
+    "description": "Verify Pin Strapping decode for ATYPE_1 - LRU_6 (Right Elevator): Pin inputs 00011100 decode to Asset_Type = ATYPE_1, LRU_ID = LRU_6, Location_Invert = 0.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_6; Hardware discrete pin strapping configured for TYPE_1_LRU_6 per Table 1011; LRU to be in Harmonizing Mode.",
+    "test_inputs": "Discrete pin strapping inputs: ID7_DSP..ID0_DSP = 00011100; Parity valid; Asset Type = ATYPE_1; LRU = LRU_6.",
+    "expected_result": "Software correctly decodes discrete pins to Asset_Type = ATYPE_1, Target LRU = LRU_6 (Right Elevator), Location_Invert = 0, SurfaceID = TYPE_1_LRU_6. Pin strapping verification successful.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via internal memory registers and STL_Bus telemetry.",
+    "_applicability": {
+      "ATYPE": "ATYPE_1",
+      "LRU": "LRU_6"
+    }
+  },
+  {
+    "test_case_id": "SWVCP_AAP_TC_1011_TYPE_1_LRU_7",
+    "requirement_id": "LRUSWRS-1011",
+    "asset_type": "ATYPE_1",
+    "target_lru": "LRU_7",
+    "test_type": "NORMAL",
+    "description": "Verify Pin Strapping decode for ATYPE_1 - LRU_7 (Rudder): Pin inputs 00011111 decode to Asset_Type = ATYPE_1, LRU_ID = LRU_7, Location_Invert = 1.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_7; Hardware discrete pin strapping configured for TYPE_1_LRU_7 per Table 1011; LRU to be in Harmonizing Mode.",
+    "test_inputs": "Discrete pin strapping inputs: ID7_DSP..ID0_DSP = 00011111; Parity valid; Asset Type = ATYPE_1; LRU = LRU_7.",
+    "expected_result": "Software correctly decodes discrete pins to Asset_Type = ATYPE_1, Target LRU = LRU_7 (Rudder), Location_Invert = 1, SurfaceID = TYPE_1_LRU_7. Pin strapping verification successful.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via internal memory registers and STL_Bus telemetry.",
+    "_applicability": {
+      "ATYPE": "ATYPE_1",
+      "LRU": "LRU_7"
+    }
+  },
+  {
+    "test_case_id": "SWVCP_AAP_TC_1011_TYPE_2_LRU_1",
+    "requirement_id": "LRUSWRS-1011",
+    "asset_type": "ATYPE_2",
+    "target_lru": "LRU_1",
+    "test_type": "NORMAL",
+    "description": "Verify Pin Strapping decode for ATYPE_2 - LRU_1 (Left Aileron): Pin inputs 00100011 decode to Asset_Type = ATYPE_2, LRU_ID = LRU_1, Location_Invert = 1.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_2; Target LRU: LRU_1; Hardware discrete pin strapping configured for TYPE_2_LRU_1 per Table 1011; LRU to be in Harmonizing Mode.",
+    "test_inputs": "Discrete pin strapping inputs: ID7_DSP..ID0_DSP = 00100011; Parity valid; Asset Type = ATYPE_2; LRU = LRU_1.",
+    "expected_result": "Software correctly decodes discrete pins to Asset_Type = ATYPE_2, Target LRU = LRU_1 (Left Aileron), Location_Invert = 1, SurfaceID = TYPE_2_LRU_1. Pin strapping verification successful.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via internal memory registers and STL_Bus telemetry.",
+    "_applicability": {
+      "ATYPE": "ATYPE_2",
+      "LRU": "LRU_1"
+    }
+  },
+  {
+    "test_case_id": "SWVCP_AAP_TC_1011_TYPE_2_LRU_2",
+    "requirement_id": "LRUSWRS-1011",
+    "asset_type": "ATYPE_2",
+    "target_lru": "LRU_2",
+    "test_type": "NORMAL",
+    "description": "Verify Pin Strapping decode for ATYPE_2 - LRU_2 (Right Aileron): Pin inputs 00100101 decode to Asset_Type = ATYPE_2, LRU_ID = LRU_2, Location_Invert = 1.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_2; Target LRU: LRU_2; Hardware discrete pin strapping configured for TYPE_2_LRU_2 per Table 1011; LRU to be in Harmonizing Mode.",
+    "test_inputs": "Discrete pin strapping inputs: ID7_DSP..ID0_DSP = 00100101; Parity valid; Asset Type = ATYPE_2; LRU = LRU_2.",
+    "expected_result": "Software correctly decodes discrete pins to Asset_Type = ATYPE_2, Target LRU = LRU_2 (Right Aileron), Location_Invert = 1, SurfaceID = TYPE_2_LRU_2. Pin strapping verification successful.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via internal memory registers and STL_Bus telemetry.",
+    "_applicability": {
+      "ATYPE": "ATYPE_2",
+      "LRU": "LRU_2"
+    }
+  },
+  {
+    "test_case_id": "SWVCP_AAP_TC_1011_TYPE_2_LRU_3",
+    "requirement_id": "LRUSWRS-1011",
+    "asset_type": "ATYPE_2",
+    "target_lru": "LRU_3",
+    "test_type": "NORMAL",
+    "description": "Verify Pin Strapping decode for ATYPE_2 - LRU_3 (Left Spoiler): Pin inputs 00100110 decode to Asset_Type = ATYPE_2, LRU_ID = LRU_3, Location_Invert = 0.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_2; Target LRU: LRU_3; Hardware discrete pin strapping configured for TYPE_2_LRU_3 per Table 1011; LRU to be in Harmonizing Mode.",
+    "test_inputs": "Discrete pin strapping inputs: ID7_DSP..ID0_DSP = 00100110; Parity valid; Asset Type = ATYPE_2; LRU = LRU_3.",
+    "expected_result": "Software correctly decodes discrete pins to Asset_Type = ATYPE_2, Target LRU = LRU_3 (Left Spoiler), Location_Invert = 0, SurfaceID = TYPE_2_LRU_3. Pin strapping verification successful.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via internal memory registers and STL_Bus telemetry.",
+    "_applicability": {
+      "ATYPE": "ATYPE_2",
+      "LRU": "LRU_3"
+    }
+  },
+  {
+    "test_case_id": "SWVCP_AAP_TC_1011_TYPE_2_LRU_4",
+    "requirement_id": "LRUSWRS-1011",
+    "asset_type": "ATYPE_2",
+    "target_lru": "LRU_4",
+    "test_type": "NORMAL",
+    "description": "Verify Pin Strapping decode for ATYPE_2 - LRU_4 (Right Spoiler): Pin inputs 00101001 decode to Asset_Type = ATYPE_2, LRU_ID = LRU_4, Location_Invert = 1.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_2; Target LRU: LRU_4; Hardware discrete pin strapping configured for TYPE_2_LRU_4 per Table 1011; LRU to be in Harmonizing Mode.",
+    "test_inputs": "Discrete pin strapping inputs: ID7_DSP..ID0_DSP = 00101001; Parity valid; Asset Type = ATYPE_2; LRU = LRU_4.",
+    "expected_result": "Software correctly decodes discrete pins to Asset_Type = ATYPE_2, Target LRU = LRU_4 (Right Spoiler), Location_Invert = 1, SurfaceID = TYPE_2_LRU_4. Pin strapping verification successful.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via internal memory registers and STL_Bus telemetry.",
+    "_applicability": {
+      "ATYPE": "ATYPE_2",
+      "LRU": "LRU_4"
+    }
+  },
+  {
+    "test_case_id": "SWVCP_AAP_TC_1011_TYPE_2_LRU_5",
+    "requirement_id": "LRUSWRS-1011",
+    "asset_type": "ATYPE_2",
+    "target_lru": "LRU_5",
+    "test_type": "NORMAL",
+    "description": "Verify Pin Strapping decode for ATYPE_2 - LRU_5 (Left Elevator): Pin inputs 00101010 decode to Asset_Type = ATYPE_2, LRU_ID = LRU_5, Location_Invert = 0.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_2; Target LRU: LRU_5; Hardware discrete pin strapping configured for TYPE_2_LRU_5 per Table 1011; LRU to be in Harmonizing Mode.",
+    "test_inputs": "Discrete pin strapping inputs: ID7_DSP..ID0_DSP = 00101010; Parity valid; Asset Type = ATYPE_2; LRU = LRU_5.",
+    "expected_result": "Software correctly decodes discrete pins to Asset_Type = ATYPE_2, Target LRU = LRU_5 (Left Elevator), Location_Invert = 0, SurfaceID = TYPE_2_LRU_5. Pin strapping verification successful.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via internal memory registers and STL_Bus telemetry.",
+    "_applicability": {
+      "ATYPE": "ATYPE_2",
+      "LRU": "LRU_5"
+    }
+  },
+  {
+    "test_case_id": "SWVCP_AAP_TC_1011_TYPE_2_LRU_6",
+    "requirement_id": "LRUSWRS-1011",
+    "asset_type": "ATYPE_2",
+    "target_lru": "LRU_6",
+    "test_type": "NORMAL",
+    "description": "Verify Pin Strapping decode for ATYPE_2 - LRU_6 (Right Elevator): Pin inputs 00101100 decode to Asset_Type = ATYPE_2, LRU_ID = LRU_6, Location_Invert = 0.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_2; Target LRU: LRU_6; Hardware discrete pin strapping configured for TYPE_2_LRU_6 per Table 1011; LRU to be in Harmonizing Mode.",
+    "test_inputs": "Discrete pin strapping inputs: ID7_DSP..ID0_DSP = 00101100; Parity valid; Asset Type = ATYPE_2; LRU = LRU_6.",
+    "expected_result": "Software correctly decodes discrete pins to Asset_Type = ATYPE_2, Target LRU = LRU_6 (Right Elevator), Location_Invert = 0, SurfaceID = TYPE_2_LRU_6. Pin strapping verification successful.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via internal memory registers and STL_Bus telemetry.",
+    "_applicability": {
+      "ATYPE": "ATYPE_2",
+      "LRU": "LRU_6"
+    }
+  },
+  {
+    "test_case_id": "SWVCP_AAP_TC_1011_TYPE_2_LRU_7",
+    "requirement_id": "LRUSWRS-1011",
+    "asset_type": "ATYPE_2",
+    "target_lru": "LRU_7",
+    "test_type": "NORMAL",
+    "description": "Verify Pin Strapping decode for ATYPE_2 - LRU_7 (Rudder): Pin inputs 00101111 decode to Asset_Type = ATYPE_2, LRU_ID = LRU_7, Location_Invert = 1.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_2; Target LRU: LRU_7; Hardware discrete pin strapping configured for TYPE_2_LRU_7 per Table 1011; LRU to be in Harmonizing Mode.",
+    "test_inputs": "Discrete pin strapping inputs: ID7_DSP..ID0_DSP = 00101111; Parity valid; Asset Type = ATYPE_2; LRU = LRU_7.",
+    "expected_result": "Software correctly decodes discrete pins to Asset_Type = ATYPE_2, Target LRU = LRU_7 (Rudder), Location_Invert = 1, SurfaceID = TYPE_2_LRU_7. Pin strapping verification successful.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via internal memory registers and STL_Bus telemetry.",
+    "_applicability": {
+      "ATYPE": "ATYPE_2",
+      "LRU": "LRU_7"
+    }
+  },
+  {
+    "test_case_id": "SWVCP_AAP_TC_1011_TYPE_3_LRU_1",
+    "requirement_id": "LRUSWRS-1011",
+    "asset_type": "ATYPE_3",
+    "target_lru": "LRU_1",
+    "test_type": "NORMAL",
+    "description": "Verify Pin Strapping decode for ATYPE_3 - LRU_1 (Left Aileron): Pin inputs 00110010 decode to Asset_Type = ATYPE_3, LRU_ID = LRU_1, Location_Invert = 0.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_3; Target LRU: LRU_1; Hardware discrete pin strapping configured for TYPE_3_LRU_1 per Table 1011; LRU to be in Harmonizing Mode.",
+    "test_inputs": "Discrete pin strapping inputs: ID7_DSP..ID0_DSP = 00110010; Parity valid; Asset Type = ATYPE_3; LRU = LRU_1.",
+    "expected_result": "Software correctly decodes discrete pins to Asset_Type = ATYPE_3, Target LRU = LRU_1 (Left Aileron), Location_Invert = 0, SurfaceID = TYPE_3_LRU_1. Pin strapping verification successful.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via internal memory registers and STL_Bus telemetry.",
+    "_applicability": {
+      "ATYPE": "ATYPE_3",
+      "LRU": "LRU_1"
+    }
+  },
+  {
+    "test_case_id": "SWVCP_AAP_TC_1011_TYPE_3_LRU_2",
+    "requirement_id": "LRUSWRS-1011",
+    "asset_type": "ATYPE_3",
+    "target_lru": "LRU_2",
+    "test_type": "NORMAL",
+    "description": "Verify Pin Strapping decode for ATYPE_3 - LRU_2 (Right Aileron): Pin inputs 00110100 decode to Asset_Type = ATYPE_3, LRU_ID = LRU_2, Location_Invert = 0.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_3; Target LRU: LRU_2; Hardware discrete pin strapping configured for TYPE_3_LRU_2 per Table 1011; LRU to be in Harmonizing Mode.",
+    "test_inputs": "Discrete pin strapping inputs: ID7_DSP..ID0_DSP = 00110100; Parity valid; Asset Type = ATYPE_3; LRU = LRU_2.",
+    "expected_result": "Software correctly decodes discrete pins to Asset_Type = ATYPE_3, Target LRU = LRU_2 (Right Aileron), Location_Invert = 0, SurfaceID = TYPE_3_LRU_2. Pin strapping verification successful.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via internal memory registers and STL_Bus telemetry.",
+    "_applicability": {
+      "ATYPE": "ATYPE_3",
+      "LRU": "LRU_2"
+    }
+  },
+  {
+    "test_case_id": "SWVCP_AAP_TC_1011_TYPE_3_LRU_3",
+    "requirement_id": "LRUSWRS-1011",
+    "asset_type": "ATYPE_3",
+    "target_lru": "LRU_3",
+    "test_type": "NORMAL",
+    "description": "Verify Pin Strapping decode for ATYPE_3 - LRU_3 (Left Spoiler): Pin inputs 00110111 decode to Asset_Type = ATYPE_3, LRU_ID = LRU_3, Location_Invert = 1.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_3; Target LRU: LRU_3; Hardware discrete pin strapping configured for TYPE_3_LRU_3 per Table 1011; LRU to be in Harmonizing Mode.",
+    "test_inputs": "Discrete pin strapping inputs: ID7_DSP..ID0_DSP = 00110111; Parity valid; Asset Type = ATYPE_3; LRU = LRU_3.",
+    "expected_result": "Software correctly decodes discrete pins to Asset_Type = ATYPE_3, Target LRU = LRU_3 (Left Spoiler), Location_Invert = 1, SurfaceID = TYPE_3_LRU_3. Pin strapping verification successful.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via internal memory registers and STL_Bus telemetry.",
+    "_applicability": {
+      "ATYPE": "ATYPE_3",
+      "LRU": "LRU_3"
+    }
+  },
+  {
+    "test_case_id": "SWVCP_AAP_TC_1011_TYPE_3_LRU_4",
+    "requirement_id": "LRUSWRS-1011",
+    "asset_type": "ATYPE_3",
+    "target_lru": "LRU_4",
+    "test_type": "NORMAL",
+    "description": "Verify Pin Strapping decode for ATYPE_3 - LRU_4 (Right Spoiler): Pin inputs 00111000 decode to Asset_Type = ATYPE_3, LRU_ID = LRU_4, Location_Invert = 0.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_3; Target LRU: LRU_4; Hardware discrete pin strapping configured for TYPE_3_LRU_4 per Table 1011; LRU to be in Harmonizing Mode.",
+    "test_inputs": "Discrete pin strapping inputs: ID7_DSP..ID0_DSP = 00111000; Parity valid; Asset Type = ATYPE_3; LRU = LRU_4.",
+    "expected_result": "Software correctly decodes discrete pins to Asset_Type = ATYPE_3, Target LRU = LRU_4 (Right Spoiler), Location_Invert = 0, SurfaceID = TYPE_3_LRU_4. Pin strapping verification successful.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via internal memory registers and STL_Bus telemetry.",
+    "_applicability": {
+      "ATYPE": "ATYPE_3",
+      "LRU": "LRU_4"
+    }
+  },
+  {
+    "test_case_id": "SWVCP_AAP_TC_1011_TYPE_3_LRU_5",
+    "requirement_id": "LRUSWRS-1011",
+    "asset_type": "ATYPE_3",
+    "target_lru": "LRU_5",
+    "test_type": "NORMAL",
+    "description": "Verify Pin Strapping decode for ATYPE_3 - LRU_5 (Left Elevator): Pin inputs 00111011 decode to Asset_Type = ATYPE_3, LRU_ID = LRU_5, Location_Invert = 1.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_3; Target LRU: LRU_5; Hardware discrete pin strapping configured for TYPE_3_LRU_5 per Table 1011; LRU to be in Harmonizing Mode.",
+    "test_inputs": "Discrete pin strapping inputs: ID7_DSP..ID0_DSP = 00111011; Parity valid; Asset Type = ATYPE_3; LRU = LRU_5.",
+    "expected_result": "Software correctly decodes discrete pins to Asset_Type = ATYPE_3, Target LRU = LRU_5 (Left Elevator), Location_Invert = 1, SurfaceID = TYPE_3_LRU_5. Pin strapping verification successful.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via internal memory registers and STL_Bus telemetry.",
+    "_applicability": {
+      "ATYPE": "ATYPE_3",
+      "LRU": "LRU_5"
+    }
+  },
+  {
+    "test_case_id": "SWVCP_AAP_TC_1011_TYPE_3_LRU_6",
+    "requirement_id": "LRUSWRS-1011",
+    "asset_type": "ATYPE_3",
+    "target_lru": "LRU_6",
+    "test_type": "NORMAL",
+    "description": "Verify Pin Strapping decode for ATYPE_3 - LRU_6 (Right Elevator): Pin inputs 00111101 decode to Asset_Type = ATYPE_3, LRU_ID = LRU_6, Location_Invert = 1.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_3; Target LRU: LRU_6; Hardware discrete pin strapping configured for TYPE_3_LRU_6 per Table 1011; LRU to be in Harmonizing Mode.",
+    "test_inputs": "Discrete pin strapping inputs: ID7_DSP..ID0_DSP = 00111101; Parity valid; Asset Type = ATYPE_3; LRU = LRU_6.",
+    "expected_result": "Software correctly decodes discrete pins to Asset_Type = ATYPE_3, Target LRU = LRU_6 (Right Elevator), Location_Invert = 1, SurfaceID = TYPE_3_LRU_6. Pin strapping verification successful.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via internal memory registers and STL_Bus telemetry.",
+    "_applicability": {
+      "ATYPE": "ATYPE_3",
+      "LRU": "LRU_6"
+    }
+  },
+  {
+    "test_case_id": "SWVCP_AAP_TC_1011_TYPE_3_LRU_7",
+    "requirement_id": "LRUSWRS-1011",
+    "asset_type": "ATYPE_3",
+    "target_lru": "LRU_7",
+    "test_type": "NORMAL",
+    "description": "Verify Pin Strapping decode for ATYPE_3 - LRU_7 (Rudder): Pin inputs 00111110 decode to Asset_Type = ATYPE_3, LRU_ID = LRU_7, Location_Invert = 0.",
+    "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_3; Target LRU: LRU_7; Hardware discrete pin strapping configured for TYPE_3_LRU_7 per Table 1011; LRU to be in Harmonizing Mode.",
+    "test_inputs": "Discrete pin strapping inputs: ID7_DSP..ID0_DSP = 00111110; Parity valid; Asset Type = ATYPE_3; LRU = LRU_7.",
+    "expected_result": "Software correctly decodes discrete pins to Asset_Type = ATYPE_3, Target LRU = LRU_7 (Rudder), Location_Invert = 0, SurfaceID = TYPE_3_LRU_7. Pin strapping verification successful.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "",
+    "test_procedure_notes": "Verify via internal memory registers and STL_Bus telemetry.",
+    "_applicability": {
+      "ATYPE": "ATYPE_3",
+      "LRU": "LRU_7"
+    }
+  }
+]

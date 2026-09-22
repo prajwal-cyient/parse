@@ -1,0 +1,103 @@
+{
+  "step_number": "23",
+  "requirement_id": "LRU-10915",
+  "total_test_cases": 8,
+  "test_cases": [
+    {
+      "test_case_id": "LRU_10915_N1_LRU_1",
+      "requirement_id": "LRU-10915",
+      "description": "Verify calculation of Lower_Limit_LRU_PSR_New when Primary_Harmonize_Calc is true for LRU_1.",
+      "test_type": "NORMAL",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_1 (Left Aileron).",
+      "test_inputs": "Act_Disp_Raw_Avg_Contract = <value>, Contract_Error = <value>, Primary_Harmonize_Calc = true. LRU Configuration = LRU_1 (Left Aileron).",
+      "expected_result": "Lower_Limit_LRU_PSR_New is calculated as Act_Disp_Raw_Avg_Contract + Contract_Error.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_10915_DC_Condition_LRU_1",
+      "requirement_id": "LRU-10915",
+      "description": "Verify that calculation of Lower_Limit_LRU_PSR_New is NOT performed when Primary_Harmonize_Calc is false for LRU_1.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_1 (Left Aileron).",
+      "test_inputs": "Act_Disp_Raw_Avg_Contract = <value>, Contract_Error = <value>, Primary_Harmonize_Calc = false. LRU Configuration = LRU_1 (Left Aileron).",
+      "expected_result": "Calculation of Lower_Limit_LRU_PSR_New is NOT performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_10915_N1_LRU_2",
+      "requirement_id": "LRU-10915",
+      "description": "Verify calculation of Lower_Limit_LRU_PSR_New when Primary_Harmonize_Calc is true for LRU_2.",
+      "test_type": "NORMAL",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_2 (Right Aileron).",
+      "test_inputs": "Act_Disp_Raw_Avg_Contract = <value>, Contract_Error = <value>, Primary_Harmonize_Calc = true. LRU Configuration = LRU_2 (Right Aileron).",
+      "expected_result": "Lower_Limit_LRU_PSR_New is calculated as Act_Disp_Raw_Avg_Contract + Contract_Error.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_10915_DC_Condition_LRU_2",
+      "requirement_id": "LRU-10915",
+      "description": "Verify that calculation of Lower_Limit_LRU_PSR_New is NOT performed when Primary_Harmonize_Calc is false for LRU_2.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_2 (Right Aileron).",
+      "test_inputs": "Act_Disp_Raw_Avg_Contract = <value>, Contract_Error = <value>, Primary_Harmonize_Calc = false. LRU Configuration = LRU_2 (Right Aileron).",
+      "expected_result": "Calculation of Lower_Limit_LRU_PSR_New is NOT performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_10915_N1_LRU_5",
+      "requirement_id": "LRU-10915",
+      "description": "Verify calculation of Lower_Limit_LRU_PSR_New when Primary_Harmonize_Calc is true for LRU_5.",
+      "test_type": "NORMAL",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_5 (Left Elevator).",
+      "test_inputs": "Act_Disp_Raw_Avg_Contract = <value>, Contract_Error = <value>, Primary_Harmonize_Calc = true. LRU Configuration = LRU_5 (Left Elevator).",
+      "expected_result": "Lower_Limit_LRU_PSR_New is calculated as Act_Disp_Raw_Avg_Contract + Contract_Error.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_10915_DC_Condition_LRU_5",
+      "requirement_id": "LRU-10915",
+      "description": "Verify that calculation of Lower_Limit_LRU_PSR_New is NOT performed when Primary_Harmonize_Calc is false for LRU_5.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_5 (Left Elevator).",
+      "test_inputs": "Act_Disp_Raw_Avg_Contract = <value>, Contract_Error = <value>, Primary_Harmonize_Calc = false. LRU Configuration = LRU_5 (Left Elevator).",
+      "expected_result": "Calculation of Lower_Limit_LRU_PSR_New is NOT performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_10915_N1_LRU_6",
+      "requirement_id": "LRU-10915",
+      "description": "Verify calculation of Lower_Limit_LRU_PSR_New when Primary_Harmonize_Calc is true for LRU_6.",
+      "test_type": "NORMAL",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_6 (Right Elevator).",
+      "test_inputs": "Act_Disp_Raw_Avg_Contract = <value>, Contract_Error = <value>, Primary_Harmonize_Calc = true. LRU Configuration = LRU_6 (Right Elevator).",
+      "expected_result": "Lower_Limit_LRU_PSR_New is calculated as Act_Disp_Raw_Avg_Contract + Contract_Error.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_10915_DC_Condition_LRU_6",
+      "requirement_id": "LRU-10915",
+      "description": "Verify that calculation of Lower_Limit_LRU_PSR_New is NOT performed when Primary_Harmonize_Calc is false for LRU_6.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_6 (Right Elevator).",
+      "test_inputs": "Act_Disp_Raw_Avg_Contract = <value>, Contract_Error = <value>, Primary_Harmonize_Calc = false. LRU Configuration = LRU_6 (Right Elevator).",
+      "expected_result": "Calculation of Lower_Limit_LRU_PSR_New is NOT performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    }
+  ]
+}

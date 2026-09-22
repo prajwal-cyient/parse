@@ -1,0 +1,195 @@
+ID :  LRUSWRS-1000
+The LRU software PSR Harmonizing data resides in the PSR.  The PSR Harmonizing data shall contain the following information:
+Harmonize_SFC_PSR
+Harmonize_Offset_PSR
+Config_LRU_PSR
+Asset_ID_PSR
+Upper_Limit_LRU_PSR
+Lower_Limit_LRU_PSR
+CRC_PSR
+Var_ID_PSR
+Software/Firmware Version (aka. Label Version)
+NOTE: Var_ID_PSR and Label Version are programmed into PSR by Provider Production team in accordance with the instructions in section 7.17 of the Acceptance Test Procedure (506500T).
+Req Type :  Decomposed
+Safety Impact :  No
+Safety Rationale :  This is a detailed implementation requirement.
+ID :  LRUSWRS-1002
+After performing the signal initializations in LRUSWRS-1004, the LRU software shall transmit the following IVT response values over STL_Bus:
+⦁	IVT_Receipt_Envelope = 0
+⦁	IVT_Receipt_Content = 0
+Req Type :  Verbatim
+Safety Impact :  No
+Safety Rationale :  This is a detailed implementation requirement.
+ID :  LRUSWRS-1003
+While IVT_Mode_ModeLgc is True, the LRU software shall enter Harmonizing mode upon the following condition:
+⦁	Harmonizing_Active_STL is True AND remains True for 10 consecutive STL frames
+Notes: 
+1) Harmonizing_Active_STL is defined in Table 1208.
+2) IVT_Mode_ModeLgc is defined in LRUSWRS-1010.
+Req Type :  Decomposed
+Safety Impact :  No
+Safety Rationale :  This is a detailed implementation requirement.
+ID :  LRUSWRS-1005
+Upon entry to Harmonizing mode, the LRU software shall overwrite the following Harmonizing parameters in PSR and in RAM with the values defined below:
+⦁	Harmonize_Offset_PSR =  Harmonize_Offset_Default
+⦁	Harmonize_SFC_PSR =  Harmonize_SFC_Default
+⦁	Upper_Limit_LRU_PSR = Upper_Limit_LRU_Default
+⦁	Lower_Limit_LRU_PSR = Lower_Limit_LRU_Default
+⦁	Config_LRU_PSR = 0
+⦁	Asset_ID_PSR = 0
+⦁	Harmonize_Offset_ISM = Harmonize_Offset_Default
+⦁	K_Harmonize_ISM = Harmonize_SFC_Default
+⦁	Upper_Limit_LRU = Upper_Limit_LRU_Default
+⦁	Lower_Limit_LRU =  Lower_Limit_LRU_Default
+⦁	LRU_Harmonizing_Needed_PIVT = True
+Notes: 
+1. Harmonize_Offset_Default, Harmonize_SFC_Default, Upper_Limit_LRU_Default, and Lower_Limit_LRU_Default are dependent on the LRU location.
+2. PSR Harmonizing default values are defined in Table 10695, Rev C (for ATYPE-1 and ATYPE-2) and Table 106939, Rev B (for ATYPE-3).
+Req Type :  Decomposed
+Safety Impact :  No
+Safety Rationale :  This is a detailed implementation requirement.
+ID :  LRUSWRS-1006
+After performing the initializations in LRUSWRS-1004 and applying the default values per LRUSWRS-1005, the LRU software shall transmit Harmonizing Needed on STL_Bus as follows:
+⦁	IVT_Receipt_Envelope = 0x0011
+⦁	IVT_Receipt_Content: LRU_Harmonizing_Needed_PIVT = True
+Note: 
+⦁	LRU_Harmonizing_Needed_PIVT is defined in Table 1007.
+Req Type :  Decomposed
+Safety Impact :  No
+Safety Rationale :  This is a detailed implementation requirement.
+ID :  LRUSWRS-1004
+The LRU software shall initialize the signals listed below when the following condition is True:
+IVT_Mode_ModeLgc is True AND Harmonizing_Active_STL transitions to True
+⦁	Contract_Stop_Collection_Complete = False
+⦁	Expand_Stop_Collection_Complete = False
+⦁	VOID_Collection_Complete = False (Primary Surface Only)
+⦁	Harmonizing_Complete = False
+⦁	Harmonizing_Failed = False
+⦁	Act_Disp_Range_Contract_Fault = False
+⦁	Act_Disp_Range_Expand_Fault = False
+⦁	Act_Disp_Range_VOID_Fault = False (Primary Surface Only)
+Note: For Spoiler surface, VOID point Harmonizing does not apply; therefore, VOID_Collection_Complete and Act_Disp_Range_VOID_Fault are N/A.
+Req Type :  Verbatim
+Safety Impact :  No
+Safety Rationale :  This is a detailed implementation requirement.
+ID :  LRUSWRS-1001
+The electronic Harmonizing sequence for both Primary and Spoiler surface types are defined in the table below.  The prerequisite condition for execution of this Harmonizing sequence is that Harmonizing mode (LRUSWRS-1003) must be active.  The steps occur in blocks, 1 to 5, 6 to 10, 11 to 15, followed by 16 to 35.  The first three blocks are started by LRU_2 messages and can occur in any order. The last block occurs automatically after all three of the other blocks are completed.  Not all steps are applicable to both surface types.  The block steps not applicable to both surface types are noted following the requirement. 
+The LRU software shall implement the electronic Harmonizing sequence as shown in Table 1001.
+Table 1001:  Primary/Spoiler Surface Electronic Harmonizing Sequence
+Reference Requirements
+ID :  LRUSWRS-1007
+Table 1007: IVT Response and IVT Response Data definitions
+Req Type :  Non-requirement
+Safety Impact :  No
+Safety Rationale :  Not a requirement.
+ID :  LRUSWRS-1008
+Table 1008, Rev B-  IVT Command and IVT Command Data definition
+Req Type :  Non-requirement
+Safety Impact :  No
+Safety Rationale :  Not a requirement.
+ID :  LRUSWRS-1009
+Table 1009  LRU_2 to LRU STL Message
+Req Type :  Non-requirement
+Safety Impact :  No
+Safety Rationale :  Not a requirement.
+ID :  LRUSWRS-1010
+The LRU Software shall transition from Flight_Mode_ModeLgc to IVT_Mode_ModeLgc if all of the following conditions are met:
+ Loctaion_State_StateLgc is False 
+ IVT_Active_STL is set for 10 consecutive STL frames 
+ STL_Rx_Fault_ISM is False
+ LRU_2_Valid_Dbnce_StateLgc is True
+Req Type :  Decomposed
+Safety Impact :  No
+Safety Rationale :  This is a detailed implementation requirement.
+ID :  LRUSWRS-1011
+Table 1011 Rev C  Asset type & LRU Location Decode Based On Profile_ID_Disc_Dbnce_Init
+Req Type :  Non-requirement
+Safety Impact :  No
+Safety Rationale :  Not a requirement.
+ID :  LRUSWRS-1003
+While IVT_Mode_ModeLgc is True, the LRU software shall enter Harmonizing mode upon the following condition:
+⦁	Harmonizing_Active_STL is True AND remains True for 10 consecutive STL frames
+Notes: 
+1) Harmonizing_Active_STL is defined in Table 1208.
+2) IVT_Mode_ModeLgc is defined in LRUSWRS-1010.
+Req Type :  Decomposed
+Safety Impact :  No
+Safety Rationale :  This is a detailed implementation requirement.
+ID :  LRUSWRS-1012
+Table 1012, Rev C: ATYPE-1 and ATYPE-2 LVDT Default Harmonizing Parameters
+Req Type :  Non-requirement
+Safety Impact :  No
+Safety Rationale :  Not a requirement.
+ID :  LRUSWRS-1013
+Table 1013, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters
+Req Type :  Non-requirement
+Safety Impact :  No
+Safety Rationale :  Not a requirement.
+ID :  LRUSWRS-1014
+Table 1014, Rev A: ATYPE-1 & ATYPE-2 Contract Harmonizing Range
+Req Type :  Non-requirement
+Safety Impact :  No
+Safety Rationale :  This is not a requirement.
+ID :  LRUSWRS-1015
+Table 1015, Rev NC ATYPE-3 Contract Harmonizing Range
+Req Type :  Non-requirement
+Safety Impact :  No
+ID :  LRUSWRS-1016
+Table 1016, Rev A: ATYPE-1 & ATYPE-2 Expand Harmonizing Range
+Req Type :  Non-requirement
+Safety Impact :  No
+Safety Rationale :  This is not a requirement.
+ID :  LRUSWRS-1017
+Table 1017, Rev NC ATYPE-3 Expand Harmonizing Range
+Req Type :  Non-requirement
+Safety Impact :  No
+ID :  LRUSWRS-1018
+Table 1018, Rev A: ATYPE-1 & ATYPE-2 VOID Harmonizing Range
+Req Type :  Non-requirement
+Safety Impact :  No
+Safety Rationale :  This is not a requirement.
+ID :  LRUSWRS-1019
+Table 1019, Rev NC ATYPE-3 VOID Harmonizing Range
+Req Type :  Non-requirement
+ID :  LRUSWRS-1020
+Table 1020, Rev A: ATYPE-1 & ATYPE-2 LRU Harmonizing Max Strokes
+Req Type :  Non-requirement
+Safety Impact :  No
+Safety Rationale :  Not a requirement.
+ID :  LRUSWRS-1021
+Table 1021, Rev A: ATYPE-3 Harmonizing Max Strokes
+Req Type :  Non-requirement
+Safety Impact :  No
+Safety Rationale :  Not a requirement
+ID :  LRUSWRS-1022
+If Corrupt_PSR_Harmonizing_CIP_Fault_Init is set False, the LRU shall assign the following Harmonizing parameter values: 
+Harmonize_Offset_ISM =  Harmonize_Offset_PSR
+K_Harmonize_ISM =  Harmonize_SFC_PSR
+Upper_Limit_LRU = Upper_Limit_LRU_PSR
+Lower_Limit_LRU = Lower_Limit_LRU _PSR 
+else use the default Harmonizing parameters per Table 1012 Rev C (for ATYPE-1 and ATYPE-2) and Table 106939 Rev B (for ATYPE-3) as follows:
+Harmonize_Offset_ISM =  Harmonize_Offset_Default
+K_Harmonize_ISM  =  Harmonize_SFC_Default
+Upper_Limit_LRU = Upper_Limit_LRU_Default
+Lower_Limit_LRU = Lower_Limit_LRU_Default
+Note: Harmonize_SFC_PSR is the scale factor correction,  Harmonize_Offset_PSR is the bias offset, Upper_Limit_LRU_PSR is the Actuator Expand electrical position limit and Lower_Limit_LRU_PSR is the actuator Contract electrical position limit. 
+Req Type :  Verbatim
+Safety Impact :  No
+Safety Rationale :  This is an implementation requirement.
+ID :  LRUSWRS-1023
+Figure 1023  LRU Mode Transitions
+Details for these transitions are provided in the Generic Requirements Document.
+Req Type :  Non-requirement
+Safety Impact :  No
+Safety Rationale :  Not a requirement.
+ID :  LRUSWRS-1024
+The LRU software shall transmit the value of Var_ID_PSR sourced from EEPROM address 32 and 33 onto the STL bus; as defined in Table 1025 Data Item row 8.
+Req Type :  Decomposed
+Safety Impact :  No
+Safety Rationale :  This is a detailed implementation requirement.
+ID :  LRUSWRS-1025
+Table 1025, Rev A- LRU to LRU_2 STL Message
+Table 1025  LRU to LRU_2 STL Message (Continued)
+Req Type :  Non-requirement
+Safety Impact :  No
+Safety Rationale :  Not a requirement.

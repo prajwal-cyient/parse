@@ -1,0 +1,150 @@
+{
+  "sample": "sample_2",
+  "total_test_cases": 12,
+  "test_cases": [
+    {
+      "test_case_id": "TC-LRUSWRS-1100-01",
+      "requirement_id": "LRUSWRS-1100",
+      "description": "Verify that when Config_CIP_Fault_Init is True after CIP completes, the LRU software repeats the CIP Configuration Discrete Test and then uses Config_LRU_PSR as the next configuration source within 100 ms.",
+      "test_type": "NORMAL",
+      "initial_condition": "CIP has completed execution and Config_CIP_Fault_Init is set to True.",
+      "test_inputs": "Trigger CIP completion event; set Config_CIP_Fault_Init to True.",
+      "expected_result": "The CIP Configuration Discrete Test is repeated; after the repeat sequence, the configuration source switches to Config_LRU_PSR.",
+      "pass_criteria": "The repeat occurs and Config_LRU_PSR is used within 100 ms of CIP completion.",
+      "related_requirements": "",
+      "test_procedure_notes": "Measure elapsed time from CIP completion to switch to Config_LRU_PSR; ensure it does not exceed 100 ms."
+    },
+    {
+      "test_case_id": "TC-LRUSWRS-1100-02",
+      "requirement_id": "LRUSWRS-1100",
+      "description": "Boundary test for maximum allowed duration of CIP Configuration Discrete Test repeat sequence (100 ms).",
+      "test_type": "BOUNDARY",
+      "initial_condition": "CIP has completed execution and Config_CIP_Fault_Init is True.",
+      "test_inputs": "Trigger CIP completion event; set Config_CIP_Fault_Init to True; simulate worst\u2011case delay in repeat sequence.",
+      "expected_result": "The total duration of the repeat sequence, including retries, should be exactly 100 ms.",
+      "pass_criteria": "The elapsed time from CIP completion to switch to Config_LRU_PSR is <= 100 ms and as close as possible to 100 ms.",
+      "related_requirements": "",
+      "test_procedure_notes": "Use a high\u2011resolution timer to capture start and end times; verify that duration is <= 100 ms."
+    },
+    {
+      "test_case_id": "TC-LRUSWRS-1100-03",
+      "requirement_id": "LRUSWRS-1100",
+      "description": "Robustness test to ensure no repeat occurs when Config_CIP_Fault_Init is False after CIP completes.",
+      "test_type": "ROBUSTNESS",
+      "initial_condition": "CIP has completed execution and Config_CIP_Fault_Init is False.",
+      "test_inputs": "Trigger CIP completion event; set Config_CIP_Fault_Init to False.",
+      "expected_result": "No CIP Configuration Discrete Test repeat; configuration source remains unchanged.",
+      "pass_criteria": "No repeat sequence observed; Config_LRU_PSR is not used.",
+      "related_requirements": "",
+      "test_procedure_notes": "Monitor system for any repeat activity; confirm that configuration source remains as before."
+    },
+    {
+      "test_case_id": "TC-LRUSWRS-1100-04",
+      "requirement_id": "LRUSWRS-1100",
+      "description": "DC test to confirm that if CIP does not complete, the repeat sequence is not initiated even if Config_CIP_Fault_Init is True.",
+      "test_type": "DC",
+      "initial_condition": "CIP is still running; Config_CIP_Fault_Init is True.",
+      "test_inputs": "Set Config_CIP_Fault_Init to True while CIP is in progress.",
+      "expected_result": "No CIP Configuration Discrete Test repeat; system continues normal operation.",
+      "pass_criteria": "No repeat sequence observed; configuration source remains unchanged.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify that repeat is only triggered after CIP completion event."
+    },
+    {
+      "test_case_id": "LRUSWRS-1101_TC01",
+      "requirement_id": "LRUSWRS-1101",
+      "description": "Verify that Config_CIP_Fault_Init is initialized to False at the start of CIP",
+      "test_type": "NORMAL",
+      "initial_condition": "CIP not started; Config_CIP_Fault_Init uninitialized or in any state",
+      "test_inputs": "Trigger start of CIP sequence",
+      "expected_result": "Config_CIP_Fault_Init is set to False immediately after CIP start",
+      "pass_criteria": "Variable value equals False after CIP start event",
+      "related_requirements": "",
+      "test_procedure_notes": "Observe the state of Config_CIP_Fault_Init before and after the CIP start event to confirm initialization to False."
+    },
+    {
+      "test_case_id": "TC_LRUSWRS-1102_01",
+      "requirement_id": "LRUSWRS-1102",
+      "description": "Verify that the LRU software correctly reads and debounces all configuration pins when they remain stable for longer than the required 10 ms period.",
+      "test_type": "NORMAL",
+      "initial_condition": "All configuration pins (ID0_DSP to ID7_DSP) are set to a known stable state (e.g., all low) and the LRU system is in reset.",
+      "test_inputs": "Set all configuration pins to logic low for 15 ms.",
+      "expected_result": "Config_ID_Disc_Dbnce_Init is computed as 0x00 (all bits low).",
+      "pass_criteria": "The value of Config_ID_Disc_Dbnce_Init matches the expected 0x00 after the 10 ms debounce period.",
+      "related_requirements": "",
+      "test_procedure_notes": "Use a hardware test bench or simulation to hold the pins low for 15 ms and capture the computed Config_ID_Disc_Dbnce_Init value."
+    },
+    {
+      "test_case_id": "TC_LRUSWRS-1102_02",
+      "requirement_id": "LRUSWRS-1102",
+      "description": "Verify correct debouncing when configuration pins change state exactly at the 10 ms boundary.",
+      "test_type": "BOUNDARY",
+      "initial_condition": "All configuration pins are initially low and the LRU system is in reset.",
+      "test_inputs": "Set all pins high for 5 ms, then set them low for the remaining 5 ms of a 10 ms window.",
+      "expected_result": "Config_ID_Disc_Dbnce_Init is computed as 0x00 (final stable state after debounce).",
+      "pass_criteria": "The computed Config_ID_Disc_Dbnce_Init equals 0x00, confirming that the debounce logic correctly ignores transient changes at the boundary.",
+      "related_requirements": "",
+      "test_procedure_notes": "Ensure precise timing of the 5 ms high and 5 ms low intervals using a timing controller or simulation."
+    },
+    {
+      "test_case_id": "TC_LRUSWRS-1102_03",
+      "requirement_id": "LRUSWRS-1102",
+      "description": "Verify that the debouncing logic correctly filters out rapid fluctuations within the 10 ms debounce period.",
+      "test_type": "ROBUSTNESS",
+      "initial_condition": "All configuration pins are initially low and the LRU system is in reset.",
+      "test_inputs": "Toggle each configuration pin randomly every 1 ms for a total of 10 ms, ending with all pins high.",
+      "expected_result": "Config_ID_Disc_Dbnce_Init is computed as 0xFF (all bits high) after the debounce period.",
+      "pass_criteria": "The computed Config_ID_Disc_Dbnce_Init matches the expected 0xFF, indicating that transient fluctuations were successfully debounced.",
+      "related_requirements": "",
+      "test_procedure_notes": "Use a random number generator or scripted pattern to toggle pins at 1 ms intervals and verify the final computed value."
+    },
+    {
+      "test_case_id": "TC-LRUSWRS-1103-01",
+      "requirement_id": "LRUSWRS-1103",
+      "description": "Verify that Config_CIP_Fault_Init is set to TRUE when SurfaceID is SURFC_INVALID.",
+      "test_type": "NORMAL",
+      "initial_condition": "SurfaceID is initialized to SURFC_INVALID.",
+      "test_inputs": "SurfaceID = SURFC_INVALID",
+      "expected_result": "Config_CIP_Fault_Init = TRUE",
+      "pass_criteria": "The software sets Config_CIP_Fault_Init to TRUE as specified.",
+      "related_requirements": "",
+      "test_procedure_notes": "Execute the computation routine and confirm the output flag matches the expected TRUE value."
+    },
+    {
+      "test_case_id": "TC-LRUSWRS-1103-02",
+      "requirement_id": "LRUSWRS-1103",
+      "description": "Verify that Config_CIP_Fault_Init is set to FALSE when SurfaceID is a valid identifier.",
+      "test_type": "NORMAL",
+      "initial_condition": "SurfaceID is initialized to a valid identifier (e.g., SURFC_VALID).",
+      "test_inputs": "SurfaceID = SURFC_VALID",
+      "expected_result": "Config_CIP_Fault_Init = FALSE",
+      "pass_criteria": "The software sets Config_CIP_Fault_Init to FALSE as specified.",
+      "related_requirements": "",
+      "test_procedure_notes": "Execute the computation routine and confirm the output flag matches the expected FALSE value."
+    },
+    {
+      "test_case_id": "TC-LRUSWRS-1103-03",
+      "requirement_id": "LRUSWRS-1103",
+      "description": "Robustness test: Verify that Config_CIP_Fault_Init is set to FALSE for an unexpected SurfaceID value.",
+      "test_type": "ROBUSTNESS",
+      "initial_condition": "SurfaceID is initialized to an unexpected value (e.g., 999).",
+      "test_inputs": "SurfaceID = 999",
+      "expected_result": "Config_CIP_Fault_Init = FALSE",
+      "pass_criteria": "The software sets Config_CIP_Fault_Init to FALSE for any SurfaceID not equal to SURFC_INVALID.",
+      "related_requirements": "",
+      "test_procedure_notes": "Execute the computation routine with the unexpected SurfaceID and confirm the output flag matches the expected FALSE value."
+    },
+    {
+      "test_case_id": "LRUSWRS-1104_N1",
+      "requirement_id": "LRUSWRS-1104",
+      "description": "Verify software behavior for LRUSWRS-1104 per requirement statement.",
+      "test_type": "NORMAL",
+      "initial_condition": "System initialized in normal operating state.",
+      "test_inputs": "Apply nominal inputs specified in requirement statement.",
+      "expected_result": "Software operates according to specified requirement criteria.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    }
+  ]
+}

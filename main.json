@@ -1,0 +1,45 @@
+{
+  "test_cases": [
+    {
+      "test_case_id": "LRUSWRS_1001_Step_1_N1",
+      "requirement_id": "LRUSWRS-1001_Step_1",
+      "description": "Verify that 50 frames (25 ms) of Act_Disp_Raw are sampled and averaged when IVT_Command_ISM = 0x0020 and
+Harmonize_Contract_Stop_STL = True.",
+      "test_type": "NORMAL",
+      "initial_condition": "None",
+      "test_inputs": "IVT_Command_ISM = 0x0020, IVT_CmdData_ISM: Harmonize_Contract_Stop_STL = True",
+      "expected_result": "50 frames (25 ms) of Act_Disp_Raw are sampled and averaged.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS_1001_Step_1_DC_IVT_Command_ISM",
+      "requirement_id": "LRUSWRS-1001_Step_1",
+      "description": "Verify that 50 frames (25 ms) of Act_Disp_Raw are NOT sampled and averaged when IVT_Command_ISM is not
+0x0020 and Harmonize_Contract_Stop_STL = True.",
+      "test_type": "DC",
+      "initial_condition": "None",
+      "test_inputs": "IVT_Command_ISM = 0x0000, IVT_CmdData_ISM: Harmonize_Contract_Stop_STL = True",
+      "expected_result": "50 frames (25 ms) of Act_Disp_Raw are NOT sampled and averaged.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS_1001_Step_1_DC_Harmonize_Contract_Stop_STL",
+      "requirement_id": "LRUSWRS-1001_Step_1",
+      "description": "Verify that 50 frames (25 ms) of Act_Disp_Raw are NOT sampled and averaged when IVT_Command_ISM = 0x0020
+and Harmonize_Contract_Stop_STL is False.",
+      "test_type": "DC",
+      "initial_condition": "None",
+      "test_inputs": "IVT_Command_ISM = 0x0020, IVT_CmdData_ISM: Harmonize_Contract_Stop_STL = False",
+      "expected_result": "50 frames (25 ms) of Act_Disp_Raw are NOT sampled and averaged.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    }
+  ]
+}
+
+

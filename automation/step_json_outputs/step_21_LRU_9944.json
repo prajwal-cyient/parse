@@ -1,0 +1,67 @@
+{
+  "step_number": "21",
+  "requirement_id": "LRU-9944",
+  "total_test_cases": 5,
+  "test_cases": [
+    {
+      "test_case_id": "LRU_9944_N1_LRU_7",
+      "requirement_id": "LRU-9944",
+      "description": "Verify that the new LVDT Harmonizing Gain is calculated when Primary_Harmonize_Calc is True and Profile_Id is LRU_7.",
+      "test_type": "NORMAL",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_7 (Rudder).",
+      "test_inputs": "Primary_Harmonize_Calc = True; Profile_Id = LRU_7; Act_Disp_Raw_Avg_Expand = <value> in; Act_Disp_Raw_Avg_Contract = <value> in; Max_Stroke = <value>; LRU Configuration = LRU_7 (Rudder).",
+      "expected_result": "K_Harmonize_New is calculated as Max_Stroke / [Act_Disp_Raw_Avg_Expand \u2013 Act_Disp_Raw_Avg_Contract] and is performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9944_DC_Condition1_LRU_7",
+      "requirement_id": "LRU-9944",
+      "description": "Verify that the calculation is NOT performed when Primary_Harmonize_Calc is False while Profile_Id is LRU_7.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_7 (Rudder).",
+      "test_inputs": "Primary_Harmonize_Calc = False; Profile_Id = LRU_7; Act_Disp_Raw_Avg_Expand = <value> in; Act_Disp_Raw_Avg_Contract = <value> in; Max_Stroke = <value>; LRU Configuration = LRU_7 (Rudder).",
+      "expected_result": "Calculation is NOT performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9944_DC_Condition2_LRU_7",
+      "requirement_id": "LRU-9944",
+      "description": "Verify that the calculation is NOT performed when Profile_Id is not LRU_7 while Primary_Harmonize_Calc is True.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_7 (Rudder).",
+      "test_inputs": "Primary_Harmonize_Calc = True; Profile_Id = <other>; Act_Disp_Raw_Avg_Expand = <value> in; Act_Disp_Raw_Avg_Contract = <value> in; Max_Stroke = <value>; LRU Configuration = LRU_7 (Rudder).",
+      "expected_result": "Calculation is NOT performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9944_B1_LRU_7",
+      "requirement_id": "LRU-9944",
+      "description": "Verify calculation with boundary values for Act_Disp_Raw_Avg_Expand and Act_Disp_Raw_Avg_Contract.",
+      "test_type": "BOUNDARY",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_7 (Rudder).",
+      "test_inputs": "Primary_Harmonize_Calc = True; Profile_Id = LRU_7; Act_Disp_Raw_Avg_Expand = <boundary_value> in; Act_Disp_Raw_Avg_Contract = <boundary_value> in; Max_Stroke = <boundary_value>; LRU Configuration = LRU_7 (Rudder).",
+      "expected_result": "K_Harmonize_New is calculated as Max_Stroke / [Act_Disp_Raw_Avg_Expand \u2013 Act_Disp_Raw_Avg_Contract] and is performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9944_R1_LRU_7",
+      "requirement_id": "LRU-9944",
+      "description": "Verify calculation with robustness (extreme) values for Act_Disp_Raw_Avg_Expand and Act_Disp_Raw_Avg_Contract.",
+      "test_type": "ROBUSTNESS",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_7 (Rudder).",
+      "test_inputs": "Primary_Harmonize_Calc = True; Profile_Id = LRU_7; Act_Disp_Raw_Avg_Expand = <extreme_value> in; Act_Disp_Raw_Avg_Contract = <extreme_value> in; Max_Stroke = <extreme_value>; LRU Configuration = LRU_7 (Rudder).",
+      "expected_result": "K_Harmonize_New is calculated as Max_Stroke / [Act_Disp_Raw_Avg_Expand \u2013 Act_Disp_Raw_Avg_Contract] and is performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    }
+  ]
+}

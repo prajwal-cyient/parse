@@ -1,0 +1,2830 @@
+[
+  {
+    "req_id": "LRUSWRS-1000",
+    "function_name": "UNKNOWN",
+    "module_name": "UNKNOWN",
+    "operation_name": "UNKNOWN",
+    "visibility": "public",
+    "return": {
+      "type": "void",
+      "validity_range": null
+    },
+    "arguments": null,
+    "global_variables": [
+      {
+        "name": "Harmonize_SFC_PSR",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "Harmonize_Offset_PSR",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "Config_LRU_PSR",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "Asset_ID_PSR",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "Upper_Limit_LRU_PSR",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "Lower_Limit_LRU_PSR",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "CRC_PSR",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "Var_ID_PSR",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      }
+    ],
+    "used_functions": null,
+    "requirement_text": "The LRU software PSR Harmonizing data resides in the PSR.  The PSR Harmonizing data shall contain the following information:\nHarmonize_SFC_PSR\nHarmonize_Offset_PSR\nConfig_LRU_PSR\nAsset_ID_PSR\nUpper_Limit_LRU_PSR\nLower_Limit_LRU_PSR\nCRC_PSR\nVar_ID_PSR\nSoftware/Firmware Version (aka. Label Version)\nNOTE: Var_ID_PSR and Label Version are programmed into PSR by Provider Production team in accordance with the instructions in section 7.17 of the Acceptance Test Procedure (506500T).\nReq Type: Decomposed | Safety Impact: No | Safety Rationale: This is a detailed implementation requirement.",
+    "level": null,
+    "requirement_level": "LLR"
+  },
+  {
+    "req_id": "LRUSWRS-1002",
+    "function_name": "UNKNOWN",
+    "module_name": "UNKNOWN",
+    "operation_name": "UNKNOWN",
+    "visibility": "public",
+    "return": {
+      "type": "void",
+      "validity_range": null
+    },
+    "arguments": null,
+    "global_variables": [
+      {
+        "name": "STL_Bus",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "IVT_Receipt_Envelope",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "IVT_Receipt_Content",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      }
+    ],
+    "used_functions": [
+      "LRUSWRS-1004"
+    ],
+    "requirement_text": "After performing the signal initializations in LRUSWRS-1004, the LRU software shall transmit the following IVT response values over STL_Bus:\nIVT_Receipt_Envelope = 0\nIVT_Receipt_Content = 0\nReq Type: Verbatim | Safety Impact: No | Safety Rationale: This is a detailed implementation requirement.",
+    "level": null,
+    "requirement_level": "LLR"
+  },
+  {
+    "req_id": "LRUSWRS-1003",
+    "function_name": "UNKNOWN",
+    "module_name": "UNKNOWN",
+    "operation_name": "UNKNOWN",
+    "visibility": "public",
+    "return": {
+      "type": "void",
+      "validity_range": null
+    },
+    "arguments": null,
+    "global_variables": [
+      {
+        "name": "IVT_Mode_ModeLgc",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "Harmonizing_Active_STL",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      }
+    ],
+    "used_functions": [
+      "LRUSWRS-1010"
+    ],
+    "requirement_text": "While IVT_Mode_ModeLgc is True, the LRU software shall enter Harmonizing mode upon the following condition:\nHarmonizing_Active_STL is True AND remains True for 10 consecutive STL frames\nNotes:\n1) Harmonizing_Active_STL is defined in Table 1208.\n2) IVT_Mode_ModeLgc is defined in LRUSWRS-1010.\nReq Type: Decomposed | Safety Impact: No | Safety Rationale: This is a detailed implementation requirement.",
+    "level": null,
+    "requirement_level": "LLR"
+  },
+  {
+    "req_id": "LRUSWRS-1005",
+    "function_name": "UNKNOWN",
+    "module_name": "UNKNOWN",
+    "operation_name": "UNKNOWN",
+    "visibility": "public",
+    "return": {
+      "type": "void",
+      "validity_range": null
+    },
+    "arguments": null,
+    "global_variables": [
+      {
+        "name": "Harmonize_Offset_PSR",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Harmonize_Offset_Default",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "Harmonize_SFC_PSR",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Harmonize_SFC_Default",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "Upper_Limit_LRU_PSR",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Upper_Limit_LRU_Default",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "Lower_Limit_LRU_PSR",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Lower_Limit_LRU_Default",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "Config_LRU_PSR",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Asset_ID_PSR",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Harmonize_Offset_ISM",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "K_Harmonize_ISM",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Upper_Limit_LRU",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Lower_Limit_LRU",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "LRU_Harmonizing_Needed_PIVT",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      }
+    ],
+    "used_functions": null,
+    "requirement_text": "Upon entry to Harmonizing mode, the LRU software shall overwrite the following Harmonizing parameters in PSR and in RAM with the values defined below:\nHarmonize_Offset_PSR =  Harmonize_Offset_Default\nHarmonize_SFC_PSR =  Harmonize_SFC_Default\nUpper_Limit_LRU_PSR = Upper_Limit_LRU_Default\nLower_Limit_LRU_PSR = Lower_Limit_LRU_Default\nConfig_LRU_PSR = 0\nAsset_ID_PSR = 0\nHarmonize_Offset_ISM = Harmonize_Offset_Default\nK_Harmonize_ISM = Harmonize_SFC_Default\nUpper_Limit_LRU = Upper_Limit_LRU_Default\nLower_Limit_LRU =  Lower_Limit_LRU_Default\nLRU_Harmonizing_Needed_PIVT = True\nNotes:\n1. Harmonize_Offset_Default, Harmonize_SFC_Default, Upper_Limit_LRU_Default, and Lower_Limit_LRU_Default are dependent on the LRU location.\n2. PSR Harmonizing default values are defined in Table 10695, Rev C (for ATYPE-1 and ATYPE-2) and Table 106939, Rev B (for ATYPE-3).\nReq Type: Decomposed | Safety Impact: No | Safety Rationale: This is a detailed implementation requirement.",
+    "level": null,
+    "requirement_level": "LLR"
+  },
+  {
+    "req_id": "LRUSWRS-1006",
+    "function_name": "UNKNOWN",
+    "module_name": "UNKNOWN",
+    "operation_name": "UNKNOWN",
+    "visibility": "public",
+    "return": {
+      "type": "void",
+      "validity_range": null
+    },
+    "arguments": null,
+    "global_variables": [
+      {
+        "name": "STL_Bus",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "IVT_Receipt_Envelope",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "IVT_Receipt_Content",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "LRU_Harmonizing_Needed_PIVT",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      }
+    ],
+    "used_functions": [
+      "LRUSWRS-1004",
+      "LRUSWRS-1005"
+    ],
+    "requirement_text": "After performing the initializations in LRUSWRS-1004 and applying the default values per LRUSWRS-1005, the LRU software shall transmit Harmonizing Needed on STL_Bus as follows:\nIVT_Receipt_Envelope = 0x0011\nIVT_Receipt_Content: LRU_Harmonizing_Needed_PIVT = True\nNote:\nLRU_Harmonizing_Needed_PIVT is defined in Table 1007.\nReq Type: Decomposed | Safety Impact: No | Safety Rationale: This is a detailed implementation requirement.",
+    "level": null,
+    "requirement_level": "LLR"
+  },
+  {
+    "req_id": "LRUSWRS-1004",
+    "function_name": "UNKNOWN",
+    "module_name": "UNKNOWN",
+    "operation_name": "UNKNOWN",
+    "visibility": "public",
+    "return": {
+      "type": "void",
+      "validity_range": null
+    },
+    "arguments": null,
+    "global_variables": [
+      {
+        "name": "IVT_Mode_ModeLgc",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "Harmonizing_Active_STL",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "Contract_Stop_Collection_Complete",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Expand_Stop_Collection_Complete",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "VOID_Collection_Complete",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Harmonizing_Complete",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Harmonizing_Failed",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Act_Disp_Range_Contract_Fault",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Act_Disp_Range_Expand_Fault",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Act_Disp_Range_VOID_Fault",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      }
+    ],
+    "used_functions": null,
+    "requirement_text": "The LRU software shall initialize the signals listed below when the following condition is True:\nIVT_Mode_ModeLgc is True AND Harmonizing_Active_STL transitions to True\nContract_Stop_Collection_Complete = False\nExpand_Stop_Collection_Complete = False\nVOID_Collection_Complete = False (Primary Surface Only)\nHarmonizing_Complete = False\nHarmonizing_Failed = False\nAct_Disp_Range_Contract_Fault = False\nAct_Disp_Range_Expand_Fault = False\nAct_Disp_Range_VOID_Fault = False (Primary Surface Only)\nNote: For Spoiler surface, VOID point Harmonizing does not apply; therefore, VOID_Collection_Complete and Act_Disp_Range_VOID_Fault are N/A.\nReq Type: Verbatim | Safety Impact: No | Safety Rationale: This is a detailed implementation requirement.",
+    "level": null,
+    "requirement_level": "LLR"
+  },
+  {
+    "req_id": "LRUSWRS-1001",
+    "function_name": "UNKNOWN",
+    "module_name": "UNKNOWN",
+    "operation_name": "UNKNOWN",
+    "visibility": "public",
+    "return": {
+      "type": "void",
+      "validity_range": null
+    },
+    "arguments": null,
+    "global_variables": [
+      {
+        "name": "LRU_2",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Act_Disp_Raw",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "IVT_Command_ISM",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "IVT_CmdData_ISM",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Harmonize_Contract_Stop_STL",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Harmonizing_Active_STL",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Act_Disp_Raw_Avg_Contract",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Harmonize_SFC_Default",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Harmonize_Offset_Default",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Profile_Id",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Contract_Stop_Collection_Complete",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Act_Disp_Range_Contract_Fault",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "STL_Bus",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "IVT_Receipt_Envelope",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "IVT_Receipt_Content",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Harmonizing_Failed",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Fault_History_Table_PSR",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "IVT_Active_STL",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Harmonize_Expand_Stop_STL",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Act_Disp_Raw_Avg_Expand",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Expand_Stop_Collection_Complete",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Act_Disp_Range_Expand_Fault",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Harmonize_VOID_STL",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "LRU_3",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "LRU_4",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Act_Disp_Raw_Avg_VOID",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "VOID_Collection_Complete",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Act_Disp_Range_VOID_Fault",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "LRU_2_Act_Disp_Raw_Avg_Contract_STL",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "LRU_2_Act_Disp_Raw_Avg_Expand_STL",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "Primary_Harmonize_Calc",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Spoiler_Harmonize_Calc",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "K_Harmonize_New",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Max_Stroke",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Harmonize_Offset_New",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "LRU_1",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "LRU_5",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "LRU_6",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "LRU_2_Act_Disp_Raw_Avg_Expand",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "LRU_2_Act_Disp_Raw_Avg_Contract",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "LRU_7",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Lower_Limit_LRU_PSR_New",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Contract_Error",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Upper_Limit_LRU_PSR_New",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Upper_Limit_Harmonized",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Lower_Limit_Harmonized",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Expand_Error",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Harmonize_SFC_PSR",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Harmonize_Offset_PSR",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Asset_ID_PSR",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Asset_ID_STL",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Config_LRU_PSR",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Profile_ID_Disc_Dbnce_Init",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Lower_Limit_LRU_PSR",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Upper_Limit_LRU_PSR",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "CRC_PSR",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Harmonizing_PSR_Data_Fault",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "LRU_Harmonizing_Needed_PIVT",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Corrupt_PSR_Harmonizing_CIP_Fault_Init",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "K_Harmonize_ISM",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Harmonize_Offset_ISM",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Lower_Limit_LRU",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Upper_Limit_LRU",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Upper_Limit_EBMC_PSR",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "Harmonizing_and_Configuration_Parameters_Request",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "Harmonizing_SFC_PSR",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "Harmonizing_Offset_PSR",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "Harmonizing_Complete",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      }
+    ],
+    "used_functions": [
+      "LRUSWRS-1003"
+    ],
+    "requirement_text": "The electronic Harmonizing sequence for both Primary and Spoiler surface types are defined in the table below.  The prerequisite condition for execution of this Harmonizing sequence is that Harmonizing mode (LRUSWRS-1003) must be active.  The steps occur in blocks, 1 to 5, 6 to 10, 11 to 15, followed by 16 to 35.  The first three blocks are started by LRU_2 messages and can occur in any order. The last block occurs automatically after all three of the other blocks are completed.  Not all steps are applicable to both surface types.  The block steps not applicable to both surface types are noted following the requirement.\nThe LRU software shall implement the electronic Harmonizing sequence as shown in Table 1001.\nTable 1001:  Primary/Spoiler Surface Electronic Harmonizing Sequence\nTable Row: Step | Electronic Harmonizing Sequence Requirements | LRU-\nTable Row: 1 | Sample 50 frames (25 ms) of Act_Disp_Raw (in) and average them when the following condition is True: (IVT_Command_ISM = 0x0020, IVT_CmdData_ISM: Harmonize_Contract_Stop_STL = True). Note: Act_Disp_Raw is depicted in Figure 4436, Harmonizing_Active_STL is defined in Table 1208, and Harmonize_Contract_Stop_STL is defined in Table 1008. | 6135\nTable Row: 2 | Compute Act_Disp_Raw_Avg_Contract while commanded to the Contract position as follows: [the average of Act_Disp_Raw from Step above] * Harmonize_SFC_Default + Harmonize_Offset_Default. Note: The values of Harmonize_SFC_Default and Harmonize_Offset_Default are defined as a function of Profile_Id in: Table 10695, Rev C: ATYPE-1 & ATYPE-2 LVDT Default Harmonizing Parameters Table 106939, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters Set  Contract_Stop_Collection_Complete = True. | 9169\nTable Row: 3 | Set Act_Disp_Range_Contract_Fault to True if Act_Disp_Raw_Avg_Contract (in) is not within the ranges defined in:   Table 1014, Rev A for ATYPE-1 & ATYPE-2 Contract Harmonizing Range  Table 1015, Rev NC for ATYPE-3 Contract Harmonizing Range | 9170\nTable Row: 4a | Set and transmit IVT Response data on STL_Bus as follows: IVT_Receipt_Envelope = 0x0017,  IVT_Receipt_Content: Contract_Stop_Collection_Complete = True,  Notes:  1) Contract_Stop_Collection_Complete is defined in Table 1007. 2) IVT_Receipt_Content is an accummulation of all applicable Harmonizing status Bits. | 9171\nTable Row: 4b | If Act_Disp_Range_Contract_Fault is True, set and transmit IVT Response data on STL_Bus as follows:  IVT_Receipt_Envelope = 0x0017,   IVT_Receipt_Content: Harmonizing_Failed = True, else IVT_Receipt_Envelope = 0x0017,   IVT_Receipt_Content: Harmonizing_Failed = False.  Notes:  1) Harmonizing_Failed is defined in Table 1007. 2) IVT_Receipt_Content is an accummulation of all applicable Harmonizing status Bits. | 9171\nTable Row: 5 | If Act_Disp_Range_Contract_Fault transitions to True, create an entry in the Fault_History_Table_PSR. Note: This is the only entry of this fault in the Fault_History_Table_PSR for the current power-on session. | 9193\nTable Row: Information Only | If the FCC is commanding the Expand stop position, the LRU_2 subsequently transmits the following on STL_Bus: IVT_Active_STL = True Harmonizing_Active_STL = True IVT_Command_ISM = 0x0020, IVT_CmdData_ISM: Harmonize_Expand_Stop_STL=True.  Note: Harmonize_Expand_Stop_STL is defined in Table 1008. | 9173\nTable Row: 6 | Sample 50 frames (25 ms) of Act_Disp_Raw (in) and average them when the following condition is True: (IVT_Command_ISM = 0x0020, IVT_CmdData_ISM: Harmonize_Expand_Stop_STL = True). Note: Act_Disp_Raw is depicted in Figure 4436 and Harmonize_Expand_Stop_STL are defined in Table 1008. | 9184\nTable Row: 7 | Compute Act_Disp_Raw_Avg_Expand while commanded to the Expanded position as follows:    [the average of Act_Disp_Raw from Step above] * Harmonize_SFC_Default + Harmonize_Offset_Default The values of Harmonize_SFC_Default and Harmonize_Offset_Default are defined as a function of Profile_Id in:  Table 10695, Rev C: ATYPE-1 & ATYPE-2 LVDT Default Harmonizing Parameters  Table 106939, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters Set Expand_Stop_Collection_Complete = True. | 9174\nTable Row: 8 | Set Act_Disp_Range_Expand_Fault to True if Act_Disp_Raw_Avg_Expand (in) is not within the following ranges:   Table 1016, Rev A for ATYPE-1 & ATYPE-2 Expand Harmonizing Range  Table 1017, Rev NC for ATYPE-3 Expand Harmonizing Range | 9177\nTable Row: 9a | Set and transmit IVT Response data on STL_Bus as follows: IVT_Receipt_Envelope = 0x0017,  IVT_Receipt_Content: Expand_Stop_Collection_Complete = True  Notes:  1) Expand_Stop_Collection_Complete is defined in Table 1007. 2) IVT_Receipt_Content is an accummulation of all applicable Harmonizing status Bits. | 9895\nTable Row: 9b | If Act_Disp_Range_Expand_Fault is True, set and transmit IVT Response data on STL_Bus as follows: IVT_Receipt_Envelope = 0x0017,   IVT_Receipt_Content: Harmonizing_Failed = True, else IVT_Receipt_Envelope = 0x0017,   IVT_Receipt_Content: Harmonizing_Failed = False.  Notes:  1) Harmonizing_Failed is defined in Table 1007.  2) IVT_Receipt_Content is an accummulation of all applicable Harmonizing status Bits. | 9895\nTable Row: 10 | If Act_Disp_Range_Expand_Fault transitions to True, create an entry in the Fault_History_Table_PSR. Note: This is the only entry of this fault in the Fault_History_Table_PSR for the current power-on session. | 9238\nTable Row: Information Only | If the FCC is commanding the VOID position, the LRU_2 EBHA channel subsequently transmits on STL_Bus the asserted state of IVT Active and Harmonizing Active, and commands the Collection of Harmonizing data while in the VOID position as follows: IVT_Active_STL = True, Harmonizing_Active_STL = True, IVT_Command_ISM = 0x0020, IVT_CmdData_ISM: Harmonize_VOID_STL = True. | 9208\nTable Row: 11 | Sample 50 frames (25 ms) of Act_Disp_Raw (in) and average them when the following condition is True: IVT_Command_ISM = 0x0020, IVT_CmdData_ISM: Harmonize_VOID_STL = True. Note: Act_Disp_Raw is depicted Figure 4436 and Harmonize_VOID_STL is defined in Table 1008.  Not applicable to LRU_3 and LRU_4. | 9205\nTable Row: 12 | Compute  Act_Disp_Raw_Avg_VOID while commanded to the VOID position as follows: [the average of Act_Disp_Raw from Step above] * Harmonize_SFC_Default + Harmonize_Offset_Default.The values of Harmonize_SFC_Default and Harmonize_Offset_Default are defined as a function of Profile_Id in:   Table 10695, Rev C: ATYPE-1 & ATYPE-2 LVDT Default Harmonizing Parameters  Table 106939, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters  Set VOID_Collection_Complete = True Note:  Not applicable to LRU_3 and LRU_4. | 9222\nTable Row: 13 | Set Act_Disp_Range_VOID_Fault to True if Act_Disp_Raw_Avg_VOID (in) is not within the following range:  Table 1018, Rev A ATYPE-1 & ATYPE-2 VOID Harmonizing Range  Table 1019, Rev NC ATYPE-3 VOID Harmonizing Range Else set Act_Disp_Range_VOID_Fault to False. Note: Not applicable to LRU_3 and LRU_4. | 9209\nTable Row: 14a | Set and transmit IVT Response data on STL_Bus as follows: IVT_Receipt_Envelope = 0x0017,  IVT_Receipt_Content: VOID_Collection_Complete = True,  Notes:  1) VOID_Collection_Complete is defined in Table 1007. 2) IVT_Receipt_Content is an accummulation of all applicable Harmonizing status Bits. 3) Not applicable to LRU_3 and LRU_4. | 9210\nTable Row: 14b | If Act_Disp_Range_VOID_Fault is True, set and transmit IVT Response data on STL_Bus as follows: IVT_Receipt_Envelope = 0x0017,   IVT_Receipt_Content: Harmonizing_Failed = True, else IVT_Receipt_Envelope = 0x0017,   IVT_Receipt_Content: Harmonizing_Failed = False.  Notes:  1) Harmonizing_Failed is defined in Table 1007.  2) IVT_Receipt_Content is an accummulation of all applicable Harmonizing status Bits. 3) Not applicable to LRU_3 and LRU_4. | 9210\nTable Row: 15 | If Act_Disp_Range_VOID_Fault transitions to True, create an entry in the Fault_History_Table_PSR. Notes: 1) Not applicable to LRU_3 and LRU_4. 2) This is the only entry of this fault in the Fault_History_Table_PSR for the current power-on session. | 9235\nTable Row: Information Only | The LRU_2 asserts both Harmonizing Active and IVT Active, and transmits its own Average Expand and Contract LVDT Position on the STL Bus using IVT_Command_ISM and IVT_CmdData_ISM as follows:  IVT_Active_STL = True  Harmonizing_Active_STL = True  IVT_Command_ISM, IVT_CmdData_ISM: LRU_2_Act_Disp_Raw_Avg_Contract_STL  IVT_Command_ISM, IVT_CmdData_ISM: LRU_2_Act_Disp_Raw_Avg_Expand_STL. | 9221\nTable Row: 16 | Set Primary_Harmonize_Calc to True when the following condition is True: Act_Disp_Range_VOID_Fault = False  AND Act_Disp_Range_Contract_Fault = False AND Act_Disp_Range_Expand_Fault = False AND Contract_Stop_Collection_Complete = True AND Expand_Stop_Collection_Complete = True AND VOID_Collection_Complete = True. Note: Not applicable to LRU_3 and LRU_4. | 9891\nTable Row: 17 | For LRU_3 and LRU_4, set Spoiler_Harmonize_Calc to True if the following condition is True: Act_Disp_Range_Contract_Fault = False AND Act_Disp_Range_Expand_Fault = False AND Contract_Stop_Collection_Complete = True AND Expand_Stop_Collection_Complete = True. Note: Not applicable to primary surfaces. | 9892\nTable Row: 18 | If Spoiler_Harmonize_Calc is True then compute  K_Harmonize_New  = Max_Stroke / [Act_Disp_Raw_Avg_Expand  -  Act_Disp_Raw_Avg_Contract]. where Max_Stroke is defined in:   Table 1020, Rev A: ATYPE-1 & ATYPE-2 LRU Harmonizing Max Strokes   Table 1021, Rev A: ATYPE-3 LRU Harmonizing Max Strokes | 9176\nTable Row: 19 | If Spoiler_Harmonize_Calc is True, then calculate the new LVDT Harmonizing Offset as follows:  Harmonize_Offset_New  =  (Harmonize_Offset_Default - Act_Disp_Raw_Avg_Contract)  * K_Harmonize_New.  The value of Harmonize_Offset_Default is defined as a function of Profile_Id in:   Table 10695, Rev C: ATYPE-1 & ATYPE-2 LVDT Default Harmonizing Parameters  Table 106939, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters Note: Not applicable to Primary Surfaces. | 6137\nTable Row: 20 | Calculate the new LVDT Harmonizing Gain when Primary_Harmonize_Calc is True AND Profile_Id is any of the following:  LRU_1,  LRU_2,  LRU_5,   LRU_6. K_Harmonize_New  = (LRU_2_Act_Disp_Raw_Avg_Expand - LRU_2_Act_Disp_Raw_Avg_Contract)                                /(Act_Disp_Raw_Avg_Expand - Act_Disp_Raw_Avg_Contract). Note: Applicable to Elevator or Aileron Surfaces only. | 9212\nTable Row: 21 | Calculate the new LVDT Harmonizing Gain when Primary_Harmonize_Calc is True AND Profile_Id = LRU_7 as follows: K_Harmonize_New  =  Max_Stroke / [Act_Disp_Raw_Avg_Expand (in) – Act_Disp_Raw_Avg_Contract (in)]. where Max_Stroke is defined as a function of Profile_Id in:  Table 1020, Rev A: ATYPE-1 & ATYPE-2 LRU Harmonizing Max Strokes  Table 1021, Rev A: ATYPE-3 LRU Harmonizing Max Strokes Note: Applicable to LRU_7 (Rudder) only. | 9944\nTable Row: 22 | Calculate the new LVDT Harmonizing Offset as follows when Primary_Harmonize_Calc is True: Harmonize_Offset_New  = (Harmonize_Offset_Default - Act_Disp_Raw_Avg_VOID)  * K_Harmonize_New. The value of Harmonize_Offset_Default is defined as a function of Profile_Id in:   Table 10695, Rev C: ATYPE-1 & ATYPE-2 LVDT Default Harmonizing Parameters  Table 106939, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters Note:   Not applicable to OB Spoiler Surfaces. | 9213\nTable Row: 23 | If LRU-1/2/5/6, calculate Lower_Limit_LRU_PSR_New when Primary_Harmonize_Calc by the following equation: Lower_Limit_LRU_PSR_New =  Act_Disp_Raw_Avg_Contract + Contract_Error. The value of Contract_Error is defined in :  Table 10695, Rev C: ATYPE-1 & ATYPE-2 LVDT Default Harmonizing Parameters  Table 106939, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters | 10915\nTable Row: 24 | If LRU-3/4, calculate Upper_Limit_LRU_PSR_New and Lower_Limit_LRU_PSR_New to the fixed values as follows:   Upper_Limit_LRU_PSR_New = Upper_Limit_Harmonized   Lower_Limit_LRU_PSR_New = Lower_Limit_Harmonized    The value of Upper_Limit_Harmonized and Lower_Limit_Harmonized are as a function of Profile_Id in:  Table 1020, Rev A: ATYPE-1 & ATYPE-2 LRU Harmonizing Max Strokes  Table 1021, Rev A: ATYPE-3 LRU Harmonizing Max Strokes Note: Applicable only to Spoiler surfaces. | 10916\nTable Row: 25 | If LRU-7, calculate Lower_Limit_LRU_PSR_New using the following equation:   Lower_Limit_LRU_PSR_New = Lower_Limit_Harmonized  The value of Lower_Limit_Harmonized is defined as a function of Profile_Id in:  Table 1020, Rev A: ATYPE-1 & ATYPE-2 LRU Harmonizing Max Strokes  Table 1021, Rev A: ATYPE-3 LRU Harmonizing Max Strokes Note: Applicable only to Rudder. | 10917\nTable Row: 26 | If LRU-1/2/5/6, calculate Upper_Limit_LRU_PSR_New using the following equation:   Upper_Limit_LRU_PSR_New =  Act_Disp_Raw_Avg_Expand – Expand_Error.  The value of Expand_Error is defined as a function of Profile_Id in: :   Table 10695, Rev C: ATYPE-1 & ATYPE-2 LVDT Default Harmonizing Parameters  Table 106939, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters Note: Applicable only to Ailerons and Elevators. | 10918\nTable Row: 27 | If LRU-7, calculate Upper_Limit_LRU_PSR_New using the following equation:   Upper_Limit_LRU_PSR_New = Upper_Limit_Harmonized The value of Upper_Limit_Harmonized is defined as a function of Profile_Id in:   Table 1020, Rev A: ATYPE-1 & ATYPE-2 LRU Harmonizing Max Strokes  Table 1021, Rev A: ATYPE-3 LRU Harmonizing Max Strokes Note: Applicable only to Rudder. | 10921\nTable Row: 28 | Store new LRU Harmonizing parameters in PSR as follows:   Harmonize_SFC_PSR = K_Harmonize_New  Harmonize_Offset_PSR = Harmonize_Offset_New  Asset_ID_PSR = Asset_ID_STL  Config_LRU_PSR = Profile_ID_Disc_Dbnce_Init  Lower_Limit_LRU_PSR = Lower_Limit_LRU_PSR_New  Upper_Limit_LRU_PSR = Upper_Limit_LRU_PSR_New  CRC_PSR = CRC for data above | 9215\nTable Row: 29 | The LRU reads back the data stored in PSR and re-computes the CRC of the PSR Harmonizing parameters. | 9225\nTable Row: 30 | Perform a CRC check of the following Harmonizing parameters set in PSR to verify it is not corrupted:  Harmonize_Offset_PSR  Harmonize_SFC_PSR  Asset_ID_PSR  Config_LRU_PSR  Lower_Limit_LRU_PSR  Upper_Limit_LRU_PSR. | 9814\nTable Row: 31 | If CRC check as defined in Step above fails, the LRU software sets Harmonizing_PSR_Data_Fault to True, else set  Harmonizing_PSR_Data_Fault to False. | 9224\nTable Row: 32 | If Harmonizing_PSR_Data_Fault transitions to True, then perform the following:  create a Harmonizing_PSR_Data_Fault entry in the Fault_History_Table_PSR   report Harmonizing Failed to the LRU_2 on STL_Bus:  IVT_Receipt_Envelope=0x0017, IVT_Receipt_Content: Harmonizing_Failed = True. Note: Harmonizing_Failed is defined in Table 1007. | 9249\nTable Row: 33 | Set the following to False if Harmonizing_PSR_Data_Fault is False.   LRU_Harmonizing_Needed_PIVT   Corrupt_PSR_Harmonizing_CIP_Fault_Init. | 9894\nTable Row: 34 | If Harmonizing_PSR_Data_Fault is False then perform all of the following assignments:  K_Harmonize_ISM = Harmonize_SFC_PSR   Harmonize_Offset_ISM = Harmonize_Offset_PSR  Lower_Limit_LRU = Lower_Limit_LRU_PSR  Upper_Limit_LRU = Upper_Limit_EBMC_PSR.  Note: These parameters are used in the position control state.  Therefore, one might have to enter the position control state to see the updates. | 9247\nTable Row: Information Only | The LRU_2 EBHA channel commands the LRU to transmit its new Harmonizing parameters including LVDT Harmonizing Gain and LVDT Harmonizing Offset for future Auto-Harmonizing using IVT_Command_ISM and IVT_CmdData_ISM. | 9823\nTable Row: 35 | If the LRU receives the Harmonizing_and_Configuration_Parameters_Request command below on STL_Bus while Harmonizing_PSR_Data_Fault is False AND Step 34 completed : IVT_Command_ISM = 0x0012 AND IVT_CmdData_ISM = 0x0001, then reply on STL_Bus with the following messages (sequence order insignificant):  IVT_Receipt_Envelope = 0x0011, IVT_Receipt_Content: LRU_Harmonizing_Needed_PIVT = False.  IVT_Receipt_Envelope = 0x0012, IVT_Receipt_Content = Config_LRU_PSR (LRU Harmonizing Location and Asset type)  IVT_Receipt_Envelope = 0x0013, IVT_Receipt_Content = Asset_ID_PSR   IVT_Receipt_Envelope = 0x0014, IVT_Receipt_Content = Harmonizing_SFC_PSR  IVT_Receipt_Envelope = 0x0015, IVT_Receipt_Content = Harmonizing_Offset_PSR  IVT_Receipt_Envelope = 0x0018, IVT_Receipt_Content = Lower_Limit_LRU_PSR  IVT_Receipt_Envelope = 0x0019, IVT_Receipt_Content = Upper_Limit_LRU_PSR  IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Complete = True Note: All IVT Response Codes and Data IVT formats are defined in Table 1007. | 9239",
+    "level": null,
+    "requirement_level": "LLR"
+  },
+  {
+    "req_id": "LRUSWRS-1007",
+    "function_name": "UNKNOWN",
+    "module_name": "UNKNOWN",
+    "operation_name": "UNKNOWN",
+    "visibility": "public",
+    "return": {
+      "type": "void",
+      "validity_range": null
+    },
+    "arguments": null,
+    "global_variables": [],
+    "used_functions": null,
+    "requirement_text": "Table 1007: IVT Response and IVT Response Data definitions\nTable Row: IVT_Receipt_Envelope | IVT_Receipt_Content | Response Description\nTable Row: Word 10 | Word 11 | Response Description\nTable Row: Message Byte Location 19, 18 | Message Byte Location 21, 20 | Response Description\nTable Row: Test Suite 0\nTable Row: 0011h | 000Xh | LRU Harmonizing Needed Test Completed with Results Bit 0: LRU_Harmonizing_Needed_PIVT 0=False, 1=True\nTable Row: 0012h | 00XXh | LRU Harmonizing Asset type and Location BIT 0-2:  LRU Location BIT 3-4:  LRU Asset type\nTable Row: 0013h | XXXXh | LRU Harmonizing Asset Serial Number BIT 0-15: LRU Asset Serial Number\nTable Row: 0014h | XXXXh | BIT 0-15: LRU Harmonizing Gain\nTable Row: 0015h | XXXXh | BIT 0-15: LRU Harmonizing Offset\nTable Row: 0016h | 000Xh | LRU Auto Harmonizing Results BIT 0: LRU_AutoHarmonize_Pass_PIVT  0=False, 1=True BIT 1: LRU_AutoHarmonize_Fail_PIVT   0=False, 1=True\nTable Row: 0017h | 00XXh | LRU Electronic Harmonizing Results BIT 0: Contract_Stop_Collection_Complete  0=False, 1=True BIT 1: Expand_Stop_Collection_Complete  0=False, 1=True BIT 2: VOID_Collection_Complete  0=False, 1=True BIT 3: Harmonizing_Complete  0=False, 1=True BIT 4: Harmonizing_Failed  0=False, 1=True\nTable Row: 0018h | XXXXh | LRU Upper Limit BIT 0-15:  LRU Upper Limit\nTable Row: 0019h | XXXXh | LRU Lower Limit BIT 0-15:  LRU Lower Limit\nTable Row: Test Suite 2\nTable Row: 0020h | 000Xh | LRU Core Test Completed with Results BIT 0: LRU_Core_PIVT_Fault 0=False, 1=True\nTable Row: 0021h | 000Xh | LRU Driver Test Complete with Results BIT 0: Driver_PIVT_Fault_Code, 0=False, 1=True\nTable Row: 0022h | 000Xh | LRU Connect  Test Completed with Results BIT 0, Connect_PIVT_Fault_Code, 0=False, 1=True\nTable Row: 0024h | 000Xh | LRU Solenoid Ready Status BIT 0: 1 = LRU Solenoid Ready\nReq Type: Non-requirement | Safety Impact: No | Safety Rationale: Not a requirement.",
+    "level": null,
+    "requirement_level": null
+  },
+  {
+    "req_id": "LRUSWRS-1008",
+    "function_name": "UNKNOWN",
+    "module_name": "UNKNOWN",
+    "operation_name": "UNKNOWN",
+    "visibility": "public",
+    "return": {
+      "type": "void",
+      "validity_range": null
+    },
+    "arguments": null,
+    "global_variables": [],
+    "used_functions": null,
+    "requirement_text": "Table 1008, Rev B-  IVT Command and IVT Command Data definition\nTable Row: IVT_Command_ISM | IVT_CmdData_ISM | Signal Definition | Command Description\nTable Row: STL Word 7 | STL Word 8 | Signal Definition | Command Description\nTable Row: Message  Byte  15,14 | Message  Byte 17,16 (Hexadecimal Representation) | Signal Definition | Command Description\nTable Row: 0x0011 | 0000 | Start_PIVT_Test_Suite_0_STL | Start PIVT Test Suite 0\nTable Row: 0x0012 | 0001 | Harmonizing_and_Configuration_Parameter_Request_STL | Harmonizing and Configuration Parameter Request\nTable Row: 0x0013 | 000X | LRU_Auto_Harmonize_Available_STL | LRU AutoHarmonizegng Possible BIT 0: LRU_Auto-Harmonize_Available 0=False, 1=True\nTable Row: 0x0014 | 00XX | LRU_2_Config_STL | LRU Harmonizing Location and Asset type BIT 0-2 LRU Location BIT 3-4 Asset type\nTable Row: 0x0015 | XXXX | LRU_2_Asset_ID_STL | LRU Harmonizing Asset Serial Number BIT 0-15: LRU Asset ID\nTable Row: 0x0016 | XXXX | LRU_Harmonizing_Gain_STL | LRU Harmonizing Data BIT 0-15: LRU Harmonizing Gain\nTable Row: 0x0017 | XXXX | LRU_Harmonizing_Offset_STL | LRU Harmonizing Data BIT 0-15: LRU Harmonizing Offset\nTable Row: 0x0018 | XXXX | LRU_2_Act_Disp_Raw_Avg_Contract_STL | LRU_2 Harmonizing Data BIT 0-15: Average Contract Position\nTable Row: 0x0019 | XXXX | LRU_2_Act_Disp_Raw_Avg_Expand_STL | LRU_2 Harmonizing Data BIT 0-15: Average Expand Position\nTable Row: 0x001A | XXXX | Upper_Limit_LRU_STL | LRU Upper Limit\nTable Row: 0x001B | XXXX | Lower_Limit_LRU_STL | LRU Lower Limit\nTable Row: 0x0020 | 000X BIT 1 | Harmonize_Contract_Stop_STL | Start LRU Electronic Harmonizing at Contract stop position\nTable Row: 0x0020 | 000X BIT 2 | Harmonize_Expand_Stop_STL | Start LRU Electronic Harmonizing at Expand stop position\nTable Row: 0x0020 | 000X BIT 3 | Harmonize_VOID_STL | Start LRU Electronic Harmonizing at VOID position\nTable Row: 0x0021 | 0000 | Start_PIVT_Test_Suite_2_STL | Start PIVT Test Suite 2\nTable Row: 0x0022 | 0000 | Engage_LRU_MSV_SOV_STL | Engage LRU MSV SOV\nTable Row: 0x0030 | 0000 | LRU_Match_Index_Request_STL | Request LRU SW Match Valie\nTable Row: 0x0040 | 0000 | Err_Log_Request_STL | Request Transfer of LRU Error History\nReq Type: Non-requirement | Safety Impact: No | Safety Rationale: Not a requirement.",
+    "level": null,
+    "requirement_level": null
+  },
+  {
+    "req_id": "LRUSWRS-1009",
+    "function_name": "UNKNOWN",
+    "module_name": "UNKNOWN",
+    "operation_name": "UNKNOWN",
+    "visibility": "public",
+    "return": {
+      "type": "void",
+      "validity_range": null
+    },
+    "arguments": null,
+    "global_variables": [],
+    "used_functions": null,
+    "requirement_text": "Table 1009  LRU_2 to LRU STL Message\nTable Row: Word/ Byte/ BIT | Data | Type | Scaling | Range\nTable Row: 0/ 0/ 0-5 | Total_Data_Bytes_From_LRU_2_STL | Unsigned Integer | N/A | 19 (Data and checksum bytes)\nTable Row: 0/ 0/ 6-7 0/ 1/ 0-1 | Circular_Counter_From_LRU_2_STL | Unsigned Integer | N/A | 0 - 15\nTable Row: 0/ 1 /2 | Master_Slave_Status_From_LRU_2_STL | Unsigned Integer | N/A | 0 = Slave Message 1 = Master Message\nTable Row: 0/ 1 / 3 - 7 | Message_ID_From_LRU_2_STL | Unsigned Integer | N/A | 0x1\nTable Row: 1/ 2-3 | Device_Speed_Order_STL | Signed Integer | N/A | Data Min = -32768 Data Max = 32767\nTable Row: 2-3/ 4-7 | Asset_Date_STL | Unsigned Integer | N/A | N/A\nTable Row: 4-5/ 8-11 | Asset_Time_STL | Unsigned Integer | N/A | N/A\nTable Row: 6/ 12-13 | Asset_ID_STL | Unsigned Integer | N/A | N/A\nTable Row: 7/ 14-15 | IVT_Command_STL | Unsigned Integer | N/A | N/A\nTable Row: 8/ 16-17 | IVT_CmdData_STL | Unsigned Integer | N/A | N/A\nTable Row: 9/ 18/ 0 | Elec_En_STL | Unsigned Integer | N/A | 0 = EB Disengage 1 = EB Engage\nTable Row: 9/ 18/ 1 | IVT_Active_STL | Unsigned Integer | N/A | 0 = Not IVT Active 1 = IVT Active\nTable Row: 9/ 18/ 2 | Monitor_Reset_STL | Unsigned Integer | N/A | 0 = No Monitor Reset 1 = Monitor Reset\nTable Row: 9/ 18/ 3 | Backup_Control_Active_STL | Unsigned Integer | N/A | 0 = BFCU Not Active 1 = BFCU Active\nTable Row: 9/ 18/ 4 | On_Ground_STL | Unsigned Integer | N/A | 0 = Not on Ground 1 = On Ground\nTable Row: 9/ 18/ 5 | Harmonizing_Active_STL | Unsigned Integer | N/A | 0 = Elec. Harmonizing Not Active 1 = Elec. Harmonizing Active\nTable Row: 9/ 18/ 6-7 | Spare | Unsigned Integer | N/A | N/A\nTable Row: 9/ 19 | Spare | Unsigned Integer | N/A | N/A\nTable Row: 10/ 20 | Checksum_From_LRU_2_STL | Unsigned Integer | N/A | 0 - 255\nReq Type: Non-requirement | Safety Impact: No | Safety Rationale: Not a requirement.",
+    "level": null,
+    "requirement_level": null
+  },
+  {
+    "req_id": "LRUSWRS-1010",
+    "function_name": "UNKNOWN",
+    "module_name": "UNKNOWN",
+    "operation_name": "UNKNOWN",
+    "visibility": "public",
+    "return": {
+      "type": "void",
+      "validity_range": null
+    },
+    "arguments": null,
+    "global_variables": [
+      {
+        "name": "Flight_Mode_ModeLgc",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "IVT_Mode_ModeLgc",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "Loctaion_State_StateLgc",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "IVT_Active_STL",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "STL_Rx_Fault_ISM",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "LRU_2_Valid_Dbnce_StateLgc",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      }
+    ],
+    "used_functions": null,
+    "requirement_text": "The LRU Software shall transition from Flight_Mode_ModeLgc to IVT_Mode_ModeLgc if all of the following conditions are met:\nLoctaion_State_StateLgc is False\nIVT_Active_STL is set for 10 consecutive STL frames\nSTL_Rx_Fault_ISM is False\nLRU_2_Valid_Dbnce_StateLgc is True\nReq Type: Decomposed | Safety Impact: No | Safety Rationale: This is a detailed implementation requirement.",
+    "level": null,
+    "requirement_level": "LLR"
+  },
+  {
+    "req_id": "LRUSWRS-1011",
+    "function_name": "UNKNOWN",
+    "module_name": "UNKNOWN",
+    "operation_name": "UNKNOWN",
+    "visibility": "public",
+    "return": {
+      "type": "void",
+      "validity_range": null
+    },
+    "arguments": null,
+    "global_variables": [],
+    "used_functions": null,
+    "requirement_text": "Table 1011 Rev C  Asset type & LRU Location Decode Based On Profile_ID_Disc_Dbnce_Init\nTable Row: ID7_DSP | ID6_DSP | ID5_DSP | ID4_DSP | ID3_DSP | ID2_DSP | ID1_DSP | ID0_DSP (Parity) | SurfaceID\nTable Row: 0 | 0 | 0 | 1 | 0 | 0 | 1 | 1 | TYPE_1_LRU_1\nTable Row: 0 | 0 | 0 | 1 | 0 | 1 | 0 | 1 | TYPE_1_LRU_2\nTable Row: 0 | 0 | 0 | 1 | 0 | 1 | 1 | 0 | TYPE_1_LRU_3\nTable Row: 0 | 0 | 0 | 1 | 1 | 0 | 0 | 1 | TYPE_1_LRU_4\nTable Row: 0 | 0 | 0 | 1 | 1 | 0 | 1 | 0 | TYPE_1_LRU_5\nTable Row: 0 | 0 | 0 | 1 | 1 | 1 | 0 | 0 | TYPE_1_LRU_6\nTable Row: 0 | 0 | 0 | 1 | 1 | 1 | 1 | 1 | TYPE_1_LRU_7\nTable Row: 0 | 0 | 1 | 0 | 0 | 0 | 1 | 1 | TYPE_2_LRU_1\nTable Row: 0 | 0 | 1 | 0 | 0 | 1 | 0 | 1 | TYPE_2_LRU_2\nTable Row: 0 | 0 | 1 | 0 | 0 | 1 | 1 | 0 | TYPE_2_LRU_3\nTable Row: 0 | 0 | 1 | 0 | 1 | 0 | 0 | 1 | TYPE_2_LRU_4\nTable Row: 0 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | TYPE_2_LRU_5\nTable Row: 0 | 0 | 1 | 0 | 1 | 1 | 0 | 0 | TYPE_2_LRU_6\nTable Row: 0 | 0 | 1 | 0 | 1 | 1 | 1 | 1 | TYPE_2_LRU_7\nTable Row: 0 | 0 | 1 | 1 | 0 | 0 | 1 | 0 | TYPE_3_LRU_1\nTable Row: 0 | 0 | 1 | 1 | 0 | 1 | 0 | 0 | TYPE_3_LRU_2\nTable Row: 0 | 0 | 1 | 1 | 0 | 1 | 1 | 1 | TYPE_3_LRU_3\nTable Row: 0 | 0 | 1 | 1 | 1 | 0 | 0 | 0 | TYPE_3_LRU_4\nTable Row: 0 | 0 | 1 | 1 | 1 | 0 | 1 | 1 | TYPE_3_LRU_5\nTable Row: 0 | 0 | 1 | 1 | 1 | 1 | 0 | 1 | TYPE_3_LRU_6\nTable Row: 0 | 0 | 1 | 1 | 1 | 1 | 1 | 0 | TYPE_3_LRU_7\nReq Type: Non-requirement | Safety Impact: No | Safety Rationale: Not a requirement.",
+    "level": null,
+    "requirement_level": null
+  },
+  {
+    "req_id": "LRUSWRS-1003",
+    "function_name": "UNKNOWN",
+    "module_name": "UNKNOWN",
+    "operation_name": "UNKNOWN",
+    "visibility": "public",
+    "return": {
+      "type": "void",
+      "validity_range": null
+    },
+    "arguments": null,
+    "global_variables": [
+      {
+        "name": "IVT_Mode_ModeLgc",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "Harmonizing_Active_STL",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      }
+    ],
+    "used_functions": [
+      "LRUSWRS-1010"
+    ],
+    "requirement_text": "While IVT_Mode_ModeLgc is True, the LRU software shall enter Harmonizing mode upon the following condition:\nHarmonizing_Active_STL is True AND remains True for 10 consecutive STL frames\nNotes:\n1) Harmonizing_Active_STL is defined in Table 1208.\n2) IVT_Mode_ModeLgc is defined in LRUSWRS-1010.\nReq Type: Decomposed | Safety Impact: No | Safety Rationale: This is a detailed implementation requirement.",
+    "level": null,
+    "requirement_level": "LLR"
+  },
+  {
+    "req_id": "LRUSWRS-1012",
+    "function_name": "UNKNOWN",
+    "module_name": "UNKNOWN",
+    "operation_name": "UNKNOWN",
+    "visibility": "public",
+    "return": {
+      "type": "void",
+      "validity_range": null
+    },
+    "arguments": null,
+    "global_variables": [],
+    "used_functions": null,
+    "requirement_text": "Table 1012, Rev C: ATYPE-1 and ATYPE-2 LVDT Default Harmonizing Parameters\nTable Row: Harmonizing Parameter Defaults | Profile_Id | Profile_Id | Profile_Id | Profile_Id\nTable Row: Harmonizing Parameter Defaults | Aileron | Elevator | Rudder | Spoiler\nTable Row: Harmonizing Parameter Defaults | LRU_1  LRU_2 | LRU_5  LRU_6 | LRU_7 | LRU_3  LRU_4\nTable Row: Harmonize_Offset_Default (inches) | 0.173 | 0.248 | 0.013 | 1.314\nTable Row: Harmonize_SFC_Default | 1.0 | 1.0 | 1.0 | 1.0\nTable Row: Upper_Limit_Default (inches) | 0.922 | 1.093 | 2.312 | 2.542\nTable Row: Lower_Limit_Default (inches) | -0.579 | -0.600 | -2.288 | 0.0430\nTable Row: Expand_Error (inches) | 0.028 | 0.028 | N/A | N/A\nTable Row: Contract_Error (inches) | 0.028 | 0.028 | N/A | N/A\nReq Type: Non-requirement | Safety Impact: No | Safety Rationale: Not a requirement.",
+    "level": null,
+    "requirement_level": null
+  },
+  {
+    "req_id": "LRUSWRS-1013",
+    "function_name": "UNKNOWN",
+    "module_name": "UNKNOWN",
+    "operation_name": "UNKNOWN",
+    "visibility": "public",
+    "return": {
+      "type": "void",
+      "validity_range": null
+    },
+    "arguments": null,
+    "global_variables": [],
+    "used_functions": null,
+    "requirement_text": "Table 1013, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters\nTable Row: Harmonizing Parameter | Profile_Id | Profile_Id | Profile_Id | Profile_Id\nTable Row: Harmonizing Parameter | Aileron | Elevator | Rudder | Spoiler\nTable Row: Harmonizing Parameter | LRU_1  LRU_2 | LRU_5  LRU_6 | LRU_7 | LRU_3  LRU_4\nTable Row: Harmonize_Offset_Default (inches) | 0.223 | 0.294 | 0.013 | 1.407\nTable Row: Harmonize_SFC_Default | 1.0 | 1.0 | 1.0 | 1.0\nTable Row: Upper_Limit_Default | 1.201 | 1.331 | 2.312 | 2.72\nTable Row: Lower_Limit_Default | -0.757 | -0.746 | -2.288 | 0.0440\nTable Row: Expand_Error (inches) | 0.042 | 0.038 | NA | N/A\nTable Row: Contract_Error (inches) | 0.042 | 0.038 | NA | N/A\nReq Type: Non-requirement | Safety Impact: No | Safety Rationale: Not a requirement.",
+    "level": null,
+    "requirement_level": null
+  },
+  {
+    "req_id": "LRUSWRS-1014",
+    "function_name": "UNKNOWN",
+    "module_name": "UNKNOWN",
+    "operation_name": "UNKNOWN",
+    "visibility": "public",
+    "return": {
+      "type": "void",
+      "validity_range": null
+    },
+    "arguments": null,
+    "global_variables": [],
+    "used_functions": null,
+    "requirement_text": "Table 1014, Rev A: ATYPE-1 & ATYPE-2 Contract Harmonizing Range\nTable Row: Applicability | Profile_Id | Minimum Contract Range Limit (inches) | Maximum Contract Range Limit (inches)\nTable Row: Spoiler | LRU_3, LRU_4 | -0.186 | 0.186\nTable Row: Aileron | LRU_1, LRU_2 | -0.733 | -0.519\nTable Row: Elevator | LRU_5, LRU_6 | -0.762 | -0.530\nTable Row: Rudder | LRU_7 | -2.616 | -2.086\nReq Type: Non-requirement | Safety Impact: No | Safety Rationale: This is not a requirement.",
+    "level": null,
+    "requirement_level": null
+  },
+  {
+    "req_id": "LRUSWRS-1015",
+    "function_name": "UNKNOWN",
+    "module_name": "UNKNOWN",
+    "operation_name": "UNKNOWN",
+    "visibility": "public",
+    "return": {
+      "type": "void",
+      "validity_range": null
+    },
+    "arguments": null,
+    "global_variables": [],
+    "used_functions": null,
+    "requirement_text": "Table 1015, Rev NC ATYPE-3 Contract Harmonizing Range\nTable Row: Applicability | Profile_Id | Minimum Contract Range Limit (inches) | Maximum Contract Range Limit (inches)\nTable Row: Spoiler | LRU_3, LRU_4 | -0.184 | 0.184\nTable Row: Aileron | LRU_1, LRU_2 | -0.946 | -0.684\nTable Row: Elevator | LRU_5, LRU_6 | -0.936 | -0.664\nTable Row: Rudder | LRU_7 | -2.616 | -2.086\nReq Type: Non-requirement | Safety Impact: No",
+    "level": null,
+    "requirement_level": null
+  },
+  {
+    "req_id": "LRUSWRS-1016",
+    "function_name": "UNKNOWN",
+    "module_name": "UNKNOWN",
+    "operation_name": "UNKNOWN",
+    "visibility": "public",
+    "return": {
+      "type": "void",
+      "validity_range": null
+    },
+    "arguments": null,
+    "global_variables": [],
+    "used_functions": null,
+    "requirement_text": "Table 1016, Rev A: ATYPE-1 & ATYPE-2 Expand Harmonizing Range\nTable Row: Applicability | Profile_Id | Minimum Expand Range Limit (inches) | Maximum Expand Range Limit (inches)\nTable Row: Spoiler | LRU_3, LRU_4 | 2.138 | 2.51\nTable Row: Aileron | LRU_1, LRU_2 | 0.862 | 1.08\nTable Row: Elevator | LRU_5, LRU_6 | 1.023 | 1.259\nTable Row: Rudder | LRU_7 | 2.112 | 2.642\nReq Type: Non-requirement | Safety Impact: No | Safety Rationale: This is not a requirement.",
+    "level": null,
+    "requirement_level": null
+  },
+  {
+    "req_id": "LRUSWRS-1017",
+    "function_name": "UNKNOWN",
+    "module_name": "UNKNOWN",
+    "operation_name": "UNKNOWN",
+    "visibility": "public",
+    "return": {
+      "type": "void",
+      "validity_range": null
+    },
+    "arguments": null,
+    "global_variables": [],
+    "used_functions": null,
+    "requirement_text": "Table 1017, Rev NC ATYPE-3 Expand Harmonizing Range\nTable Row: Applicability | Profile_Id | Minimum Expand Range Limit (inches) | Maximum Expand Range Limit (inches)\nTable Row: Spoiler | LRU_3, LRU_4 | 2.298 | 2.666\nTable Row: Aileron | LRU_1, LRU_2 | 1.128 | 1.394\nTable Row: Elevator | LRU_5, LRU_6 | 1.249 | 1.525\nTable Row: Rudder | LRU_7 | 2.112 | 2.642\nReq Type: Non-requirement | Safety Impact: No",
+    "level": null,
+    "requirement_level": null
+  },
+  {
+    "req_id": "LRUSWRS-1018",
+    "function_name": "UNKNOWN",
+    "module_name": "UNKNOWN",
+    "operation_name": "UNKNOWN",
+    "visibility": "public",
+    "return": {
+      "type": "void",
+      "validity_range": null
+    },
+    "arguments": null,
+    "global_variables": [],
+    "used_functions": null,
+    "requirement_text": "Table 1018, Rev A: ATYPE-1 & ATYPE-2 VOID Harmonizing Range\nTable Row: Applicability | Profile_Id | Minimum VOID Range Limit (inches) | Maximum VOID Range Limit (inches)\nTable Row: Aileron | LRU_1, LRU_2 | -0.08 | 0.08\nTable Row: Elevator | LRU_5, LRU_6 | -0.089 | 0.089\nTable Row: Rudder | LRU_7 | -0.236 | 0.236\nReq Type: Non-requirement | Safety Impact: No | Safety Rationale: This is not a requirement.",
+    "level": null,
+    "requirement_level": null
+  },
+  {
+    "req_id": "LRUSWRS-1019",
+    "function_name": "UNKNOWN",
+    "module_name": "UNKNOWN",
+    "operation_name": "UNKNOWN",
+    "visibility": "public",
+    "return": {
+      "type": "void",
+      "validity_range": null
+    },
+    "arguments": null,
+    "global_variables": [],
+    "used_functions": null,
+    "requirement_text": "Table 1019, Rev NC ATYPE-3 VOID Harmonizing Range\nTable Row: Applicability | Profile_Id | Minimum VOID Range Limit (inches) | Maximum VOID Range Limit (inches)\nTable Row: Aileron | LRU_1, LRU_2 | -0.104 | 0.104\nTable Row: Elevator | LRU_5, LRU_6 | -0.109 | 0.109\nTable Row: Rudder | LRU_7 | -0.236 | 0.236\nReq Type: Non-requirement",
+    "level": null,
+    "requirement_level": null
+  },
+  {
+    "req_id": "LRUSWRS-1020",
+    "function_name": "UNKNOWN",
+    "module_name": "UNKNOWN",
+    "operation_name": "UNKNOWN",
+    "visibility": "public",
+    "return": {
+      "type": "void",
+      "validity_range": null
+    },
+    "arguments": null,
+    "global_variables": [],
+    "used_functions": null,
+    "requirement_text": "Table 1020, Rev A: ATYPE-1 & ATYPE-2 LRU Harmonizing Max Strokes\nTable Row: Harmonizing  Parameter | Spoiler | Rudder\nTable Row: Location | LRU_3  LRU_4 | LRU_7\nTable Row: Max_Stroke (inches) | 2.324 | 4.728\nTable Row: Upper_Limit_Harmonized (inches) | 2.542 | 2.317\nTable Row: Lower_Limit_Harmonized (inches) | 0.0430 | -2.291\nReq Type: Non-requirement | Safety Impact: No | Safety Rationale: Not a requirement.",
+    "level": null,
+    "requirement_level": null
+  },
+  {
+    "req_id": "LRUSWRS-1021",
+    "function_name": "UNKNOWN",
+    "module_name": "UNKNOWN",
+    "operation_name": "UNKNOWN",
+    "visibility": "public",
+    "return": {
+      "type": "void",
+      "validity_range": null
+    },
+    "arguments": null,
+    "global_variables": [],
+    "used_functions": null,
+    "requirement_text": "Table 1021, Rev A: ATYPE-3 Harmonizing Max Strokes\nTable Row: Harmonizing  Parameter | Spoiler | Rudder\nTable Row: Location | LRU_3  LRU_4 | LRU_7\nTable Row: Max_Stroke (inches) | 2.482 | 4.728\nTable Row: Upper_Limit_Harmonized (inches) | 2.72 | 2.317\nTable Row: Lower_Limit_Harmonized (inches) | 0.0440 | -2.291\nReq Type: Non-requirement | Safety Impact: No | Safety Rationale: Not a requirement",
+    "level": null,
+    "requirement_level": null
+  },
+  {
+    "req_id": "LRUSWRS-1022",
+    "function_name": "UNKNOWN",
+    "module_name": "UNKNOWN",
+    "operation_name": "UNKNOWN",
+    "visibility": "public",
+    "return": {
+      "type": "void",
+      "validity_range": null
+    },
+    "arguments": null,
+    "global_variables": [
+      {
+        "name": "Corrupt_PSR_Harmonizing_CIP_Fault_Init",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Harmonize_Offset_ISM",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Harmonize_Offset_PSR",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "K_Harmonize_ISM",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Harmonize_SFC_PSR",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "Upper_Limit_LRU",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Upper_Limit_LRU_PSR",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "Lower_Limit_LRU",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      },
+      {
+        "name": "Harmonize_Offset_Default",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "Harmonize_SFC_Default",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "Upper_Limit_LRU_Default",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      },
+      {
+        "name": "Lower_Limit_LRU_Default",
+        "type": "UNKNOWN",
+        "direction": "IN"
+      }
+    ],
+    "used_functions": null,
+    "requirement_text": "If Corrupt_PSR_Harmonizing_CIP_Fault_Init is set False, the LRU shall assign the following Harmonizing parameter values:\nHarmonize_Offset_ISM =  Harmonize_Offset_PSR\nK_Harmonize_ISM =  Harmonize_SFC_PSR\nUpper_Limit_LRU = Upper_Limit_LRU_PSR\nLower_Limit_LRU = Lower_Limit_LRU _PSR\nelse use the default Harmonizing parameters per Table 1012 Rev C (for ATYPE-1 and ATYPE-2) and Table 106939 Rev B (for ATYPE-3) as follows:\nHarmonize_Offset_ISM =  Harmonize_Offset_Default\nK_Harmonize_ISM  =  Harmonize_SFC_Default\nUpper_Limit_LRU = Upper_Limit_LRU_Default\nLower_Limit_LRU = Lower_Limit_LRU_Default\nNote: Harmonize_SFC_PSR is the scale factor correction,  Harmonize_Offset_PSR is the bias offset, Upper_Limit_LRU_PSR is the Actuator Expand electrical position limit and Lower_Limit_LRU_PSR is the actuator Contract electrical position limit.\nReq Type: Verbatim | Safety Impact: No | Safety Rationale: This is an implementation requirement.",
+    "level": null,
+    "requirement_level": "LLR"
+  },
+  {
+    "req_id": "LRUSWRS-1023",
+    "function_name": "UNKNOWN",
+    "module_name": "UNKNOWN",
+    "operation_name": "UNKNOWN",
+    "visibility": "public",
+    "return": {
+      "type": "void",
+      "validity_range": null
+    },
+    "arguments": null,
+    "global_variables": [],
+    "used_functions": null,
+    "requirement_text": "Figure 1023  LRU Mode Transitions\nDetails for these transitions are provided in the Generic Requirements Document.\nReq Type: Non-requirement | Safety Impact: No | Safety Rationale: Not a requirement.",
+    "level": null,
+    "requirement_level": null
+  },
+  {
+    "req_id": "LRUSWRS-1024",
+    "function_name": "UNKNOWN",
+    "module_name": "UNKNOWN",
+    "operation_name": "UNKNOWN",
+    "visibility": "public",
+    "return": {
+      "type": "void",
+      "validity_range": null
+    },
+    "arguments": null,
+    "global_variables": [
+      {
+        "name": "Var_ID_PSR",
+        "type": "UNKNOWN",
+        "direction": "OUT"
+      }
+    ],
+    "used_functions": null,
+    "requirement_text": "The LRU software shall transmit the value of Var_ID_PSR sourced from EEPROM address 32 and 33 onto the STL bus; as defined in Table 1025 Data Item row 8.\nReq Type: Decomposed | Safety Impact: No | Safety Rationale: This is a detailed implementation requirement.",
+    "level": null,
+    "requirement_level": "LLR"
+  },
+  {
+    "req_id": "LRUSWRS-1025",
+    "function_name": "UNKNOWN",
+    "module_name": "UNKNOWN",
+    "operation_name": "UNKNOWN",
+    "visibility": "public",
+    "return": {
+      "type": "void",
+      "validity_range": null
+    },
+    "arguments": null,
+    "global_variables": [],
+    "used_functions": [
+      "LRUSWRS-106940"
+    ],
+    "requirement_text": "Table 1025, Rev A- LRU to LRU_2 STL Message\nTable Row: Data Items | Word/ Byte / BITs | STL Data | Type | Scaling | Range | Comments\nTable Row: 1 | 0/ 0 / 0 - 5 | Total_Data_Bytes_From_LRU_STL | Unsigned Integer | N/A | 29 (Data, and checksum bytes) | Set to 29\nTable Row: 2 | 0/ 0 / 6 - 7 0/ 1 / 0 - 1 | Circular_Counter_From_LRU_STL | Unsigned Integer | N/A | 0 - 15 | Circular_Counter_From_LRU_2_STL\nTable Row: 3 | 0/ 1 / 2 | Master_Slave_Status_From_LRU_STL | Unsigned Integer | N/A | 0 = Slave Message 1 = Master Message | Set to 0 for Slave Status\nTable Row: 4 | 0/ 1 / 3 - 7 | Message_ID_From_LRU_STL | Unsigned Integer | N/A | 0x1 | Set to 0x1\nTable Row: 5 | 1/ 2-3 /all | Device_Speed_Scale_ENVELOPE | Signed Integer | 1 | Data Min = -32768 RPM Data Max = 32767 RPM | Device_Speed_Filt_ActCtl\nTable Row: 6 | 2/ 4-5 /all | Act_Disp_Scale_ENVELOPE | Signed Integer | 0.0001 Inches/BIT | Data Min = -3.2768 Inches Data Max = 3.2767 Inches | Act_Disp_ISM\nTable Row: 7 | 3/ 6-7 /all | Device_Current_Scale_ENVELOPE | Signed Integer | 0.1015625 Amp/BIT | Data Min =  -3328.0000000 Data Max =  3327.8984375 | Device_Current_Measurement\nTable Row: 8 | 4/ 8-9 /all | Var_ID_PSR | Unsigned Integer | N/A | 0 - 9999 | Var ID\nTable Row: 9 | 5/ 10-11 /all | LAYER_1_LAYER_2_Version_ENVELOPE | Unsigned Integer | N/A | 0- 9999 | Label version in BCD format.  See LRUSWRS-106940 for details.\nTable Row: 10 | 6/ 12-13 /all | Spare | N/A | N/A | N/A | N/A\nTable Row: 11 | 7/ 14-15 /all | Temp_Scale_ENVELOPE | Signed Integer | 1 | Data Min = -32768 Degrees C Data Max = 32767 Degrees C | Temp_Scale_ENVELOPE\nTable Row: 12 | 8-9/ 16-19 /all | Location_Instruction_Scale_ENVELOPE | Unsigned Integer | N/A | FCC Recieved ARINC Message | FCC_Cmd_Echo1 & FCC_Cmd_Echo2\nTable Row: 13 | 10/ 20-21 /all | IVT_Response_ENVELOPE | Unsigned Integer | N/A | N/A | IVT_Response_ENVELOPE\nTable Row: 14 | 11/ 22-23 /all | IVT_RespData_ENVELOPE | Unsigned Integer | N/A | N/A | IVT_RespData_ENVELOPE\nTable Row: 15 | 12/ 24 / 0 | IVT_Mode_STL | Unsigned Integer | N/A | 0 = LRU is Not in IVT Mode 1 = LRU is in IVT Mode | IVT_Mode_ModeLgc\nTable Row: 16 | 12/ 24 / 1 | Idle_State_STL | Unsigned Integer | N/A | 0 = LRU is Not in Standby State 1 = LRU is in Standby State | Idle_State_StateLgc\nTable Row: 17 | 12/ 24 / 2 | Speed_State_STL | Unsigned Integer | N/A | 0 = LRU is Not in Speed State 1 = LRU is in Speed State | Speed_State_StateLgc\nTable Row: 18 | 12/ 24 / 3 | Location_State_STL | Unsigned Integer | N/A | 0 = LRU is Not in Position State 1 = LRU is in Position State | Location_State_StateLgc\nTable Row: 19 | 12/ 24 / 4 - 7 | Spare | Unsigned Integer | N/A | N/A | Spare\nTable Row: 20 | 12/ 25 /all | Spare | Unsigned Integer | N/A | N/A | Spare\nTable Row: 21 | 13/ 26 / 0 | LRU1_Config_STL | Unsigned Integer | N/A | 1 = LRU is LRU_1 0 = LRU is not LRU_1 | 1 = Config_LRU_PSR is equal to LRU_1 0 = Default\nTable Row: 22 | 13/ 26 / 1 | LRU2_Config_STL | Unsigned Integer | N/A | 1 = LRU is LRU_2 0 = LRU is not LRU_2 | 1 = Config_LRU_PSR is equal to LRU_2 0 = Default\nTable 1025  LRU to LRU_2 STL Message (Continued)\nTable Row: Data Items | Word/ Byte / BITs | STL Data | Type | Scaling | Range | Comments\nTable Row: 23 | 13/ 26 / 2 | LRU3_Config_STL | Unsigned Integer | N/A | 1 = LRU is LRU_3 0 = LRU is not LRU_3 | 1 = Config_LRU_PSR is equal to LRU_3 0 = Default\nTable Row: 24 | 13/ 26 / 3 | LRU4_Config_STL | Unsigned Integer | N/A | 1 = LRU is LRU_4 0 = LRU is not LRU_4 | 1 = Config_LRU_PSR is equal to LRU_4 0 = Default\nTable Row: 25 | 13/ 26 / 4 | LRU5_Config_STL | Unsigned Integer | N/A | 1 = LRU is LRU_5 0 = LRU is not LRU_5 | 1 = Config_LRU_PSR is equal to LRU_5 0 = Default\nTable Row: 26 | 13/ 26 / 5 | LRU6_Config_STL | Unsigned Integer | N/A | 1 = LRU is LRU_6 0 = LRU is not LRU_6 | 1 = Config_LRU_PSR is equal to LRU_6 0 = Default\nTable Row: 27 | 13/ 26 / 6 | LRU7_Config_STL | Unsigned Integer | N/A | 1 = LRU is LRU_7 0 = LRU is not LRU_7 | 1 = Config_LRU_PSR is equal to LRU_7 0 = Default\nTable Row: 28 | 13/ 26 / 7 | Config_Asset_Type_1_STL | Unsigned Integer | N/A | 1 = Aircraft Type is 1 0 = Otherwise | 1 = is equal to Config_Asset_Type_1 0 = Default\nTable Row: 29 | 13/ 27 / 0 | Config_Asset_Type_2_STL | Unsigned Integer | N/A | 1 = Aircraft Type is 2 0 = Otherwise | 1 = is equal to Config_Asset_Type_2 0 = Default\nTable Row: 30 | 13/ 27 / 1 | Config_Asset_Type_3_STL | Unsigned Integer | N/A | 1 = Aircraft Type is 3 0 = Otherwise | 1 = is equal to Config_Asset_Type_3 0 = Default\nTable Row: 31 | 13/ 27 / 2 | LRU_2_Valid_Echo_STL | Unsigned Integer | N/A | 1 = LRU_2 Valid is set 0 = Otherwise | LRU_2_Valid_Dbnce_StateLgc\nTable Row: 32 | 13/ 27 / 3 | Hyd_Echo_STL | Unsigned Integer | N/A | 1 = EHSA Active is set 0 = Otherwise | Hyd_Dbnce_StateLgc\nTable Row: 33 | 13/ 27 / 4 | Bus_Rx_LRU_Bus_Select | Unsigned Integer | N/A | 1= FCC position command is valid 0= FCC position command is notvalid | Bus_Rx_LRU_Bus_Select\nTable Row: 34 | 13/27/5-7 | spare | Unsigned integer | N/A | Spare | Always 0\nTable Row: 35 | 14/ 28 / 0 | Power_Dropout_Err_STL | Unsigned Integer | N/A | 1 = Power Droput Err is set 0 = No Power Dropout Err | Power Dropout\nTable Row: 36 | 14/ 28 / 1 | Power_OV_Err_STL | Unsigned Integer | N/A | 1 = Power OV is set 0 = No Power OV Fault | Power OV\nTable Row: 37 | 14/ 28 / 2 | Power_UV_Err_STL | Unsigned Integer | N/A | 1 = UV Err Fault is set 0 = No UV Err | Power UV\nTable Row: 38 | 14/ 28 / 3 | Rotor_Ref_Err_STL | Unsigned Integer | N/A | 1 = Rotor Ref Err is set 0 = No Rotor Ref Err Fault | Rotor Ref\nTable Row: 39 | 14/ 28 / 4 | Config_CIP_Err_STL | Unsigned Integer | N/A | 1 = Config_CIP_Err_Init is True 0 = Config_CIP_Err_Init is False | Config_CIP_Err\nTable Row: 40 | 14/ 28 / 5 | LAYER_1_LAYER_2_Compatibility_Err_STL | Unsigned Integer | N/A | 1 = Layer 1 is incompatible with Layer 2 0 = No Layer 1 is incompatible with Layer 2 | LAYER_1_LAYER_2_Compatibility_Err\nTable Row: 41 | 14/ 28 / 6 | Voltage_Act_Err_STL | Unsigned Integer | N/A | 1 = Voltage Actuator Error Fault 0 = No Voltage Actuator Error Fault | Voltage_Act_Err_STL\nTable Row: 42 | 14/ 28 / 7 | Corrupt_PSR_Harmonizing_CIP_Err_STL | Unsigned Integer | N/A | 1 = Corrupt Harmonize Data in PSR 0 = No Corrupt Harmonize Data in PSR | Corrupt_PSR_Harmonizing_CIP_Err_Init\nTable Row: 43 | 14/ 29 /1 | Corrupt_PSR_Filter_CIP_Error_STL | Unsigned Integer | N/A | 1 = Corrupt Filter Data in PSR 0 = No Corrupt Filter Data in PSR | Corrupt_PSR_Filter_CIP_Fault_Init\nTable Row: 44 | 15/ 30 /all | Checksum_From_LRU_STL | Unsigned Integer | N/A | 0 - 255 | Checksum_From_LRU_STL\nReq Type: Non-requirement | Safety Impact: No | Safety Rationale: Not a requirement.",
+    "level": null,
+    "requirement_level": null
+  },
+  {
+    "type": "table",
+    "table_id": "Table 1001",
+    "title": "Table 1001:  Primary/Spoiler Surface Electronic Harmonizing Sequence",
+    "headers": [
+      "Step",
+      "Electronic Harmonizing Sequence Requirements",
+      "LRU-"
+    ],
+    "rows": [
+      [
+        "1",
+        "Sample 50 frames (25 ms) of Act_Disp_Raw (in) and average them when the following condition is True: (IVT_Command_ISM = 0x0020, IVT_CmdData_ISM: Harmonize_Contract_Stop_STL = True). Note: Act_Disp_Raw is depicted in Figure 4436, Harmonizing_Active_STL is defined in Table 1208, and Harmonize_Contract_Stop_STL is defined in Table 1008.",
+        "6135"
+      ],
+      [
+        "2",
+        "Compute Act_Disp_Raw_Avg_Contract while commanded to the Contract position as follows: [the average of Act_Disp_Raw from Step above] * Harmonize_SFC_Default + Harmonize_Offset_Default. Note: The values of Harmonize_SFC_Default and Harmonize_Offset_Default are defined as a function of Profile_Id in: Table 10695, Rev C: ATYPE-1 & ATYPE-2 LVDT Default Harmonizing Parameters Table 106939, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters Set  Contract_Stop_Collection_Complete = True.",
+        "9169"
+      ],
+      [
+        "3",
+        "Set Act_Disp_Range_Contract_Fault to True if Act_Disp_Raw_Avg_Contract (in) is not within the ranges defined in:   Table 1014, Rev A for ATYPE-1 & ATYPE-2 Contract Harmonizing Range  Table 1015, Rev NC for ATYPE-3 Contract Harmonizing Range",
+        "9170"
+      ],
+      [
+        "4a",
+        "Set and transmit IVT Response data on STL_Bus as follows: IVT_Receipt_Envelope = 0x0017,  IVT_Receipt_Content: Contract_Stop_Collection_Complete = True,  Notes:  1) Contract_Stop_Collection_Complete is defined in Table 1007. 2) IVT_Receipt_Content is an accummulation of all applicable Harmonizing status Bits.",
+        "9171"
+      ],
+      [
+        "4b",
+        "If Act_Disp_Range_Contract_Fault is True, set and transmit IVT Response data on STL_Bus as follows:  IVT_Receipt_Envelope = 0x0017,   IVT_Receipt_Content: Harmonizing_Failed = True, else IVT_Receipt_Envelope = 0x0017,   IVT_Receipt_Content: Harmonizing_Failed = False.  Notes:  1) Harmonizing_Failed is defined in Table 1007. 2) IVT_Receipt_Content is an accummulation of all applicable Harmonizing status Bits.",
+        "9171"
+      ],
+      [
+        "5",
+        "If Act_Disp_Range_Contract_Fault transitions to True, create an entry in the Fault_History_Table_PSR. Note: This is the only entry of this fault in the Fault_History_Table_PSR for the current power-on session.",
+        "9193"
+      ],
+      [
+        "Information Only",
+        "If the FCC is commanding the Expand stop position, the LRU_2 subsequently transmits the following on STL_Bus: IVT_Active_STL = True Harmonizing_Active_STL = True IVT_Command_ISM = 0x0020, IVT_CmdData_ISM: Harmonize_Expand_Stop_STL=True.  Note: Harmonize_Expand_Stop_STL is defined in Table 1008.",
+        "9173"
+      ],
+      [
+        "6",
+        "Sample 50 frames (25 ms) of Act_Disp_Raw (in) and average them when the following condition is True: (IVT_Command_ISM = 0x0020, IVT_CmdData_ISM: Harmonize_Expand_Stop_STL = True). Note: Act_Disp_Raw is depicted in Figure 4436 and Harmonize_Expand_Stop_STL are defined in Table 1008.",
+        "9184"
+      ],
+      [
+        "7",
+        "Compute Act_Disp_Raw_Avg_Expand while commanded to the Expanded position as follows:    [the average of Act_Disp_Raw from Step above] * Harmonize_SFC_Default + Harmonize_Offset_Default The values of Harmonize_SFC_Default and Harmonize_Offset_Default are defined as a function of Profile_Id in:  Table 10695, Rev C: ATYPE-1 & ATYPE-2 LVDT Default Harmonizing Parameters  Table 106939, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters Set Expand_Stop_Collection_Complete = True.",
+        "9174"
+      ],
+      [
+        "8",
+        "Set Act_Disp_Range_Expand_Fault to True if Act_Disp_Raw_Avg_Expand (in) is not within the following ranges:   Table 1016, Rev A for ATYPE-1 & ATYPE-2 Expand Harmonizing Range  Table 1017, Rev NC for ATYPE-3 Expand Harmonizing Range",
+        "9177"
+      ],
+      [
+        "9a",
+        "Set and transmit IVT Response data on STL_Bus as follows: IVT_Receipt_Envelope = 0x0017,  IVT_Receipt_Content: Expand_Stop_Collection_Complete = True  Notes:  1) Expand_Stop_Collection_Complete is defined in Table 1007. 2) IVT_Receipt_Content is an accummulation of all applicable Harmonizing status Bits.",
+        "9895"
+      ],
+      [
+        "9b",
+        "If Act_Disp_Range_Expand_Fault is True, set and transmit IVT Response data on STL_Bus as follows: IVT_Receipt_Envelope = 0x0017,   IVT_Receipt_Content: Harmonizing_Failed = True, else IVT_Receipt_Envelope = 0x0017,   IVT_Receipt_Content: Harmonizing_Failed = False.  Notes:  1) Harmonizing_Failed is defined in Table 1007.  2) IVT_Receipt_Content is an accummulation of all applicable Harmonizing status Bits.",
+        "9895"
+      ],
+      [
+        "10",
+        "If Act_Disp_Range_Expand_Fault transitions to True, create an entry in the Fault_History_Table_PSR. Note: This is the only entry of this fault in the Fault_History_Table_PSR for the current power-on session.",
+        "9238"
+      ],
+      [
+        "Information Only",
+        "If the FCC is commanding the VOID position, the LRU_2 EBHA channel subsequently transmits on STL_Bus the asserted state of IVT Active and Harmonizing Active, and commands the Collection of Harmonizing data while in the VOID position as follows: IVT_Active_STL = True, Harmonizing_Active_STL = True, IVT_Command_ISM = 0x0020, IVT_CmdData_ISM: Harmonize_VOID_STL = True.",
+        "9208"
+      ],
+      [
+        "11",
+        "Sample 50 frames (25 ms) of Act_Disp_Raw (in) and average them when the following condition is True: IVT_Command_ISM = 0x0020, IVT_CmdData_ISM: Harmonize_VOID_STL = True. Note: Act_Disp_Raw is depicted Figure 4436 and Harmonize_VOID_STL is defined in Table 1008.  Not applicable to LRU_3 and LRU_4.",
+        "9205"
+      ],
+      [
+        "12",
+        "Compute  Act_Disp_Raw_Avg_VOID while commanded to the VOID position as follows: [the average of Act_Disp_Raw from Step above] * Harmonize_SFC_Default + Harmonize_Offset_Default.The values of Harmonize_SFC_Default and Harmonize_Offset_Default are defined as a function of Profile_Id in:   Table 10695, Rev C: ATYPE-1 & ATYPE-2 LVDT Default Harmonizing Parameters  Table 106939, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters  Set VOID_Collection_Complete = True Note:  Not applicable to LRU_3 and LRU_4.",
+        "9222"
+      ],
+      [
+        "13",
+        "Set Act_Disp_Range_VOID_Fault to True if Act_Disp_Raw_Avg_VOID (in) is not within the following range:  Table 1018, Rev A ATYPE-1 & ATYPE-2 VOID Harmonizing Range  Table 1019, Rev NC ATYPE-3 VOID Harmonizing Range Else set Act_Disp_Range_VOID_Fault to False. Note: Not applicable to LRU_3 and LRU_4.",
+        "9209"
+      ],
+      [
+        "14a",
+        "Set and transmit IVT Response data on STL_Bus as follows: IVT_Receipt_Envelope = 0x0017,  IVT_Receipt_Content: VOID_Collection_Complete = True,  Notes:  1) VOID_Collection_Complete is defined in Table 1007. 2) IVT_Receipt_Content is an accummulation of all applicable Harmonizing status Bits. 3) Not applicable to LRU_3 and LRU_4.",
+        "9210"
+      ],
+      [
+        "14b",
+        "If Act_Disp_Range_VOID_Fault is True, set and transmit IVT Response data on STL_Bus as follows: IVT_Receipt_Envelope = 0x0017,   IVT_Receipt_Content: Harmonizing_Failed = True, else IVT_Receipt_Envelope = 0x0017,   IVT_Receipt_Content: Harmonizing_Failed = False.  Notes:  1) Harmonizing_Failed is defined in Table 1007.  2) IVT_Receipt_Content is an accummulation of all applicable Harmonizing status Bits. 3) Not applicable to LRU_3 and LRU_4.",
+        "9210"
+      ],
+      [
+        "15",
+        "If Act_Disp_Range_VOID_Fault transitions to True, create an entry in the Fault_History_Table_PSR. Notes: 1) Not applicable to LRU_3 and LRU_4. 2) This is the only entry of this fault in the Fault_History_Table_PSR for the current power-on session.",
+        "9235"
+      ],
+      [
+        "Information Only",
+        "The LRU_2 asserts both Harmonizing Active and IVT Active, and transmits its own Average Expand and Contract LVDT Position on the STL Bus using IVT_Command_ISM and IVT_CmdData_ISM as follows:  IVT_Active_STL = True  Harmonizing_Active_STL = True  IVT_Command_ISM, IVT_CmdData_ISM: LRU_2_Act_Disp_Raw_Avg_Contract_STL  IVT_Command_ISM, IVT_CmdData_ISM: LRU_2_Act_Disp_Raw_Avg_Expand_STL.",
+        "9221"
+      ],
+      [
+        "16",
+        "Set Primary_Harmonize_Calc to True when the following condition is True: Act_Disp_Range_VOID_Fault = False  AND Act_Disp_Range_Contract_Fault = False AND Act_Disp_Range_Expand_Fault = False AND Contract_Stop_Collection_Complete = True AND Expand_Stop_Collection_Complete = True AND VOID_Collection_Complete = True. Note: Not applicable to LRU_3 and LRU_4.",
+        "9891"
+      ],
+      [
+        "17",
+        "For LRU_3 and LRU_4, set Spoiler_Harmonize_Calc to True if the following condition is True: Act_Disp_Range_Contract_Fault = False AND Act_Disp_Range_Expand_Fault = False AND Contract_Stop_Collection_Complete = True AND Expand_Stop_Collection_Complete = True. Note: Not applicable to primary surfaces.",
+        "9892"
+      ],
+      [
+        "18",
+        "If Spoiler_Harmonize_Calc is True then compute  K_Harmonize_New  = Max_Stroke / [Act_Disp_Raw_Avg_Expand  -  Act_Disp_Raw_Avg_Contract]. where Max_Stroke is defined in:   Table 1020, Rev A: ATYPE-1 & ATYPE-2 LRU Harmonizing Max Strokes   Table 1021, Rev A: ATYPE-3 LRU Harmonizing Max Strokes",
+        "9176"
+      ],
+      [
+        "19",
+        "If Spoiler_Harmonize_Calc is True, then calculate the new LVDT Harmonizing Offset as follows:  Harmonize_Offset_New  =  (Harmonize_Offset_Default - Act_Disp_Raw_Avg_Contract)  * K_Harmonize_New.  The value of Harmonize_Offset_Default is defined as a function of Profile_Id in:   Table 10695, Rev C: ATYPE-1 & ATYPE-2 LVDT Default Harmonizing Parameters  Table 106939, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters Note: Not applicable to Primary Surfaces.",
+        "6137"
+      ],
+      [
+        "20",
+        "Calculate the new LVDT Harmonizing Gain when Primary_Harmonize_Calc is True AND Profile_Id is any of the following:  LRU_1,  LRU_2,  LRU_5,   LRU_6. K_Harmonize_New  = (LRU_2_Act_Disp_Raw_Avg_Expand - LRU_2_Act_Disp_Raw_Avg_Contract)                                /(Act_Disp_Raw_Avg_Expand - Act_Disp_Raw_Avg_Contract). Note: Applicable to Elevator or Aileron Surfaces only.",
+        "9212"
+      ],
+      [
+        "21",
+        "Calculate the new LVDT Harmonizing Gain when Primary_Harmonize_Calc is True AND Profile_Id = LRU_7 as follows: K_Harmonize_New  =  Max_Stroke / [Act_Disp_Raw_Avg_Expand (in) – Act_Disp_Raw_Avg_Contract (in)]. where Max_Stroke is defined as a function of Profile_Id in:  Table 1020, Rev A: ATYPE-1 & ATYPE-2 LRU Harmonizing Max Strokes  Table 1021, Rev A: ATYPE-3 LRU Harmonizing Max Strokes Note: Applicable to LRU_7 (Rudder) only.",
+        "9944"
+      ],
+      [
+        "22",
+        "Calculate the new LVDT Harmonizing Offset as follows when Primary_Harmonize_Calc is True: Harmonize_Offset_New  = (Harmonize_Offset_Default - Act_Disp_Raw_Avg_VOID)  * K_Harmonize_New. The value of Harmonize_Offset_Default is defined as a function of Profile_Id in:   Table 10695, Rev C: ATYPE-1 & ATYPE-2 LVDT Default Harmonizing Parameters  Table 106939, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters Note:   Not applicable to OB Spoiler Surfaces.",
+        "9213"
+      ],
+      [
+        "23",
+        "If LRU-1/2/5/6, calculate Lower_Limit_LRU_PSR_New when Primary_Harmonize_Calc by the following equation: Lower_Limit_LRU_PSR_New =  Act_Disp_Raw_Avg_Contract + Contract_Error. The value of Contract_Error is defined in :  Table 10695, Rev C: ATYPE-1 & ATYPE-2 LVDT Default Harmonizing Parameters  Table 106939, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters",
+        "10915"
+      ],
+      [
+        "24",
+        "If LRU-3/4, calculate Upper_Limit_LRU_PSR_New and Lower_Limit_LRU_PSR_New to the fixed values as follows:   Upper_Limit_LRU_PSR_New = Upper_Limit_Harmonized   Lower_Limit_LRU_PSR_New = Lower_Limit_Harmonized    The value of Upper_Limit_Harmonized and Lower_Limit_Harmonized are as a function of Profile_Id in:  Table 1020, Rev A: ATYPE-1 & ATYPE-2 LRU Harmonizing Max Strokes  Table 1021, Rev A: ATYPE-3 LRU Harmonizing Max Strokes Note: Applicable only to Spoiler surfaces.",
+        "10916"
+      ],
+      [
+        "25",
+        "If LRU-7, calculate Lower_Limit_LRU_PSR_New using the following equation:   Lower_Limit_LRU_PSR_New = Lower_Limit_Harmonized  The value of Lower_Limit_Harmonized is defined as a function of Profile_Id in:  Table 1020, Rev A: ATYPE-1 & ATYPE-2 LRU Harmonizing Max Strokes  Table 1021, Rev A: ATYPE-3 LRU Harmonizing Max Strokes Note: Applicable only to Rudder.",
+        "10917"
+      ],
+      [
+        "26",
+        "If LRU-1/2/5/6, calculate Upper_Limit_LRU_PSR_New using the following equation:   Upper_Limit_LRU_PSR_New =  Act_Disp_Raw_Avg_Expand – Expand_Error.  The value of Expand_Error is defined as a function of Profile_Id in: :   Table 10695, Rev C: ATYPE-1 & ATYPE-2 LVDT Default Harmonizing Parameters  Table 106939, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters Note: Applicable only to Ailerons and Elevators.",
+        "10918"
+      ],
+      [
+        "27",
+        "If LRU-7, calculate Upper_Limit_LRU_PSR_New using the following equation:   Upper_Limit_LRU_PSR_New = Upper_Limit_Harmonized The value of Upper_Limit_Harmonized is defined as a function of Profile_Id in:   Table 1020, Rev A: ATYPE-1 & ATYPE-2 LRU Harmonizing Max Strokes  Table 1021, Rev A: ATYPE-3 LRU Harmonizing Max Strokes Note: Applicable only to Rudder.",
+        "10921"
+      ],
+      [
+        "28",
+        "Store new LRU Harmonizing parameters in PSR as follows:   Harmonize_SFC_PSR = K_Harmonize_New  Harmonize_Offset_PSR = Harmonize_Offset_New  Asset_ID_PSR = Asset_ID_STL  Config_LRU_PSR = Profile_ID_Disc_Dbnce_Init  Lower_Limit_LRU_PSR = Lower_Limit_LRU_PSR_New  Upper_Limit_LRU_PSR = Upper_Limit_LRU_PSR_New  CRC_PSR = CRC for data above",
+        "9215"
+      ],
+      [
+        "29",
+        "The LRU reads back the data stored in PSR and re-computes the CRC of the PSR Harmonizing parameters.",
+        "9225"
+      ],
+      [
+        "30",
+        "Perform a CRC check of the following Harmonizing parameters set in PSR to verify it is not corrupted:  Harmonize_Offset_PSR  Harmonize_SFC_PSR  Asset_ID_PSR  Config_LRU_PSR  Lower_Limit_LRU_PSR  Upper_Limit_LRU_PSR.",
+        "9814"
+      ],
+      [
+        "31",
+        "If CRC check as defined in Step above fails, the LRU software sets Harmonizing_PSR_Data_Fault to True, else set  Harmonizing_PSR_Data_Fault to False.",
+        "9224"
+      ],
+      [
+        "32",
+        "If Harmonizing_PSR_Data_Fault transitions to True, then perform the following:  create a Harmonizing_PSR_Data_Fault entry in the Fault_History_Table_PSR   report Harmonizing Failed to the LRU_2 on STL_Bus:  IVT_Receipt_Envelope=0x0017, IVT_Receipt_Content: Harmonizing_Failed = True. Note: Harmonizing_Failed is defined in Table 1007.",
+        "9249"
+      ],
+      [
+        "33",
+        "Set the following to False if Harmonizing_PSR_Data_Fault is False.   LRU_Harmonizing_Needed_PIVT   Corrupt_PSR_Harmonizing_CIP_Fault_Init.",
+        "9894"
+      ],
+      [
+        "34",
+        "If Harmonizing_PSR_Data_Fault is False then perform all of the following assignments:  K_Harmonize_ISM = Harmonize_SFC_PSR   Harmonize_Offset_ISM = Harmonize_Offset_PSR  Lower_Limit_LRU = Lower_Limit_LRU_PSR  Upper_Limit_LRU = Upper_Limit_EBMC_PSR.  Note: These parameters are used in the position control state.  Therefore, one might have to enter the position control state to see the updates.",
+        "9247"
+      ],
+      [
+        "Information Only",
+        "The LRU_2 EBHA channel commands the LRU to transmit its new Harmonizing parameters including LVDT Harmonizing Gain and LVDT Harmonizing Offset for future Auto-Harmonizing using IVT_Command_ISM and IVT_CmdData_ISM.",
+        "9823"
+      ],
+      [
+        "35",
+        "If the LRU receives the Harmonizing_and_Configuration_Parameters_Request command below on STL_Bus while Harmonizing_PSR_Data_Fault is False AND Step 34 completed : IVT_Command_ISM = 0x0012 AND IVT_CmdData_ISM = 0x0001, then reply on STL_Bus with the following messages (sequence order insignificant):  IVT_Receipt_Envelope = 0x0011, IVT_Receipt_Content: LRU_Harmonizing_Needed_PIVT = False.  IVT_Receipt_Envelope = 0x0012, IVT_Receipt_Content = Config_LRU_PSR (LRU Harmonizing Location and Asset type)  IVT_Receipt_Envelope = 0x0013, IVT_Receipt_Content = Asset_ID_PSR   IVT_Receipt_Envelope = 0x0014, IVT_Receipt_Content = Harmonizing_SFC_PSR  IVT_Receipt_Envelope = 0x0015, IVT_Receipt_Content = Harmonizing_Offset_PSR  IVT_Receipt_Envelope = 0x0018, IVT_Receipt_Content = Lower_Limit_LRU_PSR  IVT_Receipt_Envelope = 0x0019, IVT_Receipt_Content = Upper_Limit_LRU_PSR  IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Complete = True Note: All IVT Response Codes and Data IVT formats are defined in Table 1007.",
+        "9239"
+      ]
+    ]
+  },
+  {
+    "type": "table",
+    "table_id": "Table 1007",
+    "title": "Table 1007: IVT Response and IVT Response Data definitions",
+    "headers": [
+      "IVT_Receipt_Envelope",
+      "IVT_Receipt_Content",
+      "Response Description"
+    ],
+    "rows": [
+      [
+        "Word 10",
+        "Word 11",
+        "Response Description"
+      ],
+      [
+        "Message Byte Location 19, 18",
+        "Message Byte Location 21, 20",
+        "Response Description"
+      ],
+      [
+        "",
+        "",
+        "Test Suite 0"
+      ],
+      [
+        "0011h",
+        "000Xh",
+        "LRU Harmonizing Needed Test Completed with Results Bit 0: LRU_Harmonizing_Needed_PIVT 0=False, 1=True"
+      ],
+      [
+        "0012h",
+        "00XXh",
+        "LRU Harmonizing Asset type and Location BIT 0-2:  LRU Location BIT 3-4:  LRU Asset type"
+      ],
+      [
+        "0013h",
+        "XXXXh",
+        "LRU Harmonizing Asset Serial Number BIT 0-15: LRU Asset Serial Number"
+      ],
+      [
+        "0014h",
+        "XXXXh",
+        "BIT 0-15: LRU Harmonizing Gain"
+      ],
+      [
+        "0015h",
+        "XXXXh",
+        "BIT 0-15: LRU Harmonizing Offset"
+      ],
+      [
+        "0016h",
+        "000Xh",
+        "LRU Auto Harmonizing Results BIT 0: LRU_AutoHarmonize_Pass_PIVT  0=False, 1=True BIT 1: LRU_AutoHarmonize_Fail_PIVT   0=False, 1=True"
+      ],
+      [
+        "0017h",
+        "00XXh",
+        "LRU Electronic Harmonizing Results BIT 0: Contract_Stop_Collection_Complete  0=False, 1=True BIT 1: Expand_Stop_Collection_Complete  0=False, 1=True BIT 2: VOID_Collection_Complete  0=False, 1=True BIT 3: Harmonizing_Complete  0=False, 1=True BIT 4: Harmonizing_Failed  0=False, 1=True"
+      ],
+      [
+        "0018h",
+        "XXXXh",
+        "LRU Upper Limit BIT 0-15:  LRU Upper Limit"
+      ],
+      [
+        "0019h",
+        "XXXXh",
+        "LRU Lower Limit BIT 0-15:  LRU Lower Limit"
+      ],
+      [
+        "",
+        "",
+        "Test Suite 2"
+      ],
+      [
+        "0020h",
+        "000Xh",
+        "LRU Core Test Completed with Results BIT 0: LRU_Core_PIVT_Fault 0=False, 1=True"
+      ],
+      [
+        "0021h",
+        "000Xh",
+        "LRU Driver Test Complete with Results BIT 0: Driver_PIVT_Fault_Code, 0=False, 1=True"
+      ],
+      [
+        "0022h",
+        "000Xh",
+        "LRU Connect  Test Completed with Results BIT 0, Connect_PIVT_Fault_Code, 0=False, 1=True"
+      ],
+      [
+        "0024h",
+        "000Xh",
+        "LRU Solenoid Ready Status BIT 0: 1 = LRU Solenoid Ready"
+      ]
+    ]
+  },
+  {
+    "type": "table",
+    "table_id": "Table 1008",
+    "title": "Table 1008, Rev B-  IVT Command and IVT Command Data definition",
+    "headers": [
+      "IVT_Command_ISM",
+      "IVT_CmdData_ISM",
+      "Signal Definition",
+      "Command Description"
+    ],
+    "rows": [
+      [
+        "STL Word 7",
+        "STL Word 8",
+        "Signal Definition",
+        "Command Description"
+      ],
+      [
+        "Message  Byte  15,14",
+        "Message  Byte 17,16 (Hexadecimal Representation)",
+        "Signal Definition",
+        "Command Description"
+      ],
+      [
+        "0x0011",
+        "0000",
+        "Start_PIVT_Test_Suite_0_STL",
+        "Start PIVT Test Suite 0"
+      ],
+      [
+        "0x0012",
+        "0001",
+        "Harmonizing_and_Configuration_Parameter_Request_STL",
+        "Harmonizing and Configuration Parameter Request"
+      ],
+      [
+        "0x0013",
+        "000X",
+        "LRU_Auto_Harmonize_Available_STL",
+        "LRU AutoHarmonizegng Possible BIT 0: LRU_Auto-Harmonize_Available 0=False, 1=True"
+      ],
+      [
+        "0x0014",
+        "00XX",
+        "LRU_2_Config_STL",
+        "LRU Harmonizing Location and Asset type BIT 0-2 LRU Location BIT 3-4 Asset type"
+      ],
+      [
+        "0x0015",
+        "XXXX",
+        "LRU_2_Asset_ID_STL",
+        "LRU Harmonizing Asset Serial Number BIT 0-15: LRU Asset ID"
+      ],
+      [
+        "0x0016",
+        "XXXX",
+        "LRU_Harmonizing_Gain_STL",
+        "LRU Harmonizing Data BIT 0-15: LRU Harmonizing Gain"
+      ],
+      [
+        "0x0017",
+        "XXXX",
+        "LRU_Harmonizing_Offset_STL",
+        "LRU Harmonizing Data BIT 0-15: LRU Harmonizing Offset"
+      ],
+      [
+        "0x0018",
+        "XXXX",
+        "LRU_2_Act_Disp_Raw_Avg_Contract_STL",
+        "LRU_2 Harmonizing Data BIT 0-15: Average Contract Position"
+      ],
+      [
+        "0x0019",
+        "XXXX",
+        "LRU_2_Act_Disp_Raw_Avg_Expand_STL",
+        "LRU_2 Harmonizing Data BIT 0-15: Average Expand Position"
+      ],
+      [
+        "0x001A",
+        "XXXX",
+        "Upper_Limit_LRU_STL",
+        "LRU Upper Limit"
+      ],
+      [
+        "0x001B",
+        "XXXX",
+        "Lower_Limit_LRU_STL",
+        "LRU Lower Limit"
+      ],
+      [
+        "0x0020",
+        "000X BIT 1",
+        "Harmonize_Contract_Stop_STL",
+        "Start LRU Electronic Harmonizing at Contract stop position"
+      ],
+      [
+        "0x0020",
+        "000X BIT 2",
+        "Harmonize_Expand_Stop_STL",
+        "Start LRU Electronic Harmonizing at Expand stop position"
+      ],
+      [
+        "0x0020",
+        "000X BIT 3",
+        "Harmonize_VOID_STL",
+        "Start LRU Electronic Harmonizing at VOID position"
+      ],
+      [
+        "0x0021",
+        "0000",
+        "Start_PIVT_Test_Suite_2_STL",
+        "Start PIVT Test Suite 2"
+      ],
+      [
+        "0x0022",
+        "0000",
+        "Engage_LRU_MSV_SOV_STL",
+        "Engage LRU MSV SOV"
+      ],
+      [
+        "0x0030",
+        "0000",
+        "LRU_Match_Index_Request_STL",
+        "Request LRU SW Match Valie"
+      ],
+      [
+        "0x0040",
+        "0000",
+        "Err_Log_Request_STL",
+        "Request Transfer of LRU Error History"
+      ]
+    ]
+  },
+  {
+    "type": "table",
+    "table_id": "Table 1009",
+    "title": "Table 1009  LRU_2 to LRU STL Message",
+    "headers": [
+      "Word/ Byte/ BIT",
+      "Data",
+      "Type",
+      "Scaling",
+      "Range"
+    ],
+    "rows": [
+      [
+        "0/ 0/ 0-5",
+        "Total_Data_Bytes_From_LRU_2_STL",
+        "Unsigned Integer",
+        "N/A",
+        "19 (Data and checksum bytes)"
+      ],
+      [
+        "0/ 0/ 6-7 0/ 1/ 0-1",
+        "Circular_Counter_From_LRU_2_STL",
+        "Unsigned Integer",
+        "N/A",
+        "0 - 15"
+      ],
+      [
+        "0/ 1 /2",
+        "Master_Slave_Status_From_LRU_2_STL",
+        "Unsigned Integer",
+        "N/A",
+        "0 = Slave Message 1 = Master Message"
+      ],
+      [
+        "0/ 1 / 3 - 7",
+        "Message_ID_From_LRU_2_STL",
+        "Unsigned Integer",
+        "N/A",
+        "0x1"
+      ],
+      [
+        "1/ 2-3",
+        "Device_Speed_Order_STL",
+        "Signed Integer",
+        "N/A",
+        "Data Min = -32768 Data Max = 32767"
+      ],
+      [
+        "2-3/ 4-7",
+        "Asset_Date_STL",
+        "Unsigned Integer",
+        "N/A",
+        "N/A"
+      ],
+      [
+        "4-5/ 8-11",
+        "Asset_Time_STL",
+        "Unsigned Integer",
+        "N/A",
+        "N/A"
+      ],
+      [
+        "6/ 12-13",
+        "Asset_ID_STL",
+        "Unsigned Integer",
+        "N/A",
+        "N/A"
+      ],
+      [
+        "7/ 14-15",
+        "IVT_Command_STL",
+        "Unsigned Integer",
+        "N/A",
+        "N/A"
+      ],
+      [
+        "8/ 16-17",
+        "IVT_CmdData_STL",
+        "Unsigned Integer",
+        "N/A",
+        "N/A"
+      ],
+      [
+        "9/ 18/ 0",
+        "Elec_En_STL",
+        "Unsigned Integer",
+        "N/A",
+        "0 = EB Disengage 1 = EB Engage"
+      ],
+      [
+        "9/ 18/ 1",
+        "IVT_Active_STL",
+        "Unsigned Integer",
+        "N/A",
+        "0 = Not IVT Active 1 = IVT Active"
+      ],
+      [
+        "9/ 18/ 2",
+        "Monitor_Reset_STL",
+        "Unsigned Integer",
+        "N/A",
+        "0 = No Monitor Reset 1 = Monitor Reset"
+      ],
+      [
+        "9/ 18/ 3",
+        "Backup_Control_Active_STL",
+        "Unsigned Integer",
+        "N/A",
+        "0 = BFCU Not Active 1 = BFCU Active"
+      ],
+      [
+        "9/ 18/ 4",
+        "On_Ground_STL",
+        "Unsigned Integer",
+        "N/A",
+        "0 = Not on Ground 1 = On Ground"
+      ],
+      [
+        "9/ 18/ 5",
+        "Harmonizing_Active_STL",
+        "Unsigned Integer",
+        "N/A",
+        "0 = Elec. Harmonizing Not Active 1 = Elec. Harmonizing Active"
+      ],
+      [
+        "9/ 18/ 6-7",
+        "Spare",
+        "Unsigned Integer",
+        "N/A",
+        "N/A"
+      ],
+      [
+        "9/ 19",
+        "Spare",
+        "Unsigned Integer",
+        "N/A",
+        "N/A"
+      ],
+      [
+        "10/ 20",
+        "Checksum_From_LRU_2_STL",
+        "Unsigned Integer",
+        "N/A",
+        "0 - 255"
+      ]
+    ]
+  },
+  {
+    "type": "table",
+    "table_id": "Table 1011",
+    "title": "Table 1011 Rev C  Asset type & LRU Location Decode Based On Profile_ID_Disc_Dbnce_Init",
+    "headers": [
+      "ID7_DSP",
+      "ID6_DSP",
+      "ID5_DSP",
+      "ID4_DSP",
+      "ID3_DSP",
+      "ID2_DSP",
+      "ID1_DSP",
+      "ID0_DSP (Parity)",
+      "SurfaceID"
+    ],
+    "rows": [
+      [
+        "0",
+        "0",
+        "0",
+        "1",
+        "0",
+        "0",
+        "1",
+        "1",
+        "TYPE_1_LRU_1"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "1",
+        "0",
+        "1",
+        "0",
+        "1",
+        "TYPE_1_LRU_2"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "1",
+        "0",
+        "1",
+        "1",
+        "0",
+        "TYPE_1_LRU_3"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "1",
+        "1",
+        "0",
+        "0",
+        "1",
+        "TYPE_1_LRU_4"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "1",
+        "1",
+        "0",
+        "1",
+        "0",
+        "TYPE_1_LRU_5"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "1",
+        "1",
+        "1",
+        "0",
+        "0",
+        "TYPE_1_LRU_6"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "TYPE_1_LRU_7"
+      ],
+      [
+        "0",
+        "0",
+        "1",
+        "0",
+        "0",
+        "0",
+        "1",
+        "1",
+        "TYPE_2_LRU_1"
+      ],
+      [
+        "0",
+        "0",
+        "1",
+        "0",
+        "0",
+        "1",
+        "0",
+        "1",
+        "TYPE_2_LRU_2"
+      ],
+      [
+        "0",
+        "0",
+        "1",
+        "0",
+        "0",
+        "1",
+        "1",
+        "0",
+        "TYPE_2_LRU_3"
+      ],
+      [
+        "0",
+        "0",
+        "1",
+        "0",
+        "1",
+        "0",
+        "0",
+        "1",
+        "TYPE_2_LRU_4"
+      ],
+      [
+        "0",
+        "0",
+        "1",
+        "0",
+        "1",
+        "0",
+        "1",
+        "0",
+        "TYPE_2_LRU_5"
+      ],
+      [
+        "0",
+        "0",
+        "1",
+        "0",
+        "1",
+        "1",
+        "0",
+        "0",
+        "TYPE_2_LRU_6"
+      ],
+      [
+        "0",
+        "0",
+        "1",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "TYPE_2_LRU_7"
+      ],
+      [
+        "0",
+        "0",
+        "1",
+        "1",
+        "0",
+        "0",
+        "1",
+        "0",
+        "TYPE_3_LRU_1"
+      ],
+      [
+        "0",
+        "0",
+        "1",
+        "1",
+        "0",
+        "1",
+        "0",
+        "0",
+        "TYPE_3_LRU_2"
+      ],
+      [
+        "0",
+        "0",
+        "1",
+        "1",
+        "0",
+        "1",
+        "1",
+        "1",
+        "TYPE_3_LRU_3"
+      ],
+      [
+        "0",
+        "0",
+        "1",
+        "1",
+        "1",
+        "0",
+        "0",
+        "0",
+        "TYPE_3_LRU_4"
+      ],
+      [
+        "0",
+        "0",
+        "1",
+        "1",
+        "1",
+        "0",
+        "1",
+        "1",
+        "TYPE_3_LRU_5"
+      ],
+      [
+        "0",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0",
+        "1",
+        "TYPE_3_LRU_6"
+      ],
+      [
+        "0",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0",
+        "TYPE_3_LRU_7"
+      ]
+    ]
+  },
+  {
+    "type": "table",
+    "table_id": "Table 1012",
+    "title": "Table 1012, Rev C: ATYPE-1 and ATYPE-2 LVDT Default Harmonizing Parameters",
+    "headers": [
+      "Harmonizing Parameter Defaults",
+      "Profile_Id",
+      "Profile_Id",
+      "Profile_Id",
+      "Profile_Id"
+    ],
+    "rows": [
+      [
+        "Harmonizing Parameter Defaults",
+        "Aileron",
+        "Elevator",
+        "Rudder",
+        "Spoiler"
+      ],
+      [
+        "Harmonizing Parameter Defaults",
+        "LRU_1  LRU_2",
+        "LRU_5  LRU_6",
+        "LRU_7",
+        "LRU_3  LRU_4"
+      ],
+      [
+        "Harmonize_Offset_Default (inches)",
+        "0.173",
+        "0.248",
+        "0.013",
+        "1.314"
+      ],
+      [
+        "Harmonize_SFC_Default",
+        "1.0",
+        "1.0",
+        "1.0",
+        "1.0"
+      ],
+      [
+        "Upper_Limit_Default (inches)",
+        "0.922",
+        "1.093",
+        "2.312",
+        "2.542"
+      ],
+      [
+        "Lower_Limit_Default (inches)",
+        "-0.579",
+        "-0.600",
+        "-2.288",
+        "0.0430"
+      ],
+      [
+        "Expand_Error (inches)",
+        "0.028",
+        "0.028",
+        "N/A",
+        "N/A"
+      ],
+      [
+        "Contract_Error (inches)",
+        "0.028",
+        "0.028",
+        "N/A",
+        "N/A"
+      ]
+    ]
+  },
+  {
+    "type": "table",
+    "table_id": "Table 1013",
+    "title": "Table 1013, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters",
+    "headers": [
+      "Harmonizing Parameter",
+      "Profile_Id",
+      "Profile_Id",
+      "Profile_Id",
+      "Profile_Id"
+    ],
+    "rows": [
+      [
+        "Harmonizing Parameter",
+        "Aileron",
+        "Elevator",
+        "Rudder",
+        "Spoiler"
+      ],
+      [
+        "Harmonizing Parameter",
+        "LRU_1  LRU_2",
+        "LRU_5  LRU_6",
+        "LRU_7",
+        "LRU_3  LRU_4"
+      ],
+      [
+        "Harmonize_Offset_Default (inches)",
+        "0.223",
+        "0.294",
+        "0.013",
+        "1.407"
+      ],
+      [
+        "Harmonize_SFC_Default",
+        "1.0",
+        "1.0",
+        "1.0",
+        "1.0"
+      ],
+      [
+        "Upper_Limit_Default",
+        "1.201",
+        "1.331",
+        "2.312",
+        "2.72"
+      ],
+      [
+        "Lower_Limit_Default",
+        "-0.757",
+        "-0.746",
+        "-2.288",
+        "0.0440"
+      ],
+      [
+        "Expand_Error (inches)",
+        "0.042",
+        "0.038",
+        "NA",
+        "N/A"
+      ],
+      [
+        "Contract_Error (inches)",
+        "0.042",
+        "0.038",
+        "NA",
+        "N/A"
+      ]
+    ]
+  },
+  {
+    "type": "table",
+    "table_id": "Table 1014",
+    "title": "Table 1014, Rev A: ATYPE-1 & ATYPE-2 Contract Harmonizing Range",
+    "headers": [
+      "Applicability",
+      "Profile_Id",
+      "Minimum Contract Range Limit (inches)",
+      "Maximum Contract Range Limit (inches)"
+    ],
+    "rows": [
+      [
+        "Spoiler",
+        "LRU_3, LRU_4",
+        "-0.186",
+        "0.186"
+      ],
+      [
+        "Aileron",
+        "LRU_1, LRU_2",
+        "-0.733",
+        "-0.519"
+      ],
+      [
+        "Elevator",
+        "LRU_5, LRU_6",
+        "-0.762",
+        "-0.530"
+      ],
+      [
+        "Rudder",
+        "LRU_7",
+        "-2.616",
+        "-2.086"
+      ]
+    ]
+  },
+  {
+    "type": "table",
+    "table_id": "Table 1015",
+    "title": "Table 1015, Rev NC ATYPE-3 Contract Harmonizing Range",
+    "headers": [
+      "Applicability",
+      "Profile_Id",
+      "Minimum Contract Range Limit (inches)",
+      "Maximum Contract Range Limit (inches)"
+    ],
+    "rows": [
+      [
+        "Spoiler",
+        "LRU_3, LRU_4",
+        "-0.184",
+        "0.184"
+      ],
+      [
+        "Aileron",
+        "LRU_1, LRU_2",
+        "-0.946",
+        "-0.684"
+      ],
+      [
+        "Elevator",
+        "LRU_5, LRU_6",
+        "-0.936",
+        "-0.664"
+      ],
+      [
+        "Rudder",
+        "LRU_7",
+        "-2.616",
+        "-2.086"
+      ]
+    ]
+  },
+  {
+    "type": "table",
+    "table_id": "Table 1016",
+    "title": "Table 1016, Rev A: ATYPE-1 & ATYPE-2 Expand Harmonizing Range",
+    "headers": [
+      "Applicability",
+      "Profile_Id",
+      "Minimum Expand Range Limit (inches)",
+      "Maximum Expand Range Limit (inches)"
+    ],
+    "rows": [
+      [
+        "Spoiler",
+        "LRU_3, LRU_4",
+        "2.138",
+        "2.51"
+      ],
+      [
+        "Aileron",
+        "LRU_1, LRU_2",
+        "0.862",
+        "1.08"
+      ],
+      [
+        "Elevator",
+        "LRU_5, LRU_6",
+        "1.023",
+        "1.259"
+      ],
+      [
+        "Rudder",
+        "LRU_7",
+        "2.112",
+        "2.642"
+      ]
+    ]
+  },
+  {
+    "type": "table",
+    "table_id": "Table 1017",
+    "title": "Table 1017, Rev NC ATYPE-3 Expand Harmonizing Range",
+    "headers": [
+      "Applicability",
+      "Profile_Id",
+      "Minimum Expand Range Limit (inches)",
+      "Maximum Expand Range Limit (inches)"
+    ],
+    "rows": [
+      [
+        "Spoiler",
+        "LRU_3, LRU_4",
+        "2.298",
+        "2.666"
+      ],
+      [
+        "Aileron",
+        "LRU_1, LRU_2",
+        "1.128",
+        "1.394"
+      ],
+      [
+        "Elevator",
+        "LRU_5, LRU_6",
+        "1.249",
+        "1.525"
+      ],
+      [
+        "Rudder",
+        "LRU_7",
+        "2.112",
+        "2.642"
+      ]
+    ]
+  },
+  {
+    "type": "table",
+    "table_id": "Table 1018",
+    "title": "Table 1018, Rev A: ATYPE-1 & ATYPE-2 VOID Harmonizing Range",
+    "headers": [
+      "Applicability",
+      "Profile_Id",
+      "Minimum VOID Range Limit (inches)",
+      "Maximum VOID Range Limit (inches)"
+    ],
+    "rows": [
+      [
+        "Aileron",
+        "LRU_1, LRU_2",
+        "-0.08",
+        "0.08"
+      ],
+      [
+        "Elevator",
+        "LRU_5, LRU_6",
+        "-0.089",
+        "0.089"
+      ],
+      [
+        "Rudder",
+        "LRU_7",
+        "-0.236",
+        "0.236"
+      ]
+    ]
+  },
+  {
+    "type": "table",
+    "table_id": "Table 1019",
+    "title": "Table 1019, Rev NC ATYPE-3 VOID Harmonizing Range",
+    "headers": [
+      "Applicability",
+      "Profile_Id",
+      "Minimum VOID Range Limit (inches)",
+      "Maximum VOID Range Limit (inches)"
+    ],
+    "rows": [
+      [
+        "Aileron",
+        "LRU_1, LRU_2",
+        "-0.104",
+        "0.104"
+      ],
+      [
+        "Elevator",
+        "LRU_5, LRU_6",
+        "-0.109",
+        "0.109"
+      ],
+      [
+        "Rudder",
+        "LRU_7",
+        "-0.236",
+        "0.236"
+      ]
+    ]
+  },
+  {
+    "type": "table",
+    "table_id": "Table 1020",
+    "title": "Table 1020, Rev A: ATYPE-1 & ATYPE-2 LRU Harmonizing Max Strokes",
+    "headers": [
+      "Harmonizing  Parameter",
+      "Spoiler",
+      "Rudder"
+    ],
+    "rows": [
+      [
+        "Location",
+        "LRU_3  LRU_4",
+        "LRU_7"
+      ],
+      [
+        "Max_Stroke (inches)",
+        "2.324",
+        "4.728"
+      ],
+      [
+        "Upper_Limit_Harmonized (inches)",
+        "2.542",
+        "2.317"
+      ],
+      [
+        "Lower_Limit_Harmonized (inches)",
+        "0.0430",
+        "-2.291"
+      ]
+    ]
+  },
+  {
+    "type": "table",
+    "table_id": "Table 1021",
+    "title": "Table 1021, Rev A: ATYPE-3 Harmonizing Max Strokes",
+    "headers": [
+      "Harmonizing  Parameter",
+      "Spoiler",
+      "Rudder"
+    ],
+    "rows": [
+      [
+        "Location",
+        "LRU_3  LRU_4",
+        "LRU_7"
+      ],
+      [
+        "Max_Stroke (inches)",
+        "2.482",
+        "4.728"
+      ],
+      [
+        "Upper_Limit_Harmonized (inches)",
+        "2.72",
+        "2.317"
+      ],
+      [
+        "Lower_Limit_Harmonized (inches)",
+        "0.0440",
+        "-2.291"
+      ]
+    ]
+  },
+  {
+    "type": "table",
+    "table_id": "Table 1025",
+    "title": "Table 1025, Rev A- LRU to LRU_2 STL Message",
+    "headers": [
+      "Data Items",
+      "Word/ Byte / BITs",
+      "STL Data",
+      "Type",
+      "Scaling",
+      "Range",
+      "Comments"
+    ],
+    "rows": [
+      [
+        "1",
+        "0/ 0 / 0 - 5",
+        "Total_Data_Bytes_From_LRU_STL",
+        "Unsigned Integer",
+        "N/A",
+        "29 (Data, and checksum bytes)",
+        "Set to 29"
+      ],
+      [
+        "2",
+        "0/ 0 / 6 - 7 0/ 1 / 0 - 1",
+        "Circular_Counter_From_LRU_STL",
+        "Unsigned Integer",
+        "N/A",
+        "0 - 15",
+        "Circular_Counter_From_LRU_2_STL"
+      ],
+      [
+        "3",
+        "0/ 1 / 2",
+        "Master_Slave_Status_From_LRU_STL",
+        "Unsigned Integer",
+        "N/A",
+        "0 = Slave Message 1 = Master Message",
+        "Set to 0 for Slave Status"
+      ],
+      [
+        "4",
+        "0/ 1 / 3 - 7",
+        "Message_ID_From_LRU_STL",
+        "Unsigned Integer",
+        "N/A",
+        "0x1",
+        "Set to 0x1"
+      ],
+      [
+        "5",
+        "1/ 2-3 /all",
+        "Device_Speed_Scale_ENVELOPE",
+        "Signed Integer",
+        "1",
+        "Data Min = -32768 RPM Data Max = 32767 RPM",
+        "Device_Speed_Filt_ActCtl"
+      ],
+      [
+        "6",
+        "2/ 4-5 /all",
+        "Act_Disp_Scale_ENVELOPE",
+        "Signed Integer",
+        "0.0001 Inches/BIT",
+        "Data Min = -3.2768 Inches Data Max = 3.2767 Inches",
+        "Act_Disp_ISM"
+      ],
+      [
+        "7",
+        "3/ 6-7 /all",
+        "Device_Current_Scale_ENVELOPE",
+        "Signed Integer",
+        "0.1015625 Amp/BIT",
+        "Data Min =  -3328.0000000 Data Max =  3327.8984375",
+        "Device_Current_Measurement"
+      ],
+      [
+        "8",
+        "4/ 8-9 /all",
+        "Var_ID_PSR",
+        "Unsigned Integer",
+        "N/A",
+        "0 - 9999",
+        "Var ID"
+      ],
+      [
+        "9",
+        "5/ 10-11 /all",
+        "LAYER_1_LAYER_2_Version_ENVELOPE",
+        "Unsigned Integer",
+        "N/A",
+        "0- 9999",
+        "Label version in BCD format.  See LRUSWRS-106940 for details."
+      ],
+      [
+        "10",
+        "6/ 12-13 /all",
+        "Spare",
+        "N/A",
+        "N/A",
+        "N/A",
+        "N/A"
+      ],
+      [
+        "11",
+        "7/ 14-15 /all",
+        "Temp_Scale_ENVELOPE",
+        "Signed Integer",
+        "1",
+        "Data Min = -32768 Degrees C Data Max = 32767 Degrees C",
+        "Temp_Scale_ENVELOPE"
+      ],
+      [
+        "12",
+        "8-9/ 16-19 /all",
+        "Location_Instruction_Scale_ENVELOPE",
+        "Unsigned Integer",
+        "N/A",
+        "FCC Recieved ARINC Message",
+        "FCC_Cmd_Echo1 & FCC_Cmd_Echo2"
+      ],
+      [
+        "13",
+        "10/ 20-21 /all",
+        "IVT_Response_ENVELOPE",
+        "Unsigned Integer",
+        "N/A",
+        "N/A",
+        "IVT_Response_ENVELOPE"
+      ],
+      [
+        "14",
+        "11/ 22-23 /all",
+        "IVT_RespData_ENVELOPE",
+        "Unsigned Integer",
+        "N/A",
+        "N/A",
+        "IVT_RespData_ENVELOPE"
+      ],
+      [
+        "15",
+        "12/ 24 / 0",
+        "IVT_Mode_STL",
+        "Unsigned Integer",
+        "N/A",
+        "0 = LRU is Not in IVT Mode 1 = LRU is in IVT Mode",
+        "IVT_Mode_ModeLgc"
+      ],
+      [
+        "16",
+        "12/ 24 / 1",
+        "Idle_State_STL",
+        "Unsigned Integer",
+        "N/A",
+        "0 = LRU is Not in Standby State 1 = LRU is in Standby State",
+        "Idle_State_StateLgc"
+      ],
+      [
+        "17",
+        "12/ 24 / 2",
+        "Speed_State_STL",
+        "Unsigned Integer",
+        "N/A",
+        "0 = LRU is Not in Speed State 1 = LRU is in Speed State",
+        "Speed_State_StateLgc"
+      ],
+      [
+        "18",
+        "12/ 24 / 3",
+        "Location_State_STL",
+        "Unsigned Integer",
+        "N/A",
+        "0 = LRU is Not in Position State 1 = LRU is in Position State",
+        "Location_State_StateLgc"
+      ],
+      [
+        "19",
+        "12/ 24 / 4 - 7",
+        "Spare",
+        "Unsigned Integer",
+        "N/A",
+        "N/A",
+        "Spare"
+      ],
+      [
+        "20",
+        "12/ 25 /all",
+        "Spare",
+        "Unsigned Integer",
+        "N/A",
+        "N/A",
+        "Spare"
+      ],
+      [
+        "21",
+        "13/ 26 / 0",
+        "LRU1_Config_STL",
+        "Unsigned Integer",
+        "N/A",
+        "1 = LRU is LRU_1 0 = LRU is not LRU_1",
+        "1 = Config_LRU_PSR is equal to LRU_1 0 = Default"
+      ],
+      [
+        "22",
+        "13/ 26 / 1",
+        "LRU2_Config_STL",
+        "Unsigned Integer",
+        "N/A",
+        "1 = LRU is LRU_2 0 = LRU is not LRU_2",
+        "1 = Config_LRU_PSR is equal to LRU_2 0 = Default"
+      ]
+    ]
+  },
+  {
+    "type": "table",
+    "table_id": "Table 1025",
+    "title": "Table 1025  LRU to LRU_2 STL Message (Continued)",
+    "headers": [
+      "Data Items",
+      "Word/ Byte / BITs",
+      "STL Data",
+      "Type",
+      "Scaling",
+      "Range",
+      "Comments"
+    ],
+    "rows": [
+      [
+        "23",
+        "13/ 26 / 2",
+        "LRU3_Config_STL",
+        "Unsigned Integer",
+        "N/A",
+        "1 = LRU is LRU_3 0 = LRU is not LRU_3",
+        "1 = Config_LRU_PSR is equal to LRU_3 0 = Default"
+      ],
+      [
+        "24",
+        "13/ 26 / 3",
+        "LRU4_Config_STL",
+        "Unsigned Integer",
+        "N/A",
+        "1 = LRU is LRU_4 0 = LRU is not LRU_4",
+        "1 = Config_LRU_PSR is equal to LRU_4 0 = Default"
+      ],
+      [
+        "25",
+        "13/ 26 / 4",
+        "LRU5_Config_STL",
+        "Unsigned Integer",
+        "N/A",
+        "1 = LRU is LRU_5 0 = LRU is not LRU_5",
+        "1 = Config_LRU_PSR is equal to LRU_5 0 = Default"
+      ],
+      [
+        "26",
+        "13/ 26 / 5",
+        "LRU6_Config_STL",
+        "Unsigned Integer",
+        "N/A",
+        "1 = LRU is LRU_6 0 = LRU is not LRU_6",
+        "1 = Config_LRU_PSR is equal to LRU_6 0 = Default"
+      ],
+      [
+        "27",
+        "13/ 26 / 6",
+        "LRU7_Config_STL",
+        "Unsigned Integer",
+        "N/A",
+        "1 = LRU is LRU_7 0 = LRU is not LRU_7",
+        "1 = Config_LRU_PSR is equal to LRU_7 0 = Default"
+      ],
+      [
+        "28",
+        "13/ 26 / 7",
+        "Config_Asset_Type_1_STL",
+        "Unsigned Integer",
+        "N/A",
+        "1 = Aircraft Type is 1 0 = Otherwise",
+        "1 = is equal to Config_Asset_Type_1 0 = Default"
+      ],
+      [
+        "29",
+        "13/ 27 / 0",
+        "Config_Asset_Type_2_STL",
+        "Unsigned Integer",
+        "N/A",
+        "1 = Aircraft Type is 2 0 = Otherwise",
+        "1 = is equal to Config_Asset_Type_2 0 = Default"
+      ],
+      [
+        "30",
+        "13/ 27 / 1",
+        "Config_Asset_Type_3_STL",
+        "Unsigned Integer",
+        "N/A",
+        "1 = Aircraft Type is 3 0 = Otherwise",
+        "1 = is equal to Config_Asset_Type_3 0 = Default"
+      ],
+      [
+        "31",
+        "13/ 27 / 2",
+        "LRU_2_Valid_Echo_STL",
+        "Unsigned Integer",
+        "N/A",
+        "1 = LRU_2 Valid is set 0 = Otherwise",
+        "LRU_2_Valid_Dbnce_StateLgc"
+      ],
+      [
+        "32",
+        "13/ 27 / 3",
+        "Hyd_Echo_STL",
+        "Unsigned Integer",
+        "N/A",
+        "1 = EHSA Active is set 0 = Otherwise",
+        "Hyd_Dbnce_StateLgc"
+      ],
+      [
+        "33",
+        "13/ 27 / 4",
+        "Bus_Rx_LRU_Bus_Select",
+        "Unsigned Integer",
+        "N/A",
+        "1= FCC position command is valid 0= FCC position command is notvalid",
+        "Bus_Rx_LRU_Bus_Select"
+      ],
+      [
+        "34",
+        "13/27/5-7",
+        "spare",
+        "Unsigned integer",
+        "N/A",
+        "Spare",
+        "Always 0"
+      ],
+      [
+        "35",
+        "14/ 28 / 0",
+        "Power_Dropout_Err_STL",
+        "Unsigned Integer",
+        "N/A",
+        "1 = Power Droput Err is set 0 = No Power Dropout Err",
+        "Power Dropout"
+      ],
+      [
+        "36",
+        "14/ 28 / 1",
+        "Power_OV_Err_STL",
+        "Unsigned Integer",
+        "N/A",
+        "1 = Power OV is set 0 = No Power OV Fault",
+        "Power OV"
+      ],
+      [
+        "37",
+        "14/ 28 / 2",
+        "Power_UV_Err_STL",
+        "Unsigned Integer",
+        "N/A",
+        "1 = UV Err Fault is set 0 = No UV Err",
+        "Power UV"
+      ],
+      [
+        "38",
+        "14/ 28 / 3",
+        "Rotor_Ref_Err_STL",
+        "Unsigned Integer",
+        "N/A",
+        "1 = Rotor Ref Err is set 0 = No Rotor Ref Err Fault",
+        "Rotor Ref"
+      ],
+      [
+        "39",
+        "14/ 28 / 4",
+        "Config_CIP_Err_STL",
+        "Unsigned Integer",
+        "N/A",
+        "1 = Config_CIP_Err_Init is True 0 = Config_CIP_Err_Init is False",
+        "Config_CIP_Err"
+      ],
+      [
+        "40",
+        "14/ 28 / 5",
+        "LAYER_1_LAYER_2_Compatibility_Err_STL",
+        "Unsigned Integer",
+        "N/A",
+        "1 = Layer 1 is incompatible with Layer 2 0 = No Layer 1 is incompatible with Layer 2",
+        "LAYER_1_LAYER_2_Compatibility_Err"
+      ],
+      [
+        "41",
+        "14/ 28 / 6",
+        "Voltage_Act_Err_STL",
+        "Unsigned Integer",
+        "N/A",
+        "1 = Voltage Actuator Error Fault 0 = No Voltage Actuator Error Fault",
+        "Voltage_Act_Err_STL"
+      ],
+      [
+        "42",
+        "14/ 28 / 7",
+        "Corrupt_PSR_Harmonizing_CIP_Err_STL",
+        "Unsigned Integer",
+        "N/A",
+        "1 = Corrupt Harmonize Data in PSR 0 = No Corrupt Harmonize Data in PSR",
+        "Corrupt_PSR_Harmonizing_CIP_Err_Init"
+      ],
+      [
+        "43",
+        "14/ 29 /1",
+        "Corrupt_PSR_Filter_CIP_Error_STL",
+        "Unsigned Integer",
+        "N/A",
+        "1 = Corrupt Filter Data in PSR 0 = No Corrupt Filter Data in PSR",
+        "Corrupt_PSR_Filter_CIP_Fault_Init"
+      ],
+      [
+        "44",
+        "15/ 30 /all",
+        "Checksum_From_LRU_STL",
+        "Unsigned Integer",
+        "N/A",
+        "0 - 255",
+        "Checksum_From_LRU_STL"
+      ]
+    ]
+  }
+]

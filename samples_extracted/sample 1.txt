@@ -1,0 +1,516 @@
+1.requirement:
+ID :  LRUSWRS-1000
+The LRU software PSR Harmonizing data resides in the PSR.  The PSR Harmonizing data shall contain the following information:
+•	Harmonize_SFC_PSR
+•	Harmonize_Offset_PSR
+•	Config_LRU_PSR
+•	Asset_ID_PSR
+•	Upper_Limit_LRU_PSR
+•	Lower_Limit_LRU_PSR
+•	CRC_PSR
+•	Var_ID_PSR
+•	Software/Firmware Version (aka. Label Version)
+
+NOTE: Var_ID_PSR and Label Version are programmed into PSR by Provider Production team in accordance with the instructions in section 7.17 of the Acceptance Test Procedure (506500T).
+Req Type :  Decomposed
+Safety Impact :  No
+Safety Rationale :  This is a detailed implementation requirement.
+
+
+{
+  "test_cases": [
+    {
+      "test_case_id": "LRUSWRS-1000_N1",
+      "requirement_id": "LRUSWRS-1000",
+      "description": "Verifies that the PSR Harmonizing data includes all required fields.",
+      "test_type": "NORMAL",
+      "initial_condition": "None",
+      "test_inputs": "Read PSR Harmonizing data from PSR.",
+      "expected_result": "Harmonize_SFC_PSR is present in PSR Harmonizing data. Harmonize_Offset_PSR is present in PSR
+Harmonizing data. Config_LRU_PSR is present in PSR Harmonizing data. Asset_ID_PSR is present in PSR Harmonizing data.
+Upper_Limit_LRU_PSR is present in PSR Harmonizing data. Lower_Limit_LRU_PSR is present in PSR Harmonizing data. CRC_PSR is
+present in PSR Harmonizing data. Var_ID_PSR is present in PSR Harmonizing data. Software/Firmware Version is present in PSR
+Harmonizing data.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "None",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    }
+  ]
+}
+
+
+
+
+2.requirement:
+
+ID :  LRUSWRS-1005
+Upon entry to Harmonizing mode, the LRU software shall overwrite the following Harmonizing parameters in PSR and in RAM with the values defined below:
+
+⦁	Harmonize_Offset_PSR =  Harmonize_Offset_Default
+⦁	Harmonize_SFC_PSR =  Harmonize_SFC_Default
+⦁	Upper_Limit_LRU_PSR = Upper_Limit_LRU_Default
+⦁	Lower_Limit_LRU_PSR = Lower_Limit_LRU_Default
+⦁	Config_LRU_PSR = 0
+⦁	Asset_ID_PSR = 0
+⦁	Harmonize_Offset_ISM = Harmonize_Offset_Default
+⦁	K_Harmonize_ISM = Harmonize_SFC_Default
+⦁	Upper_Limit_LRU = Upper_Limit_LRU_Default
+⦁	Lower_Limit_LRU =  Lower_Limit_LRU_Default
+⦁	LRU_Harmonizing_Needed_PIVT = True
+
+Req Type :  Decomposed
+Safety Impact :  No
+Safety Rationale :  This is a detailed implementation requirement.
+
+
+
+{
+  "test_cases": [
+    {
+      "test_case_id": "LRUSWRS-1005_N1",
+      "requirement_id": "LRUSWRS-1005",
+      "description": "Verifies the LRU software overwrites specified PSR and RAM parameters upon entry to Harmonizing mode.",
+      "test_type": "NORMAL",
+      "initial_condition": "None",
+      "test_inputs": "Entry into Harmonizing mode triggered.",
+      "expected_result": "Harmonize_Offset_PSR = Harmonize_Offset_Default. Harmonize_SFC_PSR = Harmonize_SFC_Default.
+Upper_Limit_LRU_PSR = Upper_Limit_LRU_Default. Lower_Limit_LRU_PSR = Lower_Limit_LRU_Default. Config_LRU_PSR =
+Config_LRU_Default. Asset_ID_PSR = Asset_ID_Default. Harmonize_Offset_ISM = Harmonize_Offset_Default. K_Harmonize_ISM =
+K_Harmonize_Default. Upper_Limit_LRU = Upper_Limit_LRU_Default. Lower_Limit_LRU = Lower_Limit_LRU_Default.
+LRU_Harmonizing_Needed_PIVT = True.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    }
+  ]
+}
+
+
+
+3.requirement
+ID :  LRUSWRS-1004
+The LRU software shall initialize the signals listed below when the following condition is True:
+IVT_Mode_ModeLgc is True AND Harmonizing_Active_STL transitions to True
+
+⦁	Contract_Stop_Collection_Complete = False
+⦁	Expand_Stop_Collection_Complete = False
+⦁	VOID_Collection_Complete = False (Primary Surface Only)
+⦁	Harmonizing_Complete = False
+⦁	Harmonizing_Failed = False
+⦁	Act_Disp_Range_Contract_Fault = False
+⦁	Act_Disp_Range_Expand_Fault = False
+⦁	Act_Disp_Range_VOID_Fault = False (Primary Surface Only)
+
+Note: For Spoiler surface, VOID point Harmonizing does not apply; therefore, VOID_Collection_Complete and Act_Disp_Range_VOID_Fault are N/A.
+Req Type :  Verbatim
+Safety Impact :  No
+Safety Rationale :  This is a detailed implementation requirement.
+
+[
+  {
+    "test_case_id": "LRUSWRS-1004_N1_Aileron",
+    "description": "Verifies that when IVT_Mode_ModeLgc is True and Harmonizing_Active_STL transitions to True, the LRU initializes all required
+signals for Aileron.",
+    "test_type": "NORMAL",
+    "initial_condition": "None",
+    "test_inputs": "IVT_Mode_ModeLgc = True. Harmonizing_Active_STL transitions to True. Surface = Aileron.",
+    "expected_result": "Contract_Stop_Collection_Complete = False. Expand_Stop_Collection_Complete = False. VOID_Collection_Complete = False.
+Harmonizing_Complete = False. Harmonizing_Failed = False. Act_Disp_Range_Contract_Fault = False. Act_Disp_Range_Expand_Fault = False.
+Act_Disp_Range_VOID_Fault = False.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "None",
+    "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+  },
+  {
+    "test_case_id": "LRUSWRS-1004_N1_Elevator",
+    "description": "Verifies that when IVT_Mode_ModeLgc is True and Harmonizing_Active_STL transitions to True, the LRU initializes all required
+signals for Elevator.",
+    "test_type": "NORMAL",
+    "initial_condition": "None",
+    "test_inputs": "IVT_Mode_ModeLgc = True. Harmonizing_Active_STL transitions to True. Surface = Elevator.",
+    "expected_result": "Contract_Stop_Collection_Complete = False. Expand_Stop_Collection_Complete = False. VOID_Collection_Complete = False.
+Harmonizing_Complete = False. Harmonizing_Failed = False. Act_Disp_Range_Contract_Fault = False. Act_Disp_Range_Expand_Fault = False.
+Act_Disp_Range_VOID_Fault = False.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "None",
+    "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+  },
+  {
+    "test_case_id": "LRUSWRS-1004_N1_Rudder",
+    "description": "Verifies that when IVT_Mode_ModeLgc is True and Harmonizing_Active_STL transitions to True, the LRU initializes all required
+signals for Rudder.",
+    "test_type": "NORMAL",
+    "initial_condition": "None",
+    "test_inputs": "IVT_Mode_ModeLgc = True. Harmonizing_Active_STL transitions to True. Surface = Rudder.",
+    "expected_result": "Contract_Stop_Collection_Complete = False. Expand_Stop_Collection_Complete = False. VOID_Collection_Complete = False.
+Harmonizing_Complete = False. Harmonizing_Failed = False. Act_Disp_Range_Contract_Fault = False. Act_Disp_Range_Expand_Fault = False.
+Act_Disp_Range_VOID_Fault = False.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "None",
+    "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+  },
+  {
+    "test_case_id": "LRUSWRS-1004_N1_Spoiler",
+    "description": "Verifies that when IVT_Mode_ModeLgc is True and Harmonizing_Active_STL transitions to True, the LRU initializes all required
+signals for Spoiler.",
+    "test_type": "NORMAL",
+    "initial_condition": "None",
+    "test_inputs": "IVT_Mode_ModeLgc = True. Harmonizing_Active_STL transitions to True. Surface = Spoiler.",
+    "expected_result": "Contract_Stop_Collection_Complete = False. Expand_Stop_Collection_Complete = False. Harmonizing_Complete = False.
+Harmonizing_Failed = False. Act_Disp_Range_Contract_Fault = False. Act_Disp_Range_Expand_Fault = False.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "None",
+    "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+  },
+  {
+    "test_case_id": "LRUSWRS-1004_DC_IVT_Aileron",
+    "description": "Verifies that when IVT_Mode_ModeLgc is False and Harmonizing_Active_STL transitions to True, the LRU does not initialize signals
+for Aileron.",
+    "test_type": "DC",
+    "initial_condition": "None",
+    "test_inputs": "IVT_Mode_ModeLgc = False. Harmonizing_Active_STL transitions to True. Surface = Aileron.",
+    "expected_result": "Contract_Stop_Collection_Complete is not initialized to False. Expand_Stop_Collection_Complete is not initialized to False.
+VOID_Collection_Complete is not initialized to False. Harmonizing_Complete is not initialized to False. Harmonizing_Failed is not initialized to
+False. Act_Disp_Range_Contract_Fault is not initialized to False. Act_Disp_Range_Expand_Fault is not initialized to False. Act_Disp_Range_VOID_Fault
+is not initialized to False.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "None",
+    "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+  },
+  {
+    "test_case_id": "LRUSWRS-1004_DC_HARM_Aileron",
+    "description": "Verifies that when IVT_Mode_ModeLgc is True and Harmonizing_Active_STL remains False, the LRU does not initialize signals for
+Aileron.",
+    "test_type": "DC",
+    "initial_condition": "None",
+    "test_inputs": "IVT_Mode_ModeLgc = True. Harmonizing_Active_STL remains False. Surface = Aileron.",
+    "expected_result": "Contract_Stop_Collection_Complete is not initialized to False. Expand_Stop_Collection_Complete is not initialized to False.
+VOID_Collection_Complete is not initialized to False. Harmonizing_Complete is not initialized to False. Harmonizing_Failed is not initialized to
+False. Act_Disp_Range_Contract_Fault is not initialized to False. Act_Disp_Range_Expand_Fault is not initialized to False. Act_Disp_Range_VOID_Fault
+is not initialized to False.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "None",
+    "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+  },
+  {
+    "test_case_id": "LRUSWRS-1004_DC_IVT_Elevator",
+    "description": "Verifies that when IVT_Mode_ModeLgc is False and Harmonizing_Active_STL transitions to True, the LRU does not initialize signals
+for Elevator.",
+    "test_type": "DC",
+    "initial_condition": "None",
+    "test_inputs": "IVT_Mode_ModeLgc = False. Harmonizing_Active_STL transitions to True. Surface = Elevator.",
+    "expected_result": "Contract_Stop_Collection_Complete is not initialized to False. Expand_Stop_Collection_Complete is not initialized to False.
+VOID_Collection_Complete is not initialized to False. Harmonizing_Complete is not initialized to False. Harmonizing_Failed is not initialized to
+False. Act_Disp_Range_Contract_Fault is not initialized to False. Act_Disp_Range_Expand_Fault is not initialized to False. Act_Disp_Range_VOID_Fault
+is not initialized to False.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "None",
+    "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+  },
+  {
+    "test_case_id": "LRUSWRS-1004_DC_HARM_Elevator",
+    "description": "Verifies that when IVT_Mode_ModeLgc is True and Harmonizing_Active_STL remains False, the LRU does not initialize signals for
+Elevator.",
+    "test_type": "DC",
+    "initial_condition": "None",
+    "test_inputs": "IVT_Mode_ModeLgc = True. Harmonizing_Active_STL remains False. Surface = Elevator.",
+    "expected_result": "Contract_Stop_Collection_Complete is not initialized to False. Expand_Stop_Collection_Complete is not initialized to False.
+VOID_Collection_Complete is not initialized to False. Harmonizing_Complete is not initialized to False. Harmonizing_Failed is not initialized to
+False. Act_Disp_Range_Contract_Fault is not initialized to False. Act_Disp_Range_Expand_Fault is not initialized to False. Act_Disp_Range_VOID_Fault
+is not initialized to False.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "None",
+    "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+  },
+  {
+    "test_case_id": "LRUSWRS-1004_DC_IVT_Rudder",
+    "description": "Verifies that when IVT_Mode_ModeLgc is False and Harmonizing_Active_STL transitions to True, the LRU does not initialize signals
+for Rudder.",
+    "test_type": "DC",
+    "initial_condition": "None",
+    "test_inputs": "IVT_Mode_ModeLgc = False. Harmonizing_Active_STL transitions to True. Surface = Rudder.",
+    "expected_result": "Contract_Stop_Collection_Complete is not initialized to False. Expand_Stop_Collection_Complete is not initialized to False.
+VOID_Collection_Complete is not initialized to False. Harmonizing_Complete is not initialized to False. Harmonizing_Failed is not initialized to
+False. Act_Disp_Range_Contract_Fault is not initialized to False. Act_Disp_Range_Expand_Fault is not initialized to False. Act_Disp_Range_VOID_Fault
+is not initialized to False.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "None",
+    "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+  },
+  {
+    "test_case_id": "LRUSWRS-1004_DC_HARM_Elevator",
+    "description": "Verifies that when IVT_Mode_ModeLgc is True and Harmonizing_Active_STL remains False, the LRU does not initialize signals for
+Elevator.",
+    "test_type": "DC",
+    "initial_condition": "None",
+    "test_inputs": "IVT_Mode_ModeLgc = True. Harmonizing_Active_STL remains False. Surface = Elevator.",
+    "expected_result": "Contract_Stop_Collection_Complete is not initialized to False. Expand_Stop_Collection_Complete is not initialized to False.
+VOID_Collection_Complete is not initialized to False. Harmonizing_Complete is not initialized to False. Harmonizing_Failed is not initialized to
+False. Act_Disp_Range_Contract_Fault is not initialized to False. Act_Disp_Range_Expand_Fault is not initialized to False. Act_Disp_Range_VOID_Fault
+is not initialized to False.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "None",
+    "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+  },
+  {
+    "test_case_id": "LRUSWRS-1004_DC_IVT_Rudder",
+    "description": "Verifies that when IVT_Mode_ModeLgc is False and Harmonizing_Active_STL transitions to True, the LRU does not initialize signals
+for Rudder.",
+    "test_type": "DC",
+    "initial_condition": "None",
+    "test_inputs": "IVT_Mode_ModeLgc = False. Harmonizing_Active_STL transitions to True. Surface = Rudder.",
+    "expected_result": "Contract_Stop_Collection_Complete is not initialized to False. Expand_Stop_Collection_Complete is not initialized to False.
+VOID_Collection_Complete is not initialized to False. Harmonizing_Complete is not initialized to False. Harmonizing_Failed is not initialized to
+False. Act_Disp_Range_Contract_Fault is not initialized to False. Act_Disp_Range_Expand_Fault is not initialized to False. Act_Disp_Range_VOID_Fault
+is not initialized to False.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "None",
+    "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+  },
+  {
+    "test_case_id": "LRUSWRS-1004_DC_HARM_Elevator",
+    "description": "Verifies that when IVT_Mode_ModeLgc is True and Harmonizing_Active_STL remains False, the LRU does not initialize signals for
+Elevator.",
+    "test_type": "DC",
+    "initial_condition": "None",
+    "test_inputs": "IVT_Mode_ModeLgc = True. Harmonizing_Active_STL remains False. Surface = Elevator.",
+    "expected_result": "Contract_Stop_Collection_Complete is not initialized to False. Expand_Stop_Collection_Complete is not initialized to False.
+VOID_Collection_Complete is not initialized to False. Harmonizing_Complete is not initialized to False. Harmonizing_Failed is not initialized to
+False. Act_Disp_Range_Contract_Fault is not initialized to False. Act_Disp_Range_Expand_Fault is not initialized to False. Act_Disp_Range_VOID_Fault
+is not initialized to False.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "None",
+    "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+  },
+  {
+    "test_case_id": "LRUSWRS-1004_DC_IVT_Spoiler",
+    "description": "Verifies that when IVT_Mode_ModeLgc is False and Harmonizing_Active_STL transitions to True, the LRU does not initialize signals
+for Spoiler.",
+    "test_type": "DC",
+    "initial_condition": "None",
+    "test_inputs": "IVT_Mode_ModeLgc = False. Harmonizing_Active_STL transitions to True. Surface = Spoiler.",
+    "expected_result": "Contract_Stop_Collection_Complete is not initialized to False. Expand_Stop_Collection_Complete is not initialized to False.
+Harmonizing_Complete is not initialized to False. Harmonizing_Failed is not initialized to False. Act_Disp_Range_Contract_Fault is not initialized to
+False. Act_Disp_Range_Expand_Fault is not initialized to False.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "None",
+    "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+  },
+  {
+    "test_case_id": "LRUSWRS-1004_DC_HARM_Spoiler",
+    "description": "Verifies that when IVT_Mode_ModeLgc is True and Harmonizing_Active_STL remains False, the LRU does not initialize signals for
+Spoiler.",
+    "test_type": "DC",
+    "initial_condition": "None",
+    "test_inputs": "IVT_Mode_ModeLgc = True. Harmonizing_Active_STL remains False. Surface = Spoiler.",
+    "expected_result": "Contract_Stop_Collection_Complete is not initialized to False. Expand_Stop_Collection_Complete is not initialized to False.
+Harmonizing_Complete is not initialized to False. Harmonizing_Failed is not initialized to False. Act_Disp_Range_Contract_Fault is not initialized to
+False. Act_Disp_Range_Expand_Fault is not initialized to False.",
+    "pass_criteria": "Observed software behaviour matches expected_result.",
+    "related_requirements": "None",
+    "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+  }
+]
+
+
+
+
+4.requirement:
+ID :  LRUSWRS-1003
+While IVT_Mode_ModeLgc is True, the LRU software shall enter Harmonizing mode upon the following condition:
+
+⦁	Harmonizing_Active_STL is True AND remains True for 10 consecutive STL frames
+Req Type :  Decomposed
+Safety Impact :  No
+Safety Rationale :  This is a detailed implementation requirement.
+
+{
+  "test_cases": [
+    {
+      "test_case_id": "LRUSWRS-1003_N1",
+      "requirement_id": "LRUSWRS-1003",
+      "description": "Verifies LRU software enters Harmonizing mode when Harmonizing_Active_STL remains True for 10 consecutive STL frames while IVT_Mode_ModeLgc is True.",
+      "test_type": "NORMAL",
+      "initial_condition": "None",
+      "test_inputs": "IVT_Mode_ModeLgc = True. Harmonizing_Active_STL = True and remains True for 10 consecutive STL frames.",
+      "expected_result": "LRU enters Harmonizing mode.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS-1003_DC_IVT",
+      "requirement_id": "LRUSWRS-1003",
+      "description": "Verifies LRU does not enter Harmonizing mode when IVT_Mode_ModeLgc is False while Harmonizing_Active_STL remains True for 10 consecutive STL frames.",
+      "test_type": "DC",
+      "initial_condition": "None",
+      "test_inputs": "IVT_Mode_ModeLgc = False. Harmonizing_Active_STL = True and remains True for 10 consecutive STL frames.",
+      "expected_result": "LRU does not enter Harmonizing mode.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS-1003_DC_HARM",
+      "requirement_id": "LRUSWRS-1003",
+      "description": "Verifies LRU does not enter Harmonizing mode when Harmonizing_Active_STL does not remain True for 10 consecutive STL frames while IVT_Mode_ModeLgc is True.",
+      "test_type": "DC",
+      "initial_condition": "None",
+      "test_inputs": "IVT_Mode_ModeLgc = True. Harmonizing_Active_STL remains False for 10 consecutive STL frames.",
+      "expected_result": "LRU does not enter Harmonizing mode.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS-1003_B1",
+      "requirement_id": "LRUSWRS-1003",
+      "description": "Verifies LRU enters Harmonizing mode when Harmonizing_Active_STL is True for exactly 10 consecutive STL frames while IVT_Mode_ModeLgc is True.",
+      "test_type": "BOUNDARY",
+      "initial_condition": "None",
+      "test_inputs": "IVT_Mode_ModeLgc = True. Harmonizing_Active_STL = True and remains True for 10 consecutive STL frames.",
+      "expected_result": "LRU enters Harmonizing mode.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS-1003_B2",
+      "requirement_id": "LRUSWRS-1003",
+      "description": "Verifies LRU does not enter Harmonizing mode when Harmonizing_Active_STL is True for 9 consecutive STL frames while IVT_Mode_ModeLgc is True.",
+      "test_type": "BOUNDARY",
+      "initial_condition": "None",
+      "test_inputs": "IVT_Mode_ModeLgc = True. Harmonizing_Active_STL = True and remains True for 9 consecutive STL frames.",
+      "expected_result": "LRU does not enter Harmonizing mode.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS-1003_B3",
+      "requirement_id": "LRUSWRS-1003",
+      "description": "Verifies LRU does not enter Harmonizing mode when Harmonizing_Active_STL is True for non‑consecutive 10 STL frames while IVT_Mode_ModeLgc is True.",
+      "test_type": "BOUNDARY",
+      "initial_condition": "None",
+      "test_inputs": "IVT_Mode_ModeLgc = True. Harmonizing_Active_STL = True for 5 frames, then False for 1 frame, then True for 5 frames.",
+      "expected_result": "LRU does not enter Harmonizing mode.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    }
+  ]
+}
+
+
+
+
+
+5.requirement:
+ID :  LRUSWRS-1001
+The electronic Harmonizing sequence for both Primary and Spoiler surface types are defined in the table below.  The prerequisite condition for execution of this Harmonizing sequence is that Harmonizing mode (LRUSWRS-1003) must be active.  The steps occur in blocks, 1 to 5, 6 to 10, 11 to 15, followed by 16 to 35.  The first three blocks are started by LRU_2 messages and can occur in any order. The last block occurs automatically after all three of the other blocks are completed.  Not all steps are applicable to both surface types.  The block steps not applicable to both surface types are noted following the requirement. 
+The LRU software shall implement the electronic Harmonizing sequence as shown in Table 1001.
+Req Type :  Verbatim
+Safety Impact :  No
+Safety Rationale :  This is a detailed implementation requirement.
+
+
+{
+  "test_cases": [
+    {
+      "test_case_id": "LRUSWRS-1001_N1_Aileron",
+      "requirement_id": "LRUSWRS-1001",
+      "description": "Verifies the LRU software implements the electronic Harmonizing sequence per Table 1001 when Harmonizing mode is active for Aileron.",
+      "test_type": "NORMAL",
+      "initial_condition": "None",
+      "test_inputs": "Harmonizing mode active = True. Surface = Aileron.",
+      "expected_result": "LRU software implements the electronic Harmonizing sequence per Table 1001.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "LRUSWRS-1003",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS-1001_N1_Elevator",
+      "requirement_id": "LRUSWRS-1001",
+      "description": "Verifies the LRU software implements the electronic Harmonizing sequence per Table 1001 when Harmonizing mode is active for Elevator.",
+      "test_type": "NORMAL",
+      "initial_condition": "None",
+      "test_inputs": "Harmonizing mode active = True. Surface = Elevator.",
+      "expected_result": "LRU software implements the electronic Harmonizing sequence per Table 1001.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "LRUSWRS-1003",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS-1001_N1_Rudder",
+      "requirement_id": "LRUSWRS-1001",
+      "description": "Verifies the LRU software implements the electronic Harmonizing sequence per Table 1001 when Harmonizing mode is active for Rudder.",
+      "test_type": "NORMAL",
+      "initial_condition": "None",
+      "test_inputs": "Harmonizing mode active = True. Surface = Rudder.",
+      "expected_result": "LRU software implements the electronic Harmonizing sequence per Table 1001.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "LRUSWRS-1003",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS-1001_N1_Spoiler",
+      "requirement_id": "LRUSWRS-1001",
+      "description": "Verifies the LRU software implements the electronic Harmonizing sequence per Table 1001 when Harmonizing mode is active for Spoiler.",
+      "test_type": "NORMAL",
+      "initial_condition": "None",
+      "test_inputs": "Harmonizing mode active = True. Surface = Spoiler.",
+      "expected_result": "LRU software implements the electronic Harmonizing sequence per Table 1001.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "LRUSWRS-1003",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS-1001_DC_HARM_Aileron",
+      "requirement_id": "LRUSWRS-1001",
+      "description": "Verifies the LRU software does not implement the electronic Harmonizing sequence per Table 1001 when Harmonizing mode is not active for Aileron.",
+      "test_type": "DC",
+      "initial_condition": "None",
+      "test_inputs": "Harmonizing mode active = False. Surface = Aileron.",
+      "expected_result": "LRU software does not implement the electronic Harmonizing sequence per Table 1001.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "LRUSWRS-1003",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS-1001_DC_HARM_Elevator",
+      "requirement_id": "LRUSWRS-1001",
+      "description": "Verifies the LRU software does not implement the electronic Harmonizing sequence per Table 1001 when Harmonizing mode is not active for Elevator.",
+      "test_type": "DC",
+      "initial_condition": "None",
+      "test_inputs": "Harmonizing mode active = False. Surface = Elevator.",
+      "expected_result": "LRU software does not implement the electronic Harmonizing sequence per Table 1001.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "LRUSWRS-1003",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS-1001_DC_HARM_Rudder",
+      "requirement_id": "LRUSWRS-1001",
+      "description": "Verifies the LRU software does not implement the electronic Harmonizing sequence per Table 1001 when Harmonizing mode is not active for Rudder.",
+      "test_type": "DC",
+      "initial_condition": "None",
+      "test_inputs": "Harmonizing mode active = False. Surface = Rudder.",
+      "expected_result": "LRU software does not implement the electronic Harmonizing sequence per Table 1001.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "LRUSWRS-1003",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS-1001_DC_HARM_Spoiler",
+      "requirement_id": "LRUSWRS-1001",
+      "description": "Verifies the LRU software does not implement the electronic Harmonizing sequence per Table 1001 when Harmonizing mode is not active for Spoiler.",
+      "test_type": "DC",
+      "initial_condition": "None",
+      "test_inputs": "Harmonizing mode active = False. Surface = Spoiler.",
+      "expected_result": "LRU software does not implement the electronic Harmonizing sequence per Table 1001.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "LRUSWRS-1003",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    }
+  ]
+}

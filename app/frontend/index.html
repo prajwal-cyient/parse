@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>DO-178C Verification Platform • Aerospace Qualification Engine</title>
+  <link rel="stylesheet" href="styles.css?v=5.0.0">
+</head>
+<body>
+
+  <!-- Sleek Enterprise Glassmorphism Auth Portal Modal -->
+  <div class="login-modal-overlay" id="loginModal">
+    <div class="login-card">
+      
+      <!-- Enterprise Header -->
+      <div class="login-header">
+        <div class="brand-logo-ring">
+          <span class="logo-spark">⚡</span>
+        </div>
+        <h2>Aerospace Verification Suite</h2>
+        <p class="subtitle">DO-178C Level B Software Compliance Engine</p>
+      </div>
+
+      <!-- Segmented Auth Tab Switcher -->
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tabSignIn">Sign In</button>
+        <button class="auth-tab" id="tabSignUp">Register</button>
+      </div>
+
+      <!-- 1. Enterprise Sign In Form -->
+      <form id="loginForm" class="login-form">
+        <div class="form-group">
+          <label for="loginUsername">Username or Work Email</label>
+          <div class="input-wrapper">
+            <input type="text" id="loginUsername" placeholder="e.g. admin or engineer@aerospace.com" required value="admin" autocomplete="username">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <div class="input-wrapper">
+            <input type="password" id="loginPassword" placeholder="••••••••" required value="admin123" autocomplete="current-password">
+            <button type="button" class="btn-toggle-pwd" id="btnTogglePassword">Show</button>
+          </div>
+        </div>
+
+        <div class="login-options">
+          <label class="remember-label">
+            <input type="checkbox" id="rememberMe" checked> Keep me signed in
+          </label>
+          <span class="hint-badge">Default: admin / admin123</span>
+        </div>
+
+        <div id="loginErrorMsg" class="login-error-msg" style="display: none;"></div>
+
+        <button type="submit" class="btn-login-submit" id="btnLoginSubmit">
+          Sign In to Workspace →
+        </button>
+      </form>
+
+      <!-- 2. Enterprise Sign Up Form -->
+      <form id="signupForm" class="login-form" style="display: none;">
+        <div class="form-group">
+          <label for="signupFullName">Full Engineer Name</label>
+          <div class="input-wrapper">
+            <input type="text" id="signupFullName" placeholder="e.g. Sarah Jenkins" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="signupEmail">Work Email</label>
+          <div class="input-wrapper">
+            <input type="email" id="signupEmail" placeholder="s.jenkins@aerospace.com" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="signupPassword">Password</label>
+          <div class="input-wrapper">
+            <input type="password" id="signupPassword" placeholder="Minimum 6 characters" required>
+          </div>
+        </div>
+
+        <div id="signupMsg" class="login-error-msg" style="display: none;"></div>
+
+        <button type="submit" class="btn-login-submit btn-register">
+          Create Account →
+        </button>
+      </form>
+
+      <!-- Enterprise Security Footer -->
+      <div class="login-footer">
+        <span>🛡️ Authorized Access Only • FAA / EASA DO-178C Compliant</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- App Main Wrapper -->
+  <div class="app-wrapper">
+
+    <!-- Top Global Header -->
+    <header class="top-nav">
+      <div class="nav-brand">
+        <div class="brand-icon">⚡</div>
+        <div class="brand-titles">
+          <h1>DO-178C Verification Platform</h1>
+          <p>Aerospace Software Qualification Engine • Level B</p>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <!-- Live Logs Console Modal Trigger -->
+        <button class="nav-btn log-console-btn" id="btnOpenLogsModal">
+          <span class="icon">📋</span> Logs Console
+        </button>
+
+        <!-- Model Selector Badge -->
+        <div class="model-selector-badge">
+          <select id="modelSelect" class="model-dropdown">
+            <option value="llama3:latest" selected>llama3:latest (SSH Tunnel - ~10s)</option>
+            <option value="qwen2.5:7b">qwen2.5:7b (SSH Tunnel)</option>
+            <option value="gpt-oss:latest">gpt-oss:latest (SSH Tunnel)</option>
+          </select>
+        </div>
+
+        <!-- SSH Tunnel Online Status -->
+        <div class="ssh-status-pill">
+          <span class="dot-online"></span>
+          <span id="tunnel-status">SSH: Online [llama3:latest]</span>
+        </div>
+
+        <!-- New Verification Run Button -->
+        <button class="btn-new-run" id="btnNewRun">
+          <span>+</span> New Verification Run
+        </button>
+
+        <!-- User Profile Pill -->
+        <div class="user-pill" id="userProfileBadge">
+          <span class="user-avatar">👤</span>
+          <span class="user-name" id="displayUserName">System Administrator</span>
+          <button class="btn-logout" id="btnLogout">Logout</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- VIEW 1: DASHBOARD HUB (Project Grid View) -->
+    <main class="view-container" id="viewDashboardHub">
+      
+      <!-- Hub Metrics Overview Bar -->
+      <div class="hub-metrics-row">
+        <div class="hub-card">
+          <div class="hub-card-icon blue">📁</div>
+          <div class="hub-card-content">
+            <h2 id="hubMetricProjects">50</h2>
+            <p>Verification Projects</p>
+          </div>
+        </div>
+        <div class="hub-card">
+          <div class="hub-card-icon purple">📄</div>
+          <div class="hub-card-content">
+            <h2 id="hubMetricReqs">2671</h2>
+            <p>Requirements Ingested</p>
+          </div>
+        </div>
+        <div class="hub-card">
+          <div class="hub-card-icon green">🧪</div>
+          <div class="hub-card-content">
+            <h2 id="hubMetricTCs">7207</h2>
+            <p>Generated Test Cases</p>
+          </div>
+        </div>
+        <div class="hub-card">
+          <div class="hub-card-icon cyan">🛡️</div>
+          <div class="hub-card-content">
+            <h2>DO-178C (Level B)</h2>
+            <p>Qualification Standard</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hub Search & View Filter Bar -->
+      <div class="hub-controls-bar">
+        <div class="search-box-wrap">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="hubSearchInput" placeholder="Search projects by specification name, author, or Job ID...">
+        </div>
+        <div class="view-mode-toggle">
+          <button class="toggle-btn active" id="btnViewCards">Cards</button>
+          <button class="toggle-btn" id="btnViewTable">Table</button>
+        </div>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="projects-grid" id="projectsGrid">
+        <!-- Rendered dynamically via JavaScript -->
+      </div>
+    </main>
+
+
+    <!-- VIEW 2: WORKSPACE INSPECTION VIEW (Single Project Detail) -->
+    <main class="view-container hidden" id="viewWorkspaceInspection">
+      
+      <!-- Sub-Header Workspace Bar -->
+      <div class="workspace-subnav">
+        <div class="subnav-left">
+          <button class="btn-back-hub" id="btnBackToHub">
+            ← Dashboard Hub
+          </button>
+          <h2 class="project-title-name" id="wsProjectTitle">SW_Requirements_Sample_1.docx</h2>
+          <span class="verified-badge">● DO-178C Level B Verified</span>
+        </div>
+
+        <div class="subnav-right">
+          <button class="btn-subnav btn-reprocess" id="btnReprocess">
+            🔄 Re-Process
+          </button>
+          <button class="btn-subnav btn-export-excel" id="btnExportExcel">
+            📊 Export Excel (.xlsx)
+          </button>
+          <button class="btn-subnav btn-json" id="btnExportJSON">
+            💾 JSON
+          </button>
+          <button class="btn-subnav btn-delete" id="btnDeleteProject">
+            🗑️ Delete
+          </button>
+        </div>
+      </div>
+
+      <!-- Workspace Top Summary Metrics -->
+      <div class="ws-metrics-row">
+        <div class="ws-metric-box">
+          <h3 id="wsReqCount">96</h3>
+          <p>Requirements Ingested</p>
+        </div>
+        <div class="ws-metric-box">
+          <h3 id="wsTCCount">346</h3>
+          <p>Generated Test Cases</p>
+        </div>
+        <div class="ws-metric-box">
+          <h3 id="wsTableCount">12</h3>
+          <p>Extracted Tables</p>
+        </div>
+        <div class="ws-metric-box">
+          <h3 class="score-pass" id="wsComplianceScore">100% PASS</h3>
+          <p>Observation Audit Gate</p>
+        </div>
+      </div>
+
+      <!-- Inspection Search & Filter Pills Bar -->
+      <div class="ws-filter-bar">
+        <div class="search-box-wrap ws-search">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="tcSearchInput" placeholder="Search test cases, signals, variables, or requirement IDs...">
+        </div>
+
+        <div class="filter-pills-group" id="filterPillsGroup">
+          <button class="pill-btn active" data-type="ALL" id="pillAll">All (346)</button>
+          <button class="pill-btn" data-type="NORMAL" id="pillNormal">NORMAL (178)</button>
+          <button class="pill-btn" data-type="DC" id="pillDC">DC / Negative (87)</button>
+          <button class="pill-btn" data-type="BOUNDARY" id="pillBoundary">BOUNDARY (50)</button>
+          <button class="pill-btn" data-type="ROBUSTNESS" id="pillRobustness">ROBUSTNESS (31)</button>
+        </div>
+      </div>
+
+      <!-- Workspace Two-Column Grid -->
+      <div class="workspace-grid">
+        
+        <!-- Left Column: Full Inspection Table -->
+        <div class="inspection-table-card">
+          <div class="table-scroll-container">
+            <table class="inspection-table" id="inspectionTable">
+              <thead>
+                <tr>
+                  <th style="width: 45px;">#</th>
+                  <th style="width: 190px;">Test Case ID</th>
+                  <th style="width: 100px;">Req Trace</th>
+                  <th style="width: 90px;">Type</th>
+                  <th style="width: 260px;">Description</th>
+                  <th style="width: 180px;">Initial Conditions</th>
+                  <th style="width: 180px;">Test Inputs</th>
+                  <th style="width: 220px;">Expected Result</th>
+                </tr>
+              </thead>
+              <tbody id="inspectionTableBody">
+                <!-- Loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Right Column: Verification Pipeline Sidebar -->
+        <div class="pipeline-sidebar-card">
+          <div class="pipeline-header">
+            <h3>⚡ Verification Pipeline</h3>
+            <span class="pct-badge" id="pipelinePctBadge">100%</span>
+          </div>
+
+          <!-- Pipeline Progress Line Bar -->
+          <div class="pipeline-progress-box">
+            <div class="pipeline-progress-meta">
+              <span class="progress-title">Pipeline Execution Progress</span>
+              <span class="progress-pct" id="pipelinePctText">100% Completed</span>
+            </div>
+            <div class="pipeline-progress-track">
+              <div class="pipeline-progress-fill" id="pipelineProgressFill" style="width: 100%;"></div>
+            </div>
+          </div>
+
+          <div class="pipeline-status-banner" id="pipelineStatusBanner">
+            ✔ Loaded 346 Verified Test Cases from PostgreSQL 'parker' DB
+          </div>
+
+          <div class="pipeline-steps-list">
+            <div class="pipeline-step-item done" id="stepItem1">
+              <div class="step-icon">1</div>
+              <div class="step-info">
+                <h4>1. Document & Table Ingestion</h4>
+                <p>Universal docx parser & table caption linker</p>
+              </div>
+              <span class="step-badge" id="stepBadge1">DONE</span>
+            </div>
+
+            <div class="pipeline-step-item done" id="stepItem2">
+              <div class="step-icon">2</div>
+              <div class="step-info">
+                <h4>2. 3-Tier Grammar Classifier</h4>
+                <p>Strict Preconditions / Stimuli / Observable separation</p>
+              </div>
+              <span class="step-badge" id="stepBadge2">DONE</span>
+            </div>
+
+            <div class="pipeline-step-item done" id="stepItem3">
+              <div class="step-icon">3</div>
+              <div class="step-info">
+                <h4>3. Combinatorial Matrix Engine</h4>
+                <p>Pin-strap & dual-channel N+M combinatorial expansion</p>
+              </div>
+              <span class="step-badge" id="stepBadge3">DONE</span>
+            </div>
+
+            <div class="pipeline-step-item done" id="stepItem4">
+              <div class="step-icon">4</div>
+              <div class="step-info">
+                <h4>4. Sub-Step Sequence Clubbing</h4>
+                <p>Consolidation of 4a+4b, 9a+9b, and multi-member records</p>
+              </div>
+              <span class="step-badge" id="stepBadge4">DONE</span>
+            </div>
+
+            <div class="pipeline-step-item done" id="stepItem5">
+              <div class="step-icon">5</div>
+              <div class="step-info">
+                <h4>5. DO-178C Suite Synthesis</h4>
+                <p>LLM gpt-oss + aerospace deterministic generator</p>
+              </div>
+              <span class="step-badge" id="stepBadge5">DONE</span>
+            </div>
+
+            <div class="pipeline-step-item done" id="stepItem6">
+              <div class="step-icon">6</div>
+              <div class="step-info">
+                <h4>6. DO-178C Quality Gate Audit</h4>
+                <p>100% 8-observation compliance validation (0 defects)</p>
+              </div>
+              <span class="step-badge" id="stepBadge6">DONE</span>
+            </div>
+          </div>
+
+          <!-- Streaming Event Log Console Widget -->
+          <div class="streaming-log-widget">
+            <div class="widget-header">Streaming Event Log</div>
+            <div class="widget-log-content" id="sidebarLogContent">
+              <div class="log-line">> Engine online. Ready for execution.</div>
+              <div class="log-line">> Loading run details for SW_Requirements_Sample_1.docx...</div>
+              <div class="log-line text-success">> Successfully loaded 346 test cases into inspection matrix.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Modal 1: Upload / New Verification Run Modal -->
+  <div class="modal-overlay hidden" id="uploadModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><span>📤</span> New Verification Run</h3>
+        <button class="btn-close" id="btnCloseUploadModal">✕</button>
+      </div>
+      <div class="upload-zone" id="uploadZone">
+        <input type="file" id="fileInput" accept=".docx" hidden>
+        <div class="upload-icon">📄</div>
+        <div class="upload-text">
+          <h3>Click or Drag & Drop Word File</h3>
+          <p>Supports SW_Requirements_Sample_X.docx & custom specs</p>
+        </div>
+      </div>
+      <div id="fileInfoSection" style="display: none; margin-top: 15px; text-align: center;">
+        <div class="file-info-badge">
+          <strong id="infoFileName" style="color: #38BDF8;">document.docx</strong>
+          <div id="infoFileDetails" style="color: #94A3B8; font-size: 11px; margin-top: 2px;">Found 0 Requirements & 0 Tables</div>
+        </div>
+        <div class="reprocess-option">
+          <input type="checkbox" id="chkForceReprocess">
+          <label for="chkForceReprocess">🔄 Force Full AI Re-process (Bypass Cache)</label>
+        </div>
+        <button class="btn-submit-run" id="btnStartGeneration">
+          ⚡ Start Test Case Generation
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Live Logs Console Modal -->
+  <div class="modal-overlay hidden" id="logsModal">
+    <div class="modal-card logs-modal-card">
+      <div class="modal-header">
+        <h3><span>📋</span> Real-Time Terminal Log Console</h3>
+        <div class="modal-header-actions">
+          <button class="btn-sm" id="btnClearLogs">Clear</button>
+          <button class="btn-sm" id="btnCopyLogs">Copy</button>
+          <button class="btn-close" id="btnCloseLogsModal">✕</button>
+        </div>
+      </div>
+      <div class="terminal-box" id="modalTerminalLog">
+        <div class="log-line">> System initialized. Waiting for execution...</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js?v=5.0.0"></script>
+</body>
+</html>

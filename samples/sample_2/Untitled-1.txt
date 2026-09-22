@@ -1,0 +1,3 @@
+# 
+
+{"ssh_tunnel_online":true,"endpoint":"http://localhost:11434/api/generate","model":"gpt-oss:latest","available_models":["qwen2.5vl:7b","gemma4:latest","qwen2.5:32B","qwen3:14b","llama3:latest","qwen2.5vl:latest","gemma3:12b","deepseek-r1:8b","gpt-oss:latest","mxbai-embed-large-4k:latest","nomic-embed-text:latest","gpt-oss:20b","embeddinggemma:latest","qwen2.5-coder:14b","mxbai-embed-large:latest","llama3.1:70b-instruct-q4_0","mistral:7b","qwen2.5:7b","llama3.1:8b"],"db_status":"Connected to PostgreSQL 15 (parker)","message":"Connected to gpt-oss:latest"}

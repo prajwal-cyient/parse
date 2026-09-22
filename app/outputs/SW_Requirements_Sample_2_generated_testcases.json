@@ -1,0 +1,66 @@
+{
+  "file_name": "SW_Requirements_Sample_2.docx",
+  "total_test_cases": 5,
+  "test_cases": [
+    {
+      "test_case_id": "TC-LRUSWRS-1100-01",
+      "requirement_id": "LRUSWRS-1100",
+      "description": "Verify software behavior for LRUSWRS-1100 per requirement specification statement.",
+      "test_type": "NORMAL",
+      "initial_condition": "System initialized in normal operating state.",
+      "test_inputs": "Apply nominal inputs specified in requirement statement.",
+      "expected_result": "Software operates according to specified requirement criteria.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "TC-LRUSWRS-1101-01",
+      "requirement_id": "LRUSWRS-1101",
+      "description": "Verify software behavior for LRUSWRS-1101 per requirement specification statement.",
+      "test_type": "NORMAL",
+      "initial_condition": "System initialized in normal operating state.",
+      "test_inputs": "Apply nominal inputs specified in requirement statement.",
+      "expected_result": "Software operates according to specified requirement criteria.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "TC-LRUSWRS-1102-01",
+      "requirement_id": "LRUSWRS-1102",
+      "description": "Verify software behavior for LRUSWRS-1102 per requirement specification statement.",
+      "test_type": "NORMAL",
+      "initial_condition": "System initialized in normal operating state.",
+      "test_inputs": "Apply nominal inputs specified in requirement statement.",
+      "expected_result": "Software operates according to specified requirement criteria.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "TC-LRUSWRS-1103-01",
+      "requirement_id": "LRUSWRS-1103",
+      "description": "Verify software behavior for LRUSWRS-1103 per requirement specification statement.",
+      "test_type": "NORMAL",
+      "initial_condition": "System initialized in normal operating state.",
+      "test_inputs": "Apply nominal inputs specified in requirement statement.",
+      "expected_result": "Software operates according to specified requirement criteria.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "TC-LRUSWRS-1104-01",
+      "requirement_id": "LRUSWRS-1104",
+      "description": "Verify software behavior for LRUSWRS-1104 per requirement specification statement.",
+      "test_type": "NORMAL",
+      "initial_condition": "System initialized in normal operating state.",
+      "test_inputs": "Apply nominal inputs specified in requirement statement.",
+      "expected_result": "Software operates according to specified requirement criteria.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    }
+  ]
+}

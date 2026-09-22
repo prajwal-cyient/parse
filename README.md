@@ -1,111 +1,68 @@
-# 🚀 DO-178C AI Parker Test Case Generator Tool (v4.7)
-### Automated Aerospace Software Verification Engine — Level B Certified Rules
+# Parker DO-178C Level B Verification Engine 2.0
+
+Automated, auditor-compliant DO-178C Level B test case generation, qualification matrix expansion, and verification audit platform.
 
 ---
 
-## 📋 Table of Contents
-1. [Overview](#overview)
-2. [Prerequisites](#prerequisites)
-3. [Quick Start (3-Step Installation)](#quick-start-3-step-installation)
-4. [Detailed Installation Procedure](#detailed-installation-procedure)
-5. [Running the Application](#running-the-application)
-6. [Generating DO-178C Test Cases](#generating-do-178c-test-cases)
-7. [Client Observation Verification Compliance](#client-observation-verification-compliance)
-8. [Troubleshooting & Support](#troubleshooting--support)
+## Quick Start Guide
 
----
+### 1. Prerequisites
+- Python 3.10+ (Recommended: Python 3.11)
+- (Optional) Ollama running locally or via SSH tunnel with model `gpt-oss:latest` on port `11434`
 
-## ℹ️ Overview
-The **Parker AI Verification Tool** is a specialized aerospace engineering application designed to parse Word requirement specifications (`.docx`), query local or remote LLM models (`gpt-oss:latest` via SSH tunnel), and automatically generate DO-178C Level B compliant software verification test cases exported directly into professional Excel catalogs (`.xlsx`).
+### 2. Installation & Run (One-Click)
 
----
-
-## 💻 Prerequisites
-
-Before setting up the tool on your machine (Usha, Kiran, or Team Lead), ensure you have:
-
-1. **Operating System**: Windows 10 / 11 (64-bit).
-2. **Python**: Python **3.10** or higher installed (ensure `"Add Python to PATH"` was checked during Python installation).
-   - Verify in terminal: `python --version`
-3. **Network & SSH Access**: Access to the remote Ollama server (`172.19.64.35`) via SSH for `gpt-oss:latest` LLM model access.
-
----
-
-## ⚡ Quick Start (3-Step Installation)
-
-If Python is already installed on your system:
-
-1. **Extract ZIP File**: Extract `Parker_AI_Verification_Tool_v4.7.zip` to your Desktop or preferred directory (e.g. `C:\Parker_Tool`).
-2. **Install Dependencies**: Double-click `install_dependencies.bat` (or run `pip install -r requirements.txt`).
-3. **Launch Application**: Double-click `start_parker_app.bat`. Open your browser at:
-   👉 **http://localhost:8080**
-
----
-
-## 🔧 Detailed Installation Procedure
-
-### Step 1: Extract the Package
-Extract the entire `Parker_AI_Verification_Tool_v4.7.zip` archive into a folder on your computer.
-
-### Step 2: Install Python Packages
-Open Command Prompt or PowerShell in the extracted directory and run:
-```bash
-pip install -r requirements.txt
+#### Windows:
+Double-click `start_server.bat` or run in PowerShell/CMD:
+```cmd
+start_server.bat
 ```
 
-### Step 3: Establish the Remote SSH LLM Tunnel
-To access the `gpt-oss:latest` model on the remote GPU server (`172.19.64.35`):
-
-1. Open Command Prompt or PowerShell.
-2. Run the SSH tunnel command:
-   ```bash
-   ssh -L 11434:localhost:11434 root1@172.19.64.35
-   ```
-3. Enter password: `root1`
-4. Keep this SSH terminal window **OPEN** in the background during your test generation session.
-
----
-
-## 🌐 Running the Application
-
-### Method A: Web UI Mode (Recommended)
-1. Double-click `start_parker_app.bat` OR run:
-   ```bash
-   cd app\backend
-   python -m uvicorn main:app --host 0.0.0.0 --port 8080
-   ```
-2. Open your web browser at: **http://localhost:8080**
-3. Verify the top status badge shows: 🟢 **`SSH Tunnel: ONLINE (gpt-oss:latest)`**
-4. Drag and drop any requirement specification (`.docx`), click **Start Test Case Generation**, and download the generated Excel catalog directly!
-
-### Method B: Offline / Batch Script Mode
-To process requirement steps via terminal script:
+#### Linux / macOS:
 ```bash
-python process_all_steps_ollama.py
+chmod +x start_server.sh
+./start_server.sh
 ```
-This generates `LRUSWRS-1001_grouped_step_testcases.json` and updates your Excel catalog.
 
 ---
 
-## ✅ Client Observation Verification Compliance
+## Web Interface
 
-The tool comes pre-configured with all 8 DO-178C client observation rules:
-1. **Explicit Hardware Enumeration**: Automatically enumerates `LRU_1` to `LRU_7` and `ATYPE_1` to `ATYPE_3`. Formats Test Case IDs to match `.tst` test execution script filenames (`SWVCP_AAP_TC_ELECTRONIC_RIGGING_1_001`..`095`).
-2. **Strict Column Classification**: Places dynamic stimulus ONLY in `Test Inputs`, setup states ONLY in `Initial Condition(s)`, and output signals ONLY in `Expected Result(s)`.
-3. **Single Static Numerical Values**: Replaces placeholder strings (e.g. `[average from step above]`) with explicit static values (`100.0`).
-4. **Explicit Boolean False Assertions**: Explicitly asserts `Expand_Stop_Collection_Complete = False` for negative condition tests.
-5. **Sequence Step Clubbing**: Clubs multi-step fault sequences (Steps 3/4A/4B into Contract Fault; Steps 8/9A/9B into Expand Fault).
-6. **Consolidated PSR Data Members**: Consolidates `LRUSWRS-1000` into 1 single test case with `IVT_Mode_ModeLgc = True` & `Harmonizing_Active_STL = True`.
-7. **LRUSWRS-1003 & 1002 Fixes**: Places `IVT_Mode_ModeLgc` in `Test Inputs`, and inherits valid non-blank inputs from `SWRS-1004`.
-8. **Decision Coverage**: Explicitly generates separate test cases for `IVT_Mode_ModeLgc = True` AND `IVT_Mode_ModeLgc = False`.
+Once started, open your browser and navigate to:
+**http://localhost:8080**
+
+- **Default Username**: `admin`
+- **Default Password**: `password123` (or register a new user in the UI)
 
 ---
 
-## 🛠️ Troubleshooting & Support
+## Project Structure
 
-- **Issue: `SSH Tunnel: CLOSED` (Red Badge)**
-  - *Fix*: Re-run `ssh -L 11434:localhost:11434 root1@172.19.64.35` in your terminal and refresh your browser page (`F5`).
-- **Issue: `bind [127.0.0.1]:11434: Permission denied`**
-  - *Fix*: An existing SSH tunnel or Ollama process is already using port 11434. Simply close extra terminal windows or proceed directly to **http://localhost:8080**.
-- **Issue: `ModuleNotFoundError`**
-  - *Fix*: Re-run `pip install -r requirements.txt`.
+- `app/backend/` : Core DO-178C generation & audit engine:
+  - `main.py` : FastAPI server & SSE streaming endpoint
+  - `ollama_client.py` : LLM communication & generic DO-178C synthesizer
+  - `docx_parser.py` : Universal .docx & table extractor
+  - `signal_classifier.py` : 3-tier grammar data-flow separator
+  - `applicability_engine.py` : Pin-strap & cross-product matrix generator
+  - `consolidation_engine.py` : Sequence clubbing & multi-member consolidation
+  - `db_manager.py` : PostgreSQL database manager
+  - `history_manager.py` : Audit history manager
+- `app/frontend/` : Responsive dark-mode web workspace (HTML/CSS/JS)
+- `app/outputs/` : Pre-generated, approved master verification workbooks:
+  - `SW_Requirements_Sample_1_Test_Cases_PERFECTED_APPROVED.xlsx` (180 TCs)
+  - `SW_Requirements_Sample_4_Test_Cases.xlsx` (26 TCs)
+  - `sample 2.xlsx`, `sample 3.xlsx`, `sample 4.xlsx`, `samples.xlsx`
+- `app/uploads/` : Sample requirement specifications
+
+---
+
+## DO-178C Level B Compliance Features
+
+1. **3-Tier Data Flow Separation**: Preconditions in *Initial Conditions*, Stimuli in *Test Inputs*, Assertions in *Expected Results*.
+2. **Discrete State Enumeration**: Comprehensive coverage of all discrete states and truth conditions.
+3. **Boundary Value Analysis (BVA)**: Min, Nominal, Max evaluation for all numeric thresholds.
+4. **Combinatorial Pin-Strapping**: Full matrix expansion across all valid hardware dimensions.
+5. **Multi-Step Consolidation**: Cohesive clubbing of sub-step sequences without coverage loss.
+6. **Complete Traceability**: Bi-directional requirement-to-test mapping.
+7. **Robustness & Negative Testing**: Comprehensive fault injection and out-of-range coverage.
+8. **Zero Placeholders**: 100% concrete engineering values with realistic avionics units.

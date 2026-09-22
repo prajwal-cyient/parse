@@ -1,0 +1,1304 @@
+{
+  "LRU-6135": [
+    {
+      "test_case_id": "LRU-6135_NORMAL_01",
+      "requirement_id": "LRU-6135",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRU-6135.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw = nominal in-range value; IVT_Command_ISM = True; IVT_CmdData_ISM = True; Harmonize_Contract_Stop_STL = nominal in-range value; Harmonizing_Active_STL = True; Command / Envelope = 0x0020; Timing / Frame Duration = 50 frames.",
+      "expected_result": "Verify observable outputs for LRU-6135 match requirement specification.",
+      "pass_criteria": "Observed software behavior for LRU-6135 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRU-6135_DC_01",
+      "requirement_id": "LRU-6135",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRU-6135.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw = nominal in-range value; IVT_Command_ISM = False; IVT_CmdData_ISM = False; Harmonize_Contract_Stop_STL = nominal in-range value; Harmonizing_Active_STL = False; Command / Envelope = 0x0020; Timing / Frame Duration = 50 frames.",
+      "expected_result": "Action suppressed for LRU-6135; output flag = False.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRU-9169": [
+    {
+      "test_case_id": "LRU-9169_NORMAL_01",
+      "requirement_id": "LRU-9169",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRU-9169.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw = nominal in-range value; Profile_Id = nominal in-range value; Harmonize_Offset_Default = True; Harmonize_SFC_Default = per applicable configuration table for the LRU under test; Contract_Stop_Collection_Complete = nominal value for Act_Disp_Raw_Avg_Contract.",
+      "expected_result": "Harmonize_SFC_Default = True; Harmonize_Offset_Default = True; Contract_Stop_Collection_Complete = True; Act_Disp_Raw_Avg_Contract = nominal in-range value.",
+      "pass_criteria": "Observed software behavior for LRU-9169 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRU-9169_DC_01",
+      "requirement_id": "LRU-9169",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRU-9169.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw = nominal in-range value; Profile_Id = nominal in-range value; Harmonize_Offset_Default = False; Harmonize_SFC_Default = per applicable configuration table for the LRU under test; Contract_Stop_Collection_Complete = nominal value for Act_Disp_Raw_Avg_Contract.",
+      "expected_result": "Harmonize_SFC_Default = False; Harmonize_Offset_Default = False; Contract_Stop_Collection_Complete = False; Act_Disp_Raw_Avg_Contract = nominal in-range value.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRU-9170": [
+    {
+      "test_case_id": "TC-LRU-9170-CONTRACT-N1",
+      "requirement_id": "LRU-9170",
+      "test_type": "NORMAL",
+      "description": "Clubbed Steps 3, 4A, 4B: Verify that when Act_Disp_Raw_Avg_Contract is within range, Act_Disp_Range_Contract_Fault is False, Contract_Stop_Collection_Complete is True, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Contract = -12.5 (within Contract Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0.",
+      "expected_result": "Act_Disp_Range_Contract_Fault = False; Contract_Stop_Collection_Complete = True; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Contract_Stop_Collection_Complete = True.",
+      "pass_criteria": "Act_Disp_Range_Contract_Fault equals False, Contract_Stop_Collection_Complete equals True, and IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and internal state variables."
+    },
+    {
+      "test_case_id": "TC-LRU-9170-CONTRACT-FAULT",
+      "requirement_id": "LRU-9170",
+      "test_type": "ROBUSTNESS",
+      "description": "Clubbed Steps 3, 4A, 4B: Verify that when Act_Disp_Raw_Avg_Contract is outside range, Act_Disp_Range_Contract_Fault is True, Contract_Stop_Collection_Complete is False, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017 and Harmonizing_Failed = True.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Contract = -25.0 (outside Contract Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0.",
+      "expected_result": "Act_Disp_Range_Contract_Fault = True; Harmonizing_Failed = False; Contract_Stop_Collection_Complete = False; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Contract_Stop_Collection_Complete = False.",
+      "pass_criteria": "Act_Disp_Range_Contract_Fault equals True, Contract_Stop_Collection_Complete equals False, and IVT Response transmitted on STL_Bus with Harmonizing_Failed = True.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and NVM fault log."
+    }
+  ],
+  "LRU-9171": [
+    {
+      "test_case_id": "TC-LRU-9171-CONTRACT-N1",
+      "requirement_id": "LRU-9171",
+      "test_type": "NORMAL",
+      "description": "Clubbed Steps 3, 4A, 4B: Verify that when Act_Disp_Raw_Avg_Contract is within range, Act_Disp_Range_Contract_Fault is False, Contract_Stop_Collection_Complete is True, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Contract = -12.5 (within Contract Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0.",
+      "expected_result": "Act_Disp_Range_Contract_Fault = False; Contract_Stop_Collection_Complete = True; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Contract_Stop_Collection_Complete = True.",
+      "pass_criteria": "Act_Disp_Range_Contract_Fault equals False, Contract_Stop_Collection_Complete equals True, and IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and internal state variables."
+    },
+    {
+      "test_case_id": "TC-LRU-9171-CONTRACT-FAULT",
+      "requirement_id": "LRU-9171",
+      "test_type": "ROBUSTNESS",
+      "description": "Clubbed Steps 3, 4A, 4B: Verify that when Act_Disp_Raw_Avg_Contract is outside range, Act_Disp_Range_Contract_Fault is True, Contract_Stop_Collection_Complete is False, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017 and Harmonizing_Failed = True.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Contract = -25.0 (outside Contract Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0.",
+      "expected_result": "Act_Disp_Range_Contract_Fault = True; Harmonizing_Failed = False; Contract_Stop_Collection_Complete = False; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Contract_Stop_Collection_Complete = False.",
+      "pass_criteria": "Act_Disp_Range_Contract_Fault equals True, Contract_Stop_Collection_Complete equals False, and IVT Response transmitted on STL_Bus with Harmonizing_Failed = True.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and NVM fault log."
+    }
+  ],
+  "LRU-9193": [
+    {
+      "test_case_id": "SWVCP_AAP_TC_LRU-9193_TRANSITION_01",
+      "requirement_id": "LRU-9193",
+      "description": "Verify that a fault history entry is created when Act_Disp_Range_Contract_Fault transitions from False to True.",
+      "test_type": "NORMAL",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; System in baseline operational state; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Fault_History_Table_PSR empty; Act_Disp_Range_Contract_Fault = False.",
+      "expected_result": "Fault_History_Table_PSR contains entry for LRU-9193; Fault_History_Table_PSR entry count = 1.",
+      "pass_criteria": "Observed software outputs match expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Read Fault_History_Table_PSR after stimulus; confirm single entry for LRU-9193 and no other entries."
+    },
+    {
+      "test_case_id": "SWVCP_AAP_TC_LRU-9193_RESTING_TRUE_01",
+      "requirement_id": "LRU-9193",
+      "description": "Verify that no additional fault history entry is created when Act_Disp_Range_Contract_Fault remains True (no transition).",
+      "test_type": "NORMAL",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; System in baseline operational state; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Fault_History_Table_PSR contains entry for LRU-9193; Act_Disp_Range_Contract_Fault = False.",
+      "expected_result": "Fault_History_Table_PSR remains unchanged; Fault_History_Table_PSR entry count = 1.",
+      "pass_criteria": "Observed software outputs match expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Confirm that no new entry is added to Fault_History_Table_PSR after stimulus."
+    }
+  ],
+  "LRU-9184": [
+    {
+      "test_case_id": "LRU-9184_NORMAL_01",
+      "requirement_id": "LRU-9184",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRU-9184.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw = nominal in-range value; IVT_Command_ISM = True; IVT_CmdData_ISM = True; Harmonize_Expand_Stop_STL = nominal in-range value; Command / Envelope = 0x0020; Timing / Frame Duration = 50 frames.",
+      "expected_result": "Verify observable outputs for LRU-9184 match requirement specification.",
+      "pass_criteria": "Observed software behavior for LRU-9184 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRU-9184_DC_01",
+      "requirement_id": "LRU-9184",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRU-9184.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw = nominal in-range value; IVT_Command_ISM = False; IVT_CmdData_ISM = False; Harmonize_Expand_Stop_STL = nominal in-range value; Command / Envelope = 0x0020; Timing / Frame Duration = 50 frames.",
+      "expected_result": "Action suppressed for LRU-9184; output flag = False.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRU-9174": [
+    {
+      "test_case_id": "LRU-9174_NORMAL_01",
+      "requirement_id": "LRU-9174",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRU-9174.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; Commanded to Expanded Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw = nominal in-range value; Profile_Id = nominal in-range value; Harmonize_Offset_Default = True; Harmonize_SFC_Default = per applicable configuration table for the LRU under test; Expand_Stop_Collection_Complete = nominal value for Act_Disp_Raw_Avg_Expand.",
+      "expected_result": "Harmonize_SFC_Default = True; Harmonize_Offset_Default = True; Expand_Stop_Collection_Complete = True; Act_Disp_Raw_Avg_Expand = nominal in-range value.",
+      "pass_criteria": "Observed software behavior for LRU-9174 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRU-9174_DC_01",
+      "requirement_id": "LRU-9174",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRU-9174.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; Commanded to Expanded Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw = nominal in-range value; Profile_Id = nominal in-range value; Harmonize_Offset_Default = False; Harmonize_SFC_Default = per applicable configuration table for the LRU under test; Expand_Stop_Collection_Complete = nominal value for Act_Disp_Raw_Avg_Expand.",
+      "expected_result": "Harmonize_SFC_Default = False; Harmonize_Offset_Default = False; Expand_Stop_Collection_Complete = False; Act_Disp_Raw_Avg_Expand = nominal in-range value.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRU-9177": [
+    {
+      "test_case_id": "TC-LRU-9177-EXPAND-N1",
+      "requirement_id": "LRU-9177",
+      "test_type": "NORMAL",
+      "description": "Clubbed Steps 8, 9A, 9B: Verify that when Act_Disp_Raw_Avg_Expand is within range, Act_Disp_Range_Expand_Fault is False, Expand_Stop_Collection_Complete is True, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Expand Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Expand = 15.0 (within Expand Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0.",
+      "expected_result": "Act_Disp_Range_Expand_Fault = False; Expand_Stop_Collection_Complete = True; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Expand_Stop_Collection_Complete = True.",
+      "pass_criteria": "Act_Disp_Range_Expand_Fault equals False, Expand_Stop_Collection_Complete equals True, and IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and internal state variables."
+    },
+    {
+      "test_case_id": "TC-LRU-9177-EXPAND-FAULT",
+      "requirement_id": "LRU-9177",
+      "test_type": "ROBUSTNESS",
+      "description": "Clubbed Steps 8, 9A, 9B: Verify that when Act_Disp_Raw_Avg_Expand is outside range, Act_Disp_Range_Expand_Fault is True, Expand_Stop_Collection_Complete is False, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017 and Harmonizing_Failed = True.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Expand Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Expand = 30.0 (outside Expand Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0.",
+      "expected_result": "Act_Disp_Range_Expand_Fault = True; Harmonizing_Failed = False; Expand_Stop_Collection_Complete = False; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Expand_Stop_Collection_Complete = False.",
+      "pass_criteria": "Act_Disp_Range_Expand_Fault equals True, Expand_Stop_Collection_Complete equals False, and IVT Response transmitted on STL_Bus with Harmonizing_Failed = True.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and NVM fault log."
+    }
+  ],
+  "LRU-9895": [
+    {
+      "test_case_id": "TC-LRU-9895-EXPAND-N1",
+      "requirement_id": "LRU-9895",
+      "test_type": "NORMAL",
+      "description": "Clubbed Steps 8, 9A, 9B: Verify that when Act_Disp_Raw_Avg_Expand is within range, Act_Disp_Range_Expand_Fault is False, Expand_Stop_Collection_Complete is True, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Expand Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Expand = 15.0 (within Expand Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0.",
+      "expected_result": "Act_Disp_Range_Expand_Fault = False; Expand_Stop_Collection_Complete = True; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Expand_Stop_Collection_Complete = True.",
+      "pass_criteria": "Act_Disp_Range_Expand_Fault equals False, Expand_Stop_Collection_Complete equals True, and IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and internal state variables."
+    },
+    {
+      "test_case_id": "TC-LRU-9895-EXPAND-FAULT",
+      "requirement_id": "LRU-9895",
+      "test_type": "ROBUSTNESS",
+      "description": "Clubbed Steps 8, 9A, 9B: Verify that when Act_Disp_Raw_Avg_Expand is outside range, Act_Disp_Range_Expand_Fault is True, Expand_Stop_Collection_Complete is False, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017 and Harmonizing_Failed = True.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Expand Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Expand = 30.0 (outside Expand Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0.",
+      "expected_result": "Act_Disp_Range_Expand_Fault = True; Harmonizing_Failed = False; Expand_Stop_Collection_Complete = False; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Expand_Stop_Collection_Complete = False.",
+      "pass_criteria": "Act_Disp_Range_Expand_Fault equals True, Expand_Stop_Collection_Complete equals False, and IVT Response transmitted on STL_Bus with Harmonizing_Failed = True.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and NVM fault log."
+    }
+  ],
+  "LRU-9238": [
+    {
+      "test_case_id": "LRU-9238_NORMAL_01",
+      "requirement_id": "LRU-9238",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRU-9238.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Apply operational stimuli for LRU-9238 per requirement statement; Fault_History_Table_PSR = per applicable configuration table for the LRU under test; Act_Disp_Range_Expand_Fault = True.",
+      "expected_result": "Act_Disp_Range_Expand_Fault = True; Fault_History_Table_PSR = True.",
+      "pass_criteria": "Observed software behavior for LRU-9238 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRU-9238_DC_01",
+      "requirement_id": "LRU-9238",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRU-9238.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Apply operational stimuli for LRU-9238 per requirement statement; Fault_History_Table_PSR = per applicable configuration table for the LRU under test; Act_Disp_Range_Expand_Fault = False.",
+      "expected_result": "Act_Disp_Range_Expand_Fault = False; Fault_History_Table_PSR = False.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRU-9205": [
+    {
+      "test_case_id": "LRU-9205_NORMAL_01",
+      "requirement_id": "LRU-9205",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRU-9205.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw = nominal in-range value; IVT_Command_ISM = True; IVT_CmdData_ISM = True; Harmonize_VOID_STL = nominal in-range value; Command / Envelope = 0x0020; Timing / Frame Duration = 50 frames.",
+      "expected_result": "Verify observable outputs for LRU-9205 match requirement specification.",
+      "pass_criteria": "Observed software behavior for LRU-9205 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRU-9205_DC_01",
+      "requirement_id": "LRU-9205",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRU-9205.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw = nominal in-range value; IVT_Command_ISM = False; IVT_CmdData_ISM = False; Harmonize_VOID_STL = nominal in-range value; Command / Envelope = 0x0020; Timing / Frame Duration = 50 frames.",
+      "expected_result": "Action suppressed for LRU-9205; output flag = False.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRU-9222": [
+    {
+      "test_case_id": "SWVCP_AAP_TC_LRU-9222_VOID_01",
+      "requirement_id": "LRU-9222",
+      "description": "Verify Act_Disp_Raw_Avg_VOID calculation for VOID commanded position with ATYPE_1 parameters and confirm VOID_Collection_Complete flag.",
+      "test_type": "NORMAL",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded Position: VOID; Harmonizing Mode: active; Commanded to Void Position.",
+      "test_inputs": "Act_Disp_Raw = -12.5; Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0; Harmonizing_Active_STL = True; Profile_Id = nominal value for Act_Disp_Raw_Avg_VOID; VOID_Collection_Complete = nominal value for Act_Disp_Raw_Avg_VOID.",
+      "expected_result": "Act_Disp_Raw_Avg_VOID = -12.5; VOID_Collection_Complete = True.",
+      "pass_criteria": "Observed software outputs match expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify Act_Disp_Raw_Avg_VOID via internal register read and confirm VOID_Collection_Complete flag is set. Check STL_Bus telemetry for frame 0x0017 if applicable."
+    },
+    {
+      "test_case_id": "SWVCP_AAP_TC_LRU-9222_VOID_02",
+      "requirement_id": "LRU-9222",
+      "description": "Verify Act_Disp_Raw_Avg_VOID calculation for VOID commanded position with ATYPE_3 parameters and confirm VOID_Collection_Complete flag.",
+      "test_type": "NORMAL",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_3; Target LRU: LRU_2; Commanded Position: VOID; Harmonizing Mode: active; Commanded to Void Position.",
+      "test_inputs": "Act_Disp_Raw = -12.5; Harmonize_SFC_Default = 0.8; Harmonize_Offset_Default = 2.0; Harmonizing_Active_STL = True; Profile_Id = nominal value for Act_Disp_Raw_Avg_VOID; VOID_Collection_Complete = nominal value for Act_Disp_Raw_Avg_VOID.",
+      "expected_result": "Act_Disp_Raw_Avg_VOID = -8.0; VOID_Collection_Complete = True.",
+      "pass_criteria": "Observed software outputs match expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify Act_Disp_Raw_Avg_VOID via internal register read and confirm VOID_Collection_Complete flag is set. Check STL_Bus telemetry for frame 0x0017 if applicable."
+    }
+  ],
+  "LRU-9209": [
+    {
+      "test_case_id": "TC-LRU-9209-EXPAND-N1",
+      "requirement_id": "LRU-9209",
+      "test_type": "NORMAL",
+      "description": "Clubbed Steps 8, 9A, 9B: Verify that when Act_Disp_Raw_Avg_Expand is within range, Act_Disp_Range_Expand_Fault is False, Expand_Stop_Collection_Complete is True, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Expand Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Expand = 15.0 (within Expand Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0.",
+      "expected_result": "Act_Disp_Range_Expand_Fault = False; Expand_Stop_Collection_Complete = True; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Expand_Stop_Collection_Complete = True.",
+      "pass_criteria": "Act_Disp_Range_Expand_Fault equals False, Expand_Stop_Collection_Complete equals True, and IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and internal state variables."
+    },
+    {
+      "test_case_id": "TC-LRU-9209-EXPAND-FAULT",
+      "requirement_id": "LRU-9209",
+      "test_type": "ROBUSTNESS",
+      "description": "Clubbed Steps 8, 9A, 9B: Verify that when Act_Disp_Raw_Avg_Expand is outside range, Act_Disp_Range_Expand_Fault is True, Expand_Stop_Collection_Complete is False, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017 and Harmonizing_Failed = True.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Expand Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Expand = 30.0 (outside Expand Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0.",
+      "expected_result": "Act_Disp_Range_Expand_Fault = True; Harmonizing_Failed = False; Expand_Stop_Collection_Complete = False; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Expand_Stop_Collection_Complete = False.",
+      "pass_criteria": "Act_Disp_Range_Expand_Fault equals True, Expand_Stop_Collection_Complete equals False, and IVT Response transmitted on STL_Bus with Harmonizing_Failed = True.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and NVM fault log."
+    }
+  ],
+  "LRU-9210": [
+    {
+      "test_case_id": "TC-LRU-9210-CONTRACT-N1",
+      "requirement_id": "LRU-9210",
+      "test_type": "NORMAL",
+      "description": "Clubbed Steps 3, 4A, 4B: Verify that when Act_Disp_Raw_Avg_Contract is within range, Act_Disp_Range_Contract_Fault is False, Contract_Stop_Collection_Complete is True, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Contract = -12.5 (within Contract Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0.",
+      "expected_result": "Act_Disp_Range_Contract_Fault = False; Contract_Stop_Collection_Complete = True; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Contract_Stop_Collection_Complete = True.",
+      "pass_criteria": "Act_Disp_Range_Contract_Fault equals False, Contract_Stop_Collection_Complete equals True, and IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and internal state variables."
+    },
+    {
+      "test_case_id": "TC-LRU-9210-CONTRACT-FAULT",
+      "requirement_id": "LRU-9210",
+      "test_type": "ROBUSTNESS",
+      "description": "Clubbed Steps 3, 4A, 4B: Verify that when Act_Disp_Raw_Avg_Contract is outside range, Act_Disp_Range_Contract_Fault is True, Contract_Stop_Collection_Complete is False, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017 and Harmonizing_Failed = True.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Contract = -25.0 (outside Contract Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0.",
+      "expected_result": "Act_Disp_Range_Contract_Fault = True; Harmonizing_Failed = False; Contract_Stop_Collection_Complete = False; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Contract_Stop_Collection_Complete = False; VOID_Collection_Complete = False.",
+      "pass_criteria": "Act_Disp_Range_Contract_Fault equals True, Contract_Stop_Collection_Complete equals False, and IVT Response transmitted on STL_Bus with Harmonizing_Failed = True.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and NVM fault log."
+    }
+  ],
+  "LRU-9235": [
+    {
+      "test_case_id": "LRU-9235_NORMAL_01",
+      "requirement_id": "LRU-9235",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRU-9235.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Apply operational stimuli for LRU-9235 per requirement statement; Fault_History_Table_PSR = per applicable configuration table for the LRU under test; Act_Disp_Range_VOID_Fault = True.",
+      "expected_result": "Act_Disp_Range_VOID_Fault = True; Fault_History_Table_PSR = True.",
+      "pass_criteria": "Observed software behavior for LRU-9235 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRU-9235_DC_01",
+      "requirement_id": "LRU-9235",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRU-9235.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Apply operational stimuli for LRU-9235 per requirement statement; Fault_History_Table_PSR = per applicable configuration table for the LRU under test; Act_Disp_Range_VOID_Fault = False.",
+      "expected_result": "Act_Disp_Range_VOID_Fault = False; Fault_History_Table_PSR = False.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRU-9891": [
+    {
+      "test_case_id": "LRU-9891_NORMAL_01",
+      "requirement_id": "LRU-9891",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRU-9891.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Range_VOID_Fault = False.",
+      "expected_result": "Act_Disp_Range_VOID_Fault = True; Act_Disp_Range_Contract_Fault = True; Act_Disp_Range_Expand_Fault = True; Contract_Stop_Collection_Complete = True; Expand_Stop_Collection_Complete = True; VOID_Collection_Complete = True; Primary_Harmonize_Calc = nominal in-range value.",
+      "pass_criteria": "Observed software behavior for LRU-9891 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRU-9891_DC_01",
+      "requirement_id": "LRU-9891",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRU-9891.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Range_VOID_Fault = False.",
+      "expected_result": "Act_Disp_Range_VOID_Fault = False; Act_Disp_Range_Contract_Fault = False; Act_Disp_Range_Expand_Fault = False; Contract_Stop_Collection_Complete = False; Expand_Stop_Collection_Complete = False; VOID_Collection_Complete = False; Primary_Harmonize_Calc = nominal in-range value.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRU-9892": [
+    {
+      "test_case_id": "LRU-9892_NORMAL_01",
+      "requirement_id": "LRU-9892",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRU-9892.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Range_Contract_Fault = False.",
+      "expected_result": "Act_Disp_Range_Contract_Fault = True; Act_Disp_Range_Expand_Fault = True; Contract_Stop_Collection_Complete = True; Expand_Stop_Collection_Complete = True; Spoiler_Harmonize_Calc = nominal in-range value.",
+      "pass_criteria": "Observed software behavior for LRU-9892 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRU-9892_DC_01",
+      "requirement_id": "LRU-9892",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRU-9892.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Range_Contract_Fault = False.",
+      "expected_result": "Act_Disp_Range_Contract_Fault = False; Act_Disp_Range_Expand_Fault = False; Contract_Stop_Collection_Complete = False; Expand_Stop_Collection_Complete = False; Spoiler_Harmonize_Calc = nominal in-range value.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRU-9176": [
+    {
+      "test_case_id": "LRU-9176_NORMAL_01",
+      "requirement_id": "LRU-9176",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRU-9176.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Spoiler_Harmonize_Calc = nominal in-range value; Max_Stroke = nominal in-range value; Act_Disp_Raw_Avg_Expand = nominal in-range value; Act_Disp_Raw_Avg_Contract = nominal in-range value.",
+      "expected_result": "Verify observable outputs for LRU-9176 match requirement specification; K_Harmonize_New = nominal in-range value.",
+      "pass_criteria": "Observed software behavior for LRU-9176 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRU-9176_DC_01",
+      "requirement_id": "LRU-9176",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRU-9176.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Spoiler_Harmonize_Calc = nominal in-range value; Max_Stroke = nominal in-range value; Act_Disp_Raw_Avg_Expand = nominal in-range value; Act_Disp_Raw_Avg_Contract = nominal in-range value.",
+      "expected_result": "Action suppressed for LRU-9176; output flag = False; K_Harmonize_New = nominal in-range value.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRU-6137": [
+    {
+      "test_case_id": "LRU-6137_NORMAL_01",
+      "requirement_id": "LRU-6137",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRU-6137.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Spoiler_Harmonize_Calc = nominal in-range value; Act_Disp_Raw_Avg_Contract = nominal in-range value; K_Harmonize_New = nominal in-range value; Profile_Id = nominal in-range value.",
+      "expected_result": "Harmonize_Offset_Default = True; Harmonize_Offset_New = nominal in-range value.",
+      "pass_criteria": "Observed software behavior for LRU-6137 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRU-6137_DC_01",
+      "requirement_id": "LRU-6137",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRU-6137.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Spoiler_Harmonize_Calc = nominal in-range value; Act_Disp_Raw_Avg_Contract = nominal in-range value; K_Harmonize_New = nominal in-range value; Profile_Id = nominal in-range value.",
+      "expected_result": "Harmonize_Offset_Default = False; Harmonize_Offset_New = nominal in-range value.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRU-9212": [
+    {
+      "test_case_id": "LRU-9212_NORMAL_01",
+      "requirement_id": "LRU-9212",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRU-9212.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Primary_Harmonize_Calc = nominal in-range value; Profile_Id = nominal in-range value; K_Harmonize_New = nominal in-range value; Act_Disp_Raw_Avg_Expand = nominal in-range value; Act_Disp_Raw_Avg_Contract = nominal in-range value.",
+      "expected_result": "Verify observable outputs for LRU-9212 match requirement specification.",
+      "pass_criteria": "Observed software behavior for LRU-9212 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRU-9212_DC_01",
+      "requirement_id": "LRU-9212",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRU-9212.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Primary_Harmonize_Calc = nominal in-range value; Profile_Id = nominal in-range value; K_Harmonize_New = nominal in-range value; Act_Disp_Raw_Avg_Expand = nominal in-range value; Act_Disp_Raw_Avg_Contract = nominal in-range value.",
+      "expected_result": "Action suppressed for LRU-9212; output flag = False.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRU-9944": [
+    {
+      "test_case_id": "LRU-9944_NORMAL_01",
+      "requirement_id": "LRU-9944",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRU-9944.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Primary_Harmonize_Calc = nominal in-range value; Profile_Id = nominal in-range value; K_Harmonize_New = nominal in-range value; Max_Stroke = nominal in-range value; Act_Disp_Raw_Avg_Expand = nominal in-range value; Act_Disp_Raw_Avg_Contract = nominal in-range value.",
+      "expected_result": "Verify observable outputs for LRU-9944 match requirement specification.",
+      "pass_criteria": "Observed software behavior for LRU-9944 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRU-9944_DC_01",
+      "requirement_id": "LRU-9944",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRU-9944.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Primary_Harmonize_Calc = nominal in-range value; Profile_Id = nominal in-range value; K_Harmonize_New = nominal in-range value; Max_Stroke = nominal in-range value; Act_Disp_Raw_Avg_Expand = nominal in-range value; Act_Disp_Raw_Avg_Contract = nominal in-range value.",
+      "expected_result": "Action suppressed for LRU-9944; output flag = False.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRU-9213": [
+    {
+      "test_case_id": "LRU-9213_NORMAL_01",
+      "requirement_id": "LRU-9213",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRU-9213.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Primary_Harmonize_Calc = nominal in-range value; Harmonize_Offset_New = nominal in-range value; Act_Disp_Raw_Avg_VOID = nominal in-range value; K_Harmonize_New = nominal in-range value; Profile_Id = nominal in-range value.",
+      "expected_result": "Harmonize_Offset_Default = True.",
+      "pass_criteria": "Observed software behavior for LRU-9213 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRU-9213_DC_01",
+      "requirement_id": "LRU-9213",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRU-9213.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Primary_Harmonize_Calc = nominal in-range value; Harmonize_Offset_New = nominal in-range value; Act_Disp_Raw_Avg_VOID = nominal in-range value; K_Harmonize_New = nominal in-range value; Profile_Id = nominal in-range value.",
+      "expected_result": "Harmonize_Offset_Default = False.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRU-10915": [
+    {
+      "test_case_id": "LRU-10915_NORMAL_01",
+      "requirement_id": "LRU-10915",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRU-10915.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Primary_Harmonize_Calc = nominal in-range value; Act_Disp_Raw_Avg_Contract = nominal in-range value; Contract_Error = nominal in-range value.",
+      "expected_result": "Verify observable outputs for LRU-10915 match requirement specification.",
+      "pass_criteria": "Observed software behavior for LRU-10915 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRU-10915_DC_01",
+      "requirement_id": "LRU-10915",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRU-10915.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Primary_Harmonize_Calc = nominal in-range value; Act_Disp_Raw_Avg_Contract = nominal in-range value; Contract_Error = nominal in-range value.",
+      "expected_result": "Action suppressed for LRU-10915; output flag = False.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRU-10916": [
+    {
+      "test_case_id": "LRU-10916_NORMAL_01",
+      "requirement_id": "LRU-10916",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRU-10916.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Upper_Limit_Harmonized = nominal in-range value; Lower_Limit_Harmonized = nominal in-range value; Profile_Id = nominal in-range value.",
+      "expected_result": "Verify observable outputs for LRU-10916 match requirement specification.",
+      "pass_criteria": "Observed software behavior for LRU-10916 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRU-10916_DC_01",
+      "requirement_id": "LRU-10916",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRU-10916.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Upper_Limit_Harmonized = nominal in-range value; Lower_Limit_Harmonized = nominal in-range value; Profile_Id = nominal in-range value.",
+      "expected_result": "Action suppressed for LRU-10916; output flag = False.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRU-10917": [
+    {
+      "test_case_id": "LRU-10917_NORMAL_01",
+      "requirement_id": "LRU-10917",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRU-10917.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Lower_Limit_Harmonized = nominal in-range value; Profile_Id = nominal in-range value.",
+      "expected_result": "Verify observable outputs for LRU-10917 match requirement specification.",
+      "pass_criteria": "Observed software behavior for LRU-10917 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRU-10917_DC_01",
+      "requirement_id": "LRU-10917",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRU-10917.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Lower_Limit_Harmonized = nominal in-range value; Profile_Id = nominal in-range value.",
+      "expected_result": "Action suppressed for LRU-10917; output flag = False.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRU-10918": [
+    {
+      "test_case_id": "LRU-10918_NORMAL_01",
+      "requirement_id": "LRU-10918",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRU-10918.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Expand = nominal in-range value; Expand_Error = nominal in-range value; Profile_Id = nominal in-range value.",
+      "expected_result": "Verify observable outputs for LRU-10918 match requirement specification.",
+      "pass_criteria": "Observed software behavior for LRU-10918 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRU-10918_DC_01",
+      "requirement_id": "LRU-10918",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRU-10918.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Expand = nominal in-range value; Expand_Error = nominal in-range value; Profile_Id = nominal in-range value.",
+      "expected_result": "Action suppressed for LRU-10918; output flag = False.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRU-10921": [
+    {
+      "test_case_id": "LRU-10921_NORMAL_01",
+      "requirement_id": "LRU-10921",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRU-10921.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Upper_Limit_Harmonized = nominal in-range value; Profile_Id = nominal in-range value.",
+      "expected_result": "Verify observable outputs for LRU-10921 match requirement specification.",
+      "pass_criteria": "Observed software behavior for LRU-10921 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRU-10921_DC_01",
+      "requirement_id": "LRU-10921",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRU-10921.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Upper_Limit_Harmonized = nominal in-range value; Profile_Id = nominal in-range value.",
+      "expected_result": "Action suppressed for LRU-10921; output flag = False.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRU-9215": [
+    {
+      "test_case_id": "SWVCP_AAP_TC_LRU-9215_ATYPE2_LRU3_NORMAL_01",
+      "requirement_id": "LRU-9215",
+      "description": "Verify that new LRU Harmonizing parameters are correctly stored in PSR registers.",
+      "test_type": "NORMAL",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_2; Target LRU: LRU_3; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "IVT_Mode_ModeLgc = True; Harmonizing_Active_STL = True; Harmonize_SFC_Default = 0x0010; Harmonize_Offset_Default = 0x0005; Asset_ID_STL = 0x1234; Profile_ID_Disc_Dbnce_Init = 0x5678; Lower_Limit_LRU_PSR_New = 0x000A; Upper_Limit_LRU_PSR_New = 0x0015.",
+      "expected_result": "Harmonize_SFC_PSR = 0x0010; Harmonize_Offset_PSR = 0x0005; Asset_ID_PSR = 0x1234; Config_LRU_PSR = 0x5678; Lower_Limit_LRU_PSR = 0x000A; Upper_Limit_LRU_PSR = 0x0015; CRC_PSR = 0x4456.",
+      "pass_criteria": "Observed software outputs match expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via internal register read and STL_Bus telemetry frame 0x0017."
+    }
+  ],
+  "LRU-9225": [
+    {
+      "test_case_id": "LRU-9225_NORMAL_01",
+      "requirement_id": "LRU-9225",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRU-9225.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Apply operational stimuli for LRU-9225 per requirement statement.",
+      "expected_result": "Verify observable outputs for LRU-9225 match requirement specification.",
+      "pass_criteria": "Observed software behavior for LRU-9225 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRU-9225_DC_01",
+      "requirement_id": "LRU-9225",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRU-9225.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Apply operational stimuli for LRU-9225 per requirement statement.",
+      "expected_result": "Action suppressed for LRU-9225; output flag = False.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRU-9814": [
+    {
+      "test_case_id": "SWVCP_AAP_TC_LRU-9814_NORMAL_01",
+      "requirement_id": "LRU-9814",
+      "description": "Verify CRC check passes when all PSR Harmonizing parameters are correctly set.",
+      "test_type": "NORMAL",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Harmonize_Offset_PSR = 0x0010; Harmonize_SFC_PSR = 1.0; Asset_ID_PSR = 0x1234; Config_LRU_PSR = 0x01; Lower_Limit_LRU_PSR = -10.0; Upper_Limit_LRU_PSR = 10.0.",
+      "expected_result": "Harmonizing_Failed = False; Harmonizing_Complete = True.",
+      "pass_criteria": "Observed software outputs match expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Compute CRC over the six PSR parameters and compare with the CRC register. Verify that the CRC register indicates a successful check and that the Harmonizing_Complete flag is asserted."
+    },
+    {
+      "test_case_id": "SWVCP_AAP_TC_LRU-9814_ERROR_01",
+      "requirement_id": "LRU-9814",
+      "description": "Verify CRC check fails when Harmonize_Offset_PSR is corrupted.",
+      "test_type": "ERROR",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Harmonize_Offset_PSR = 0xFFFF; Harmonize_SFC_PSR = 1.0; Asset_ID_PSR = 0x1234; Config_LRU_PSR = 0x01; Lower_Limit_LRU_PSR = -10.0; Upper_Limit_LRU_PSR = 10.0.",
+      "expected_result": "Harmonizing_Failed = True; Harmonizing_Complete = False.",
+      "pass_criteria": "Observed software outputs match expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Compute CRC over the six PSR parameters and confirm that the CRC register indicates a mismatch. Verify that the Harmonizing_Failed flag is asserted and Harmonizing_Complete is cleared."
+    }
+  ],
+  "LRU-9224": [
+    {
+      "test_case_id": "TC-LRU-9224-CONTRACT-N1",
+      "requirement_id": "LRU-9224",
+      "test_type": "NORMAL",
+      "description": "Clubbed Steps 3, 4A, 4B: Verify that when Act_Disp_Raw_Avg_Contract is within range, Act_Disp_Range_Contract_Fault is False, Contract_Stop_Collection_Complete is True, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Contract = -12.5 (within Contract Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0.",
+      "expected_result": "Act_Disp_Range_Contract_Fault = False; Contract_Stop_Collection_Complete = True; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Contract_Stop_Collection_Complete = True.",
+      "pass_criteria": "Act_Disp_Range_Contract_Fault equals False, Contract_Stop_Collection_Complete equals True, and IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and internal state variables."
+    },
+    {
+      "test_case_id": "TC-LRU-9224-CONTRACT-FAULT",
+      "requirement_id": "LRU-9224",
+      "test_type": "ROBUSTNESS",
+      "description": "Clubbed Steps 3, 4A, 4B: Verify that when Act_Disp_Raw_Avg_Contract is outside range, Act_Disp_Range_Contract_Fault is True, Contract_Stop_Collection_Complete is False, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017 and Harmonizing_Failed = True.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Contract = -25.0 (outside Contract Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0.",
+      "expected_result": "Act_Disp_Range_Contract_Fault = True; Harmonizing_Failed = False; Contract_Stop_Collection_Complete = False; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Contract_Stop_Collection_Complete = False.",
+      "pass_criteria": "Act_Disp_Range_Contract_Fault equals True, Contract_Stop_Collection_Complete equals False, and IVT Response transmitted on STL_Bus with Harmonizing_Failed = True.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and NVM fault log."
+    }
+  ],
+  "LRU-9249": [
+    {
+      "test_case_id": "TC-LRU-9249-CONTRACT-N1",
+      "requirement_id": "LRU-9249",
+      "test_type": "NORMAL",
+      "description": "Clubbed Steps 3, 4A, 4B: Verify that when Act_Disp_Raw_Avg_Contract is within range, Act_Disp_Range_Contract_Fault is False, Contract_Stop_Collection_Complete is True, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Contract = -12.5 (within Contract Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0; Harmonizing_PSR_Data_Fault = False; Fault_History_Table_PSR = per applicable configuration table for the LRU under test.",
+      "expected_result": "Act_Disp_Range_Contract_Fault = False; Contract_Stop_Collection_Complete = True; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Contract_Stop_Collection_Complete = True.",
+      "pass_criteria": "Act_Disp_Range_Contract_Fault equals False, Contract_Stop_Collection_Complete equals True, and IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and internal state variables."
+    },
+    {
+      "test_case_id": "TC-LRU-9249-CONTRACT-FAULT",
+      "requirement_id": "LRU-9249",
+      "test_type": "ROBUSTNESS",
+      "description": "Clubbed Steps 3, 4A, 4B: Verify that when Act_Disp_Raw_Avg_Contract is outside range, Act_Disp_Range_Contract_Fault is True, Contract_Stop_Collection_Complete is False, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017 and Harmonizing_Failed = True.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Contract = -25.0 (outside Contract Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0; Harmonizing_PSR_Data_Fault = False; Fault_History_Table_PSR = per applicable configuration table for the LRU under test.",
+      "expected_result": "Act_Disp_Range_Contract_Fault = True; Harmonizing_Failed = False; Contract_Stop_Collection_Complete = False; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Contract_Stop_Collection_Complete = False.",
+      "pass_criteria": "Act_Disp_Range_Contract_Fault equals True, Contract_Stop_Collection_Complete equals False, and IVT Response transmitted on STL_Bus with Harmonizing_Failed = True.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and NVM fault log."
+    }
+  ],
+  "LRU-9894": [
+    {
+      "test_case_id": "TC-LRU-9894-CONTRACT-N1",
+      "requirement_id": "LRU-9894",
+      "test_type": "NORMAL",
+      "description": "Clubbed Steps 3, 4A, 4B: Verify that when Act_Disp_Raw_Avg_Contract is within range, Act_Disp_Range_Contract_Fault is False, Contract_Stop_Collection_Complete is True, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Contract = -12.5 (within Contract Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0; Harmonizing_PSR_Data_Fault = False.",
+      "expected_result": "Act_Disp_Range_Contract_Fault = False; Contract_Stop_Collection_Complete = True; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Contract_Stop_Collection_Complete = True.",
+      "pass_criteria": "Act_Disp_Range_Contract_Fault equals False, Contract_Stop_Collection_Complete equals True, and IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and internal state variables."
+    },
+    {
+      "test_case_id": "TC-LRU-9894-CONTRACT-FAULT",
+      "requirement_id": "LRU-9894",
+      "test_type": "ROBUSTNESS",
+      "description": "Clubbed Steps 3, 4A, 4B: Verify that when Act_Disp_Raw_Avg_Contract is outside range, Act_Disp_Range_Contract_Fault is True, Contract_Stop_Collection_Complete is False, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017 and Harmonizing_Failed = True.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Contract = -25.0 (outside Contract Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0; Harmonizing_PSR_Data_Fault = False.",
+      "expected_result": "Act_Disp_Range_Contract_Fault = True; Harmonizing_Failed = False; Contract_Stop_Collection_Complete = False; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Contract_Stop_Collection_Complete = False.",
+      "pass_criteria": "Act_Disp_Range_Contract_Fault equals True, Contract_Stop_Collection_Complete equals False, and IVT Response transmitted on STL_Bus with Harmonizing_Failed = True.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and NVM fault log."
+    }
+  ],
+  "LRU-9247": [
+    {
+      "test_case_id": "TC-LRU-9247-CONTRACT-N1",
+      "requirement_id": "LRU-9247",
+      "test_type": "NORMAL",
+      "description": "Clubbed Steps 3, 4A, 4B: Verify that when Act_Disp_Raw_Avg_Contract is within range, Act_Disp_Range_Contract_Fault is False, Contract_Stop_Collection_Complete is True, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Contract = -12.5 (within Contract Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0; K_Harmonize_ISM = False; Harmonizing_PSR_Data_Fault = False.",
+      "expected_result": "Act_Disp_Range_Contract_Fault = False; Contract_Stop_Collection_Complete = True; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Contract_Stop_Collection_Complete = True.",
+      "pass_criteria": "Act_Disp_Range_Contract_Fault equals False, Contract_Stop_Collection_Complete equals True, and IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and internal state variables."
+    },
+    {
+      "test_case_id": "TC-LRU-9247-CONTRACT-FAULT",
+      "requirement_id": "LRU-9247",
+      "test_type": "ROBUSTNESS",
+      "description": "Clubbed Steps 3, 4A, 4B: Verify that when Act_Disp_Raw_Avg_Contract is outside range, Act_Disp_Range_Contract_Fault is True, Contract_Stop_Collection_Complete is False, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017 and Harmonizing_Failed = True.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Contract = -25.0 (outside Contract Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0; K_Harmonize_ISM = False; Harmonizing_PSR_Data_Fault = False.",
+      "expected_result": "Act_Disp_Range_Contract_Fault = True; Harmonizing_Failed = False; Contract_Stop_Collection_Complete = False; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Contract_Stop_Collection_Complete = False.",
+      "pass_criteria": "Act_Disp_Range_Contract_Fault equals True, Contract_Stop_Collection_Complete equals False, and IVT Response transmitted on STL_Bus with Harmonizing_Failed = True.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and NVM fault log."
+    }
+  ],
+  "LRU-9239": [
+    {
+      "test_case_id": "TC-LRU-9239-CONTRACT-N1",
+      "requirement_id": "LRU-9239",
+      "test_type": "NORMAL",
+      "description": "Clubbed Steps 3, 4A, 4B: Verify that when Act_Disp_Raw_Avg_Contract is within range, Act_Disp_Range_Contract_Fault is False, Contract_Stop_Collection_Complete is True, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Contract = -12.5 (within Contract Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0; IVT_Command_ISM = False; Harmonizing_PSR_Data_Fault = False; Harmonizing_and_Configuration_Parameters_Request = nominal value for Harmonizing_and_Configuration_Parameters_Request; STL_Bus = nominal value for Harmonizing_and_Configuration_Parameters_Request; IVT_CmdData_ISM = nominal value for Harmonizing_and_Configuration_Parameters_Request; Config_LRU_PSR = per applicable configuration table for the LRU under test; Asset_ID_PSR = per applicable configuration table for the LRU under test; Harmonizing_SFC_PSR = per applicable configuration table for the LRU under test; Harmonizing_Offset_PSR = per applicable configuration table for the LRU under test; Lower_Limit_LRU_PSR = per applicable configuration table for the LRU under test; Upper_Limit_LRU_PSR = per applicable configuration table for the LRU under test; IVT_Receipt_Envelope = 0x0011; IVT_Receipt_Content = nominal value for Harmonizing_and_Configuration_Parameters_Request; LRU_Harmonizing_Needed_PIVT = nominal value for Harmonizing_and_Configuration_Parameters_Request; Harmonizing_Complete = nominal value for Harmonizing_and_Configuration_Parameters_Request.",
+      "expected_result": "Act_Disp_Range_Contract_Fault = False; Contract_Stop_Collection_Complete = True; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Contract_Stop_Collection_Complete = True; LRU_Harmonizing_Needed_PIVT = nominal value for Harmonizing_and_Configuration_Parameters_Request; Harmonizing_Complete = nominal value for Harmonizing_and_Configuration_Parameters_Request.",
+      "pass_criteria": "Act_Disp_Range_Contract_Fault equals False, Contract_Stop_Collection_Complete equals True, and IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and internal state variables."
+    },
+    {
+      "test_case_id": "TC-LRU-9239-CONTRACT-FAULT",
+      "requirement_id": "LRU-9239",
+      "test_type": "ROBUSTNESS",
+      "description": "Clubbed Steps 3, 4A, 4B: Verify that when Act_Disp_Raw_Avg_Contract is outside range, Act_Disp_Range_Contract_Fault is True, Contract_Stop_Collection_Complete is False, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017 and Harmonizing_Failed = True.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Contract = -25.0 (outside Contract Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0; IVT_Command_ISM = False; Harmonizing_PSR_Data_Fault = False; Harmonizing_and_Configuration_Parameters_Request = nominal value for Harmonizing_and_Configuration_Parameters_Request; STL_Bus = nominal value for Harmonizing_and_Configuration_Parameters_Request; IVT_CmdData_ISM = nominal value for Harmonizing_and_Configuration_Parameters_Request; Config_LRU_PSR = per applicable configuration table for the LRU under test; Asset_ID_PSR = per applicable configuration table for the LRU under test; Harmonizing_SFC_PSR = per applicable configuration table for the LRU under test; Harmonizing_Offset_PSR = per applicable configuration table for the LRU under test; Lower_Limit_LRU_PSR = per applicable configuration table for the LRU under test; Upper_Limit_LRU_PSR = per applicable configuration table for the LRU under test; IVT_Receipt_Envelope = 0x0011; IVT_Receipt_Content = nominal value for Harmonizing_and_Configuration_Parameters_Request; LRU_Harmonizing_Needed_PIVT = nominal value for Harmonizing_and_Configuration_Parameters_Request; Harmonizing_Complete = nominal value for Harmonizing_and_Configuration_Parameters_Request.",
+      "expected_result": "Act_Disp_Range_Contract_Fault = True; Harmonizing_Failed = False; Contract_Stop_Collection_Complete = False; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Contract_Stop_Collection_Complete = False; Harmonizing_Complete = False; LRU_Harmonizing_Needed_PIVT = nominal value for Harmonizing_and_Configuration_Parameters_Request.",
+      "pass_criteria": "Act_Disp_Range_Contract_Fault equals True, Contract_Stop_Collection_Complete equals False, and IVT Response transmitted on STL_Bus with Harmonizing_Failed = True.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and NVM fault log."
+    }
+  ],
+  "LRUSWRS-1001-STEP-1": [
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-1_NORMAL_01",
+      "requirement_id": "LRUSWRS-1001-STEP-1",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRUSWRS-1001-STEP-1.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw = nominal in-range value; IVT_Command_ISM = True; IVT_CmdData_ISM = True; Harmonize_Contract_Stop_STL = nominal in-range value; Harmonizing_Active_STL = True; Command / Envelope = 0x0020; Timing / Frame Duration = 50 frames.",
+      "expected_result": "Verify observable outputs for LRUSWRS-1001-STEP-1 match requirement specification.",
+      "pass_criteria": "Observed software behavior for LRUSWRS-1001-STEP-1 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-1_DC_01",
+      "requirement_id": "LRUSWRS-1001-STEP-1",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRUSWRS-1001-STEP-1.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw = nominal in-range value; IVT_Command_ISM = False; IVT_CmdData_ISM = False; Harmonize_Contract_Stop_STL = nominal in-range value; Harmonizing_Active_STL = False; Command / Envelope = 0x0020; Timing / Frame Duration = 50 frames.",
+      "expected_result": "Action suppressed for LRUSWRS-1001-STEP-1; output flag = False.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRUSWRS-1001-STEP-2": [
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-2_NORMAL_01",
+      "requirement_id": "LRUSWRS-1001-STEP-2",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRUSWRS-1001-STEP-2.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw = nominal in-range value; Profile_Id = nominal in-range value; Harmonize_Offset_Default = True; Harmonize_SFC_Default = per applicable configuration table for the LRU under test; Contract_Stop_Collection_Complete = nominal value for Act_Disp_Raw_Avg_Contract.",
+      "expected_result": "Harmonize_SFC_Default = True; Harmonize_Offset_Default = True; Contract_Stop_Collection_Complete = True; Act_Disp_Raw_Avg_Contract = nominal in-range value.",
+      "pass_criteria": "Observed software behavior for LRUSWRS-1001-STEP-2 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-2_DC_01",
+      "requirement_id": "LRUSWRS-1001-STEP-2",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRUSWRS-1001-STEP-2.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw = nominal in-range value; Profile_Id = nominal in-range value; Harmonize_Offset_Default = False; Harmonize_SFC_Default = per applicable configuration table for the LRU under test; Contract_Stop_Collection_Complete = nominal value for Act_Disp_Raw_Avg_Contract.",
+      "expected_result": "Harmonize_SFC_Default = False; Harmonize_Offset_Default = False; Contract_Stop_Collection_Complete = False; Act_Disp_Raw_Avg_Contract = nominal in-range value.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRUSWRS-1001-STEP-3": [
+    {
+      "test_case_id": "TC-LRUSWRS-1001-STEP-3-CONTRACT-N1",
+      "requirement_id": "LRUSWRS-1001-STEP-3",
+      "test_type": "NORMAL",
+      "description": "Clubbed Steps 3, 4A, 4B: Verify that when Act_Disp_Raw_Avg_Contract is within range, Act_Disp_Range_Contract_Fault is False, Contract_Stop_Collection_Complete is True, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Contract = -12.5 (within Contract Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0.",
+      "expected_result": "Act_Disp_Range_Contract_Fault = False; Contract_Stop_Collection_Complete = True; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Contract_Stop_Collection_Complete = True.",
+      "pass_criteria": "Act_Disp_Range_Contract_Fault equals False, Contract_Stop_Collection_Complete equals True, and IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and internal state variables."
+    },
+    {
+      "test_case_id": "TC-LRUSWRS-1001-STEP-3-CONTRACT-FAULT",
+      "requirement_id": "LRUSWRS-1001-STEP-3",
+      "test_type": "ROBUSTNESS",
+      "description": "Clubbed Steps 3, 4A, 4B: Verify that when Act_Disp_Raw_Avg_Contract is outside range, Act_Disp_Range_Contract_Fault is True, Contract_Stop_Collection_Complete is False, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017 and Harmonizing_Failed = True.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Contract = -25.0 (outside Contract Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0.",
+      "expected_result": "Act_Disp_Range_Contract_Fault = True; Harmonizing_Failed = False; Contract_Stop_Collection_Complete = False; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Contract_Stop_Collection_Complete = False.",
+      "pass_criteria": "Act_Disp_Range_Contract_Fault equals True, Contract_Stop_Collection_Complete equals False, and IVT Response transmitted on STL_Bus with Harmonizing_Failed = True.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and NVM fault log."
+    }
+  ],
+  "LRUSWRS-1001-STEP-4a+4b": [
+    {
+      "test_case_id": "TC-LRUSWRS-1001-STEP-4a+4b-CONTRACT-N1",
+      "requirement_id": "LRUSWRS-1001-STEP-4a+4b",
+      "test_type": "NORMAL",
+      "description": "Clubbed Steps 3, 4A, 4B: Verify that when Act_Disp_Raw_Avg_Contract is within range, Act_Disp_Range_Contract_Fault is False, Contract_Stop_Collection_Complete is True, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Contract = -12.5 (within Contract Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0; Act_Disp_Range_Contract_Fault = False.",
+      "expected_result": "Act_Disp_Range_Contract_Fault = False; Contract_Stop_Collection_Complete = True; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Contract_Stop_Collection_Complete = True.",
+      "pass_criteria": "Act_Disp_Range_Contract_Fault equals False, Contract_Stop_Collection_Complete equals True, and IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and internal state variables."
+    },
+    {
+      "test_case_id": "TC-LRUSWRS-1001-STEP-4a+4b-CONTRACT-FAULT",
+      "requirement_id": "LRUSWRS-1001-STEP-4a+4b",
+      "test_type": "ROBUSTNESS",
+      "description": "Clubbed Steps 3, 4A, 4B: Verify that when Act_Disp_Raw_Avg_Contract is outside range, Act_Disp_Range_Contract_Fault is True, Contract_Stop_Collection_Complete is False, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017 and Harmonizing_Failed = True.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Contract = -25.0 (outside Contract Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0; Act_Disp_Range_Contract_Fault = False.",
+      "expected_result": "Act_Disp_Range_Contract_Fault = True; Harmonizing_Failed = False; Contract_Stop_Collection_Complete = False; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Contract_Stop_Collection_Complete = False.",
+      "pass_criteria": "Act_Disp_Range_Contract_Fault equals True, Contract_Stop_Collection_Complete equals False, and IVT Response transmitted on STL_Bus with Harmonizing_Failed = True.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and NVM fault log."
+    }
+  ],
+  "LRUSWRS-1001-STEP-5": [
+    {
+      "test_case_id": "SWVCP_AAP_TC_LRUSWRS-1001-STEP-5_ATYPE_1_LRU_9193_NORMAL_01",
+      "requirement_id": "LRUSWRS-1001-STEP-5",
+      "description": "Verify that a transition of Act_Disp_Range_Contract_Fault to True for LRU 9193 results in a single entry in Fault_History_Table_PSR during the current power\u2011on session.",
+      "test_type": "NORMAL",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_9193; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Fault_History_Table_PSR is empty; Act_Disp_Range_Contract_Fault = True.",
+      "expected_result": "Fault_History_Table_PSR contains exactly one entry for LRU_9193; Act_Disp_Range_Contract_Fault = True.",
+      "pass_criteria": "Observed software outputs match expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via internal register dump or log that Fault_History_Table_PSR entry count is 1 and the entry corresponds to LRU_9193."
+    }
+  ],
+  "LRUSWRS-1001-STEP-INFORMATIONONLY": [
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-INFORMATIONONLY_NORMAL_01",
+      "requirement_id": "LRUSWRS-1001-STEP-INFORMATIONONLY",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRUSWRS-1001-STEP-INFORMATIONONLY.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "IVT_Command_ISM = True; IVT_CmdData_ISM = True.",
+      "expected_result": "Verify observable outputs for LRUSWRS-1001-STEP-INFORMATIONONLY match requirement specification.",
+      "pass_criteria": "Observed software behavior for LRUSWRS-1001-STEP-INFORMATIONONLY matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-INFORMATIONONLY_DC_01",
+      "requirement_id": "LRUSWRS-1001-STEP-INFORMATIONONLY",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRUSWRS-1001-STEP-INFORMATIONONLY.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "IVT_Command_ISM = False; IVT_CmdData_ISM = False.",
+      "expected_result": "Action suppressed for LRUSWRS-1001-STEP-INFORMATIONONLY; output flag = False.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRUSWRS-1001-STEP-6": [
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-6_NORMAL_01",
+      "requirement_id": "LRUSWRS-1001-STEP-6",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRUSWRS-1001-STEP-6.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw = nominal in-range value; IVT_Command_ISM = True; IVT_CmdData_ISM = True; Harmonize_Expand_Stop_STL = nominal in-range value; Command / Envelope = 0x0020; Timing / Frame Duration = 50 frames.",
+      "expected_result": "Verify observable outputs for LRUSWRS-1001-STEP-6 match requirement specification.",
+      "pass_criteria": "Observed software behavior for LRUSWRS-1001-STEP-6 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-6_DC_01",
+      "requirement_id": "LRUSWRS-1001-STEP-6",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRUSWRS-1001-STEP-6.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw = nominal in-range value; IVT_Command_ISM = False; IVT_CmdData_ISM = False; Harmonize_Expand_Stop_STL = nominal in-range value; Command / Envelope = 0x0020; Timing / Frame Duration = 50 frames.",
+      "expected_result": "Action suppressed for LRUSWRS-1001-STEP-6; output flag = False.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRUSWRS-1001-STEP-7": [
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-7_NORMAL_01",
+      "requirement_id": "LRUSWRS-1001-STEP-7",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRUSWRS-1001-STEP-7.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; Commanded to Expanded Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw = nominal in-range value; Profile_Id = nominal in-range value; Harmonize_Offset_Default = True; Harmonize_SFC_Default = per applicable configuration table for the LRU under test; Expand_Stop_Collection_Complete = nominal value for Act_Disp_Raw_Avg_Expand.",
+      "expected_result": "Harmonize_SFC_Default = True; Harmonize_Offset_Default = True; Expand_Stop_Collection_Complete = True; Act_Disp_Raw_Avg_Expand = nominal in-range value.",
+      "pass_criteria": "Observed software behavior for LRUSWRS-1001-STEP-7 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-7_DC_01",
+      "requirement_id": "LRUSWRS-1001-STEP-7",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRUSWRS-1001-STEP-7.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; Commanded to Expanded Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw = nominal in-range value; Profile_Id = nominal in-range value; Harmonize_Offset_Default = False; Harmonize_SFC_Default = per applicable configuration table for the LRU under test; Expand_Stop_Collection_Complete = nominal value for Act_Disp_Raw_Avg_Expand.",
+      "expected_result": "Harmonize_SFC_Default = False; Harmonize_Offset_Default = False; Expand_Stop_Collection_Complete = False; Act_Disp_Raw_Avg_Expand = nominal in-range value.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRUSWRS-1001-STEP-8": [
+    {
+      "test_case_id": "TC-LRUSWRS-1001-STEP-8-EXPAND-N1",
+      "requirement_id": "LRUSWRS-1001-STEP-8",
+      "test_type": "NORMAL",
+      "description": "Clubbed Steps 8, 9A, 9B: Verify that when Act_Disp_Raw_Avg_Expand is within range, Act_Disp_Range_Expand_Fault is False, Expand_Stop_Collection_Complete is True, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Expand Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Expand = 15.0 (within Expand Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0.",
+      "expected_result": "Act_Disp_Range_Expand_Fault = False; Expand_Stop_Collection_Complete = True; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Expand_Stop_Collection_Complete = True.",
+      "pass_criteria": "Act_Disp_Range_Expand_Fault equals False, Expand_Stop_Collection_Complete equals True, and IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and internal state variables."
+    },
+    {
+      "test_case_id": "TC-LRUSWRS-1001-STEP-8-EXPAND-FAULT",
+      "requirement_id": "LRUSWRS-1001-STEP-8",
+      "test_type": "ROBUSTNESS",
+      "description": "Clubbed Steps 8, 9A, 9B: Verify that when Act_Disp_Raw_Avg_Expand is outside range, Act_Disp_Range_Expand_Fault is True, Expand_Stop_Collection_Complete is False, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017 and Harmonizing_Failed = True.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Expand Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Expand = 30.0 (outside Expand Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0.",
+      "expected_result": "Act_Disp_Range_Expand_Fault = True; Harmonizing_Failed = False; Expand_Stop_Collection_Complete = False; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Expand_Stop_Collection_Complete = False.",
+      "pass_criteria": "Act_Disp_Range_Expand_Fault equals True, Expand_Stop_Collection_Complete equals False, and IVT Response transmitted on STL_Bus with Harmonizing_Failed = True.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and NVM fault log."
+    }
+  ],
+  "LRUSWRS-1001-STEP-9a+9b": [
+    {
+      "test_case_id": "TC-LRUSWRS-1001-STEP-9a+9b-EXPAND-N1",
+      "requirement_id": "LRUSWRS-1001-STEP-9a+9b",
+      "test_type": "NORMAL",
+      "description": "Clubbed Steps 8, 9A, 9B: Verify that when Act_Disp_Raw_Avg_Expand is within range, Act_Disp_Range_Expand_Fault is False, Expand_Stop_Collection_Complete is True, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Expand Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Expand = 15.0 (within Expand Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0.",
+      "expected_result": "Act_Disp_Range_Expand_Fault = False; Expand_Stop_Collection_Complete = True; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Expand_Stop_Collection_Complete = True.",
+      "pass_criteria": "Act_Disp_Range_Expand_Fault equals False, Expand_Stop_Collection_Complete equals True, and IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and internal state variables."
+    },
+    {
+      "test_case_id": "TC-LRUSWRS-1001-STEP-9a+9b-EXPAND-FAULT",
+      "requirement_id": "LRUSWRS-1001-STEP-9a+9b",
+      "test_type": "ROBUSTNESS",
+      "description": "Clubbed Steps 8, 9A, 9B: Verify that when Act_Disp_Raw_Avg_Expand is outside range, Act_Disp_Range_Expand_Fault is True, Expand_Stop_Collection_Complete is False, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017 and Harmonizing_Failed = True.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Expand Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Expand = 30.0 (outside Expand Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0.",
+      "expected_result": "Act_Disp_Range_Expand_Fault = True; Harmonizing_Failed = False; Expand_Stop_Collection_Complete = False; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Expand_Stop_Collection_Complete = False.",
+      "pass_criteria": "Act_Disp_Range_Expand_Fault equals True, Expand_Stop_Collection_Complete equals False, and IVT Response transmitted on STL_Bus with Harmonizing_Failed = True.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and NVM fault log."
+    }
+  ],
+  "LRUSWRS-1001-STEP-10": [
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-10_NORMAL_01",
+      "requirement_id": "LRUSWRS-1001-STEP-10",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRUSWRS-1001-STEP-10.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Apply operational stimuli for LRUSWRS-1001-STEP-10 per requirement statement; Fault_History_Table_PSR = per applicable configuration table for the LRU under test; Act_Disp_Range_Expand_Fault = True.",
+      "expected_result": "Act_Disp_Range_Expand_Fault = True; Fault_History_Table_PSR = True.",
+      "pass_criteria": "Observed software behavior for LRUSWRS-1001-STEP-10 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-10_DC_01",
+      "requirement_id": "LRUSWRS-1001-STEP-10",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRUSWRS-1001-STEP-10.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Apply operational stimuli for LRUSWRS-1001-STEP-10 per requirement statement; Fault_History_Table_PSR = per applicable configuration table for the LRU under test; Act_Disp_Range_Expand_Fault = False.",
+      "expected_result": "Act_Disp_Range_Expand_Fault = False; Fault_History_Table_PSR = False.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRUSWRS-1001-STEP-11": [
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-11_NORMAL_01",
+      "requirement_id": "LRUSWRS-1001-STEP-11",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRUSWRS-1001-STEP-11.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw = nominal in-range value; IVT_Command_ISM = True; IVT_CmdData_ISM = True; Harmonize_VOID_STL = nominal in-range value; Command / Envelope = 0x0020; Timing / Frame Duration = 50 frames.",
+      "expected_result": "Verify observable outputs for LRUSWRS-1001-STEP-11 match requirement specification.",
+      "pass_criteria": "Observed software behavior for LRUSWRS-1001-STEP-11 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-11_DC_01",
+      "requirement_id": "LRUSWRS-1001-STEP-11",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRUSWRS-1001-STEP-11.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw = nominal in-range value; IVT_Command_ISM = False; IVT_CmdData_ISM = False; Harmonize_VOID_STL = nominal in-range value; Command / Envelope = 0x0020; Timing / Frame Duration = 50 frames.",
+      "expected_result": "Action suppressed for LRUSWRS-1001-STEP-11; output flag = False.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRUSWRS-1001-STEP-12": [
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-12_NORMAL_01",
+      "requirement_id": "LRUSWRS-1001-STEP-12",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRUSWRS-1001-STEP-12.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; Commanded to Void Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw = nominal in-range value; Profile_Id = nominal in-range value; Harmonize_Offset_Default = True; Harmonize_SFC_Default = per applicable configuration table for the LRU under test; VOID_Collection_Complete = nominal value for Act_Disp_Raw_Avg_VOID.",
+      "expected_result": "Harmonize_SFC_Default = True; Harmonize_Offset_Default = True; VOID_Collection_Complete = True; Act_Disp_Raw_Avg_VOID = nominal in-range value.",
+      "pass_criteria": "Observed software behavior for LRUSWRS-1001-STEP-12 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-12_DC_01",
+      "requirement_id": "LRUSWRS-1001-STEP-12",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRUSWRS-1001-STEP-12.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; Commanded to Void Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw = nominal in-range value; Profile_Id = nominal in-range value; Harmonize_Offset_Default = False; Harmonize_SFC_Default = per applicable configuration table for the LRU under test; VOID_Collection_Complete = nominal value for Act_Disp_Raw_Avg_VOID.",
+      "expected_result": "Harmonize_SFC_Default = False; Harmonize_Offset_Default = False; VOID_Collection_Complete = False; Act_Disp_Raw_Avg_VOID = nominal in-range value.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRUSWRS-1001-STEP-13": [
+    {
+      "test_case_id": "TC-LRUSWRS-1001-STEP-13-VOID-N1",
+      "requirement_id": "LRUSWRS-1001-STEP-13",
+      "test_type": "NORMAL",
+      "description": "Clubbed Steps 13, 14A, 14B: Verify that when Act_Disp_Raw_Avg_VOID is within range, Act_Disp_Range_VOID_Fault is False, VOID_Collection_Complete is True, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to VOID Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_VOID = 0.0 (within VOID Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0.",
+      "expected_result": "Act_Disp_Range_VOID_Fault = False; VOID_Collection_Complete = True; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, VOID_Collection_Complete = True.",
+      "pass_criteria": "Act_Disp_Range_VOID_Fault equals False, VOID_Collection_Complete equals True, and IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and internal state variables."
+    },
+    {
+      "test_case_id": "TC-LRUSWRS-1001-STEP-13-VOID-FAULT",
+      "requirement_id": "LRUSWRS-1001-STEP-13",
+      "test_type": "ROBUSTNESS",
+      "description": "Clubbed Steps 13, 14A, 14B: Verify that when Act_Disp_Raw_Avg_VOID is outside range, Act_Disp_Range_VOID_Fault is True, VOID_Collection_Complete is False, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017 and Harmonizing_Failed = True.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to VOID Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_VOID = 10.0 (outside VOID Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0.",
+      "expected_result": "Act_Disp_Range_VOID_Fault = True; Harmonizing_Failed = False; VOID_Collection_Complete = False; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, VOID_Collection_Complete = False.",
+      "pass_criteria": "Act_Disp_Range_VOID_Fault equals True, VOID_Collection_Complete equals False, and IVT Response transmitted on STL_Bus with Harmonizing_Failed = True.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and NVM fault log."
+    }
+  ],
+  "LRUSWRS-1001-STEP-14a+14b": [
+    {
+      "test_case_id": "TC-LRUSWRS-1001-STEP-14a+14b-CONTRACT-N1",
+      "requirement_id": "LRUSWRS-1001-STEP-14a+14b",
+      "test_type": "NORMAL",
+      "description": "Clubbed Steps 3, 4A, 4B: Verify that when Act_Disp_Raw_Avg_Contract is within range, Act_Disp_Range_Contract_Fault is False, Contract_Stop_Collection_Complete is True, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Contract = -12.5 (within Contract Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0; Act_Disp_Range_VOID_Fault = False.",
+      "expected_result": "Act_Disp_Range_Contract_Fault = False; Contract_Stop_Collection_Complete = True; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Contract_Stop_Collection_Complete = True.",
+      "pass_criteria": "Act_Disp_Range_Contract_Fault equals False, Contract_Stop_Collection_Complete equals True, and IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and internal state variables."
+    },
+    {
+      "test_case_id": "TC-LRUSWRS-1001-STEP-14a+14b-CONTRACT-FAULT",
+      "requirement_id": "LRUSWRS-1001-STEP-14a+14b",
+      "test_type": "ROBUSTNESS",
+      "description": "Clubbed Steps 3, 4A, 4B: Verify that when Act_Disp_Raw_Avg_Contract is outside range, Act_Disp_Range_Contract_Fault is True, Contract_Stop_Collection_Complete is False, and IVT Response is transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017 and Harmonizing_Failed = True.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; Commanded to Contract Position; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Act_Disp_Raw_Avg_Contract = -25.0 (outside Contract Harmonizing Range); Harmonize_SFC_Default = 1.0; Harmonize_Offset_Default = 0.0; Act_Disp_Range_VOID_Fault = False.",
+      "expected_result": "Act_Disp_Range_Contract_Fault = True; Harmonizing_Failed = False; Contract_Stop_Collection_Complete = False; IVT Response transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False, Contract_Stop_Collection_Complete = False; VOID_Collection_Complete = False.",
+      "pass_criteria": "Act_Disp_Range_Contract_Fault equals True, Contract_Stop_Collection_Complete equals False, and IVT Response transmitted on STL_Bus with Harmonizing_Failed = True.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission envelope 0x0017 and NVM fault log."
+    }
+  ],
+  "LRUSWRS-1001-STEP-15": [
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-15_NORMAL_01",
+      "requirement_id": "LRUSWRS-1001-STEP-15",
+      "test_type": "NORMAL",
+      "description": "Verify nominal execution for requirement LRUSWRS-1001-STEP-15.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Apply operational stimuli for LRUSWRS-1001-STEP-15 per requirement statement; Fault_History_Table_PSR = per applicable configuration table for the LRU under test; Act_Disp_Range_VOID_Fault = True.",
+      "expected_result": "Act_Disp_Range_VOID_Fault = True; Fault_History_Table_PSR = True.",
+      "pass_criteria": "Observed software behavior for LRUSWRS-1001-STEP-15 matches expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry frame 0x0017 and internal memory registers."
+    },
+    {
+      "test_case_id": "LRUSWRS-1001-STEP-15_DC_01",
+      "requirement_id": "LRUSWRS-1001-STEP-15",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify behavior suppressed when condition evaluates False for LRUSWRS-1001-STEP-15.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; System in baseline operational state; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Apply operational stimuli for LRUSWRS-1001-STEP-15 per requirement statement; Fault_History_Table_PSR = per applicable configuration table for the LRU under test; Act_Disp_Range_VOID_Fault = False.",
+      "expected_result": "Act_Disp_Range_VOID_Fault = False; Fault_History_Table_PSR = False.",
+      "pass_criteria": "Software output remains unasserted/False when input condition evaluates False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ]
+}

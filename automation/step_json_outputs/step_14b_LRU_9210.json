@@ -1,0 +1,127 @@
+{
+  "step_number": "14b",
+  "requirement_id": "LRU-9210",
+  "total_test_cases": 10,
+  "test_cases": [
+    {
+      "test_case_id": "LRU_9210_N1_LRU_1",
+      "requirement_id": "LRU-9210",
+      "description": "Verify that when Act_Disp_Range_VOID_Fault is True, the software sets IVT_Receipt_Envelope to 0x0017 and IVT_Receipt_Content.Harmonizing_Failed to True and transmits on STL_Bus.",
+      "test_type": "NORMAL",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_1 (Left Aileron).",
+      "test_inputs": "Act_Disp_Range_VOID_Fault = True; LRU operating in Location_State_StateLgc mode; LRU Configuration = LRU_1 (Left Aileron).",
+      "expected_result": "IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content.Harmonizing_Failed = True, transmission on STL_Bus occurs.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9210_DC_Condition_LRU_1",
+      "requirement_id": "LRU-9210",
+      "description": "Verify that when Act_Disp_Range_VOID_Fault is False, the software sets IVT_Receipt_Envelope to 0x0017 and IVT_Receipt_Content.Harmonizing_Failed to False and transmits on STL_Bus.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_1 (Left Aileron).",
+      "test_inputs": "Act_Disp_Range_VOID_Fault = False; LRU operating in Location_State_StateLgc mode; LRU Configuration = LRU_1 (Left Aileron).",
+      "expected_result": "IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content.Harmonizing_Failed = False, transmission on STL_Bus occurs.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9210_N1_LRU_2",
+      "requirement_id": "LRU-9210",
+      "description": "Verify that when Act_Disp_Range_VOID_Fault is True, the software sets IVT_Receipt_Envelope to 0x0017 and IVT_Receipt_Content.Harmonizing_Failed to True and transmits on STL_Bus.",
+      "test_type": "NORMAL",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_2 (Right Aileron).",
+      "test_inputs": "Act_Disp_Range_VOID_Fault = True; LRU operating in Location_State_StateLgc mode; LRU Configuration = LRU_2 (Right Aileron).",
+      "expected_result": "IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content.Harmonizing_Failed = True, transmission on STL_Bus occurs.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9210_DC_Condition_LRU_2",
+      "requirement_id": "LRU-9210",
+      "description": "Verify that when Act_Disp_Range_VOID_Fault is False, the software sets IVT_Receipt_Envelope to 0x0017 and IVT_Receipt_Content.Harmonizing_Failed to False and transmits on STL_Bus.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_2 (Right Aileron).",
+      "test_inputs": "Act_Disp_Range_VOID_Fault = False; LRU operating in Location_State_StateLgc mode; LRU Configuration = LRU_2 (Right Aileron).",
+      "expected_result": "IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content.Harmonizing_Failed = False, transmission on STL_Bus occurs.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9210_N1_LRU_5",
+      "requirement_id": "LRU-9210",
+      "description": "Verify that when Act_Disp_Range_VOID_Fault is True, the software sets IVT_Receipt_Envelope to 0x0017 and IVT_Receipt_Content.Harmonizing_Failed to True and transmits on STL_Bus.",
+      "test_type": "NORMAL",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_5 (Left Elevator).",
+      "test_inputs": "Act_Disp_Range_VOID_Fault = True; LRU operating in Location_State_StateLgc mode; LRU Configuration = LRU_5 (Left Elevator).",
+      "expected_result": "IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content.Harmonizing_Failed = True, transmission on STL_Bus occurs.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9210_DC_Condition_LRU_5",
+      "requirement_id": "LRU-9210",
+      "description": "Verify that when Act_Disp_Range_VOID_Fault is False, the software sets IVT_Receipt_Envelope to 0x0017 and IVT_Receipt_Content.Harmonizing_Failed to False and transmits on STL_Bus.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_5 (Left Elevator).",
+      "test_inputs": "Act_Disp_Range_VOID_Fault = False; LRU operating in Location_State_StateLgc mode; LRU Configuration = LRU_5 (Left Elevator).",
+      "expected_result": "IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content.Harmonizing_Failed = False, transmission on STL_Bus occurs.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9210_N1_LRU_6",
+      "requirement_id": "LRU-9210",
+      "description": "Verify that when Act_Disp_Range_VOID_Fault is True, the software sets IVT_Receipt_Envelope to 0x0017 and IVT_Receipt_Content.Harmonizing_Failed to True and transmits on STL_Bus.",
+      "test_type": "NORMAL",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_6 (Right Elevator).",
+      "test_inputs": "Act_Disp_Range_VOID_Fault = True; LRU operating in Location_State_StateLgc mode; LRU Configuration = LRU_6 (Right Elevator).",
+      "expected_result": "IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content.Harmonizing_Failed = True, transmission on STL_Bus occurs.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9210_DC_Condition_LRU_6",
+      "requirement_id": "LRU-9210",
+      "description": "Verify that when Act_Disp_Range_VOID_Fault is False, the software sets IVT_Receipt_Envelope to 0x0017 and IVT_Receipt_Content.Harmonizing_Failed to False and transmits on STL_Bus.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_6 (Right Elevator).",
+      "test_inputs": "Act_Disp_Range_VOID_Fault = False; LRU operating in Location_State_StateLgc mode; LRU Configuration = LRU_6 (Right Elevator).",
+      "expected_result": "IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content.Harmonizing_Failed = False, transmission on STL_Bus occurs.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9210_N1_LRU_7",
+      "requirement_id": "LRU-9210",
+      "description": "Verify that when Act_Disp_Range_VOID_Fault is True, the software sets IVT_Receipt_Envelope to 0x0017 and IVT_Receipt_Content.Harmonizing_Failed to True and transmits on STL_Bus.",
+      "test_type": "NORMAL",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_7 (Rudder).",
+      "test_inputs": "Act_Disp_Range_VOID_Fault = True; LRU operating in Location_State_StateLgc mode; LRU Configuration = LRU_7 (Rudder).",
+      "expected_result": "IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content.Harmonizing_Failed = True, transmission on STL_Bus occurs.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9210_DC_Condition_LRU_7",
+      "requirement_id": "LRU-9210",
+      "description": "Verify that when Act_Disp_Range_VOID_Fault is False, the software sets IVT_Receipt_Envelope to 0x0017 and IVT_Receipt_Content.Harmonizing_Failed to False and transmits on STL_Bus.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_7 (Rudder).",
+      "test_inputs": "Act_Disp_Range_VOID_Fault = False; LRU operating in Location_State_StateLgc mode; LRU Configuration = LRU_7 (Rudder).",
+      "expected_result": "IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content.Harmonizing_Failed = False, transmission on STL_Bus occurs.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    }
+  ]
+}

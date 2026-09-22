@@ -1,0 +1,765 @@
+{
+  "requirements": [
+    {
+      "requirement_id": "LRUSWRS-1100",
+      "requirement_text": "The LRU software shall repeat the CIP Configuration Discrete Test for a duration of up to 100 ms including the retry sequence prior to using Config_LRU_PSR as the next configuration source, if Config_CIP_Fault_Init is True after CIP completes execution.",
+      "conditions": [
+        {
+          "signal": "Config_CIP_Fault_Init",
+          "operator": "==",
+          "value": true
+        }
+      ],
+      "expected_outputs": [],
+      "logic_expression": {
+        "operator": "AND",
+        "operands": [
+          {
+            "signal": "Config_CIP_Fault_Init",
+            "operator": "==",
+            "value": true
+          }
+        ]
+      },
+      "state_transition": null,
+      "timing_constraints": [
+        {
+          "value": 100.0,
+          "unit": "ms"
+        },
+        {
+          "value": 100.0,
+          "unit": "ms",
+          "type": "max_duration"
+        }
+      ],
+      "linked_requirements": [],
+      "linked_tables": [],
+      "linked_figures": [],
+      "signals": [
+        "Config_CIP_Fault_Init",
+        "Configuration",
+        "Test",
+        "Config_LRU_PSR"
+      ],
+      "notes": [],
+      "surface_applicability": [],
+      "lru_configuration": [],
+      "dependencies": [],
+      "metadata": {
+        "req_type": "Decomposed",
+        "safety_impact": "No",
+        "safety_rationale": "This is a detailed implementation requirement."
+      },
+      "source_location": {
+        "doc_position": 0,
+        "section": "LRUSWRS-1100"
+      }
+    },
+    {
+      "requirement_id": "LRUSWRS-1101",
+      "requirement_text": "The LRU software shall initialize Config_CIP_Fault_Init to False at the start of CIP.",
+      "conditions": [],
+      "expected_outputs": [
+        {
+          "signal": "Config_CIP_Fault_Init",
+          "value": false
+        }
+      ],
+      "logic_expression": null,
+      "state_transition": null,
+      "timing_constraints": [],
+      "linked_requirements": [],
+      "linked_tables": [],
+      "linked_figures": [],
+      "signals": [
+        "Config_CIP_Fault_Init"
+      ],
+      "notes": [],
+      "surface_applicability": [],
+      "lru_configuration": [],
+      "dependencies": [],
+      "metadata": {
+        "req_type": "Verbatim",
+        "safety_impact": "No",
+        "safety_rationale": "This is a detailed implementation requirement."
+      },
+      "source_location": {
+        "doc_position": 1,
+        "section": "LRUSWRS-1101"
+      }
+    },
+    {
+      "requirement_id": "LRUSWRS-1102",
+      "requirement_text": "The LRU software shall read and debounce the Configuration Pins (Pin Functions ID0_DSP, ID1_DSP, ID2_DSP, ID3_DSP, ID4_DSP, ID5_DSP, ID6_DSP, ID7_DSP) for 10ms to compute Config_ID_Disc_Dbnce_Init.",
+      "conditions": [],
+      "expected_outputs": [],
+      "logic_expression": null,
+      "state_transition": null,
+      "timing_constraints": [],
+      "linked_requirements": [],
+      "linked_tables": [],
+      "linked_figures": [],
+      "signals": [
+        "Configuration",
+        "Pins",
+        "ID0_DSP",
+        "ID1_DSP",
+        "ID2_DSP",
+        "ID3_DSP",
+        "ID4_DSP",
+        "ID5_DSP",
+        "ID6_DSP",
+        "ID7_DSP",
+        "Config_ID_Disc_Dbnce_Init"
+      ],
+      "notes": [],
+      "surface_applicability": [],
+      "lru_configuration": [],
+      "dependencies": [],
+      "metadata": {
+        "req_type": "Decomposed",
+        "safety_impact": "No",
+        "safety_rationale": "This is a detailed implementation requirement."
+      },
+      "source_location": {
+        "doc_position": 2,
+        "section": "LRUSWRS-1102"
+      }
+    },
+    {
+      "requirement_id": "LRUSWRS-1103",
+      "requirement_text": "The LRU software shall compute the Config_CIP_Fault_Init as follows:\nif (SurfaceID == SURFC_INVALID)\nConfig_CIP_Fault_Init = TRUE\nelse\nConfig_CIP_Fault_Init = FALSE",
+      "conditions": [
+        {
+          "signal": "Config_CIP_Fault_Init",
+          "operator": "==",
+          "value": true
+        }
+      ],
+      "expected_outputs": [],
+      "logic_expression": {
+        "operator": "AND",
+        "operands": [
+          {
+            "signal": "Config_CIP_Fault_Init",
+            "operator": "==",
+            "value": true
+          }
+        ]
+      },
+      "state_transition": null,
+      "timing_constraints": [],
+      "linked_requirements": [],
+      "linked_tables": [],
+      "linked_figures": [],
+      "signals": [
+        "Config_CIP_Fault_Init",
+        "SurfaceID",
+        "SURFC_INVALID",
+        "AssetType",
+        "Surface",
+        "Location",
+        "Parity_Disc_Dbnce_Init",
+        "Configuration",
+        "Rev"
+      ],
+      "notes": [
+        {
+          "type": "note",
+          "text": "Note:  The AssetType, Surface Location, and Parity_Disc_Dbnce_Init, will be checked by Surface ID, the SurfaceID = SURFC_INVALID if the debounced Configuration ID is not one of the entry in TABLE 1104 Rev C."
+        }
+      ],
+      "surface_applicability": [],
+      "lru_configuration": [],
+      "dependencies": [],
+      "metadata": {
+        "req_type": "Decomposed",
+        "safety_impact": "Yes",
+        "safety_rationale": "This is the fault response for a safety monitor."
+      },
+      "source_location": {
+        "doc_position": 3,
+        "section": "LRUSWRS-1103"
+      }
+    },
+    {
+      "requirement_id": "LRUSWRS-1104",
+      "requirement_text": "The LRU software shall compute the Config_Location as follows:\nif Config_CIP_Fault_Init is FALSE\nSet Config_Location  = Config_Location_Disc\nelse if Corrupt_PSR_Rigging_CIP_Fault_Init is FALSE\nSet Config_Location = Config_LRU_PSR\nelse\nSet Config_Location = 0 (Invalid configuration)",
+      "conditions": [
+        {
+          "signal": "Config_CIP_Fault_Init",
+          "operator": "==",
+          "value": false
+        }
+      ],
+      "expected_outputs": [
+        {
+          "signal": "Config_Location",
+          "value": "0",
+          "condition": "ELSE"
+        }
+      ],
+      "logic_expression": {
+        "operator": "AND",
+        "operands": [
+          {
+            "signal": "Config_CIP_Fault_Init",
+            "operator": "==",
+            "value": false
+          }
+        ]
+      },
+      "state_transition": null,
+      "timing_constraints": [],
+      "linked_requirements": [],
+      "linked_tables": [],
+      "linked_figures": [],
+      "signals": [
+        "Config_CIP_Fault_Init",
+        "Config_Location",
+        "Config_Location_Disc",
+        "Corrupt_PSR_Rigging_CIP_Fault_Init",
+        "Config_LRU_PSR",
+        "Invalid"
+      ],
+      "notes": [],
+      "surface_applicability": [],
+      "lru_configuration": [],
+      "dependencies": [],
+      "metadata": {
+        "req_type": "Decomposed",
+        "safety_impact": "Yes",
+        "safety_rationale": "This is the fault response for a safety monitor.  One of the parent requirements have safety tags."
+      },
+      "source_location": {
+        "doc_position": 5,
+        "section": "LRUSWRS-1104"
+      }
+    }
+  ],
+  "tables": {
+    "Table 1104": {
+      "table_id": "Table 1104",
+      "title": "Table 1104 Rev C  Asset Type & LRU Location Decode Based On Config_ID_Disc_Dbnce_Init",
+      "headers": [
+        "ID7_DSP",
+        "ID6_DSP",
+        "ID5_DSP",
+        "ID4_DSP",
+        "ID3_DSP",
+        "ID2_DSP",
+        "ID1_DSP",
+        "ID0_DSP (Parity)",
+        "SurfaceID"
+      ],
+      "rows": [
+        [
+          "0",
+          "0",
+          "0",
+          "1",
+          "0",
+          "0",
+          "1",
+          "1",
+          "TYPE_1_LRU_1"
+        ],
+        [
+          "0",
+          "0",
+          "0",
+          "1",
+          "0",
+          "1",
+          "0",
+          "1",
+          "TYPE_1_LRU_2"
+        ],
+        [
+          "0",
+          "0",
+          "0",
+          "1",
+          "0",
+          "1",
+          "1",
+          "0",
+          "TYPE_1_LRU_3"
+        ],
+        [
+          "0",
+          "0",
+          "0",
+          "1",
+          "1",
+          "0",
+          "0",
+          "1",
+          "TYPE_1_LRU_4"
+        ],
+        [
+          "0",
+          "0",
+          "0",
+          "1",
+          "1",
+          "0",
+          "1",
+          "0",
+          "TYPE_1_LRU_5"
+        ],
+        [
+          "0",
+          "0",
+          "0",
+          "1",
+          "1",
+          "1",
+          "0",
+          "0",
+          "TYPE_1_LRU_6"
+        ],
+        [
+          "0",
+          "0",
+          "0",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "TYPE_1_LRU_7"
+        ],
+        [
+          "0",
+          "0",
+          "1",
+          "0",
+          "0",
+          "0",
+          "1",
+          "1",
+          "TYPE_2_LRU_1"
+        ],
+        [
+          "0",
+          "0",
+          "1",
+          "0",
+          "0",
+          "1",
+          "0",
+          "1",
+          "TYPE_2_LRU_2"
+        ],
+        [
+          "0",
+          "0",
+          "1",
+          "0",
+          "0",
+          "1",
+          "1",
+          "0",
+          "TYPE_2_LRU_3"
+        ],
+        [
+          "0",
+          "0",
+          "1",
+          "0",
+          "1",
+          "0",
+          "0",
+          "1",
+          "TYPE_2_LRU_4"
+        ],
+        [
+          "0",
+          "0",
+          "1",
+          "0",
+          "1",
+          "0",
+          "1",
+          "0",
+          "TYPE_2_LRU_5"
+        ],
+        [
+          "0",
+          "0",
+          "1",
+          "0",
+          "1",
+          "1",
+          "0",
+          "0",
+          "TYPE_2_LRU_6"
+        ],
+        [
+          "0",
+          "0",
+          "1",
+          "0",
+          "1",
+          "1",
+          "1",
+          "1",
+          "TYPE_2_LRU_7"
+        ],
+        [
+          "0",
+          "0",
+          "1",
+          "1",
+          "0",
+          "0",
+          "1",
+          "0",
+          "TYPE_3_LRU_1"
+        ],
+        [
+          "0",
+          "0",
+          "1",
+          "1",
+          "0",
+          "1",
+          "0",
+          "0",
+          "TYPE_3_LRU_2"
+        ],
+        [
+          "0",
+          "0",
+          "1",
+          "1",
+          "0",
+          "1",
+          "1",
+          "1",
+          "TYPE_3_LRU_3"
+        ],
+        [
+          "0",
+          "0",
+          "1",
+          "1",
+          "1",
+          "0",
+          "0",
+          "0",
+          "TYPE_3_LRU_4"
+        ],
+        [
+          "0",
+          "0",
+          "1",
+          "1",
+          "1",
+          "0",
+          "1",
+          "1",
+          "TYPE_3_LRU_5"
+        ],
+        [
+          "0",
+          "0",
+          "1",
+          "1",
+          "1",
+          "1",
+          "0",
+          "1",
+          "TYPE_3_LRU_6"
+        ],
+        [
+          "0",
+          "0",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "0",
+          "TYPE_3_LRU_7"
+        ]
+      ],
+      "metadata": {},
+      "source_location": {
+        "doc_position": 4,
+        "table_id": "Table 1104"
+      },
+      "classification": "UNKNOWN",
+      "steps": [],
+      "linked_requirements": [],
+      "linked_tables": [],
+      "linked_figures": []
+    }
+  },
+  "figures": {},
+  "cross_reference": {
+    "LRUSWRS-1100": [],
+    "LRUSWRS-1101": [],
+    "LRUSWRS-1102": [],
+    "LRUSWRS-1103": [],
+    "LRUSWRS-1104": [],
+    "Table 1104": []
+  },
+  "entity_index": {
+    "Config_CIP_Fault_Init": {
+      "type": "signal",
+      "defined_in_tables": [],
+      "used_in_requirements": [
+        "LRUSWRS-1100",
+        "LRUSWRS-1101",
+        "LRUSWRS-1103",
+        "LRUSWRS-1104"
+      ]
+    },
+    "Configuration": {
+      "type": "signal",
+      "defined_in_tables": [],
+      "used_in_requirements": [
+        "LRUSWRS-1100",
+        "LRUSWRS-1102",
+        "LRUSWRS-1103"
+      ]
+    },
+    "Test": {
+      "type": "signal",
+      "defined_in_tables": [],
+      "used_in_requirements": [
+        "LRUSWRS-1100"
+      ]
+    },
+    "Config_LRU_PSR": {
+      "type": "signal",
+      "defined_in_tables": [],
+      "used_in_requirements": [
+        "LRUSWRS-1100",
+        "LRUSWRS-1104"
+      ]
+    },
+    "Pins": {
+      "type": "signal",
+      "defined_in_tables": [],
+      "used_in_requirements": [
+        "LRUSWRS-1102"
+      ]
+    },
+    "ID0_DSP": {
+      "type": "signal",
+      "defined_in_tables": [
+        "Table 1104"
+      ],
+      "used_in_requirements": [
+        "LRUSWRS-1102"
+      ]
+    },
+    "ID1_DSP": {
+      "type": "signal",
+      "defined_in_tables": [
+        "Table 1104"
+      ],
+      "used_in_requirements": [
+        "LRUSWRS-1102"
+      ]
+    },
+    "ID2_DSP": {
+      "type": "signal",
+      "defined_in_tables": [
+        "Table 1104"
+      ],
+      "used_in_requirements": [
+        "LRUSWRS-1102"
+      ]
+    },
+    "ID3_DSP": {
+      "type": "signal",
+      "defined_in_tables": [
+        "Table 1104"
+      ],
+      "used_in_requirements": [
+        "LRUSWRS-1102"
+      ]
+    },
+    "ID4_DSP": {
+      "type": "signal",
+      "defined_in_tables": [
+        "Table 1104"
+      ],
+      "used_in_requirements": [
+        "LRUSWRS-1102"
+      ]
+    },
+    "ID5_DSP": {
+      "type": "signal",
+      "defined_in_tables": [
+        "Table 1104"
+      ],
+      "used_in_requirements": [
+        "LRUSWRS-1102"
+      ]
+    },
+    "ID6_DSP": {
+      "type": "signal",
+      "defined_in_tables": [
+        "Table 1104"
+      ],
+      "used_in_requirements": [
+        "LRUSWRS-1102"
+      ]
+    },
+    "ID7_DSP": {
+      "type": "signal",
+      "defined_in_tables": [
+        "Table 1104"
+      ],
+      "used_in_requirements": [
+        "LRUSWRS-1102"
+      ]
+    },
+    "Config_ID_Disc_Dbnce_Init": {
+      "type": "signal",
+      "defined_in_tables": [
+        "Table 1104"
+      ],
+      "used_in_requirements": [
+        "LRUSWRS-1102"
+      ]
+    },
+    "SurfaceID": {
+      "type": "signal",
+      "defined_in_tables": [
+        "Table 1104"
+      ],
+      "used_in_requirements": [
+        "LRUSWRS-1103"
+      ]
+    },
+    "SURFC_INVALID": {
+      "type": "signal",
+      "defined_in_tables": [],
+      "used_in_requirements": [
+        "LRUSWRS-1103"
+      ]
+    },
+    "AssetType": {
+      "type": "signal",
+      "defined_in_tables": [],
+      "used_in_requirements": [
+        "LRUSWRS-1103"
+      ]
+    },
+    "Surface": {
+      "type": "signal",
+      "defined_in_tables": [],
+      "used_in_requirements": [
+        "LRUSWRS-1103"
+      ]
+    },
+    "Location": {
+      "type": "signal",
+      "defined_in_tables": [
+        "Table 1104"
+      ],
+      "used_in_requirements": [
+        "LRUSWRS-1103"
+      ]
+    },
+    "Parity_Disc_Dbnce_Init": {
+      "type": "signal",
+      "defined_in_tables": [],
+      "used_in_requirements": [
+        "LRUSWRS-1103"
+      ]
+    },
+    "Rev": {
+      "type": "signal",
+      "defined_in_tables": [
+        "Table 1104"
+      ],
+      "used_in_requirements": [
+        "LRUSWRS-1103"
+      ]
+    },
+    "Config_Location": {
+      "type": "signal",
+      "defined_in_tables": [],
+      "used_in_requirements": [
+        "LRUSWRS-1104"
+      ]
+    },
+    "Config_Location_Disc": {
+      "type": "signal",
+      "defined_in_tables": [],
+      "used_in_requirements": [
+        "LRUSWRS-1104"
+      ]
+    },
+    "Corrupt_PSR_Rigging_CIP_Fault_Init": {
+      "type": "signal",
+      "defined_in_tables": [],
+      "used_in_requirements": [
+        "LRUSWRS-1104"
+      ]
+    },
+    "Invalid": {
+      "type": "signal",
+      "defined_in_tables": [],
+      "used_in_requirements": [
+        "LRUSWRS-1104"
+      ]
+    },
+    "LRUSWRS-1100": {
+      "type": "requirement",
+      "references_tables": [],
+      "references_requirements": [],
+      "references_figures": []
+    },
+    "LRUSWRS-1101": {
+      "type": "requirement",
+      "references_tables": [],
+      "references_requirements": [],
+      "references_figures": []
+    },
+    "LRUSWRS-1102": {
+      "type": "requirement",
+      "references_tables": [],
+      "references_requirements": [],
+      "references_figures": []
+    },
+    "LRUSWRS-1103": {
+      "type": "requirement",
+      "references_tables": [],
+      "references_requirements": [],
+      "references_figures": []
+    },
+    "LRUSWRS-1104": {
+      "type": "requirement",
+      "references_tables": [],
+      "references_requirements": [],
+      "references_figures": []
+    },
+    "Table 1104": {
+      "type": "table",
+      "referenced_by": [],
+      "defines": [
+        "ID0_DSP",
+        "ID1_DSP",
+        "ID2_DSP",
+        "ID3_DSP",
+        "ID4_DSP",
+        "ID5_DSP",
+        "ID6_DSP",
+        "ID7_DSP",
+        "Config_ID_Disc_Dbnce_Init",
+        "SurfaceID",
+        "Location",
+        "Rev"
+      ]
+    }
+  }
+}

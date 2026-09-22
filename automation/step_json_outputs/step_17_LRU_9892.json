@@ -1,0 +1,127 @@
+{
+  "step_number": "17",
+  "requirement_id": "LRU-9892",
+  "total_test_cases": 10,
+  "test_cases": [
+    {
+      "test_case_id": "LRU_9892_N1_LRU_3",
+      "requirement_id": "LRU-9892",
+      "description": "Verify that Spoiler_Harmonize_Calc is set to True when all conditions are met for LRU_3.",
+      "test_type": "NORMAL",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_3 (Left Spoiler).",
+      "test_inputs": "Act_Disp_Range_Contract_Fault = False; Act_Disp_Range_Expand_Fault = False; Contract_Stop_Collection_Complete = True; Expand_Stop_Collection_Complete = True. LRU Configuration = LRU_3 (Left Spoiler).",
+      "expected_result": "Spoiler_Harmonize_Calc is set to True.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9892_N1_LRU_4",
+      "requirement_id": "LRU-9892",
+      "description": "Verify that Spoiler_Harmonize_Calc is set to True when all conditions are met for LRU_4.",
+      "test_type": "NORMAL",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_4 (Right Spoiler).",
+      "test_inputs": "Act_Disp_Range_Contract_Fault = False; Act_Disp_Range_Expand_Fault = False; Contract_Stop_Collection_Complete = True; Expand_Stop_Collection_Complete = True. LRU Configuration = LRU_4 (Right Spoiler).",
+      "expected_result": "Spoiler_Harmonize_Calc is set to True.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9892_DC_Act_Disp_Range_Contract_Fault_LRU_3",
+      "requirement_id": "LRU-9892",
+      "description": "Verify that Spoiler_Harmonize_Calc is NOT performed when Act_Disp_Range_Contract_Fault is True for LRU_3.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_3 (Left Spoiler).",
+      "test_inputs": "Act_Disp_Range_Contract_Fault = True; Act_Disp_Range_Expand_Fault = False; Contract_Stop_Collection_Complete = True; Expand_Stop_Collection_Complete = True. LRU Configuration = LRU_3 (Left Spoiler).",
+      "expected_result": "Spoiler_Harmonize_Calc is set to True but is NOT performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9892_DC_Act_Disp_Range_Expand_Fault_LRU_3",
+      "requirement_id": "LRU-9892",
+      "description": "Verify that Spoiler_Harmonize_Calc is NOT performed when Act_Disp_Range_Expand_Fault is True for LRU_3.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_3 (Left Spoiler).",
+      "test_inputs": "Act_Disp_Range_Contract_Fault = False; Act_Disp_Range_Expand_Fault = True; Contract_Stop_Collection_Complete = True; Expand_Stop_Collection_Complete = True. LRU Configuration = LRU_3 (Left Spoiler).",
+      "expected_result": "Spoiler_Harmonize_Calc is set to True but is NOT performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9892_DC_Contract_Stop_Collection_Complete_LRU_3",
+      "requirement_id": "LRU-9892",
+      "description": "Verify that Spoiler_Harmonize_Calc is NOT performed when Contract_Stop_Collection_Complete is False for LRU_3.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_3 (Left Spoiler).",
+      "test_inputs": "Act_Disp_Range_Contract_Fault = False; Act_Disp_Range_Expand_Fault = False; Contract_Stop_Collection_Complete = False; Expand_Stop_Collection_Complete = True. LRU Configuration = LRU_3 (Left Spoiler).",
+      "expected_result": "Spoiler_Harmonize_Calc is set to True but is NOT performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9892_DC_Expand_Stop_Collection_Complete_LRU_3",
+      "requirement_id": "LRU-9892",
+      "description": "Verify that Spoiler_Harmonize_Calc is NOT performed when Expand_Stop_Collection_Complete is False for LRU_3.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_3 (Left Spoiler).",
+      "test_inputs": "Act_Disp_Range_Contract_Fault = False; Act_Disp_Range_Expand_Fault = False; Contract_Stop_Collection_Complete = True; Expand_Stop_Collection_Complete = False. LRU Configuration = LRU_3 (Left Spoiler).",
+      "expected_result": "Spoiler_Harmonize_Calc is set to True but is NOT performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9892_DC_Act_Disp_Range_Contract_Fault_LRU_4",
+      "requirement_id": "LRU-9892",
+      "description": "Verify that Spoiler_Harmonize_Calc is NOT performed when Act_Disp_Range_Contract_Fault is True for LRU_4.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_4 (Right Spoiler).",
+      "test_inputs": "Act_Disp_Range_Contract_Fault = True; Act_Disp_Range_Expand_Fault = False; Contract_Stop_Collection_Complete = True; Expand_Stop_Collection_Complete = True. LRU Configuration = LRU_4 (Right Spoiler).",
+      "expected_result": "Spoiler_Harmonize_Calc is set to True but is NOT performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9892_DC_Act_Disp_Range_Expand_Fault_LRU_4",
+      "requirement_id": "LRU-9892",
+      "description": "Verify that Spoiler_Harmonize_Calc is NOT performed when Act_Disp_Range_Expand_Fault is True for LRU_4.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_4 (Right Spoiler).",
+      "test_inputs": "Act_Disp_Range_Contract_Fault = False; Act_Disp_Range_Expand_Fault = True; Contract_Stop_Collection_Complete = True; Expand_Stop_Collection_Complete = True. LRU Configuration = LRU_4 (Right Spoiler).",
+      "expected_result": "Spoiler_Harmonize_Calc is set to True but is NOT performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9892_DC_Contract_Stop_Collection_Complete_LRU_4",
+      "requirement_id": "LRU-9892",
+      "description": "Verify that Spoiler_Harmonize_Calc is NOT performed when Contract_Stop_Collection_Complete is False for LRU_4.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_4 (Right Spoiler).",
+      "test_inputs": "Act_Disp_Range_Contract_Fault = False; Act_Disp_Range_Expand_Fault = False; Contract_Stop_Collection_Complete = False; Expand_Stop_Collection_Complete = True. LRU Configuration = LRU_4 (Right Spoiler).",
+      "expected_result": "Spoiler_Harmonize_Calc is set to True but is NOT performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9892_DC_Expand_Stop_Collection_Complete_LRU_4",
+      "requirement_id": "LRU-9892",
+      "description": "Verify that Spoiler_Harmonize_Calc is NOT performed when Expand_Stop_Collection_Complete is False for LRU_4.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_4 (Right Spoiler).",
+      "test_inputs": "Act_Disp_Range_Contract_Fault = False; Act_Disp_Range_Expand_Fault = False; Contract_Stop_Collection_Complete = True; Expand_Stop_Collection_Complete = False. LRU Configuration = LRU_4 (Right Spoiler).",
+      "expected_result": "Spoiler_Harmonize_Calc is set to True but is NOT performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    }
+  ]
+}

@@ -1,0 +1,382 @@
+{
+  "LRUSWRS-1400": [
+    {
+      "test_case_id": "LRUSWRS-1400_NORMAL_01",
+      "requirement_id": "LRUSWRS-1400",
+      "test_type": "NORMAL",
+      "description": "Verify nominal operational execution for LRUSWRS-1400.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Operational_Stimulus = True; Mode_Active = True.",
+      "expected_result": "Operational outputs match required specification; Complete_Flag = True.",
+      "pass_criteria": "Outputs equal required values and Complete_Flag is True.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission and memory registers."
+    },
+    {
+      "test_case_id": "LRUSWRS-1400_DC_01",
+      "requirement_id": "LRUSWRS-1400",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify negative condition execution for LRUSWRS-1400.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Operational_Stimulus = False; Mode_Active = True.",
+      "expected_result": "Action suppressed; Complete_Flag = False; Output_Fault = False; ID_1 = False; ID_2 = False; ID_3 = False; ID_4 = False; ID_5 = False; ID_6 = False; ID_7 = False.",
+      "pass_criteria": "Complete_Flag equals False and Output_Fault equals False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    },
+    {
+      "test_case_id": "LRUSWRS-1400_BOUNDARY_01",
+      "requirement_id": "LRUSWRS-1400",
+      "test_type": "BOUNDARY",
+      "description": "Boundary verification: Verify threshold limits for LRUSWRS-1400.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Operational_Stimulus = Threshold_Value; Mode_Active = True.",
+      "expected_result": "Boundary output asserted correctly; Complete_Flag = True.",
+      "pass_criteria": "Observed boundary transition matches expected threshold.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRUSWRS-1402": [
+    {
+      "test_case_id": "LRUSWRS-1402_NORMAL_01",
+      "requirement_id": "LRUSWRS-1402",
+      "test_type": "NORMAL",
+      "description": "Verify nominal operational execution for LRUSWRS-1402.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Operational_Stimulus = True; Mode_Active = True.",
+      "expected_result": "Operational outputs match required specification; Complete_Flag = True.",
+      "pass_criteria": "Outputs equal required values and Complete_Flag is True.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission and memory registers."
+    },
+    {
+      "test_case_id": "LRUSWRS-1402_DC_01",
+      "requirement_id": "LRUSWRS-1402",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify negative condition execution for LRUSWRS-1402.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Operational_Stimulus = False; Mode_Active = True.",
+      "expected_result": "Action suppressed; Complete_Flag = False; Output_Fault = False; ID_1 = False; ID_2 = False; ID_3 = False; ID_4 = False; ID_5 = False; ID_6 = False; ID_7 = False.",
+      "pass_criteria": "Complete_Flag equals False and Output_Fault equals False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    },
+    {
+      "test_case_id": "LRUSWRS-1402_BOUNDARY_01",
+      "requirement_id": "LRUSWRS-1402",
+      "test_type": "BOUNDARY",
+      "description": "Boundary verification: Verify threshold limits for LRUSWRS-1402.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Operational_Stimulus = Threshold_Value; Mode_Active = True.",
+      "expected_result": "Boundary output asserted correctly; Complete_Flag = True.",
+      "pass_criteria": "Observed boundary transition matches expected threshold.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRUSWRS-1403": [
+    {
+      "test_case_id": "LRUSWRS-1403_NORMAL_01",
+      "requirement_id": "LRUSWRS-1403",
+      "test_type": "NORMAL",
+      "description": "Verify nominal operational execution for LRUSWRS-1403.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Operational_Stimulus = True; Mode_Active = True.",
+      "expected_result": "Operational outputs match required specification; Complete_Flag = True.",
+      "pass_criteria": "Outputs equal required values and Complete_Flag is True.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission and memory registers."
+    },
+    {
+      "test_case_id": "LRUSWRS-1403_DC_01",
+      "requirement_id": "LRUSWRS-1403",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify negative condition execution for LRUSWRS-1403.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Operational_Stimulus = False; Mode_Active = True.",
+      "expected_result": "Action suppressed; Complete_Flag = False; Output_Fault = False; ID_1 = False; ID_2 = False; ID_3 = False; ID_4 = False; ID_5 = False; ID_6 = False; ID_7 = False.",
+      "pass_criteria": "Complete_Flag equals False and Output_Fault equals False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    },
+    {
+      "test_case_id": "LRUSWRS-1403_BOUNDARY_01",
+      "requirement_id": "LRUSWRS-1403",
+      "test_type": "BOUNDARY",
+      "description": "Boundary verification: Verify threshold limits for LRUSWRS-1403.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Operational_Stimulus = Threshold_Value; Mode_Active = True.",
+      "expected_result": "Boundary output asserted correctly; Complete_Flag = True.",
+      "pass_criteria": "Observed boundary transition matches expected threshold.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRUSWRS-1404": [
+    {
+      "test_case_id": "LRUSWRS-1404_NORMAL_01",
+      "requirement_id": "LRUSWRS-1404",
+      "test_type": "NORMAL",
+      "description": "Verify nominal operational execution for LRUSWRS-1404.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Operational_Stimulus = True; Mode_Active = True; Low_Threshold_Anomaly_NodeB_Monitor = TRUE.",
+      "expected_result": "Operational outputs match required specification; Complete_Flag = True.",
+      "pass_criteria": "Outputs equal required values and Complete_Flag is True.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission and memory registers."
+    },
+    {
+      "test_case_id": "LRUSWRS-1404_DC_01",
+      "requirement_id": "LRUSWRS-1404",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify negative condition execution for LRUSWRS-1404.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Operational_Stimulus = False; Mode_Active = True; Low_Threshold_Anomaly_NodeB_Monitor = False.",
+      "expected_result": "Action suppressed; Complete_Flag = False; Output_Fault = False; ID_1 = False; ID_2 = False; ID_3 = False; ID_4 = False; ID_5 = False; ID_6 = False; ID_7 = False.",
+      "pass_criteria": "Complete_Flag equals False and Output_Fault equals False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    },
+    {
+      "test_case_id": "LRUSWRS-1404_BOUNDARY_01",
+      "requirement_id": "LRUSWRS-1404",
+      "test_type": "BOUNDARY",
+      "description": "Boundary verification: Verify threshold limits for LRUSWRS-1404.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Operational_Stimulus = Threshold_Value; Mode_Active = True; Low_Threshold_Anomaly_NodeB_Monitor = TRUE.",
+      "expected_result": "Boundary output asserted correctly; Complete_Flag = True.",
+      "pass_criteria": "Observed boundary transition matches expected threshold.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRUSWRS-1405": [
+    {
+      "test_case_id": "LRUSWRS-1405_NORMAL_01",
+      "requirement_id": "LRUSWRS-1405",
+      "test_type": "NORMAL",
+      "description": "Verify nominal operational execution for LRUSWRS-1405.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Operational_Stimulus = True; Mode_Active = True; Elec_En_STL = True; Rect_ok_Dbnce_Lgc = True; STL_Bad_Message = True; Elec_Bad_Monitor_LRU = True.",
+      "expected_result": "Operational outputs match required specification; Complete_Flag = True.",
+      "pass_criteria": "Outputs equal required values and Complete_Flag is True.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission and memory registers."
+    },
+    {
+      "test_case_id": "LRUSWRS-1405_DC_01",
+      "requirement_id": "LRUSWRS-1405",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify negative condition execution for LRUSWRS-1405.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Operational_Stimulus = False; Mode_Active = True; Elec_En_STL = False; Rect_ok_Dbnce_Lgc = False; STL_Bad_Message = False; Elec_Bad_Monitor_LRU = False.",
+      "expected_result": "Action suppressed; Complete_Flag = False; Output_Fault = False; ID_1 = False; ID_2 = False; ID_3 = False; ID_4 = False; ID_5 = False; ID_6 = False; ID_7 = False.",
+      "pass_criteria": "Complete_Flag equals False and Output_Fault equals False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    },
+    {
+      "test_case_id": "LRUSWRS-1405_BOUNDARY_01",
+      "requirement_id": "LRUSWRS-1405",
+      "test_type": "BOUNDARY",
+      "description": "Boundary verification: Verify threshold limits for LRUSWRS-1405.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Operational_Stimulus = Threshold_Value; Mode_Active = True; Elec_En_STL = True; Rect_ok_Dbnce_Lgc = True; STL_Bad_Message = True; Elec_Bad_Monitor_LRU = True.",
+      "expected_result": "Boundary output asserted correctly; Complete_Flag = True.",
+      "pass_criteria": "Observed boundary transition matches expected threshold.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRUSWRS-1406": [
+    {
+      "test_case_id": "LRUSWRS-1406_NORMAL_01",
+      "requirement_id": "LRUSWRS-1406",
+      "test_type": "NORMAL",
+      "description": "Verify nominal operational execution for LRUSWRS-1406.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Operational_Stimulus = True; Mode_Active = True.",
+      "expected_result": "Operational outputs match required specification; Complete_Flag = True.",
+      "pass_criteria": "Outputs equal required values and Complete_Flag is True.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission and memory registers."
+    },
+    {
+      "test_case_id": "LRUSWRS-1406_DC_01",
+      "requirement_id": "LRUSWRS-1406",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify negative condition execution for LRUSWRS-1406.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Operational_Stimulus = False; Mode_Active = True.",
+      "expected_result": "Action suppressed; Complete_Flag = False; Output_Fault = False; ID_1 = False; ID_2 = False; ID_3 = False; ID_4 = False; ID_5 = False; ID_6 = False; ID_7 = False.",
+      "pass_criteria": "Complete_Flag equals False and Output_Fault equals False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    },
+    {
+      "test_case_id": "LRUSWRS-1406_BOUNDARY_01",
+      "requirement_id": "LRUSWRS-1406",
+      "test_type": "BOUNDARY",
+      "description": "Boundary verification: Verify threshold limits for LRUSWRS-1406.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Operational_Stimulus = Threshold_Value; Mode_Active = True.",
+      "expected_result": "Boundary output asserted correctly; Complete_Flag = True.",
+      "pass_criteria": "Observed boundary transition matches expected threshold.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRUSWRS-1407": [
+    {
+      "test_case_id": "LRUSWRS-1407_NORMAL_01",
+      "requirement_id": "LRUSWRS-1407",
+      "test_type": "NORMAL",
+      "description": "Verify nominal operational execution for LRUSWRS-1407.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Operational_Stimulus = True; Mode_Active = True; Bus_OK_Message = True; Rect_ok_Dbnce_Lgc = True; Hyd_ok_Dbnce_Lgc = True.",
+      "expected_result": "Operational outputs match required specification; Complete_Flag = True.",
+      "pass_criteria": "Outputs equal required values and Complete_Flag is True.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission and memory registers."
+    },
+    {
+      "test_case_id": "LRUSWRS-1407_DC_01",
+      "requirement_id": "LRUSWRS-1407",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify negative condition execution for LRUSWRS-1407.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Operational_Stimulus = False; Mode_Active = True; Bus_OK_Message = False; Rect_ok_Dbnce_Lgc = False; Hyd_ok_Dbnce_Lgc = False.",
+      "expected_result": "Action suppressed; Complete_Flag = False; Output_Fault = False; ID_1 = False; ID_2 = False; ID_3 = False; ID_4 = False; ID_5 = False; ID_6 = False; ID_7 = False.",
+      "pass_criteria": "Complete_Flag equals False and Output_Fault equals False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    },
+    {
+      "test_case_id": "LRUSWRS-1407_BOUNDARY_01",
+      "requirement_id": "LRUSWRS-1407",
+      "test_type": "BOUNDARY",
+      "description": "Boundary verification: Verify threshold limits for LRUSWRS-1407.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Operational_Stimulus = Threshold_Value; Mode_Active = True; Bus_OK_Message = True; Rect_ok_Dbnce_Lgc = True; Hyd_ok_Dbnce_Lgc = True.",
+      "expected_result": "Boundary output asserted correctly; Complete_Flag = True.",
+      "pass_criteria": "Observed boundary transition matches expected threshold.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRUSWRS-1408": [
+    {
+      "test_case_id": "LRUSWRS-1408_NORMAL_01",
+      "requirement_id": "LRUSWRS-1408",
+      "test_type": "NORMAL",
+      "description": "Verify nominal operational execution for LRUSWRS-1408.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Operational_Stimulus = True; Mode_Active = True.",
+      "expected_result": "Operational outputs match required specification; Complete_Flag = True.",
+      "pass_criteria": "Outputs equal required values and Complete_Flag is True.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission and memory registers."
+    },
+    {
+      "test_case_id": "LRUSWRS-1408_DC_01",
+      "requirement_id": "LRUSWRS-1408",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify negative condition execution for LRUSWRS-1408.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Operational_Stimulus = False; Mode_Active = True.",
+      "expected_result": "Action suppressed; Complete_Flag = False; Output_Fault = False; ID_1 = False; ID_2 = False; ID_3 = False; ID_4 = False; ID_5 = False; ID_6 = False; ID_7 = False.",
+      "pass_criteria": "Complete_Flag equals False and Output_Fault equals False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    },
+    {
+      "test_case_id": "LRUSWRS-1408_BOUNDARY_01",
+      "requirement_id": "LRUSWRS-1408",
+      "test_type": "BOUNDARY",
+      "description": "Boundary verification: Verify threshold limits for LRUSWRS-1408.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Operational_Stimulus = Threshold_Value; Mode_Active = True.",
+      "expected_result": "Boundary output asserted correctly; Complete_Flag = True.",
+      "pass_criteria": "Observed boundary transition matches expected threshold.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRUSWRS-1401": [
+    {
+      "test_case_id": "LRUSWRS-1401_NORMAL_01",
+      "requirement_id": "LRUSWRS-1401",
+      "test_type": "NORMAL",
+      "description": "Verify nominal operational execution for LRUSWRS-1401.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Operational_Stimulus = True; Mode_Active = True.",
+      "expected_result": "Operational outputs match required specification; Complete_Flag = True.",
+      "pass_criteria": "Outputs equal required values and Complete_Flag is True.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission and memory registers."
+    },
+    {
+      "test_case_id": "LRUSWRS-1401_DC_01",
+      "requirement_id": "LRUSWRS-1401",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify negative condition execution for LRUSWRS-1401.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Operational_Stimulus = False; Mode_Active = True.",
+      "expected_result": "Action suppressed; Complete_Flag = False; Output_Fault = False; ID_1 = False; ID_2 = False; ID_3 = False; ID_4 = False; ID_5 = False; ID_6 = False; ID_7 = False.",
+      "pass_criteria": "Complete_Flag equals False and Output_Fault equals False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    },
+    {
+      "test_case_id": "LRUSWRS-1401_BOUNDARY_01",
+      "requirement_id": "LRUSWRS-1401",
+      "test_type": "BOUNDARY",
+      "description": "Boundary verification: Verify threshold limits for LRUSWRS-1401.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Operational_Stimulus = Threshold_Value; Mode_Active = True.",
+      "expected_result": "Boundary output asserted correctly; Complete_Flag = True.",
+      "pass_criteria": "Observed boundary transition matches expected threshold.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ],
+  "LRUSWRS-1409": [
+    {
+      "test_case_id": "LRUSWRS-1409_NORMAL_01",
+      "requirement_id": "LRUSWRS-1409",
+      "test_type": "NORMAL",
+      "description": "Verify nominal operational execution for LRUSWRS-1409.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Operational_Stimulus = True; Mode_Active = True.",
+      "expected_result": "Operational outputs match required specification; Complete_Flag = True.",
+      "pass_criteria": "Outputs equal required values and Complete_Flag is True.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus transmission and memory registers."
+    },
+    {
+      "test_case_id": "LRUSWRS-1409_DC_01",
+      "requirement_id": "LRUSWRS-1409",
+      "test_type": "DC",
+      "description": "Decision coverage: Verify negative condition execution for LRUSWRS-1409.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Operational_Stimulus = False; Mode_Active = True.",
+      "expected_result": "Action suppressed; Complete_Flag = False; Output_Fault = False; ID_1 = False; ID_2 = False; ID_3 = False; ID_4 = False; ID_5 = False; ID_6 = False; ID_7 = False.",
+      "pass_criteria": "Complete_Flag equals False and Output_Fault equals False.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    },
+    {
+      "test_case_id": "LRUSWRS-1409_BOUNDARY_01",
+      "requirement_id": "LRUSWRS-1409",
+      "test_type": "BOUNDARY",
+      "description": "Boundary verification: Verify threshold limits for LRUSWRS-1409.",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; Target Asset Type: ATYPE_1; Target LRU: LRU_1; LRU to be in Harmonizing Mode.",
+      "test_inputs": "Operational_Stimulus = Threshold_Value; Mode_Active = True.",
+      "expected_result": "Boundary output asserted correctly; Complete_Flag = True.",
+      "pass_criteria": "Observed boundary transition matches expected threshold.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verify via STL_Bus telemetry."
+    }
+  ]
+}

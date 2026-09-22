@@ -1,0 +1,31 @@
+{
+  "step_number": "27",
+  "requirement_id": "LRU-10921",
+  "total_test_cases": 2,
+  "test_cases": [
+    {
+      "test_case_id": "LRU_10921_N1_LRU_7",
+      "requirement_id": "LRU-10921",
+      "description": "Verify that when LRU-7 is active, Upper_Limit_LRU_PSR_New is calculated as Upper_Limit_Harmonized.",
+      "test_type": "NORMAL",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_7 (Rudder).",
+      "test_inputs": "LRU-7 active; Profile_Id set to a valid value; LRU Configuration = LRU_7 (Rudder).",
+      "expected_result": "Upper_Limit_LRU_PSR_New is set to Upper_Limit_Harmonized.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_10921_DC_Condition_LRU_7",
+      "requirement_id": "LRU-10921",
+      "description": "Verify that when LRU-7 is inactive, Upper_Limit_LRU_PSR_New is NOT performed.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_7 (Rudder).",
+      "test_inputs": "LRU-7 inactive; Profile_Id set to a valid value; LRU Configuration = LRU_7 (Rudder).",
+      "expected_result": "Upper_Limit_LRU_PSR_New is NOT performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    }
+  ]
+}

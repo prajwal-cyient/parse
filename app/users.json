@@ -1,0 +1,29 @@
+[
+  {
+    "id": "USR-0001",
+    "username": "admin",
+    "full_name": "System Administrator",
+    "email": "admin@aerospace.com",
+    "pwd_hash": "e1174305b1ab6ebfffe8fcafddf23277ca4cf9a8ae0f9080fa692b87cfb5ccb3",
+    "salt": "65f702e6384a2beb5c81df5cb7b7e5e4",
+    "created_at": "2026-08-03 10:00:00"
+  },
+  {
+    "id": "USR-0002",
+    "username": "engineer",
+    "full_name": "Lead Test Engineer",
+    "email": "engineer@aerospace.com",
+    "pwd_hash": "7e13711e79fab055fe1d9994ed605481b56e06eff296aa44de4e3f33c5a80cb9",
+    "salt": "3549dafd9a0bd131793d902237446a5d",
+    "created_at": "2026-08-03 10:05:00"
+  },
+  {
+    "id": "USR-0003",
+    "username": "sarah",
+    "full_name": "Sarah Connor",
+    "email": "sarah@aerospace.com",
+    "pwd_hash": "d226dab29675f60b96110646e17e1e69e0752f471b44c7ba59a39b94028f3208",
+    "salt": "7cf18232ebf0886ca9e50a536becce59",
+    "created_at": "2026-08-03 11:15:00"
+  }
+]

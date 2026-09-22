@@ -1,0 +1,90 @@
+{
+  "file_name": "SW_Requirements_Sample_3.docx",
+  "total_test_cases": 7,
+  "test_cases": [
+    {
+      "test_case_id": "LRUSWRS_1200_TC_001",
+      "requirement_id": "LRUSWRS-1200",
+      "description": "Verify transmission of LRU_Basic_PIVT_Fault True after PIVT Basic Test completion.",
+      "test_type": "NORMAL",
+      "initial_condition": "Operational Mode: PIVT_TEST_SUITE_1; LRU_1=Configured; LRU_2=Configured; LRU_3=Configured; LRU_4=Configured; LRU_5=Configured; LRU_6=Configured; LRU_7=Configured; IVT_Receipt_Envelope=0x0000; IVT_Receipt_Content=0x0000",
+      "test_inputs": "LRU_Basic_PIVT_Fault = True; PIVT_Basic_Test_Complete = True",
+      "expected_result": "IVT_Receipt_Envelope = 0x0020; IVT_Receipt_Content = 0x0001",
+      "pass_criteria": "IVT_Receipt_Envelope equals 0x0020 and IVT_Receipt_Content equals 0x0001",
+      "related_requirements": "",
+      "test_procedure_notes": "Simulate completion of PIVT Basic Test with LRU_Basic_PIVT_Fault set to True; verify that the LRU2 receives the updated state via STL bus."
+    },
+    {
+      "test_case_id": "LRUSWRS_1200_TC_002",
+      "requirement_id": "LRUSWRS-1200",
+      "description": "Verify transmission of LRU_Basic_PIVT_Fault False after PIVT Basic Test completion.",
+      "test_type": "NORMAL",
+      "initial_condition": "Operational Mode: PIVT_TEST_SUITE_1; LRU_1=Configured; LRU_2=Configured; LRU_3=Configured; LRU_4=Configured; LRU_5=Configured; LRU_6=Configured; LRU_7=Configured; IVT_Receipt_Envelope=0x0000; IVT_Receipt_Content=0x0000",
+      "test_inputs": "LRU_Basic_PIVT_Fault = False; PIVT_Basic_Test_Complete = True",
+      "expected_result": "IVT_Receipt_Envelope = 0x0020; IVT_Receipt_Content = 0x0000",
+      "pass_criteria": "IVT_Receipt_Envelope equals 0x0020 and IVT_Receipt_Content equals 0x0000",
+      "related_requirements": "",
+      "test_procedure_notes": "Simulate completion of PIVT Basic Test with LRU_Basic_PIVT_Fault set to False; verify that the LRU2 receives the updated state via STL bus."
+    },
+    {
+      "test_case_id": "LRUSWRS_1200_TC_003",
+      "requirement_id": "LRUSWRS-1200",
+      "description": "Verify persistence of IVT_Receipt_Envelope and IVT_Receipt_Content after initial transmission until new PIVT result.",
+      "test_type": "NORMAL",
+      "initial_condition": "Operational Mode: PIVT_TEST_SUITE_1; LRU_1=Configured; LRU_2=Configured; LRU_3=Configured; LRU_4=Configured; LRU_5=Configured; LRU_6=Configured; LRU_7=Configured; IVT_Receipt_Envelope=0x0000; IVT_Receipt_Content=0x0000",
+      "test_inputs": "LRU_Basic_PIVT_Fault = True; PIVT_Basic_Test_Complete = True; No_New_PIVT_Result = True; Frames = 10",
+      "expected_result": "IVT_Receipt_Envelope = 0x0020; IVT_Receipt_Content = 0x0001",
+      "pass_criteria": "IVT_Receipt_Envelope remains 0x0020 and IVT_Receipt_Content remains 0x0001 for 10 consecutive frames",
+      "related_requirements": "",
+      "test_procedure_notes": "After initial transmission, maintain LRU_Basic_PIVT_Fault state and verify that the values on the STL bus do not change for 10 frames."
+    },
+    {
+      "test_case_id": "LRUSWRS_1200_TC_004",
+      "requirement_id": "LRUSWRS-1200",
+      "description": "Verify clearing of IVT_Receipt_Envelope and IVT_Receipt_Content during power-up initialization.",
+      "test_type": "NORMAL",
+      "initial_condition": "Operational Mode: POWER_UP; LRU_1=Configured; LRU_2=Configured; LRU_3=Configured; LRU_4=Configured; LRU_5=Configured; LRU_6=Configured; LRU_7=Configured; IVT_Receipt_Envelope=0x0000; IVT_Receipt_Content=0x0000",
+      "test_inputs": "Power_Up = True",
+      "expected_result": "IVT_Receipt_Envelope = 0x0000; IVT_Receipt_Content = 0x0000",
+      "pass_criteria": "IVT_Receipt_Envelope and IVT_Receipt_Content are cleared to 0x0000 after power-up",
+      "related_requirements": "",
+      "test_procedure_notes": "Simulate power-up sequence and verify that the receipt signals are reset."
+    },
+    {
+      "test_case_id": "LRUSWRS_1200_TC_005",
+      "requirement_id": "LRUSWRS-1200",
+      "description": "Verify clearing of IVT_Receipt_Envelope and IVT_Receipt_Content upon entry into PIVT Test Suite 2.",
+      "test_type": "NORMAL",
+      "initial_condition": "Operational Mode: PIVT_TEST_SUITE_2; LRU_1=Configured; LRU_2=Configured; LRU_3=Configured; LRU_4=Configured; LRU_5=Configured; LRU_6=Configured; LRU_7=Configured; IVT_Receipt_Envelope=0x0000; IVT_Receipt_Content=0x0000",
+      "test_inputs": "Enter_PIVT_Test_Suite_2 = True",
+      "expected_result": "IVT_Receipt_Envelope = 0x0000; IVT_Receipt_Content = 0x0000",
+      "pass_criteria": "IVT_Receipt_Envelope and IVT_Receipt_Content are cleared to 0x0000 upon entry into PIVT Test Suite 2",
+      "related_requirements": "",
+      "test_procedure_notes": "Simulate transition to PIVT Test Suite 2 and verify that the receipt signals are reset."
+    },
+    {
+      "test_case_id": "LRUSWRS_1200_TC_006",
+      "requirement_id": "LRUSWRS-1200",
+      "description": "Verify clearing of IVT_Receipt_Envelope and IVT_Receipt_Content upon exit from IVT mode as commanded by IVT_Active_STL.",
+      "test_type": "NORMAL",
+      "initial_condition": "Operational Mode: IVT_MODE; LRU_1=Configured; LRU_2=Configured; LRU_3=Configured; LRU_4=Configured; LRU_5=Configured; LRU_6=Configured; LRU_7=Configured; IVT_Receipt_Envelope=0x0000; IVT_Receipt_Content=0x0000",
+      "test_inputs": "IVT_Active_STL = False",
+      "expected_result": "IVT_Receipt_Envelope = 0x0000; IVT_Receipt_Content = 0x0000",
+      "pass_criteria": "IVT_Receipt_Envelope and IVT_Receipt_Content are cleared to 0x0000 when IVT_Active_STL is deactivated",
+      "related_requirements": "",
+      "test_procedure_notes": "Simulate exit from IVT mode and verify that the receipt signals are reset."
+    },
+    {
+      "test_case_id": "TC-LRUSWRS-1201-01",
+      "requirement_id": "LRUSWRS-1201",
+      "description": "Verify software behavior for LRUSWRS-1201 per requirement specification statement.",
+      "test_type": "NORMAL",
+      "initial_condition": "Operational Mode: FLIGHT_MODE; LRU: 9171; LRU in Harmonizing Mode.",
+      "test_inputs": "Apply nominal inputs specified in requirement.",
+      "expected_result": "Outputs match required values specified in requirement.",
+      "pass_criteria": "Observed STL_Bus values match expected result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism defined by verification environment."
+    }
+  ]
+}

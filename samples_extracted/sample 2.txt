@@ -1,0 +1,187 @@
+1.requirement:
+ID :  LRUSWRS-1100
+The LRU software shall repeat the CIP Configuration Discrete Test for a duration of up to 100 ms including the retry sequence prior to using Config_LRU_PSR as the next configuration source, if Config_CIP_Fault_Init is True after CIP completes execution.
+Req Type :  Decomposed
+Safety Impact :  No
+Safety Rationale :  This is a detailed implementation requirement.
+
+
+{
+  "test_cases": [
+    {
+      "test_case_id": "LRUSWRS-1100_TRUE",
+      "requirement_id": "LRUSWRS-1100",
+      "description": "Verifies LRU repeats CIP Configuration Discrete Test for up to 100 ms when Config_CIP_Fault_Init is True after CIP completion.",
+      "test_type": "NORMAL",
+      "initial_condition": "None",
+      "test_inputs": "CIP completes execution. Config_CIP_Fault_Init = True. Repeat CIP test for up to 100 ms including retry sequence before using Config_LRU_PSR.",
+      "expected_result": "CIP Configuration Discrete Test is repeated for up to 100 ms including retry sequence prior to using Config_LRU_PSR as the next configuration source.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": [],
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS-1100_FALSE",
+      "requirement_id": "LRUSWRS-1100",
+      "description": "Verifies LRU does not repeat CIP Configuration Discrete Test when Config_CIP_Fault_Init is False after CIP completion.",
+      "test_type": "DC",
+      "initial_condition": "None",
+      "test_inputs": "CIP completes execution. Config_CIP_Fault_Init = False.",
+      "expected_result": "CIP Configuration Discrete Test is not repeated.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": [],
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS-1100_100ms",
+      "requirement_id": "LRUSWRS-1100",
+      "description": "Verifies LRU repeats CIP Configuration Discrete Test for exactly 100 ms including retry sequence.",
+      "test_type": "BOUNDARY",
+      "initial_condition": "None",
+      "test_inputs": "CIP completes execution. Config_CIP_Fault_Init = True. Repeat CIP test for exactly 100 ms including retry sequence.",
+      "expected_result": "CIP Configuration Discrete Test is repeated for exactly 100 ms including retry sequence before using Config_LRU_PSR.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": [],
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS-1100_99ms",
+      "requirement_id": "LRUSWRS-1100",
+      "description": "Verifies LRU repeats CIP Configuration Discrete Test for less than 100 ms including retry sequence.",
+      "test_type": "BOUNDARY",
+      "initial_condition": "None",
+      "test_inputs": "CIP completes execution. Config_CIP_Fault_Init = True. Repeat CIP test for 99 ms including retry sequence before using Config_LRU_PSR.",
+      "expected_result": "CIP Configuration Discrete Test is repeated for 99 ms including retry sequence before using Config_LRU_PSR.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": [],
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS-1100_INTERRUPTED",
+      "requirement_id": "LRUSWRS-1100",
+      "description": "Verifies LRU stops the CIP Configuration Discrete Test sequence before 100 ms if interrupted.",
+      "test_type": "BOUNDARY",
+      "initial_condition": "None",
+      "test_inputs": "CIP completes execution. Config_CIP_Fault_Init = True. Interrupt the CIP test sequence after 50 ms.",
+      "expected_result": "CIP Configuration Discrete Test is repeated but terminated before 100 ms due to interruption.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": [],
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    }
+  ]
+}
+
+
+2.requirement:
+ID :  LRUSWRS-1104
+The LRU software shall compute the Config_Location as follows:
+if Config_CIP_Fault_Init is FALSE
+Set Config_Location  = Config_Location_Disc
+else if Corrupt_PSR_Rigging_CIP_Fault_Init is FALSE
+Set Config_Location = Config_LRU_PSR
+else
+Set Config_Location = 0 (Invalid configuration)
+
+Req Type :  Decomposed
+Safety Impact :  Yes
+Safety Rationale :  This is the fault response for a safety monitor.  One of the parent requirements have safety tags.
+
+
+{
+  "test_cases": [
+    {
+      "test_case_id": "LRUSWRS-1104_N1",
+      "requirement_id": "LRUSWRS-1104",
+      "description": "Verifies Config_Location is set to Config_Location_Disc when Config_CIP_Fault_Init is FALSE.",
+      "test_type": "NORMAL",
+      "initial_condition": "None",
+      "test_inputs": "Config_CIP_Fault_Init = False. Corrupt_PSR_Rigging_CIP_Fault_Init = False.",
+      "expected_result": "Config_Location = Config_Location_Disc.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "None",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS-1104_DC",
+      "requirement_id": "LRUSWRS-1104",
+      "description": "Verifies Config_Location is set to Config_LRU_PSR when Config_CIP_Fault_Init is TRUE and Corrupt_PSR_Rigging_CIP_Fault_Init is FALSE.",
+      "test_type": "DC",
+      "initial_condition": "None",
+      "test_inputs": "Config_CIP_Fault_Init = True. Corrupt_PSR_Rigging_CIP_Fault_Init = False.",
+      "expected_result": "Config_Location is not initialized to Config_Location_Disc.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "None",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS-1104_DC2",
+      "requirement_id": "LRUSWRS-1104",
+      "description": "Verifies Config_Location is set to 0 when Config_CIP_Fault_Init is TRUE and Corrupt_PSR_Rigging_CIP_Fault_Init is TRUE.",
+      "test_type": "DC",
+      "initial_condition": "None",
+      "test_inputs": "Config_CIP_Fault_Init = True. Corrupt_PSR_Rigging_CIP_Fault_Init = True.",
+      "expected_result": "Config_Location is not initialized to Config_LRU_PSR.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "None",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    }
+  ]
+}
+
+3.requirement:
+requirement:
+ID :  LRUSWRS-1104
+The LRU software shall compute the Config_Location as follows:
+if Config_CIP_Fault_Init is FALSE
+Set Config_Location  = Config_Location_Disc
+else if Corrupt_PSR_Rigging_CIP_Fault_Init is FALSE
+Set Config_Location = Config_LRU_PSR
+else
+Set Config_Location = 0 (Invalid configuration)
+
+Req Type :  Decomposed
+Safety Impact :  Yes
+Safety Rationale :  This is the fault response for a safety monitor.  One of the parent requirements have safety tags.
+
+{
+  "test_cases": [
+    {
+      "test_case_id": "LRUSWRS-1104_N1",
+      "requirement_id": "LRUSWRS-1104",
+      "description": "Verifies the LRU software assigns Config_Location to Config_Location_Disc when Config_CIP_Fault_Init is False.",
+      "test_type": "NORMAL",
+      "initial_condition": "None",
+      "test_inputs": "Config_CIP_Fault_Init = False. Corrupt_PSR_Rigging_CIP_Fault_Init = False. Surface.",
+      "expected_result": "Config_Location = Config_Location_Disc.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "None",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS-1104_DC_CIP",
+      "requirement_id": "LRUSWRS-1104",
+      "description": "Verifies the LRU software does not assign Config_Location to Config_Location_Disc when Config_CIP_Fault_Init is True and Corrupt_PSR_Rigging_CIP_Fault_Init is False.",
+      "test_type": "DC",
+      "initial_condition": "None",
+      "test_inputs": "Config_CIP_Fault_Init = True. Corrupt_PSR_Rigging_CIP_Fault_Init = False. Surface.",
+      "expected_result": "Config_Location is not initialized to Config_Location_Disc.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "None",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS-1104_DC_CR",
+      "requirement_id": "LRUSWRS-1104",
+      "description": "Verifies the LRU software does not assign Config_Location to Config_LRU_PSR when Config_CIP_Fault_Init is True and Corrupt_PSR_Rigging_CIP_Fault_Init is True.",
+      "test_type": "DC",
+      "initial_condition": "None",
+      "test_inputs": "Config_CIP_Fault_Init = True. Corrupt_PSR_Rigging_CIP_Fault_Init = True. Surface.",
+      "expected_result": "Config_Location is not initialized to Config_LRU_PSR.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "None",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    }
+  ]
+}
+
+

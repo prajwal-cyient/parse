@@ -1,0 +1,399 @@
+1.requirement:
+ID :  LRUSWRS-1400
+The LRU shall set Low_Threshold_Anomaly_NodeB_Monitor to True if any of the following signals are True:
+•	Rotor_Ref_Bad_Monitor 
+•	Pre_Drive_Supply_Bad_Monitor
+
+And False otherwise.
+
+Note: Rotor_Ref_Bad_Monitor and Pre_Drive_Supply_Bad_Monitor are contained within the FPGA_FRAME_SYNC_REG as defined in Table 1401
+Req Type :  Verbatim
+Safety Impact :  No
+Safety Rationale :  This is a detailed implementation requirement.
+
+
+{
+  "test_cases": [
+    {
+      "test_case_id": "LRUSWRS-1400_NORMAL_TRUE_001",
+      "requirement_id": "LRUSWRS-1400",
+      "description": "Verifies that Low_Threshold_Anomaly_NodeB_Monitor is set to True when Rotor_Ref_Bad_Monitor is True.",
+      "test_type": "NORMAL",
+      "initial_condition": "None",
+      "test_inputs": "Rotor_Ref_Bad_Monitor = True. Pre_Drive_Supply_Bad_Monitor = False.",
+      "expected_result": "Low_Threshold_Anomaly_NodeB_Monitor = True.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS-1400_DC_Rotor_True_001",
+      "requirement_id": "LRUSWRS-1400",
+      "description": "Verifies that Low_Threshold_Anomaly_NodeB_Monitor remains True when Rotor_Ref_Bad_Monitor is True and Pre_Drive_Supply_Bad_Monitor is False.",
+      "test_type": "DC",
+      "initial_condition": "None",
+      "test_inputs": "Rotor_Ref_Bad_Monitor = True. Pre_Drive_Supply_Bad_Monitor = False.",
+      "expected_result": "Low_Threshold_Anomaly_NodeB_Monitor = True.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS-1400_DC_PreDrive_True_001",
+      "requirement_id": "LRUSWRS-1400",
+      "description": "Verifies that Low_Threshold_Anomaly_NodeB_Monitor remains True when Pre_Drive_Supply_Bad_Monitor is True and Rotor_Ref_Bad_Monitor is False.",
+      "test_type": "DC",
+      "initial_condition": "None",
+      "test_inputs": "Rotor_Ref_Bad_Monitor = False. Pre_Drive_Supply_Bad_Monitor = True.",
+      "expected_result": "Low_Threshold_Anomaly_NodeB_Monitor = True.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    }
+  ]
+}
+
+
+2.requirement:
+ID :  LRUSWRS-1402
+The LRU shall delay the rising edge transition of Hi_Enable_Envelope
+to yield Hi_Enable_Delay_Envelope with a delay of 4 +/- 2 msec.
+Req Type :  Verbatim
+Safety Impact :  No
+Safety Rationale :  This is a detailed implementation requirement.
+
+```json
+{
+  "test_cases": [
+    {
+      "test_case_id": "LRUSWRS-1402_N1",
+      "description": "Verifies that the LRU generates Hi_Enable_Delay_Envelope after a 4 ± 2 ms delay following a rising edge of Hi_Enable_Envelope.",
+      "test_type": "NORMAL",
+      "initial_condition": "None",
+      "test_inputs": "Hi_Enable_Envelope = False. Hi_Enable_Envelope = True.",
+      "expected_result": "Hi_Enable_Delay_Envelope = True.",
+      "pass_criteria": "Passes if Hi_Enable_Delay_Envelope transitions to True within the 4 ± 2 ms delay window after the rising edge."
+    },
+    {
+      "test_case_id": "LRUSWRS-1402_DC_HIE",
+      "description": "Verifies that no Hi_Enable_Delay_Envelope is generated when Hi_Enable_Envelope does not transition from False to True.",
+      "test_type": "DC",
+      "initial_condition": "None",
+      "test_inputs": "Hi_Enable_Envelope = False.",
+      "expected_result": "Hi_Enable_Delay_Envelope is not initialized to True.",
+      "pass_criteria": "Passes if Hi_Enable_Delay_Envelope does not transition to True."
+    }
+  ]
+}
+
+
+3.requirement:
+ID :  LRUSWRS-1402
+The LRU shall delay the rising edge transition of Hi_Enable_Envelope
+to yield Hi_Enable_Delay_Envelope with a delay of 4 +/- 2 msec.
+Req Type :  Verbatim
+Safety Impact :  No
+Safety Rationale :  This is a detailed implementation requirement.
+
+
+{
+  "test_cases": [
+    {
+      "test_case_id": "LRUSWRS-1402_N1",
+      "description": "Verifies that the LRU generates Hi_Enable_Delay_Envelope after a 4 ± 2 ms delay following a rising edge of Hi_Enable_Envelope.",
+      "test_type": "NORMAL",
+      "initial_condition": "None",
+      "test_inputs": "Hi_Enable_Envelope = False. Hi_Enable_Envelope = True.",
+      "expected_result": "Hi_Enable_Delay_Envelope = True.",
+      "pass_criteria": "Passes if Hi_Enable_Delay_Envelope transitions to True within the 4 ± 2 ms delay window after the rising edge."
+    },
+    {
+      "test_case_id": "LRUSWRS-1402_DC_HIE",
+      "description": "Verifies that no Hi_Enable_Delay_Envelope is generated when Hi_Enable_Envelope does not transition from False to True.",
+      "test_type": "DC",
+      "initial_condition": "None",
+      "test_inputs": "Hi_Enable_Envelope = False.",
+      "expected_result": "Hi_Enable_Delay_Envelope is not initialized to True.",
+      "pass_criteria": "Passes if Hi_Enable_Delay_Envelope does not transition to True."
+    }
+  ]
+}
+
+4.requirement:
+
+ID :  LRUSWRS-1403
+The LRU shall delay the rising edge transition of Valve_On
+to yield Valve_On_Delay with a delay of 4 +/- 2 msec.
+Req Type :  Verbatim
+Safety Impact :  No
+Safety Rationale :  This is a detailed implementation requirement.
+
+
+
+{
+  "test_cases": [
+    {
+      "test_case_id": "LRUSWRS-1403_N1",
+      "requirement_id": "LRUSWRS-1403",
+      "description": "Verifies the LRU generates a delayed Valve_On_Delay signal following a rising edge of Valve_On.",
+      "test_type": "NORMAL",
+      "initial_condition": "None",
+      "test_inputs": "Valve_On transitions to True.",
+      "expected_result": "Valve_On_Delay = True.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS-1403_DC_VON",
+      "requirement_id": "LRUSWRS-1403",
+      "description": "Verifies the LRU does not generate Valve_On_Delay when Valve_On does not have a rising edge transition.",
+      "test_type": "DC",
+      "initial_condition": "None",
+      "test_inputs": "Valve_On remains False.",
+      "expected_result": "Valve_On_Delay is not initialized to True.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    }
+  ]
+}
+
+
+
+
+5.requirement
+ID :  LRUSWRS-1406
+The LRU software shall set the Hi_Enable_Envelope to TRUE while in the Speed_State_StateLgc.
+Req Type :  Decomposed
+Safety Impact :  No
+Safety Rationale :  This is a detailed implementation requirement.
+
+
+{
+  "test_cases": [
+    {
+      "test_case_id": "LRUSWRS-1406_N1",
+      "requirement_id": "LRUSWRS-1406",
+      "description": "Verifies Hi_Enable_Envelope is set to TRUE when Speed_State_StateLgc is TRUE.",
+      "test_type": "NORMAL",
+      "initial_condition": "None",
+      "test_inputs": "Speed_State_StateLgc = True.",
+      "expected_result": "Hi_Enable_Envelope = TRUE.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS-1406_DC_Speed",
+      "requirement_id": "LRUSWRS-1406",
+      "description": "Verifies Hi_Enable_Envelope is not set to TRUE when Speed_State_StateLgc is FALSE.",
+      "test_type": "DC",
+      "initial_condition": "None",
+      "test_inputs": "Speed_State_StateLgc = False.",
+      "expected_result": "Hi_Enable_Envelope is not initialized to TRUE.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    }
+  ]
+}
+
+
+6.requirement:
+ID :  LRUSWRS-1407
+The LRU software shall transition from Idle_Mode_StateLgc to Location_State_StateLgc on primary surfaces if all the following conditions are met:
+•	Bus_OK_Message is equal to TRUE
+•	Rect_ok_Dbnce_Lgc is equal to FALSE
+•	Hyd_ok_Dbnce_Lgc is equal to FALSE
+Req Type :  Decomposed
+Safety Impact :  No
+Safety Rationale :  This is a detailed implementation requirement.
+
+
+{
+  "test_cases": [
+    {
+      "test_case_id": "LRUSWRS-1407_N1_Aileron",
+      "requirement_id": "LRUSWRS-1407",
+      "test_type": "NORMAL",
+      "description": "Verifies the LRU software transitions from the Idle state to the Location state on the Aileron when all required conditions are satisfied.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "expected_result": "Location_State_StateLgc = TRUE.",
+      "related_requirements": "None",
+      "test_inputs": "Bus_OK_Message = TRUE. Rect_ok_Dbnce_Lgc = FALSE. Hyd_ok_Dbnce_Lgc = FALSE. Surface = Aileron."
+    },
+    {
+      "test_case_id": "LRUSWRS-1407_N1_Elevator",
+      "requirement_id": "LRUSWRS-1407",
+      "test_type": "NORMAL",
+      "description": "Verifies the LRU software transitions from the Idle state to the Location state on the Elevator when all required conditions are satisfied.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "expected_result": "Location_State_StateLgc = TRUE.",
+      "related_requirements": "None",
+      "test_inputs": "Bus_OK_Message = TRUE. Rect_ok_Dbnce_Lgc = FALSE. Hyd_ok_Dbnce_Lgc = FALSE. Surface = Elevator."
+    },
+    {
+      "test_case_id": "LRUSWRS-1407_N1_Rudder",
+      "requirement_id": "LRUSWRS-1407",
+      "test_type": "NORMAL",
+      "description": "Verifies the LRU software transitions from the Idle state to the Location state on the Rudder when all required conditions are satisfied.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "expected_result": "Location_State_StateLgc = TRUE.",
+      "related_requirements": "None",
+      "test_inputs": "Bus_OK_Message = TRUE. Rect_ok_Dbnce_Lgc = FALSE. Hyd_ok_Dbnce_Lgc = FALSE. Surface = Rudder."
+    },
+    {
+      "test_case_id": "LRUSWRS-1407_DC_Aileron",
+      "requirement_id": "LRUSWRS-1407",
+      "test_type": "DC",
+      "description": "Verifies that the LRU software does not transition to the Location state on the Aileron when Bus_OK_Message is FALSE.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "expected_result": "Location_State_StateLgc is not initialized to TRUE.",
+      "related_requirements": "None",
+      "test_inputs": "Bus_OK_Message = FALSE. Rect_ok_Dbnce_Lgc = FALSE. Hyd_ok_Dbnce_Lgc = FALSE. Surface = Aileron."
+    },
+    {
+      "test_case_id": "LRUSWRS-1407_DC_Elevator",
+      "requirement_id": "LRUSWRS-1407",
+      "test_type": "DC",
+      "description": "Verifies that the LRU software does not transition to the Location state on the Elevator when Bus_OK_Message is FALSE.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "expected_result": "Location_State_StateLgc is not initialized to TRUE.",
+      "related_requirements": "None",
+      "test_inputs": "Bus_OK_Message = FALSE. Rect_ok_Dbnce_Lgc = FALSE. Hyd_ok_Dbnce_Lgc = FALSE. Surface = Elevator."
+    },
+    {
+      "test_case_id": "LRUSWRS-1407_DC_Rudder",
+      "requirement_id": "LRUSWRS-1407",
+      "test_type": "DC",
+      "description": "Verifies that the LRU software does not transition to the Location state on the Rudder when Bus_OK_Message is FALSE.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "expected_result": "Location_State_StateLgc is not initialized to TRUE.",
+      "related_requirements": "None",
+      "test_inputs": "Bus_OK_Message = FALSE. Rect_ok_Dbnce_Lgc = FALSE. Hyd_ok_Dbnce_Lgc = FALSE. Surface = Rudder."
+    },
+    {
+      "test_case_id": "LRUSWRS-1407_DC_Bus_OK_Message_Aileron",
+      "requirement_id": "LRUSWRS-1407",
+      "test_type": "DC",
+      "description": "Verifies that the LRU software does not transition to the Location state on the Aileron when Rect_ok_Dbnce_Lgc is TRUE.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "expected_result": "Location_State_StateLgc is not initialized to TRUE.",
+      "related_requirements": "None",
+      "test_inputs": "Bus_OK_Message = TRUE. Rect_ok_Dbnce_Lgc = TRUE. Hyd_ok_Dbnce_Lgc = FALSE. Surface = Aileron."
+    },
+    {
+      "test_case_id": "LRUSWRS-1407_DC_Bus_OK_Message_Elevator",
+      "requirement_id": "LRUSWRS-1407",
+      "test_type": "DC",
+      "description": "Verifies that the LRU software does not transition to the Location state on the Elevator when Rect_ok_Dbnce_Lgc is TRUE.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "expected_result": "Location_State_StateLgc is not initialized to TRUE.",
+      "related_requirements": "None",
+      "test_inputs": "Bus_OK_Message = TRUE. Rect_ok_Dbnce_Lgc = TRUE. Hyd_ok_Dbnce_Lgc = FALSE. Surface = Elevator."
+    },
+    {
+      "test_case_id": "LRUSWRS-1407_DC_Bus_OK_Message_Rudder",
+      "requirement_id": "LRUSWRS-1407",
+      "test_type": "DC",
+      "description": "Verifies that the LRU software does not transition to the Location state on the Rudder when Hyd_ok_Dbnce_Lgc is TRUE.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "expected_result": "Location_State_StateLgc is not initialized to TRUE.",
+      "related_requirements": "None",
+      "test_inputs": "Bus_OK_Message = TRUE. Rect_ok_Dbnce_Lgc = FALSE. Hyd_ok_Dbnce_Lgc = TRUE. Surface = Rudder."
+    }
+  ]
+}
+
+
+
+7.requirement:
+ID :  LRUSWRS-1408
+The LRU software shall energize the MSV solenoid for primary surfaces (LRU_1, LRU_2, LRU_5, LRU_6, LRU_7) while in Location_State_StateLgc by setting the following bits:
+•	Valve_On to TRUE using the FPGA register DSP_Control register bit in Table 1401.
+•	Valve_On discrete IO to TRUE using the VALVE_ENABLE_DSP Pin function in Table 1409.
+
+
+Req Type :  Decomposed
+Safety Impact :  No
+Safety Rationale :  This is a detailed implementation requirement.
+
+
+
+{
+  "test_cases": [
+    {
+      "test_case_id": "LRUSWRS-1408_N1_Aileron",
+      "requirement_id": "LRUSWRS-1408",
+      "description": "Verifies the LRU software energizes the MSV solenoid for the Aileron surface while in Location_State_StateLgc.",
+      "test_type": "NORMAL",
+      "initial_condition": "None",
+      "test_inputs": "Location_State_StateLgc = True. Surface = Aileron. Valve_On to TRUE using FPGA register DSP_Control register bit. Valve_On discrete IO to TRUE using VALVE_ENABLE_DSP Pin function.",
+      "expected_result": "Valve_On = TRUE.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS-1408_N1_Elevator",
+      "requirement_id": "LRUSWRS-1408",
+      "description": "Verifies the LRU software energizes the MSV solenoid for the Elevator surface while in Location_State_StateLgc.",
+      "test_type": "NORMAL",
+      "initial_condition": "None",
+      "test_inputs": "Location_State_StateLgc = True. Surface = Elevator. Valve_On to TRUE using FPGA register DSP_Control register bit. Valve_On discrete IO to TRUE using VALVE_ENABLE_DSP Pin function.",
+      "expected_result": "Valve_On = TRUE.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS-1408_N1_Rudder",
+      "requirement_id": "LRUSWRS-1408",
+      "description": "Verifies the LRU software energizes the MSV solenoid for the Rudder surface while in Location_State_StateLgc.",
+      "test_type": "NORMAL",
+      "initial_condition": "None",
+      "test_inputs": "Location_State_StateLgc = True. Surface = Rudder. Valve_On to TRUE using FPGA register DSP_Control register bit. Valve_On discrete IO to TRUE. ",
+      "expected_result": "Valve_On = TRUE.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS-1408_DC_Aileron",
+      "requirement_id": "LRUSWRS-1408",
+      "description": "Verifies the LRU software does not energize the MSV solenoid for the Aileron surface when not in Location_State_StateLgc.",
+      "test_type": "DC",
+      "initial_condition": "None",
+      "test_inputs": "Location_State_StateLgc = False. Surface = Aileron. Valve_On to FALSE using FPGA register DSP_Control register bit. Valve_On discrete IO to FALSE using VALVE_ENABLE_DSP Pin function.",
+      "expected_result": "Valve_On is not initialized to TRUE.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS-1408_DC_Elevator",
+      "requirement_id": "LRUSWRS-1408",
+      "description": "Verifies the LRU software does not energize the MSV solenoid for the Elevator surface when not in Location_State_StateLgc.",
+      "test_type": "DC",
+      "initial_condition": "None",
+      "test_inputs": "Location_State_StateLgc = False. Surface = Elevator. Valve_On to FALSE using FPGA register DSP_Control register bit. Valve_On discrete IO to FALSE using VALVE_ENABLE_DSP Pin function.",
+      "expected_result": "Valve_On is not initialized to TRUE.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRUSWRS-1408_DC_Rudder",
+      "requirement_id": "LRUSWRS-1408",
+      "description": "Verifies the LRU software does not energize the MSV solenoid for the Rudder surface when not in Location_State_StateLgc.",
+      "test_type": "DC",
+      "initial_condition": "None",
+      "test_inputs": "Location_State_StateLgc = False. Surface = Rudder. Valve_On to FALSE using FPGA register DSP_Control register bit. Valve_On discrete IO to FALSE using VALVE_ENABLE_DSP Pin function.",
+      "expected_result": "Valve_On is not initialized to TRUE.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": "",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    }
+  ]
+}

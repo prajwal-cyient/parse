@@ -1,0 +1,611 @@
+================================================================================
+TABLE 1001 INDIVIDUAL STEPS WITH EXACT SUB-REQUIREMENT IDs (LRU-XXXX)
+================================================================================
+Use these blocks directly with your DO-178C prompt template!
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-6135
+
+Text:
+Sample 50 frames (25 ms) of Act_Disp_Raw (in) and average them when the following condition is True: (IVT_Command_ISM = 0x0020, IVT_CmdData_ISM: Harmonize_Contract_Stop_STL = True). Note: Act_Disp_Raw is depicted in Figure 4436, Harmonizing_Active_STL is defined in Table 1208, and Harmonize_Contract_Stop_STL is defined in Table 1008.
+
+(Sequence Context: Table 1001, Step 1)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9169
+
+Text:
+Compute Act_Disp_Raw_Avg_Contract while commanded to the Contract position as follows: [the average of Act_Disp_Raw from Step above] * Harmonize_SFC_Default + Harmonize_Offset_Default. Note: The values of Harmonize_SFC_Default and Harmonize_Offset_Default are defined as a function of Profile_Id in: Table 10695, Rev C: ATYPE-1 & ATYPE-2 LVDT Default Harmonizing Parameters Table 106939, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters Set  Contract_Stop_Collection_Complete = True.
+
+(Sequence Context: Table 1001, Step 2)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9170
+
+Text:
+Set Act_Disp_Range_Contract_Fault to True if Act_Disp_Raw_Avg_Contract (in) is not within the ranges defined in:   Table 1014, Rev A for ATYPE-1 & ATYPE-2 Contract Harmonizing Range  Table 1015, Rev NC for ATYPE-3 Contract Harmonizing Range
+
+(Sequence Context: Table 1001, Step 3)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9171
+
+Text:
+Set and transmit IVT Response data on STL_Bus as follows: IVT_Receipt_Envelope = 0x0017,  IVT_Receipt_Content: Contract_Stop_Collection_Complete = True,  Notes:  1) Contract_Stop_Collection_Complete is defined in Table 1007. 2) IVT_Receipt_Content is an accummulation of all applicable Harmonizing status Bits.
+
+(Sequence Context: Table 1001, Step 4a)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9171
+
+Text:
+If Act_Disp_Range_Contract_Fault is True, set and transmit IVT Response data on STL_Bus as follows:  IVT_Receipt_Envelope = 0x0017,   IVT_Receipt_Content: Harmonizing_Failed = True, else IVT_Receipt_Envelope = 0x0017,   IVT_Receipt_Content: Harmonizing_Failed = False.  Notes:  1) Harmonizing_Failed is defined in Table 1007. 2) IVT_Receipt_Content is an accummulation of all applicable Harmonizing status Bits.
+
+(Sequence Context: Table 1001, Step 4b)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9193
+
+Text:
+If Act_Disp_Range_Contract_Fault transitions to True, create an entry in the Fault_History_Table_PSR. Note: This is the only entry of this fault in the Fault_History_Table_PSR for the current power-on session.
+
+(Sequence Context: Table 1001, Step 5)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9184
+
+Text:
+Sample 50 frames (25 ms) of Act_Disp_Raw (in) and average them when the following condition is True: (IVT_Command_ISM = 0x0020, IVT_CmdData_ISM: Harmonize_Expand_Stop_STL = True). Note: Act_Disp_Raw is depicted in Figure 4436 and Harmonize_Expand_Stop_STL are defined in Table 1008.
+
+(Sequence Context: Table 1001, Step 6)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9174
+
+Text:
+Compute Act_Disp_Raw_Avg_Expand while commanded to the Expanded position as follows:    [the average of Act_Disp_Raw from Step above] * Harmonize_SFC_Default + Harmonize_Offset_Default The values of Harmonize_SFC_Default and Harmonize_Offset_Default are defined as a function of Profile_Id in:  Table 10695, Rev C: ATYPE-1 & ATYPE-2 LVDT Default Harmonizing Parameters  Table 106939, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters Set Expand_Stop_Collection_Complete = True.
+
+(Sequence Context: Table 1001, Step 7)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9177
+
+Text:
+Set Act_Disp_Range_Expand_Fault to True if Act_Disp_Raw_Avg_Expand (in) is not within the following ranges:   Table 1016, Rev A for ATYPE-1 & ATYPE-2 Expand Harmonizing Range  Table 1017, Rev NC for ATYPE-3 Expand Harmonizing Range
+
+(Sequence Context: Table 1001, Step 8)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9895
+
+Text:
+Set and transmit IVT Response data on STL_Bus as follows: IVT_Receipt_Envelope = 0x0017,  IVT_Receipt_Content: Expand_Stop_Collection_Complete = True  Notes:  1) Expand_Stop_Collection_Complete is defined in Table 1007. 2) IVT_Receipt_Content is an accummulation of all applicable Harmonizing status Bits.
+
+(Sequence Context: Table 1001, Step 9a)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9895
+
+Text:
+If Act_Disp_Range_Expand_Fault is True, set and transmit IVT Response data on STL_Bus as follows: IVT_Receipt_Envelope = 0x0017,   IVT_Receipt_Content: Harmonizing_Failed = True, else IVT_Receipt_Envelope = 0x0017,   IVT_Receipt_Content: Harmonizing_Failed = False.  Notes:  1) Harmonizing_Failed is defined in Table 1007.  2) IVT_Receipt_Content is an accummulation of all applicable Harmonizing status Bits.
+
+(Sequence Context: Table 1001, Step 9b)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9238
+
+Text:
+If Act_Disp_Range_Expand_Fault transitions to True, create an entry in the Fault_History_Table_PSR. Note: This is the only entry of this fault in the Fault_History_Table_PSR for the current power-on session.
+
+(Sequence Context: Table 1001, Step 10)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9205
+
+Text:
+Sample 50 frames (25 ms) of Act_Disp_Raw (in) and average them when the following condition is True: IVT_Command_ISM = 0x0020, IVT_CmdData_ISM: Harmonize_VOID_STL = True. Note: Act_Disp_Raw is depicted Figure 4436 and Harmonize_VOID_STL is defined in Table 1008.  Not applicable to LRU_3 and LRU_4.
+
+(Sequence Context: Table 1001, Step 11)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9222
+
+Text:
+Compute  Act_Disp_Raw_Avg_VOID while commanded to the VOID position as follows: [the average of Act_Disp_Raw from Step above] * Harmonize_SFC_Default + Harmonize_Offset_Default.The values of Harmonize_SFC_Default and Harmonize_Offset_Default are defined as a function of Profile_Id in:   Table 10695, Rev C: ATYPE-1 & ATYPE-2 LVDT Default Harmonizing Parameters  Table 106939, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters  Set VOID_Collection_Complete = True Note:  Not applicable to LRU_3 and LRU_4.
+
+(Sequence Context: Table 1001, Step 12)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9209
+
+Text:
+Set Act_Disp_Range_VOID_Fault to True if Act_Disp_Raw_Avg_VOID (in) is not within the following range:  Table 1018, Rev A ATYPE-1 & ATYPE-2 VOID Harmonizing Range  Table 1019, Rev NC ATYPE-3 VOID Harmonizing Range Else set Act_Disp_Range_VOID_Fault to False. Note: Not applicable to LRU_3 and LRU_4.
+
+(Sequence Context: Table 1001, Step 13)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9210
+
+Text:
+Set and transmit IVT Response data on STL_Bus as follows: IVT_Receipt_Envelope = 0x0017,  IVT_Receipt_Content: VOID_Collection_Complete = True,  Notes:  1) VOID_Collection_Complete is defined in Table 1007. 2) IVT_Receipt_Content is an accummulation of all applicable Harmonizing status Bits. 3) Not applicable to LRU_3 and LRU_4.
+
+(Sequence Context: Table 1001, Step 14a)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9210
+
+Text:
+If Act_Disp_Range_VOID_Fault is True, set and transmit IVT Response data on STL_Bus as follows: IVT_Receipt_Envelope = 0x0017,   IVT_Receipt_Content: Harmonizing_Failed = True, else IVT_Receipt_Envelope = 0x0017,   IVT_Receipt_Content: Harmonizing_Failed = False.  Notes:  1) Harmonizing_Failed is defined in Table 1007.  2) IVT_Receipt_Content is an accummulation of all applicable Harmonizing status Bits. 3) Not applicable to LRU_3 and LRU_4.
+
+(Sequence Context: Table 1001, Step 14b)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9235
+
+Text:
+If Act_Disp_Range_VOID_Fault transitions to True, create an entry in the Fault_History_Table_PSR. Notes: 1) Not applicable to LRU_3 and LRU_4. 2) This is the only entry of this fault in the Fault_History_Table_PSR for the current power-on session.
+
+(Sequence Context: Table 1001, Step 15)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9891
+
+Text:
+Set Primary_Harmonize_Calc to True when the following condition is True: Act_Disp_Range_VOID_Fault = False  AND Act_Disp_Range_Contract_Fault = False AND Act_Disp_Range_Expand_Fault = False AND Contract_Stop_Collection_Complete = True AND Expand_Stop_Collection_Complete = True AND VOID_Collection_Complete = True. Note: Not applicable to LRU_3 and LRU_4.
+
+(Sequence Context: Table 1001, Step 16)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9892
+
+Text:
+For LRU_3 and LRU_4, set Spoiler_Harmonize_Calc to True if the following condition is True: Act_Disp_Range_Contract_Fault = False AND Act_Disp_Range_Expand_Fault = False AND Contract_Stop_Collection_Complete = True AND Expand_Stop_Collection_Complete = True. Note: Not applicable to primary surfaces.
+
+(Sequence Context: Table 1001, Step 17)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9176
+
+Text:
+If Spoiler_Harmonize_Calc is True then compute  K_Harmonize_New  = Max_Stroke / [Act_Disp_Raw_Avg_Expand  -  Act_Disp_Raw_Avg_Contract]. where Max_Stroke is defined in:   Table 1020, Rev A: ATYPE-1 & ATYPE-2 LRU Harmonizing Max Strokes   Table 1021, Rev A: ATYPE-3 LRU Harmonizing Max Strokes
+
+(Sequence Context: Table 1001, Step 18)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-6137
+
+Text:
+If Spoiler_Harmonize_Calc is True, then calculate the new LVDT Harmonizing Offset as follows:  Harmonize_Offset_New  =  (Harmonize_Offset_Default - Act_Disp_Raw_Avg_Contract)  * K_Harmonize_New.  The value of Harmonize_Offset_Default is defined as a function of Profile_Id in:   Table 10695, Rev C: ATYPE-1 & ATYPE-2 LVDT Default Harmonizing Parameters  Table 106939, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters Note: Not applicable to Primary Surfaces.
+
+(Sequence Context: Table 1001, Step 19)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9212
+
+Text:
+Calculate the new LVDT Harmonizing Gain when Primary_Harmonize_Calc is True AND Profile_Id is any of the following:  LRU_1,  LRU_2,  LRU_5,   LRU_6. K_Harmonize_New  = (LRU_2_Act_Disp_Raw_Avg_Expand - LRU_2_Act_Disp_Raw_Avg_Contract)                                /(Act_Disp_Raw_Avg_Expand - Act_Disp_Raw_Avg_Contract). Note: Applicable to Elevator or Aileron Surfaces only.
+
+(Sequence Context: Table 1001, Step 20)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9944
+
+Text:
+Calculate the new LVDT Harmonizing Gain when Primary_Harmonize_Calc is True AND Profile_Id = LRU_7 as follows: K_Harmonize_New  =  Max_Stroke / [Act_Disp_Raw_Avg_Expand (in) – Act_Disp_Raw_Avg_Contract (in)]. where Max_Stroke is defined as a function of Profile_Id in:  Table 1020, Rev A: ATYPE-1 & ATYPE-2 LRU Harmonizing Max Strokes  Table 1021, Rev A: ATYPE-3 LRU Harmonizing Max Strokes Note: Applicable to LRU_7 (Rudder) only.
+
+(Sequence Context: Table 1001, Step 21)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9213
+
+Text:
+Calculate the new LVDT Harmonizing Offset as follows when Primary_Harmonize_Calc is True: Harmonize_Offset_New  = (Harmonize_Offset_Default - Act_Disp_Raw_Avg_VOID)  * K_Harmonize_New. The value of Harmonize_Offset_Default is defined as a function of Profile_Id in:   Table 10695, Rev C: ATYPE-1 & ATYPE-2 LVDT Default Harmonizing Parameters  Table 106939, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters Note:   Not applicable to OB Spoiler Surfaces.
+
+(Sequence Context: Table 1001, Step 22)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-10915
+
+Text:
+If LRU-1/2/5/6, calculate Lower_Limit_LRU_PSR_New when Primary_Harmonize_Calc by the following equation: Lower_Limit_LRU_PSR_New =  Act_Disp_Raw_Avg_Contract + Contract_Error. The value of Contract_Error is defined in :  Table 10695, Rev C: ATYPE-1 & ATYPE-2 LVDT Default Harmonizing Parameters  Table 106939, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters
+
+(Sequence Context: Table 1001, Step 23)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-10916
+
+Text:
+If LRU-3/4, calculate Upper_Limit_LRU_PSR_New and Lower_Limit_LRU_PSR_New to the fixed values as follows:   Upper_Limit_LRU_PSR_New = Upper_Limit_Harmonized   Lower_Limit_LRU_PSR_New = Lower_Limit_Harmonized    The value of Upper_Limit_Harmonized and Lower_Limit_Harmonized are as a function of Profile_Id in:  Table 1020, Rev A: ATYPE-1 & ATYPE-2 LRU Harmonizing Max Strokes  Table 1021, Rev A: ATYPE-3 LRU Harmonizing Max Strokes Note: Applicable only to Spoiler surfaces.
+
+(Sequence Context: Table 1001, Step 24)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-10917
+
+Text:
+If LRU-7, calculate Lower_Limit_LRU_PSR_New using the following equation:   Lower_Limit_LRU_PSR_New = Lower_Limit_Harmonized  The value of Lower_Limit_Harmonized is defined as a function of Profile_Id in:  Table 1020, Rev A: ATYPE-1 & ATYPE-2 LRU Harmonizing Max Strokes  Table 1021, Rev A: ATYPE-3 LRU Harmonizing Max Strokes Note: Applicable only to Rudder.
+
+(Sequence Context: Table 1001, Step 25)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-10918
+
+Text:
+If LRU-1/2/5/6, calculate Upper_Limit_LRU_PSR_New using the following equation:   Upper_Limit_LRU_PSR_New =  Act_Disp_Raw_Avg_Expand – Expand_Error.  The value of Expand_Error is defined as a function of Profile_Id in: :   Table 10695, Rev C: ATYPE-1 & ATYPE-2 LVDT Default Harmonizing Parameters  Table 106939, Rev B: ATYPE-3 LVDT Default Harmonizing Parameters Note: Applicable only to Ailerons and Elevators.
+
+(Sequence Context: Table 1001, Step 26)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-10921
+
+Text:
+If LRU-7, calculate Upper_Limit_LRU_PSR_New using the following equation:   Upper_Limit_LRU_PSR_New = Upper_Limit_Harmonized The value of Upper_Limit_Harmonized is defined as a function of Profile_Id in:   Table 1020, Rev A: ATYPE-1 & ATYPE-2 LRU Harmonizing Max Strokes  Table 1021, Rev A: ATYPE-3 LRU Harmonizing Max Strokes Note: Applicable only to Rudder.
+
+(Sequence Context: Table 1001, Step 27)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9215
+
+Text:
+Store new LRU Harmonizing parameters in PSR as follows:   Harmonize_SFC_PSR = K_Harmonize_New  Harmonize_Offset_PSR = Harmonize_Offset_New  Asset_ID_PSR = Asset_ID_STL  Config_LRU_PSR = Profile_ID_Disc_Dbnce_Init  Lower_Limit_LRU_PSR = Lower_Limit_LRU_PSR_New  Upper_Limit_LRU_PSR = Upper_Limit_LRU_PSR_New  CRC_PSR = CRC for data above
+
+(Sequence Context: Table 1001, Step 28)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9225
+
+Text:
+The LRU reads back the data stored in PSR and re-computes the CRC of the PSR Harmonizing parameters.
+
+(Sequence Context: Table 1001, Step 29)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9814
+
+Text:
+Perform a CRC check of the following Harmonizing parameters set in PSR to verify it is not corrupted:  Harmonize_Offset_PSR  Harmonize_SFC_PSR  Asset_ID_PSR  Config_LRU_PSR  Lower_Limit_LRU_PSR  Upper_Limit_LRU_PSR.
+
+(Sequence Context: Table 1001, Step 30)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9224
+
+Text:
+If CRC check as defined in Step above fails, the LRU software sets Harmonizing_PSR_Data_Fault to True, else set  Harmonizing_PSR_Data_Fault to False.
+
+(Sequence Context: Table 1001, Step 31)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9249
+
+Text:
+If Harmonizing_PSR_Data_Fault transitions to True, then perform the following:  create a Harmonizing_PSR_Data_Fault entry in the Fault_History_Table_PSR   report Harmonizing Failed to the LRU_2 on STL_Bus:  IVT_Receipt_Envelope=0x0017, IVT_Receipt_Content: Harmonizing_Failed = True. Note: Harmonizing_Failed is defined in Table 1007.
+
+(Sequence Context: Table 1001, Step 32)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9894
+
+Text:
+Set the following to False if Harmonizing_PSR_Data_Fault is False.   LRU_Harmonizing_Needed_PIVT   Corrupt_PSR_Harmonizing_CIP_Fault_Init.
+
+(Sequence Context: Table 1001, Step 33)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9247
+
+Text:
+If Harmonizing_PSR_Data_Fault is False then perform all of the following assignments:  K_Harmonize_ISM = Harmonize_SFC_PSR   Harmonize_Offset_ISM = Harmonize_Offset_PSR  Lower_Limit_LRU = Lower_Limit_LRU_PSR  Upper_Limit_LRU = Upper_Limit_EBMC_PSR.  Note: These parameters are used in the position control state.  Therefore, one might have to enter the position control state to see the updates.
+
+(Sequence Context: Table 1001, Step 34)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.
+
+--------------------------------------------------------------------------------
+Requirement
+
+ID : LRU-9239
+
+Text:
+If the LRU receives the Harmonizing_and_Configuration_Parameters_Request command below on STL_Bus while Harmonizing_PSR_Data_Fault is False AND Step 34 completed : IVT_Command_ISM = 0x0012 AND IVT_CmdData_ISM = 0x0001, then reply on STL_Bus with the following messages (sequence order insignificant):  IVT_Receipt_Envelope = 0x0011, IVT_Receipt_Content: LRU_Harmonizing_Needed_PIVT = False.  IVT_Receipt_Envelope = 0x0012, IVT_Receipt_Content = Config_LRU_PSR (LRU Harmonizing Location and Asset type)  IVT_Receipt_Envelope = 0x0013, IVT_Receipt_Content = Asset_ID_PSR   IVT_Receipt_Envelope = 0x0014, IVT_Receipt_Content = Harmonizing_SFC_PSR  IVT_Receipt_Envelope = 0x0015, IVT_Receipt_Content = Harmonizing_Offset_PSR  IVT_Receipt_Envelope = 0x0018, IVT_Receipt_Content = Lower_Limit_LRU_PSR  IVT_Receipt_Envelope = 0x0019, IVT_Receipt_Content = Upper_Limit_LRU_PSR  IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Complete = True Note: All IVT Response Codes and Data IVT formats are defined in Table 1007.
+
+(Sequence Context: Table 1001, Step 35)
+
+Req Type : Decomposed
+
+Safety Impact : No
+
+Safety Rationale : This is a detailed implementation requirement.

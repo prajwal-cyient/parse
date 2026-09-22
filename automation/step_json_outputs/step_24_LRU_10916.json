@@ -1,0 +1,55 @@
+{
+  "step_number": "24",
+  "requirement_id": "LRU-10916",
+  "total_test_cases": 4,
+  "test_cases": [
+    {
+      "test_case_id": "LRU_10916_N1_LRU_3",
+      "requirement_id": "LRU-10916",
+      "description": "Verify that for LRU_3 (Left Spoiler) the software calculates Upper_Limit_LRU_PSR_New and Lower_Limit_LRU_PSR_New to the harmonized values based on Profile_Id.",
+      "test_type": "NORMAL",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_3 (Left Spoiler).",
+      "test_inputs": "Profile_Id = 1; LRU Configuration = LRU_3 (Left Spoiler).",
+      "expected_result": "Upper_Limit_LRU_PSR_New is set to Upper_Limit_Harmonized for Profile_Id 1; Lower_Limit_LRU_PSR_New is set to Lower_Limit_Harmonized for Profile_Id 1.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_10916_N1_LRU_4",
+      "requirement_id": "LRU-10916",
+      "description": "Verify that for LRU_4 (Right Spoiler) the software calculates Upper_Limit_LRU_PSR_New and Lower_Limit_LRU_PSR_New to the harmonized values based on Profile_Id.",
+      "test_type": "NORMAL",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_4 (Right Spoiler).",
+      "test_inputs": "Profile_Id = 2; LRU Configuration = LRU_4 (Right Spoiler).",
+      "expected_result": "Upper_Limit_LRU_PSR_New is set to Upper_Limit_Harmonized for Profile_Id 2; Lower_Limit_LRU_PSR_New is set to Lower_Limit_Harmonized for Profile_Id 2.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_10916_DC_Condition_LRU_3",
+      "requirement_id": "LRU-10916",
+      "description": "Verify that when the decision condition LRU-3/4 is FALSE for LRU_3, the calculation of Upper_Limit_LRU_PSR_New and Lower_Limit_LRU_PSR_New is NOT performed.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_3 (Left Spoiler).",
+      "test_inputs": "LRU_ID set to LRU_1 (Left Aileron); LRU Configuration = LRU_3 (Left Spoiler).",
+      "expected_result": "Calculation of Upper_Limit_LRU_PSR_New and Lower_Limit_LRU_PSR_New is NOT performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_10916_DC_Condition_LRU_4",
+      "requirement_id": "LRU-10916",
+      "description": "Verify that when the decision condition LRU-3/4 is FALSE for LRU_4, the calculation of Upper_Limit_LRU_PSR_New and Lower_Limit_LRU_PSR_New is NOT performed.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_4 (Right Spoiler).",
+      "test_inputs": "LRU_ID set to LRU_2 (Right Aileron); LRU Configuration = LRU_4 (Right Spoiler).",
+      "expected_result": "Calculation of Upper_Limit_LRU_PSR_New and Lower_Limit_LRU_PSR_New is NOT performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    }
+  ]
+}

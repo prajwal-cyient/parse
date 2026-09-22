@@ -1,0 +1,2899 @@
+{
+  "requirements": [
+    {
+      "requirement_id": "LRUSWRS-1400",
+      "requirement_text": "The LRU shall set Low_Threshold_Anomaly_NodeB_Monitor to True if any of the following signals are True:\nRotor_Ref_Bad_Monitor\nPre_Drive_Supply_Bad_Monitor\nAnd False otherwise.",
+      "conditions": [
+        {
+          "signal": "Rotor_Ref_Bad_Monitor",
+          "operator": "==",
+          "value": true
+        },
+        {
+          "signal": "Pre_Drive_Supply_Bad_Monitor",
+          "operator": "==",
+          "value": true
+        }
+      ],
+      "expected_outputs": [
+        {
+          "signal": "Low_Threshold_Anomaly_NodeB_Monitor",
+          "value": true
+        }
+      ],
+      "logic_expression": {
+        "operator": "OR",
+        "operands": [
+          {
+            "signal": "Rotor_Ref_Bad_Monitor",
+            "operator": "==",
+            "value": true
+          },
+          {
+            "signal": "Pre_Drive_Supply_Bad_Monitor",
+            "operator": "==",
+            "value": true
+          }
+        ]
+      },
+      "state_transition": null,
+      "timing_constraints": [],
+      "decision_type": "MONITORING",
+      "signal_roles": {
+        "inputs": [
+          "Pre_Drive_Supply_Bad_Monitor",
+          "Rotor_Ref_Bad_Monitor"
+        ],
+        "outputs": [
+          "Low_Threshold_Anomaly_NodeB_Monitor"
+        ],
+        "state_variables": []
+      },
+      "confidence": {
+        "conditions": 1.0,
+        "expected_outputs": 1.0,
+        "references": 1.0,
+        "logic_expression": 1.0,
+        "state_transition": 1.0,
+        "timing_constraints": 1.0
+      },
+      "linked_requirements": [],
+      "linked_tables": [
+        "Table 1401"
+      ],
+      "linked_figures": [],
+      "signals": [
+        "Rotor_Ref_Bad_Monitor",
+        "Pre_Drive_Supply_Bad_Monitor",
+        "Low_Threshold_Anomaly_NodeB_Monitor",
+        "FPGA_FRAME_SYNC_REG"
+      ],
+      "notes": [
+        {
+          "type": "note",
+          "text": "Note: Rotor_Ref_Bad_Monitor and Pre_Drive_Supply_Bad_Monitor are contained within the FPGA_FRAME_SYNC_REG as defined in Table 1401"
+        }
+      ],
+      "surface_applicability": [],
+      "lru_configuration": [],
+      "dependencies": [
+        {
+          "type": "table",
+          "id": "Table 1401"
+        }
+      ],
+      "metadata": {
+        "req_type": "Verbatim",
+        "safety_impact": "No",
+        "safety_rationale": "This is a detailed implementation requirement."
+      },
+      "source_location": {
+        "doc_position": 0,
+        "section": "LRUSWRS-1400"
+      }
+    },
+    {
+      "requirement_id": "LRUSWRS-1402",
+      "requirement_text": "The LRU shall delay the rising edge transition of Hi_Enable_Envelope\nto yield Hi_Enable_Delay_Envelope with a delay of 4 +/- 2 msec.",
+      "conditions": [],
+      "expected_outputs": [],
+      "logic_expression": null,
+      "state_transition": null,
+      "timing_constraints": [
+        {
+          "value": 4.0,
+          "unit": "ms",
+          "tolerance": 2.0
+        }
+      ],
+      "decision_type": "TIMING_DELAY",
+      "signal_roles": {
+        "inputs": [],
+        "outputs": [],
+        "state_variables": []
+      },
+      "confidence": {
+        "conditions": 1.0,
+        "expected_outputs": 1.0,
+        "references": 1.0,
+        "logic_expression": 1.0,
+        "state_transition": 1.0,
+        "timing_constraints": 1.0
+      },
+      "linked_requirements": [],
+      "linked_tables": [],
+      "linked_figures": [],
+      "signals": [
+        "Hi_Enable_Envelope",
+        "Hi_Enable_Delay_Envelope"
+      ],
+      "notes": [],
+      "surface_applicability": [],
+      "lru_configuration": [],
+      "dependencies": [],
+      "metadata": {
+        "req_type": "Verbatim",
+        "safety_impact": "No",
+        "safety_rationale": "This is a detailed implementation requirement."
+      },
+      "source_location": {
+        "doc_position": 1,
+        "section": "LRUSWRS-1402"
+      }
+    },
+    {
+      "requirement_id": "LRUSWRS-1403",
+      "requirement_text": "The LRU shall delay the rising edge transition of Valve_On\nto yield Valve_On_Delay with a delay of 4 +/- 2 msec.",
+      "conditions": [],
+      "expected_outputs": [],
+      "logic_expression": null,
+      "state_transition": null,
+      "timing_constraints": [
+        {
+          "value": 4.0,
+          "unit": "ms",
+          "tolerance": 2.0
+        }
+      ],
+      "decision_type": "TIMING_DELAY",
+      "signal_roles": {
+        "inputs": [],
+        "outputs": [],
+        "state_variables": []
+      },
+      "confidence": {
+        "conditions": 1.0,
+        "expected_outputs": 1.0,
+        "references": 1.0,
+        "logic_expression": 1.0,
+        "state_transition": 1.0,
+        "timing_constraints": 1.0
+      },
+      "linked_requirements": [],
+      "linked_tables": [],
+      "linked_figures": [],
+      "signals": [
+        "Valve_On",
+        "Valve_On_Delay"
+      ],
+      "notes": [],
+      "surface_applicability": [],
+      "lru_configuration": [],
+      "dependencies": [],
+      "metadata": {
+        "req_type": "Verbatim",
+        "safety_impact": "No",
+        "safety_rationale": "This is a detailed implementation requirement."
+      },
+      "source_location": {
+        "doc_position": 2,
+        "section": "LRUSWRS-1403"
+      }
+    },
+    {
+      "requirement_id": "LRUSWRS-1404",
+      "requirement_text": "The LRU software shall compute the Speed_Loop_Clear flag as follow:\nif (Low_Threshold_Anomaly_NodeB_Monitor = TRUE OR Hi_Enable_Delay_Envelope = FALSE)\nThen\nSet Speed_Loop_Clear = TRUE\nelse\nSet Speed_Loop_Clear = FALSE",
+      "conditions": [
+        {
+          "signal": "Low_Threshold_Anomaly_NodeB_Monitor",
+          "operator": "==",
+          "value": true
+        },
+        {
+          "signal": "Hi_Enable_Delay_Envelope",
+          "operator": "==",
+          "value": false
+        }
+      ],
+      "expected_outputs": [
+        {
+          "signal": "Speed_Loop_Clear",
+          "value": true,
+          "condition": "THEN"
+        },
+        {
+          "signal": "Speed_Loop_Clear",
+          "value": false,
+          "condition": "ELSE"
+        }
+      ],
+      "logic_expression": {
+        "operator": "OR",
+        "operands": [
+          {
+            "signal": "Low_Threshold_Anomaly_NodeB_Monitor",
+            "operator": "==",
+            "value": true
+          },
+          {
+            "signal": "Hi_Enable_Delay_Envelope",
+            "operator": "==",
+            "value": false
+          }
+        ]
+      },
+      "state_transition": null,
+      "timing_constraints": [],
+      "decision_type": "MONITORING",
+      "signal_roles": {
+        "inputs": [
+          "Hi_Enable_Delay_Envelope",
+          "Low_Threshold_Anomaly_NodeB_Monitor"
+        ],
+        "outputs": [
+          "Speed_Loop_Clear"
+        ],
+        "state_variables": []
+      },
+      "confidence": {
+        "conditions": 1.0,
+        "expected_outputs": 1.0,
+        "references": 1.0,
+        "logic_expression": 1.0,
+        "state_transition": 1.0,
+        "timing_constraints": 1.0
+      },
+      "linked_requirements": [],
+      "linked_tables": [],
+      "linked_figures": [],
+      "signals": [
+        "Low_Threshold_Anomaly_NodeB_Monitor",
+        "Hi_Enable_Delay_Envelope",
+        "Speed_Loop_Clear"
+      ],
+      "notes": [],
+      "surface_applicability": [],
+      "lru_configuration": [],
+      "dependencies": [],
+      "metadata": {
+        "req_type": "Decomposed",
+        "safety_impact": "No",
+        "safety_rationale": "This is a detailed implementation requirement."
+      },
+      "source_location": {
+        "doc_position": 3,
+        "section": "LRUSWRS-1404"
+      }
+    },
+    {
+      "requirement_id": "LRUSWRS-1405",
+      "requirement_text": "While in Running Mode, the LRU shall transition from Idle State to Speed State on Primary and Spoiler surfaces if all of the following conditions are met:\nElec_En_STL is equal to TRUE\nRect_ok_Dbnce_Lgc is equal to TRUE\nSTL_Bad_Message is equal to FALSE\nElec_Bad_Monitor_LRU is equal to FALSE.",
+      "conditions": [
+        {
+          "signal": "Elec_En_STL",
+          "operator": "==",
+          "value": true
+        },
+        {
+          "signal": "Rect_ok_Dbnce_Lgc",
+          "operator": "==",
+          "value": true
+        },
+        {
+          "signal": "STL_Bad_Message",
+          "operator": "==",
+          "value": false
+        },
+        {
+          "signal": "Elec_Bad_Monitor_LRU",
+          "operator": "==",
+          "value": false
+        }
+      ],
+      "expected_outputs": [],
+      "logic_expression": {
+        "operator": "AND",
+        "operands": [
+          {
+            "signal": "Elec_En_STL",
+            "operator": "==",
+            "value": true
+          },
+          {
+            "signal": "Rect_ok_Dbnce_Lgc",
+            "operator": "==",
+            "value": true
+          },
+          {
+            "signal": "STL_Bad_Message",
+            "operator": "==",
+            "value": false
+          },
+          {
+            "signal": "Elec_Bad_Monitor_LRU",
+            "operator": "==",
+            "value": false
+          }
+        ]
+      },
+      "state_transition": {
+        "from": "Idle State",
+        "to": "Speed State"
+      },
+      "timing_constraints": [],
+      "decision_type": "STATE_TRANSITION",
+      "signal_roles": {
+        "inputs": [
+          "Elec_Bad_Monitor_LRU",
+          "Elec_En_STL",
+          "Rect_ok_Dbnce_Lgc",
+          "STL_Bad_Message"
+        ],
+        "outputs": [],
+        "state_variables": [
+          "Idle State",
+          "Speed State"
+        ]
+      },
+      "confidence": {
+        "conditions": 1.0,
+        "expected_outputs": 1.0,
+        "references": 1.0,
+        "logic_expression": 1.0,
+        "state_transition": 1.0,
+        "timing_constraints": 1.0
+      },
+      "linked_requirements": [],
+      "linked_tables": [],
+      "linked_figures": [],
+      "signals": [
+        "Elec_En_STL",
+        "Rect_ok_Dbnce_Lgc",
+        "STL_Bad_Message",
+        "Elec_Bad_Monitor_LRU",
+        "Running",
+        "Idle",
+        "Speed"
+      ],
+      "notes": [],
+      "surface_applicability": [
+        "Primary",
+        "Spoiler"
+      ],
+      "lru_configuration": [],
+      "dependencies": [],
+      "metadata": {
+        "req_type": "Verbatim",
+        "safety_impact": "No",
+        "safety_rationale": "This is a detailed implementation requirement."
+      },
+      "source_location": {
+        "doc_position": 4,
+        "section": "LRUSWRS-1405"
+      }
+    },
+    {
+      "requirement_id": "LRUSWRS-1406",
+      "requirement_text": "The LRU software shall set the Hi_Enable_Envelope to TRUE while in the Speed_State_StateLgc.",
+      "conditions": [],
+      "expected_outputs": [
+        {
+          "signal": "Hi_Enable_Envelope",
+          "value": true
+        }
+      ],
+      "logic_expression": null,
+      "state_transition": null,
+      "timing_constraints": [],
+      "decision_type": "ASSIGNMENT",
+      "signal_roles": {
+        "inputs": [],
+        "outputs": [
+          "Hi_Enable_Envelope"
+        ],
+        "state_variables": [
+          "Speed_State_StateLgc"
+        ]
+      },
+      "confidence": {
+        "conditions": 1.0,
+        "expected_outputs": 1.0,
+        "references": 1.0,
+        "logic_expression": 1.0,
+        "state_transition": 1.0,
+        "timing_constraints": 1.0
+      },
+      "linked_requirements": [],
+      "linked_tables": [],
+      "linked_figures": [],
+      "signals": [
+        "Hi_Enable_Envelope",
+        "Speed_State_StateLgc"
+      ],
+      "notes": [],
+      "surface_applicability": [],
+      "lru_configuration": [],
+      "dependencies": [],
+      "metadata": {
+        "req_type": "Decomposed",
+        "safety_impact": "No",
+        "safety_rationale": "This is a detailed implementation requirement."
+      },
+      "source_location": {
+        "doc_position": 5,
+        "section": "LRUSWRS-1406"
+      }
+    },
+    {
+      "requirement_id": "LRUSWRS-1407",
+      "requirement_text": "The LRU software shall transition from Idle_Mode_StateLgc to Location_State_StateLgc on primary surfaces if all the following conditions are met:\nBus_OK_Message is equal to TRUE\nRect_ok_Dbnce_Lgc is equal to FALSE\nHyd_ok_Dbnce_Lgc is equal to FALSE",
+      "conditions": [
+        {
+          "signal": "Bus_OK_Message",
+          "operator": "==",
+          "value": true
+        },
+        {
+          "signal": "Rect_ok_Dbnce_Lgc",
+          "operator": "==",
+          "value": false
+        },
+        {
+          "signal": "Hyd_ok_Dbnce_Lgc",
+          "operator": "==",
+          "value": false
+        }
+      ],
+      "expected_outputs": [],
+      "logic_expression": {
+        "operator": "AND",
+        "operands": [
+          {
+            "signal": "Bus_OK_Message",
+            "operator": "==",
+            "value": true
+          },
+          {
+            "signal": "Rect_ok_Dbnce_Lgc",
+            "operator": "==",
+            "value": false
+          },
+          {
+            "signal": "Hyd_ok_Dbnce_Lgc",
+            "operator": "==",
+            "value": false
+          }
+        ]
+      },
+      "state_transition": {
+        "from": "Idle_Mode_StateLgc",
+        "to": "Location_State_StateLgc"
+      },
+      "timing_constraints": [],
+      "decision_type": "STATE_TRANSITION",
+      "signal_roles": {
+        "inputs": [
+          "Bus_OK_Message",
+          "Hyd_ok_Dbnce_Lgc",
+          "Rect_ok_Dbnce_Lgc"
+        ],
+        "outputs": [],
+        "state_variables": [
+          "Idle_Mode_StateLgc",
+          "Location_State_StateLgc"
+        ]
+      },
+      "confidence": {
+        "conditions": 1.0,
+        "expected_outputs": 1.0,
+        "references": 1.0,
+        "logic_expression": 1.0,
+        "state_transition": 1.0,
+        "timing_constraints": 1.0
+      },
+      "linked_requirements": [],
+      "linked_tables": [],
+      "linked_figures": [],
+      "signals": [
+        "Bus_OK_Message",
+        "Rect_ok_Dbnce_Lgc",
+        "Hyd_ok_Dbnce_Lgc",
+        "Idle_Mode_StateLgc",
+        "Location_State_StateLgc"
+      ],
+      "notes": [],
+      "surface_applicability": [
+        "Primary"
+      ],
+      "lru_configuration": [],
+      "dependencies": [],
+      "metadata": {
+        "req_type": "Decomposed",
+        "safety_impact": "No",
+        "safety_rationale": "This is a detailed implementation requirement."
+      },
+      "source_location": {
+        "doc_position": 6,
+        "section": "LRUSWRS-1407"
+      }
+    },
+    {
+      "requirement_id": "LRUSWRS-1408",
+      "requirement_text": "The LRU software shall energize the MSV solenoid for primary surfaces (LRU_1, LRU_2, LRU_5, LRU_6, LRU_7) while in Location_State_StateLgc by setting the following bits:\nValve_On to TRUE using the FPGA register DSP_Control register bit in Table 1401.\nValve_On discrete IO to TRUE using the VALVE_ENABLE_DSP Pin function in Table 1409.",
+      "conditions": [],
+      "expected_outputs": [
+        {
+          "signal": "Valve_On",
+          "value": true
+        }
+      ],
+      "logic_expression": null,
+      "state_transition": null,
+      "timing_constraints": [],
+      "decision_type": "CONFIGURATION",
+      "signal_roles": {
+        "inputs": [],
+        "outputs": [
+          "Valve_On"
+        ],
+        "state_variables": [
+          "Location_State_StateLgc"
+        ]
+      },
+      "confidence": {
+        "conditions": 1.0,
+        "expected_outputs": 1.0,
+        "references": 1.0,
+        "logic_expression": 1.0,
+        "state_transition": 1.0,
+        "timing_constraints": 1.0
+      },
+      "linked_requirements": [],
+      "linked_tables": [
+        "Table 1401",
+        "Table 1409"
+      ],
+      "linked_figures": [],
+      "signals": [
+        "Valve_On",
+        "LRU_1",
+        "LRU_2",
+        "LRU_5",
+        "LRU_6",
+        "LRU_7",
+        "Location_State_StateLgc",
+        "DSP_Control",
+        "VALVE_ENABLE_DSP"
+      ],
+      "notes": [],
+      "surface_applicability": [
+        "Primary"
+      ],
+      "lru_configuration": [
+        "LRU_1",
+        "LRU_2",
+        "LRU_5",
+        "LRU_6",
+        "LRU_7"
+      ],
+      "dependencies": [
+        {
+          "type": "table",
+          "id": "Table 1401"
+        },
+        {
+          "type": "table",
+          "id": "Table 1409"
+        }
+      ],
+      "metadata": {
+        "req_type": "Decomposed",
+        "safety_impact": "No",
+        "safety_rationale": "This is a detailed implementation requirement."
+      },
+      "source_location": {
+        "doc_position": 7,
+        "section": "LRUSWRS-1408"
+      }
+    },
+    {
+      "requirement_id": "LRUSWRS-1409",
+      "requirement_text": "The LRU software shall map the discrete input/output functions per the following pin configurations:\nTable 1409 Pin Configurations",
+      "conditions": [],
+      "expected_outputs": [],
+      "logic_expression": null,
+      "state_transition": null,
+      "timing_constraints": [],
+      "decision_type": "CONFIGURATION",
+      "signal_roles": {
+        "inputs": [],
+        "outputs": [],
+        "state_variables": []
+      },
+      "confidence": {
+        "conditions": 1.0,
+        "expected_outputs": 1.0,
+        "references": 1.0,
+        "logic_expression": 1.0,
+        "state_transition": 1.0,
+        "timing_constraints": 1.0
+      },
+      "linked_requirements": [],
+      "linked_tables": [
+        "Table 1409"
+      ],
+      "linked_figures": [],
+      "signals": [],
+      "notes": [],
+      "surface_applicability": [],
+      "lru_configuration": [],
+      "dependencies": [
+        {
+          "type": "table",
+          "id": "Table 1409"
+        }
+      ],
+      "metadata": {
+        "req_type": "Derived",
+        "safety_impact": "No",
+        "safety_rationale": "This is a detailed implementation requirement."
+      },
+      "source_location": {
+        "doc_position": 10,
+        "section": "LRUSWRS-1409"
+      }
+    }
+  ],
+  "tables": {
+    "Table 1401": {
+      "table_id": "Table 1401",
+      "title": "Table 1401, Rev B  - FPGA Register Interface",
+      "headers": [
+        "Offset",
+        "SW Read/Write Register Access",
+        "Register Type/Bit Location",
+        "Register/Bit Signal Name",
+        "Register/Bit Description",
+        "Scale Factor",
+        "Data Range"
+      ],
+      "rows": [
+        [
+          "0x00",
+          "FPGA_0x00_REG",
+          "FPGA_0x00_REG",
+          "FPGA_0x00_REG",
+          "FPGA_0x00_REG",
+          "",
+          ""
+        ],
+        [
+          "",
+          "R",
+          "16 Bit Unsigned",
+          "Information01",
+          "Information_Description",
+          "N/A",
+          "N/A"
+        ],
+        [
+          "0x01",
+          "FPGA_0x01_REG",
+          "FPGA_0x01_REG",
+          "FPGA_0x01_REG",
+          "FPGA_0x01_REG",
+          "",
+          ""
+        ],
+        [
+          "",
+          "W / R",
+          "8 Bit Vector",
+          "Information11",
+          "Information_Description",
+          "N/A",
+          "N/A"
+        ],
+        [
+          "",
+          "W / R",
+          "Bit 0",
+          "Information12",
+          "Information_Description",
+          "N/A",
+          "[0-7]"
+        ],
+        [
+          "",
+          "W / R",
+          "Bit 1",
+          "Information13",
+          "Information_Description",
+          "N/A",
+          "[0-7]"
+        ],
+        [
+          "",
+          "W / R",
+          "Bit 2",
+          "Information14",
+          "Information_Description",
+          "N/A",
+          "[0-7]"
+        ],
+        [
+          "",
+          "W / R",
+          "Bits 3 - 7",
+          "Information15",
+          "Information_Description",
+          "N/A",
+          "N/A"
+        ],
+        [
+          "0x02",
+          "FPGA_0x02_REG",
+          "FPGA_0x02_REG",
+          "FPGA_0x02_REG",
+          "FPGA_0x02_REG",
+          "",
+          "Information"
+        ],
+        [
+          "",
+          "R",
+          "16 Bit Vector",
+          "Information21",
+          "Information_Description",
+          "N/A",
+          "N/A"
+        ],
+        [
+          "",
+          "R",
+          "Bit 0",
+          "Information22",
+          "Information_Description",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "R",
+          "Bit 1",
+          "Information23",
+          "Information_Description",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "R",
+          "Bit 2",
+          "Information24",
+          "Information_Description",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "R",
+          "Bit 3",
+          "Information25",
+          "Information_Description",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "R",
+          "Bit 4",
+          "Information26",
+          "Information_Description",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "R",
+          "Bit 5",
+          "Information27",
+          "Information_Description",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "R",
+          "Bit 6",
+          "Information28",
+          "Information_Description",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "R",
+          "Bit 7",
+          "Information29",
+          "Information_Description",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "R",
+          "Bit 8",
+          "Information211",
+          "Information_Description",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "R",
+          "Bit 9",
+          "Information212",
+          "Information_Description",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "R",
+          "Bit 10",
+          "Information213",
+          "Information_Description",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "R",
+          "Bit 11",
+          "Information214",
+          "Information_Description",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "R",
+          "Bit 12",
+          "Information215",
+          "Information_Description",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "R",
+          "Bits 13-14",
+          "Information216",
+          "Information_Description",
+          "N/A",
+          "[0-3]"
+        ],
+        [
+          "",
+          "R",
+          "Bit 15",
+          "Information217",
+          "Information_Description",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "0x03",
+          "FPGA_0x03_REG",
+          "FPGA_0x03_REG",
+          "FPGA_0x03_REG",
+          "FPGA_0x03_REG",
+          "",
+          ""
+        ],
+        [
+          "",
+          "R / W",
+          "16 Bit Unsigned",
+          "Underlying_Layer_Test",
+          "The Underlying Layer SBIT Test fails if Underlying_Layer_Monitor_Init is True",
+          "",
+          ""
+        ],
+        [
+          "0x05",
+          "FPGA_0x05_REG",
+          "FPGA_0x05_REG",
+          "FPGA_0x05_REG",
+          "FPGA_0x05_REG",
+          "",
+          ""
+        ],
+        [
+          "",
+          "R",
+          "16 Bit Unsigned",
+          "Layer_2_Match_Info",
+          "The Layer 2 index for use by the SBIT Layer 1 – Layer 2 Compatibility test, initial value is 1.",
+          "N/A",
+          "[1, 65535]"
+        ],
+        [
+          "0x0A",
+          "FPGA_DSP_FLAGS_REG",
+          "FPGA_DSP_FLAGS_REG",
+          "FPGA_DSP_FLAGS_REG",
+          "FPGA_DSP_FLAGS_REG",
+          "FPGA_DSP_FLAGS_REG",
+          "FPGA_DSP_FLAGS_REG"
+        ],
+        [
+          "",
+          "R / W",
+          "8 Bit Vector",
+          "DSP_Control",
+          "The DSP control register commands the FPGA states and corresponding output drive signals",
+          "N/A",
+          "N/A"
+        ],
+        [
+          "",
+          "R / W",
+          "Bit 0",
+          "Valve_On",
+          "1 = DSP commands Solenoid on",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "R / W",
+          "Bit 1",
+          "Spare",
+          "Spare",
+          "N/A",
+          "N/A"
+        ],
+        [
+          "",
+          "R / W",
+          "Bit 2",
+          "Location_State_StateLgc",
+          "1 = EBMCE is in Position State",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "R / W",
+          "Bit 3",
+          "Speed_State_StateLgc",
+          "1 = EBMCE is in Velocity State",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "R / W",
+          "Bit 4",
+          "Backup_Control_Active_LA_StateLgc",
+          "1 = Back-Up Control is in control",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "R / W",
+          "Bits 5 – 7",
+          "Spare",
+          "Spare",
+          "N/A",
+          "N/A"
+        ],
+        [
+          "0x0B",
+          "FPGA_0x0B_REG",
+          "FPGA_0x0B_REG",
+          "FPGA_0x0B_REG",
+          "FPGA_0x0B_REG",
+          "FPGA_0x0B_REG",
+          "FPGA_0x0B_REG"
+        ],
+        [
+          "",
+          "R / W",
+          "12 Bit Vector",
+          "InformationB1",
+          "Information_Description",
+          "N/A",
+          "N/A"
+        ],
+        [
+          "",
+          "R / W",
+          "Bit 0",
+          "InformationB2",
+          "Information_Description",
+          "N/A",
+          ""
+        ],
+        [
+          "",
+          "R / W",
+          "Bit 1",
+          "InformationB3",
+          "Information_Description",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "R / W",
+          "Bit 2",
+          "InformationB4",
+          "Information_Description",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "R / W",
+          "Bit 3",
+          "InformationB5",
+          "Information_Description",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "R / W",
+          "Bit 4",
+          "InformationB6",
+          "Information_Description",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "R / W",
+          "Bit 5",
+          "InformationB7",
+          "Information_Description",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "R / W",
+          "Bit 6",
+          "InformationB8",
+          "Information_Description",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "R / W",
+          "Bit 7",
+          "InformationB9",
+          "Information_Description",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "R / W",
+          "Bit 8",
+          "InformationB21",
+          "Information_Description",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "R / W",
+          "Bit 9",
+          "InformationB22",
+          "Information_Description",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "R / W",
+          "Bit 10",
+          "InformationB23",
+          "Information_Description",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "R / W",
+          "Bit 11",
+          "InformationB24",
+          "Information_Description",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "0x0C",
+          "FPGA_0X0C_REG",
+          "FPGA_0X0C_REG",
+          "FPGA_0X0C_REG",
+          "FPGA_0X0C_REG",
+          "FPGA_0X0C_REG",
+          "FPGA_0X0C_REG"
+        ],
+        [
+          "",
+          "R",
+          "12 Bit Unsigned",
+          "Device_Position_Meas_Return",
+          "Device Location Info",
+          "LSB = 360/4096 = 0.087890625 degrees",
+          "[0, 4095] => 0 - 360 degrees"
+        ],
+        [
+          "0x0E",
+          "FPGA_0X0E_REG",
+          "FPGA_0X0E_REG",
+          "FPGA_0X0E_REG",
+          "FPGA_0X0E_REG",
+          "FPGA_0X0E_REG",
+          "FPGA_0X0E_REG"
+        ],
+        [
+          "",
+          "R",
+          "16 Bit Signed",
+          "Device_Speed_Err_Info",
+          "Device Speed Error",
+          "LSB = 29.296875 rpm/bit",
+          "[-32,768, 32,767] => ±60,000 rpm."
+        ],
+        [
+          "0x20",
+          "FPGA_0X20_REG",
+          "FPGA_0X20_REG",
+          "FPGA_0X20_REG",
+          "FPGA_0X20_REG",
+          "FPGA_0X20_REG",
+          "FPGA_0X20_REG"
+        ],
+        [
+          "",
+          "R",
+          "16 Bit Unsigned",
+          "Information201",
+          "Information_Description",
+          "N/A",
+          "N/A"
+        ],
+        [
+          "0x21",
+          "FPGA_0X21_REG",
+          "FPGA_0X21_REG",
+          "FPGA_0X21_REG",
+          "FPGA_0X21_REG",
+          "FPGA_0X21_REG",
+          "FPGA_0X21_REG"
+        ],
+        [
+          "",
+          "R",
+          "16 Bit Unsigned",
+          "Information211",
+          "Information_Description",
+          "N/A",
+          "N/A"
+        ],
+        [
+          "0x24",
+          "FPGA_0X24_REG",
+          "FPGA_0X24_REG",
+          "FPGA_0X24_REG",
+          "FPGA_0X24_REG",
+          "FPGA_0X24_REG",
+          "FPGA_0X24_REG"
+        ],
+        [
+          "",
+          "R",
+          "16 Bit Unsigned",
+          "Information241",
+          "Information_Description",
+          "N/A",
+          "[0-7]"
+        ],
+        [
+          "0x30",
+          "FPGA_0X30_REG",
+          "FPGA_0X30_REG",
+          "FPGA_0X30_REG",
+          "FPGA_0X30_REG",
+          "FPGA_0X30_REG",
+          "FPGA_0X30_REG"
+        ],
+        [
+          "",
+          "R / W",
+          "12 Bit Signed",
+          "Information301",
+          "Information_Description",
+          "LSB=0.101612",
+          "[-2048, 2047]"
+        ],
+        [
+          "0x31",
+          "FPGA_0X31_REG",
+          "FPGA_0X31_REG",
+          "FPGA_0X31_REG",
+          "FPGA_0X31_REG",
+          "FPGA_0X31_REG",
+          "FPGA_0X31_REG"
+        ],
+        [
+          "",
+          "R / W",
+          "12 Bit Signed",
+          "Information311",
+          "Information_Description",
+          "LSB=0.025 V",
+          "[-2048, 2047]"
+        ],
+        [
+          "0x40",
+          "FPGA_0X40_REG",
+          "FPGA_0X40_REG",
+          "FPGA_0X40_REG",
+          "FPGA_0X40_REG",
+          "FPGA_0X40_REG",
+          "FPGA_0X40_REG"
+        ],
+        [
+          "",
+          "R / W",
+          "12 Bit Unsigned",
+          "Information401",
+          "Information_Description",
+          "LSB = 0.001221 V",
+          "[0,4095] => 0-5 V\nSaturation after 5 V."
+        ],
+        [
+          "0x41",
+          "FPGA_0X41_REG",
+          "FPGA_0X41_REG",
+          "FPGA_0X41_REG",
+          "FPGA_0X41_REG",
+          "FPGA_0X41_REG",
+          "FPGA_0X41_REG"
+        ],
+        [
+          "",
+          "R / W",
+          "12 Bit Unsigned",
+          "Information411",
+          "Information_Description",
+          "LSB = 0.001221 V",
+          "[0, 4095] => 0~5V"
+        ],
+        [
+          "0x42",
+          "FPGA_0X42_REG",
+          "FPGA_0X42_REG",
+          "FPGA_0X42_REG",
+          "FPGA_0X42_REG",
+          "FPGA_0X42_REG",
+          "FPGA_0X42_REG"
+        ],
+        [
+          "",
+          "R / W",
+          "12 Bit Unsigned",
+          "Information421",
+          "Information_Description",
+          "LSB = 0.001221 V",
+          "[0, 4095] => 0~5V"
+        ],
+        [
+          "0x44",
+          "FPGA_FRAME_SYNC_REG",
+          "FPGA_FRAME_SYNC_REG",
+          "FPGA_FRAME_SYNC_REG",
+          "FPGA_FRAME_SYNC_REG",
+          "FPGA_FRAME_SYNC_REG",
+          "FPGA_FRAME_SYNC_REG"
+        ],
+        [
+          "",
+          "R",
+          "16 Bit Vector",
+          "Information441",
+          "Information_Description",
+          "N/A",
+          "N/A"
+        ],
+        [
+          "",
+          "",
+          "Bit 0",
+          "Information442",
+          "Information_Description",
+          "N/A",
+          "N/A"
+        ],
+        [
+          "",
+          "",
+          "Bit 1",
+          "Information443",
+          "Information_Description",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "",
+          "Bits 2 - 3",
+          "Information444",
+          "Spare",
+          "N/A",
+          "N/A"
+        ],
+        [
+          "",
+          "",
+          "Bit 4",
+          "Power_NA_Err",
+          "1 = External 28 VDC power is below minimal threshold",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "",
+          "Bit 5",
+          "Information446",
+          "Information_Description",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "",
+          "Bits 6 – 8",
+          "Information447",
+          "Spare",
+          "N/A",
+          "N/A"
+        ],
+        [
+          "",
+          "",
+          "Bit 9",
+          "Information448",
+          "Information_Description",
+          "N/A",
+          "[0-7]"
+        ],
+        [
+          "",
+          "",
+          "Bit 10",
+          "Information449",
+          "Information_Description",
+          "N/A",
+          "[0-7]"
+        ],
+        [
+          "",
+          "",
+          "Bit 11",
+          "Information450",
+          "Information_Description",
+          "N/A",
+          "[0-7]"
+        ],
+        [
+          "",
+          "",
+          "Bits 12 - 13",
+          "Information451",
+          "Spare",
+          "N/A",
+          "N/A"
+        ],
+        [
+          "",
+          "",
+          "Bit 14",
+          "Rotor_Ref_Bad_Monitor",
+          "Rotor Ref Bad Monitor",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "",
+          "",
+          "Bit 15",
+          "Pre_Drive_Supply_Bad_Monitor",
+          "Pre Drive Supply Bad Monitor",
+          "N/A",
+          "[0,1]"
+        ],
+        [
+          "0x61",
+          "FPGA_0X61_REG",
+          "FPGA_0X61_REG",
+          "FPGA_0X61_REG",
+          "FPGA_0X61_REG",
+          "FPGA_0X61_REG",
+          "FPGA_0X61_REG"
+        ],
+        [
+          "",
+          "R",
+          "12 Bit Unsigned",
+          "Temp_Meas_Analog611",
+          "Board Temperature",
+          "LSB = 0.001221 V",
+          "[0, 4095] => 0~5V"
+        ],
+        [
+          "0x63",
+          "FPGA_0X63_REG",
+          "FPGA_0X63_REG",
+          "FPGA_0X63_REG",
+          "FPGA_0X63_REG",
+          "FPGA_0X63_REG",
+          "FPGA_0X63_REG"
+        ],
+        [
+          "",
+          "R",
+          "12 Bit Unsigned",
+          "Volt_Analog631",
+          "Voltage Info for A/D",
+          "LSB = 0.001221 V",
+          "[0, 4095] => 0~5V"
+        ],
+        [
+          "0x64",
+          "FPGA_0X64_REG",
+          "FPGA_0X64_REG",
+          "FPGA_0X64_REG",
+          "FPGA_0X64_REG",
+          "FPGA_0X64_REG",
+          "FPGA_0X64_REG"
+        ],
+        [
+          "",
+          "R",
+          "12 Bit Signed",
+          "Test_ADC641",
+          "Test ADC Register",
+          "LSB = 0.001221 V",
+          "[0, 4095] => 0~5V"
+        ],
+        [
+          "0x65",
+          "FPGA_0X65_REG",
+          "FPGA_0X65_REG",
+          "FPGA_0X65_REG",
+          "FPGA_0X65_REG",
+          "FPGA_0X65_REG",
+          "FPGA_0X65_REG"
+        ],
+        [
+          "",
+          "R",
+          "12 Bit Unsigned",
+          "Solenoid_Volt_Meas_Analog651",
+          "MSV Drive Feedback Voltage",
+          "LSB = 0.001221 V",
+          "[0, 4095] => 0~5V"
+        ],
+        [
+          "0x66",
+          "FPGA_0X66_REG",
+          "FPGA_0X66_REG",
+          "FPGA_0X66_REG",
+          "FPGA_0X66_REG",
+          "FPGA_0X66_REG",
+          "FPGA_0X66_REG"
+        ],
+        [
+          "",
+          "R",
+          "12 Bit Unsigned",
+          "Volt_Ground_1_Analog661",
+          "Ground Reference voltage 1",
+          "LSB = 0.001221 V",
+          "[0, 4095] => 0~5V"
+        ],
+        [
+          "0x67",
+          "FPGA_0X67_REG",
+          "FPGA_0X67_REG",
+          "FPGA_0X67_REG",
+          "FPGA_0X67_REG",
+          "FPGA_0X67_REG",
+          "FPGA_0X67_REG"
+        ],
+        [
+          "",
+          "R",
+          "12 Bit Unsigned",
+          "Volt_Ground_2_Analog671",
+          "Ground Reference voltage 2",
+          "LSB = 0.001221 V",
+          "[0, 4095] => 0~5V"
+        ],
+        [
+          "0x68",
+          "FPGA_0X68REG",
+          "FPGA_0X68REG",
+          "FPGA_0X68REG",
+          "FPGA_0X68REG",
+          "FPGA_0X68REG",
+          "FPGA_0X68REG"
+        ],
+        [
+          "",
+          "R",
+          "16 Bit Unsigned",
+          "Bar_Transformer_A681",
+          "Transformer A Input",
+          "N/A",
+          "[0, 65535]"
+        ],
+        [
+          "0x69",
+          "FPGA_0X69_FB",
+          "FPGA_0X69_FB",
+          "FPGA_0X69_FB",
+          "FPGA_0X69_FB",
+          "FPGA_0X69_FB",
+          "FPGA_0X69_FB"
+        ],
+        [
+          "",
+          "R",
+          "16 Bit Signed",
+          "Information691",
+          "Information Description",
+          "LSB=0.101612 V",
+          "[-2048, 2047] => ±208A"
+        ],
+        [
+          "0x6A",
+          "FPGA_0X6A_REG",
+          "FPGA_0X6A_REG",
+          "FPGA_0X6A_REG",
+          "FPGA_0X6A_REG",
+          "FPGA_0X6A_REG",
+          "FPGA_0X6A_REG"
+        ],
+        [
+          "",
+          "R",
+          "12 Bit Unsigned",
+          "Information6A1",
+          "Information Description",
+          "LSB = 0.001221 V",
+          "[0, 4095] => 0~5V"
+        ],
+        [
+          "0x6B",
+          "FPGA_0X6B_REG",
+          "FPGA_0X6B_REG",
+          "FPGA_0X6B_REG",
+          "FPGA_0X6B_REG",
+          "FPGA_0X6B_REG",
+          "FPGA_0X6B_REG"
+        ],
+        [
+          "",
+          "R",
+          "12 Bit Unsigned",
+          "Information6B1",
+          "Information Description",
+          "LSB = 0.001221 V",
+          "[0, 4095] => 0~5V"
+        ],
+        [
+          "0x6C",
+          "FPGA_0X6C_REG",
+          "FPGA_0X6C_REG",
+          "FPGA_0X6C_REG",
+          "FPGA_0X6C_REG",
+          "FPGA_0X6C_REG",
+          "FPGA_0X6C_REG"
+        ],
+        [
+          "",
+          "R",
+          "12 Bit Unsigned",
+          "Information6C1",
+          "Information Description",
+          "LSB = 0.001221 V",
+          "[0, 4095] => 0~5V"
+        ],
+        [
+          "0x6D",
+          "FPGA_0X6D_REG",
+          "FPGA_0X6D_REG",
+          "FPGA_0X6D_REG",
+          "FPGA_0X6D_REG",
+          "FPGA_0X6D_REG",
+          "FPGA_0X6D_REG"
+        ],
+        [
+          "",
+          "R",
+          "12 Bit Unsigned",
+          "Information6D1",
+          "Information Description",
+          "LSB = 0.001221 V",
+          "[0, 4095] => 0~5V"
+        ],
+        [
+          "0x70",
+          "FPGA_0X70_REG",
+          "FPGA_0X70_REG",
+          "FPGA_0X70_REG",
+          "FPGA_0X70_REG",
+          "FPGA_0X70_REG",
+          "FPGA_0X70_REG"
+        ],
+        [
+          "",
+          "R",
+          "16 Bit Unsigned",
+          "Information701",
+          "Information Description",
+          "LSB = 0.0382418 Amps",
+          "[0, 4095] => 0~156.6A\nNote: Sign is extended from 12 to 16 bits.  There is no negative current range."
+        ],
+        [
+          "0x71",
+          "FPGA_0X71_REG",
+          "FPGA_0X71_REG",
+          "FPGA_0X71_REG",
+          "FPGA_0X71_REG",
+          "FPGA_0X71_REG",
+          "FPGA_0X71_REG"
+        ],
+        [
+          "",
+          "R",
+          "16 Bit Signed",
+          "Information711",
+          "PBIT Motor Information Description",
+          "LSB = 0.024426 V",
+          "[-2048, 2047] => ±50V"
+        ],
+        [
+          "0x72",
+          "FPGA_0X72_REG",
+          "FPGA_0X72_REG",
+          "FPGA_0X72_REG",
+          "FPGA_0X72_REG",
+          "FPGA_0X72_REG",
+          "FPGA_0X72_REG"
+        ],
+        [
+          "",
+          "R",
+          "12 Bit Unsigned",
+          "Information721",
+          "Information Description",
+          "LSB = 0.001221 V",
+          "[0, 4095] => 0~5V"
+        ],
+        [
+          "0x73",
+          "FPGA_0X73_REG",
+          "FPGA_0X73_REG",
+          "FPGA_0X73_REG",
+          "FPGA_0X73_REG",
+          "FPGA_0X73_REG",
+          "FPGA_0X73_REG"
+        ],
+        [
+          "",
+          "R",
+          "12 Bit Unsigned",
+          "Information731",
+          "Information Description",
+          "LSB = 0.001221 V",
+          "[0, 4095] => 0~5V"
+        ],
+        [
+          "0x74",
+          "FPGA_0X74_REG",
+          "FPGA_0X74_REG",
+          "FPGA_0X74_REG",
+          "FPGA_0X74_REG",
+          "FPGA_0X74_REG",
+          "FPGA_0X74_REG"
+        ],
+        [
+          "",
+          "R",
+          "12 Bit Unsigned",
+          "Information741",
+          "Information Description",
+          "LSB = 0.001221 V",
+          "[0, 4095] => 0~5V"
+        ],
+        [
+          "0x75",
+          "FPGA_0X75_REG",
+          "FPGA_0X75_REG",
+          "FPGA_0X75_REG",
+          "FPGA_0X75_REG",
+          "FPGA_0X75_REG",
+          "FPGA_0X75_REG"
+        ],
+        [
+          "",
+          "R",
+          "12 Bit Unsigned",
+          "Information751",
+          "Information Description",
+          "LSB = 0.023443  V",
+          "[0, 4095] => 0~96V"
+        ],
+        [
+          "0x78",
+          "FPGA_0X78_REG",
+          "FPGA_0X78_REG",
+          "FPGA_0X78_REG",
+          "FPGA_0X78_REG",
+          "FPGA_0X78_REG",
+          "FPGA_0X78_REG"
+        ],
+        [
+          "",
+          "R",
+          "16 Bit Unsigned",
+          "Information781",
+          "Information Description",
+          "N/A",
+          "[0, 65535]"
+        ],
+        [
+          "0x80",
+          "R",
+          "16 Bit Unsigned",
+          "Information801",
+          "Information Description",
+          "12 bit LSB = 0.08791209 degrees\n16 bit LSB = 0.00549 degrees.",
+          "[0, 4095] => 0 - 360 mechanical motor degrees"
+        ],
+        [
+          "0x82",
+          "R",
+          "16 Bit Signed",
+          "Information821",
+          "Information Description",
+          "LSB = 29.28 rpm",
+          "[-2048, 2047] => ±60,000 rpm"
+        ],
+        [
+          "0x88",
+          "R / W",
+          "8 bit Unsigned",
+          "Information881",
+          "Information Description",
+          "12 bit LSB = 0.08833 degrees\n16 bit LSB = 0.00500 degrees",
+          "[0, 255]\nDefault = 2.2 V\n[0 – 4.82] V (functional range)"
+        ],
+        [
+          "0x89",
+          "R / W",
+          "8 Bit Unsigned",
+          "Information891",
+          "Information Description",
+          "LSB = 38 mV",
+          "[0, 255]\nDefault = 4.1 V"
+        ],
+        [
+          "0x8A",
+          "R / W",
+          "8 Bit Unsigned",
+          "Information8A1",
+          "Information Description",
+          "LSB = 38 mV",
+          "[0, 255]\nDefault = 380 mV"
+        ],
+        [
+          "0x8B",
+          "R / W",
+          "8 Bit Unsigned",
+          "Information8B1",
+          "Information Description",
+          "LSB = 38 mV",
+          "[0, 255]"
+        ],
+        [
+          "0x8C",
+          "R / W",
+          "8 Bit Unsigned",
+          "Information8C1",
+          "Information Description",
+          "LSB = 38 mV",
+          "[0, 255]"
+        ],
+        [
+          "0x8D",
+          "R / W",
+          "8 Bit Unsigned",
+          "Information8D1",
+          "Information Description",
+          "12 bit LSB = 0.14 degrees\n14 and 16 bit LSB- = 0.09 degrees",
+          "[0, 255]\n12 bit resolution: \nDefault = 5.0 degrees\n14 and 16 bit resolution: Default = 2.5 degrees"
+        ],
+        [
+          "0x8E",
+          "R / W",
+          "8 Bit Unsigned",
+          "Information8E1",
+          "Information Description",
+          "12 bit LSB = 0.14 degrees\n14 and 16 bit LSB- = 0.09 degrees",
+          "[0, 255] \n12 bit resolution: \nDefault = 1.0 degrees\n14 and 16 bit resolution: \nDefault = 0.5 degrees"
+        ],
+        [
+          "0x91",
+          "R / W",
+          "8 Bit Unsigned",
+          "Information911",
+          "Information Description",
+          "LSB (Hz) =3.05176  x 10^-5 x clock_freq",
+          "[0, 255] \nDefault = 0x41"
+        ],
+        [
+          "0x92",
+          "R / W",
+          "8 Bit Unsigned",
+          "Information921",
+          "Information Description",
+          "N/A",
+          "[0, 255] \nDefault = 0x7E"
+        ],
+        [
+          "0xF0",
+          "W",
+          "8 Bit Unsigned",
+          "InformationF01",
+          "Information Description",
+          "N/A",
+          "N/A"
+        ],
+        [
+          "0xFF",
+          "R",
+          "8 Bit Unsigned",
+          "InformationFF1",
+          "Information Description",
+          "N/A",
+          "[0, 255]"
+        ]
+      ],
+      "metadata": {},
+      "source_location": {
+        "doc_position": 8,
+        "table_id": "Table 1401"
+      },
+      "classification": "REGISTER_TABLE",
+      "steps": [],
+      "definitions": {
+        "Information01": {
+          "register": "FPGA_0x00_REG",
+          "bit": "Information_Description",
+          "access": "R"
+        },
+        "Information11": {
+          "register": "FPGA_0x01_REG",
+          "bit": "Information_Description",
+          "access": "W / R"
+        },
+        "Information12": {
+          "register": "FPGA_0x01_REG",
+          "bit": "Information_Description",
+          "access": "W / R"
+        },
+        "Information13": {
+          "register": "FPGA_0x01_REG",
+          "bit": "Information_Description",
+          "access": "W / R"
+        },
+        "Information14": {
+          "register": "FPGA_0x01_REG",
+          "bit": "Information_Description",
+          "access": "W / R"
+        },
+        "Information15": {
+          "register": "FPGA_0x01_REG",
+          "bit": "Information_Description",
+          "access": "W / R"
+        },
+        "Information21": {
+          "register": "FPGA_0x02_REG",
+          "bit": "Information_Description",
+          "access": "R"
+        },
+        "Information22": {
+          "register": "FPGA_0x02_REG",
+          "bit": "Information_Description",
+          "access": "R"
+        },
+        "Information23": {
+          "register": "FPGA_0x02_REG",
+          "bit": "Information_Description",
+          "access": "R"
+        },
+        "Information24": {
+          "register": "FPGA_0x02_REG",
+          "bit": "Information_Description",
+          "access": "R"
+        },
+        "Information25": {
+          "register": "FPGA_0x02_REG",
+          "bit": "Information_Description",
+          "access": "R"
+        },
+        "Information26": {
+          "register": "FPGA_0x02_REG",
+          "bit": "Information_Description",
+          "access": "R"
+        },
+        "Information27": {
+          "register": "FPGA_0x02_REG",
+          "bit": "Information_Description",
+          "access": "R"
+        },
+        "Information28": {
+          "register": "FPGA_0x02_REG",
+          "bit": "Information_Description",
+          "access": "R"
+        },
+        "Information29": {
+          "register": "FPGA_0x02_REG",
+          "bit": "Information_Description",
+          "access": "R"
+        },
+        "Information211": {
+          "register": "FPGA_0X21_REG",
+          "bit": "Information_Description",
+          "access": "R"
+        },
+        "Information212": {
+          "register": "FPGA_0x02_REG",
+          "bit": "Information_Description",
+          "access": "R"
+        },
+        "Information213": {
+          "register": "FPGA_0x02_REG",
+          "bit": "Information_Description",
+          "access": "R"
+        },
+        "Information214": {
+          "register": "FPGA_0x02_REG",
+          "bit": "Information_Description",
+          "access": "R"
+        },
+        "Information215": {
+          "register": "FPGA_0x02_REG",
+          "bit": "Information_Description",
+          "access": "R"
+        },
+        "Information216": {
+          "register": "FPGA_0x02_REG",
+          "bit": "Information_Description",
+          "access": "R"
+        },
+        "Information217": {
+          "register": "FPGA_0x02_REG",
+          "bit": "Information_Description",
+          "access": "R"
+        },
+        "Underlying_Layer_Test": {
+          "register": "FPGA_0x03_REG",
+          "bit": "The Underlying Layer SBIT Test fails if Underlying_Layer_Monitor_Init is True",
+          "access": "R / W"
+        },
+        "Layer_2_Match_Info": {
+          "register": "FPGA_0x05_REG",
+          "bit": "The Layer 2 index for use by the SBIT Layer 1 – Layer 2 Compatibility test, initial value is 1.",
+          "access": "R"
+        },
+        "DSP_Control": {
+          "register": "FPGA_DSP_FLAGS_REG",
+          "bit": "The DSP control register commands the FPGA states and corresponding output drive signals",
+          "access": "R / W"
+        },
+        "Valve_On": {
+          "register": "FPGA_DSP_FLAGS_REG",
+          "bit": "1 = DSP commands Solenoid on",
+          "access": "R / W"
+        },
+        "Spare": {
+          "register": "FPGA_DSP_FLAGS_REG",
+          "bit": "Spare",
+          "access": "R / W"
+        },
+        "Location_State_StateLgc": {
+          "register": "FPGA_DSP_FLAGS_REG",
+          "bit": "1 = EBMCE is in Position State",
+          "access": "R / W"
+        },
+        "Speed_State_StateLgc": {
+          "register": "FPGA_DSP_FLAGS_REG",
+          "bit": "1 = EBMCE is in Velocity State",
+          "access": "R / W"
+        },
+        "Backup_Control_Active_LA_StateLgc": {
+          "register": "FPGA_DSP_FLAGS_REG",
+          "bit": "1 = Back-Up Control is in control",
+          "access": "R / W"
+        },
+        "InformationB1": {
+          "register": "FPGA_0x0B_REG",
+          "bit": "Information_Description",
+          "access": "R / W"
+        },
+        "InformationB2": {
+          "register": "FPGA_0x0B_REG",
+          "bit": "Information_Description",
+          "access": "R / W"
+        },
+        "InformationB3": {
+          "register": "FPGA_0x0B_REG",
+          "bit": "Information_Description",
+          "access": "R / W"
+        },
+        "InformationB4": {
+          "register": "FPGA_0x0B_REG",
+          "bit": "Information_Description",
+          "access": "R / W"
+        },
+        "InformationB5": {
+          "register": "FPGA_0x0B_REG",
+          "bit": "Information_Description",
+          "access": "R / W"
+        },
+        "InformationB6": {
+          "register": "FPGA_0x0B_REG",
+          "bit": "Information_Description",
+          "access": "R / W"
+        },
+        "InformationB7": {
+          "register": "FPGA_0x0B_REG",
+          "bit": "Information_Description",
+          "access": "R / W"
+        },
+        "InformationB8": {
+          "register": "FPGA_0x0B_REG",
+          "bit": "Information_Description",
+          "access": "R / W"
+        },
+        "InformationB9": {
+          "register": "FPGA_0x0B_REG",
+          "bit": "Information_Description",
+          "access": "R / W"
+        },
+        "InformationB21": {
+          "register": "FPGA_0x0B_REG",
+          "bit": "Information_Description",
+          "access": "R / W"
+        },
+        "InformationB22": {
+          "register": "FPGA_0x0B_REG",
+          "bit": "Information_Description",
+          "access": "R / W"
+        },
+        "InformationB23": {
+          "register": "FPGA_0x0B_REG",
+          "bit": "Information_Description",
+          "access": "R / W"
+        },
+        "InformationB24": {
+          "register": "FPGA_0x0B_REG",
+          "bit": "Information_Description",
+          "access": "R / W"
+        },
+        "Device_Position_Meas_Return": {
+          "register": "FPGA_0X0C_REG",
+          "bit": "Device Location Info",
+          "access": "R"
+        },
+        "Device_Speed_Err_Info": {
+          "register": "FPGA_0X0E_REG",
+          "bit": "Device Speed Error",
+          "access": "R"
+        },
+        "Information201": {
+          "register": "FPGA_0X20_REG",
+          "bit": "Information_Description",
+          "access": "R"
+        },
+        "Information241": {
+          "register": "FPGA_0X24_REG",
+          "bit": "Information_Description",
+          "access": "R"
+        },
+        "Information301": {
+          "register": "FPGA_0X30_REG",
+          "bit": "Information_Description",
+          "access": "R / W"
+        },
+        "Information311": {
+          "register": "FPGA_0X31_REG",
+          "bit": "Information_Description",
+          "access": "R / W"
+        },
+        "Information401": {
+          "register": "FPGA_0X40_REG",
+          "bit": "Information_Description",
+          "access": "R / W"
+        },
+        "Information411": {
+          "register": "FPGA_0X41_REG",
+          "bit": "Information_Description",
+          "access": "R / W"
+        },
+        "Information421": {
+          "register": "FPGA_0X42_REG",
+          "bit": "Information_Description",
+          "access": "R / W"
+        },
+        "Information441": {
+          "register": "FPGA_FRAME_SYNC_REG",
+          "bit": "Information_Description",
+          "access": "R"
+        },
+        "Information442": {
+          "register": "FPGA_FRAME_SYNC_REG",
+          "bit": "Information_Description",
+          "access": "R/W"
+        },
+        "Information443": {
+          "register": "FPGA_FRAME_SYNC_REG",
+          "bit": "Information_Description",
+          "access": "R/W"
+        },
+        "Information444": {
+          "register": "FPGA_FRAME_SYNC_REG",
+          "bit": "Spare",
+          "access": "R/W"
+        },
+        "Power_NA_Err": {
+          "register": "FPGA_FRAME_SYNC_REG",
+          "bit": "1 = External 28 VDC power is below minimal threshold",
+          "access": "R/W"
+        },
+        "Information446": {
+          "register": "FPGA_FRAME_SYNC_REG",
+          "bit": "Information_Description",
+          "access": "R/W"
+        },
+        "Information447": {
+          "register": "FPGA_FRAME_SYNC_REG",
+          "bit": "Spare",
+          "access": "R/W"
+        },
+        "Information448": {
+          "register": "FPGA_FRAME_SYNC_REG",
+          "bit": "Information_Description",
+          "access": "R/W"
+        },
+        "Information449": {
+          "register": "FPGA_FRAME_SYNC_REG",
+          "bit": "Information_Description",
+          "access": "R/W"
+        },
+        "Information450": {
+          "register": "FPGA_FRAME_SYNC_REG",
+          "bit": "Information_Description",
+          "access": "R/W"
+        },
+        "Information451": {
+          "register": "FPGA_FRAME_SYNC_REG",
+          "bit": "Spare",
+          "access": "R/W"
+        },
+        "Rotor_Ref_Bad_Monitor": {
+          "register": "FPGA_FRAME_SYNC_REG",
+          "bit": "Rotor Ref Bad Monitor",
+          "access": "R/W"
+        },
+        "Pre_Drive_Supply_Bad_Monitor": {
+          "register": "FPGA_FRAME_SYNC_REG",
+          "bit": "Pre Drive Supply Bad Monitor",
+          "access": "R/W"
+        },
+        "Temp_Meas_Analog611": {
+          "register": "FPGA_0X61_REG",
+          "bit": "Board Temperature",
+          "access": "R"
+        },
+        "Volt_Analog631": {
+          "register": "FPGA_0X63_REG",
+          "bit": "Voltage Info for A/D",
+          "access": "R"
+        },
+        "Test_ADC641": {
+          "register": "FPGA_0X64_REG",
+          "bit": "Test ADC Register",
+          "access": "R"
+        },
+        "Solenoid_Volt_Meas_Analog651": {
+          "register": "FPGA_0X65_REG",
+          "bit": "MSV Drive Feedback Voltage",
+          "access": "R"
+        },
+        "Volt_Ground_1_Analog661": {
+          "register": "FPGA_0X66_REG",
+          "bit": "Ground Reference voltage 1",
+          "access": "R"
+        },
+        "Volt_Ground_2_Analog671": {
+          "register": "FPGA_0X67_REG",
+          "bit": "Ground Reference voltage 2",
+          "access": "R"
+        },
+        "FPGA_0X68REG": {
+          "register": "FPGA_0X67_REG",
+          "bit": "FPGA_0X68REG",
+          "access": "FPGA_0X68REG"
+        },
+        "Bar_Transformer_A681": {
+          "register": "FPGA_0X67_REG",
+          "bit": "Transformer A Input",
+          "access": "R"
+        },
+        "FPGA_0X69_FB": {
+          "register": "FPGA_0X67_REG",
+          "bit": "FPGA_0X69_FB",
+          "access": "FPGA_0X69_FB"
+        },
+        "Information691": {
+          "register": "FPGA_0X67_REG",
+          "bit": "Information Description",
+          "access": "R"
+        },
+        "Information6A1": {
+          "register": "FPGA_0X6A_REG",
+          "bit": "Information Description",
+          "access": "R"
+        },
+        "Information6B1": {
+          "register": "FPGA_0X6B_REG",
+          "bit": "Information Description",
+          "access": "R"
+        },
+        "Information6C1": {
+          "register": "FPGA_0X6C_REG",
+          "bit": "Information Description",
+          "access": "R"
+        },
+        "Information6D1": {
+          "register": "FPGA_0X6D_REG",
+          "bit": "Information Description",
+          "access": "R"
+        },
+        "Information701": {
+          "register": "FPGA_0X70_REG",
+          "bit": "Information Description",
+          "access": "R"
+        },
+        "Information711": {
+          "register": "FPGA_0X71_REG",
+          "bit": "PBIT Motor Information Description",
+          "access": "R"
+        },
+        "Information721": {
+          "register": "FPGA_0X72_REG",
+          "bit": "Information Description",
+          "access": "R"
+        },
+        "Information731": {
+          "register": "FPGA_0X73_REG",
+          "bit": "Information Description",
+          "access": "R"
+        },
+        "Information741": {
+          "register": "FPGA_0X74_REG",
+          "bit": "Information Description",
+          "access": "R"
+        },
+        "Information751": {
+          "register": "FPGA_0X75_REG",
+          "bit": "Information Description",
+          "access": "R"
+        },
+        "Information781": {
+          "register": "FPGA_0X78_REG",
+          "bit": "Information Description",
+          "access": "R"
+        },
+        "Information801": {
+          "register": "FPGA_0X78_REG",
+          "bit": "Information Description",
+          "access": "R"
+        },
+        "Information821": {
+          "register": "FPGA_0X78_REG",
+          "bit": "Information Description",
+          "access": "R"
+        },
+        "Information881": {
+          "register": "FPGA_0X78_REG",
+          "bit": "Information Description",
+          "access": "R / W"
+        },
+        "Information891": {
+          "register": "FPGA_0X78_REG",
+          "bit": "Information Description",
+          "access": "R / W"
+        },
+        "Information8A1": {
+          "register": "FPGA_0X78_REG",
+          "bit": "Information Description",
+          "access": "R / W"
+        },
+        "Information8B1": {
+          "register": "FPGA_0X78_REG",
+          "bit": "Information Description",
+          "access": "R / W"
+        },
+        "Information8C1": {
+          "register": "FPGA_0X78_REG",
+          "bit": "Information Description",
+          "access": "R / W"
+        },
+        "Information8D1": {
+          "register": "FPGA_0X78_REG",
+          "bit": "Information Description",
+          "access": "R / W"
+        },
+        "Information8E1": {
+          "register": "FPGA_0X78_REG",
+          "bit": "Information Description",
+          "access": "R / W"
+        },
+        "Information911": {
+          "register": "FPGA_0X78_REG",
+          "bit": "Information Description",
+          "access": "R / W"
+        },
+        "Information921": {
+          "register": "FPGA_0X78_REG",
+          "bit": "Information Description",
+          "access": "R / W"
+        },
+        "InformationF01": {
+          "register": "FPGA_0X78_REG",
+          "bit": "Information Description",
+          "access": "W"
+        },
+        "InformationFF1": {
+          "register": "FPGA_0X78_REG",
+          "bit": "Information Description",
+          "access": "R"
+        }
+      },
+      "linked_requirements": [],
+      "linked_tables": [],
+      "linked_figures": []
+    },
+    "Table 1409": {
+      "table_id": "Table 1409",
+      "title": "Table 1409 Pin Configurations",
+      "headers": [
+        "Pin Name",
+        "Pin Number",
+        "Pin Function",
+        "Description"
+      ],
+      "rows": [
+        [
+          "DAI1",
+          "A8",
+          "ID0_DSP",
+          "Config_ID_Parity"
+        ],
+        [
+          "DAI2",
+          "B9",
+          "ID1_DSP",
+          "Config_ID_1_Disc"
+        ],
+        [
+          "DAI3",
+          "B8",
+          "ID2_DSP",
+          "Config_ID_2_Disc"
+        ],
+        [
+          "DAI4",
+          "A7",
+          "ID3_DSP",
+          "Config_ID_3_Disc"
+        ],
+        [
+          "DAI5",
+          "B1",
+          "ID4_DSP",
+          "Config_ID_4_Disc"
+        ],
+        [
+          "DAI6",
+          "D2",
+          "ID5_DSP",
+          "Config_ID_5_Disc"
+        ],
+        [
+          "DAI7",
+          "C2",
+          "ID6_DSP",
+          "Config_ID_6_Disc"
+        ],
+        [
+          "DAI8",
+          "E2",
+          "ID7_DSP",
+          "Config_ID_7_Disc"
+        ],
+        [
+          "DAI11",
+          "E1",
+          "RECT1_OK_DSP",
+          "Rect_OK_Disc"
+        ],
+        [
+          "DAI12",
+          "F2",
+          "HYd2_OK_DSP",
+          "Hyd_OK_Disc"
+        ],
+        [
+          "DAI15",
+          "G1",
+          "Hi_ENABLE_DSP_NOT",
+          "Hi_Enable_Envelope"
+        ],
+        [
+          "DAI16",
+          "H2",
+          "VALVE_ENABLE_DSP",
+          "Valve_On"
+        ]
+      ],
+      "metadata": {},
+      "source_location": {
+        "doc_position": 9,
+        "table_id": "Table 1409"
+      },
+      "classification": "PIN_CONFIGURATION",
+      "steps": [],
+      "definitions": {
+        "DAI1": {
+          "register": "DSP_Control",
+          "bit": "N/A",
+          "access": "R/W"
+        },
+        "DAI2": {
+          "register": "DSP_Control",
+          "bit": "N/A",
+          "access": "R/W"
+        },
+        "DAI3": {
+          "register": "DSP_Control",
+          "bit": "N/A",
+          "access": "R/W"
+        },
+        "DAI4": {
+          "register": "DSP_Control",
+          "bit": "N/A",
+          "access": "R/W"
+        },
+        "DAI5": {
+          "register": "DSP_Control",
+          "bit": "N/A",
+          "access": "R/W"
+        },
+        "DAI6": {
+          "register": "DSP_Control",
+          "bit": "N/A",
+          "access": "R/W"
+        },
+        "DAI7": {
+          "register": "DSP_Control",
+          "bit": "N/A",
+          "access": "R/W"
+        },
+        "DAI8": {
+          "register": "DSP_Control",
+          "bit": "N/A",
+          "access": "R/W"
+        },
+        "DAI11": {
+          "register": "DSP_Control",
+          "bit": "N/A",
+          "access": "R/W"
+        },
+        "DAI12": {
+          "register": "DSP_Control",
+          "bit": "N/A",
+          "access": "R/W"
+        },
+        "DAI15": {
+          "register": "DSP_Control",
+          "bit": "N/A",
+          "access": "R/W"
+        },
+        "DAI16": {
+          "register": "DSP_Control",
+          "bit": "N/A",
+          "access": "R/W"
+        }
+      },
+
+      "linked_requirements": [],
+      "linked_tables": [],
+      "linked_figures": []
+    }
+  },
+  "figures": {},
+  "cross_reference": {
+    "LRUSWRS-1400": [],
+    "LRUSWRS-1402": [],
+    "LRUSWRS-1403": [],
+    "LRUSWRS-1404": [],
+    "LRUSWRS-1405": [],
+    "LRUSWRS-1406": [],
+    "LRUSWRS-1407": [],
+    "LRUSWRS-1408": [],
+    "LRUSWRS-1409": [],
+    "Table 1401": [
+      "LRUSWRS-1400",
+      "LRUSWRS-1408"
+    ],
+    "Table 1409": [
+      "LRUSWRS-1408",
+      "LRUSWRS-1409"
+    ]
+  },
+  "entity_index": {
+    "Rotor_Ref_Bad_Monitor": {
+      "type": "signal",
+      "defined_in_tables": [
+        "Table 1401"
+      ],
+      "used_in_requirements": [
+        "LRUSWRS-1400"
+      ]
+    },
+    "Pre_Drive_Supply_Bad_Monitor": {
+      "type": "signal",
+      "defined_in_tables": [
+        "Table 1401"
+      ],
+      "used_in_requirements": [
+        "LRUSWRS-1400"
+      ]
+    },
+    "Low_Threshold_Anomaly_NodeB_Monitor": {
+      "type": "signal",
+      "defined_in_tables": [],
+      "used_in_requirements": [
+        "LRUSWRS-1400",
+        "LRUSWRS-1404"
+      ]
+    },
+    "FPGA_FRAME_SYNC_REG": {
+      "type": "signal",
+      "defined_in_tables": [
+        "Table 1401"
+      ],
+      "used_in_requirements": [
+        "LRUSWRS-1400"
+      ]
+    },
+    "Hi_Enable_Envelope": {
+      "type": "signal",
+      "defined_in_tables": [
+        "Table 1409"
+      ],
+      "used_in_requirements": [
+        "LRUSWRS-1402",
+        "LRUSWRS-1406"
+      ]
+    },
+    "Hi_Enable_Delay_Envelope": {
+      "type": "signal",
+      "defined_in_tables": [],
+      "used_in_requirements": [
+        "LRUSWRS-1402",
+        "LRUSWRS-1404"
+      ]
+    },
+    "Valve_On": {
+      "type": "signal",
+      "defined_in_tables": [
+        "Table 1401",
+        "Table 1409"
+      ],
+      "used_in_requirements": [
+        "LRUSWRS-1403",
+        "LRUSWRS-1408"
+      ]
+    },
+    "Valve_On_Delay": {
+      "type": "signal",
+      "defined_in_tables": [],
+      "used_in_requirements": [
+        "LRUSWRS-1403"
+      ]
+    },
+    "Speed_Loop_Clear": {
+      "type": "signal",
+      "defined_in_tables": [],
+      "used_in_requirements": [
+        "LRUSWRS-1404"
+      ]
+    },
+    "Elec_En_STL": {
+      "type": "signal",
+      "defined_in_tables": [],
+      "used_in_requirements": [
+        "LRUSWRS-1405"
+      ]
+    },
+    "Rect_ok_Dbnce_Lgc": {
+      "type": "signal",
+      "defined_in_tables": [],
+      "used_in_requirements": [
+        "LRUSWRS-1405",
+        "LRUSWRS-1407"
+      ]
+    },
+    "STL_Bad_Message": {
+      "type": "signal",
+      "defined_in_tables": [],
+      "used_in_requirements": [
+        "LRUSWRS-1405"
+      ]
+    },
+    "Elec_Bad_Monitor_LRU": {
+      "type": "signal",
+      "defined_in_tables": [],
+      "used_in_requirements": [
+        "LRUSWRS-1405"
+      ]
+    },
+    "Running": {
+      "type": "signal",
+      "defined_in_tables": [],
+      "used_in_requirements": [
+        "LRUSWRS-1405"
+      ]
+    },
+    "Idle": {
+      "type": "signal",
+      "defined_in_tables": [],
+      "used_in_requirements": [
+        "LRUSWRS-1405"
+      ]
+    },
+    "Speed": {
+      "type": "signal",
+      "defined_in_tables": [
+        "Table 1401"
+      ],
+      "used_in_requirements": [
+        "LRUSWRS-1405"
+      ]
+    },
+    "Speed_State_StateLgc": {
+      "type": "signal",
+      "defined_in_tables": [
+        "Table 1401"
+      ],
+      "used_in_requirements": [
+        "LRUSWRS-1406"
+      ]
+    },
+    "Bus_OK_Message": {
+      "type": "signal",
+      "defined_in_tables": [],
+      "used_in_requirements": [
+        "LRUSWRS-1407"
+      ]
+    },
+    "Hyd_ok_Dbnce_Lgc": {
+      "type": "signal",
+      "defined_in_tables": [],
+      "used_in_requirements": [
+        "LRUSWRS-1407"
+      ]
+    },
+    "Idle_Mode_StateLgc": {
+      "type": "state",
+      "used_in_requirements": [
+        "LRUSWRS-1407"
+      ]
+    },
+    "Location_State_StateLgc": {
+      "type": "state",
+      "used_in_requirements": [
+        "LRUSWRS-1407"
+      ]
+    },
+    "LRU_1": {
+      "type": "lru",
+      "used_in_requirements": [
+        "LRUSWRS-1408"
+      ]
+    },
+    "LRU_2": {
+      "type": "lru",
+      "used_in_requirements": [
+        "LRUSWRS-1408"
+      ]
+    },
+    "LRU_5": {
+      "type": "lru",
+      "used_in_requirements": [
+        "LRUSWRS-1408"
+      ]
+    },
+    "LRU_6": {
+      "type": "lru",
+      "used_in_requirements": [
+        "LRUSWRS-1408"
+      ]
+    },
+    "LRU_7": {
+      "type": "lru",
+      "used_in_requirements": [
+        "LRUSWRS-1408"
+      ]
+    },
+    "DSP_Control": {
+      "type": "signal",
+      "defined_in_tables": [
+        "Table 1401"
+      ],
+      "used_in_requirements": [
+        "LRUSWRS-1408"
+      ]
+    },
+    "VALVE_ENABLE_DSP": {
+      "type": "signal",
+      "defined_in_tables": [
+        "Table 1409"
+      ],
+      "used_in_requirements": [
+        "LRUSWRS-1408"
+      ]
+    },
+    "LRUSWRS-1400": {
+      "type": "requirement",
+      "references_tables": [
+        "Table 1401"
+      ],
+      "references_requirements": [],
+      "references_figures": []
+    },
+    "LRUSWRS-1402": {
+      "type": "requirement",
+      "references_tables": [],
+      "references_requirements": [],
+      "references_figures": []
+    },
+    "LRUSWRS-1403": {
+      "type": "requirement",
+      "references_tables": [],
+      "references_requirements": [],
+      "references_figures": []
+    },
+    "LRUSWRS-1404": {
+      "type": "requirement",
+      "references_tables": [],
+      "references_requirements": [],
+      "references_figures": []
+    },
+    "LRUSWRS-1405": {
+      "type": "requirement",
+      "references_tables": [],
+      "references_requirements": [],
+      "references_figures": []
+    },
+    "LRUSWRS-1406": {
+      "type": "requirement",
+      "references_tables": [],
+      "references_requirements": [],
+      "references_figures": []
+    },
+    "LRUSWRS-1407": {
+      "type": "requirement",
+      "references_tables": [],
+      "references_requirements": [],
+      "references_figures": []
+    },
+    "LRUSWRS-1408": {
+      "type": "requirement",
+      "references_tables": [
+        "Table 1401",
+        "Table 1409"
+      ],
+      "references_requirements": [],
+      "references_figures": []
+    },
+    "LRUSWRS-1409": {
+      "type": "requirement",
+      "references_tables": [
+        "Table 1409"
+      ],
+      "references_requirements": [],
+      "references_figures": []
+    },
+    "Table 1401": {
+      "type": "table",
+      "referenced_by": [
+        "LRUSWRS-1400",
+        "LRUSWRS-1408"
+      ],
+      "defines": [
+        "Rotor_Ref_Bad_Monitor",
+        "Pre_Drive_Supply_Bad_Monitor",
+        "FPGA_FRAME_SYNC_REG",
+        "Valve_On",
+        "Speed",
+        "Speed_State_StateLgc",
+        "Location_State_StateLgc",
+        "DSP_Control"
+      ]
+    },
+    "Table 1409": {
+      "type": "table",
+      "referenced_by": [
+        "LRUSWRS-1408",
+        "LRUSWRS-1409"
+      ],
+      "defines": [
+        "Hi_Enable_Envelope",
+        "Valve_On",
+        "VALVE_ENABLE_DSP"
+      ]
+    },
+    "Idle State": {
+      "type": "state",
+      "used_in_requirements": [
+        "LRUSWRS-1405"
+      ]
+    },
+    "Speed State": {
+      "type": "state",
+      "used_in_requirements": [
+        "LRUSWRS-1405"
+      ]
+    }
+  }
+}

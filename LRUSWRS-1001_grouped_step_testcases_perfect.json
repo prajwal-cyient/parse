@@ -1,0 +1,1476 @@
+{
+  "requirement_id": "LRUSWRS-1001",
+  "requirement_title": "Primary/Spoiler Surface Electronic Harmonizing Sequence",
+  "total_steps": 38,
+  "total_test_cases": 97,
+  "steps_breakdown": {
+    "STEP_1_REQUIREMENT_ID_LRU_6135": {
+      "step_number": "1",
+      "requirement_id": "LRU-6135",
+      "step_description": "Requirement ID: LRU-6135",
+      "total_test_cases": 3,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_6135_N1",
+          "requirement_id": "LRU-6135",
+          "description": "Verify that 50 frames (25 ms) of Act_Disp_Raw are sampled and averaged when IVT_Command_ISM = 0x0020 and Harmonize_Contract_Stop_STL = True.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "IVT_Command_ISM = 0x0020, Harmonize_Contract_Stop_STL = True, Act_Disp_Raw = sample frames",
+          "expected_result": "50 frames (25 ms) of Act_Disp_Raw are sampled and averaged.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_6135_DC_IVT_Command_ISM",
+          "requirement_id": "LRU-6135",
+          "description": "Verify that 50 frames (25 ms) of Act_Disp_Raw are NOT sampled and averaged when IVT_Command_ISM is not 0x0020.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "IVT_Command_ISM = 0x0000, Harmonize_Contract_Stop_STL = True, Act_Disp_Raw = sample frames",
+          "expected_result": "50 frames (25 ms) of Act_Disp_Raw are NOT sampled and averaged.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_6135_DC_IVT_CmdData_ISM_Harmonize_Contract_Stop_STL",
+          "requirement_id": "LRU-6135",
+          "description": "Verify that 50 frames (25 ms) of Act_Disp_Raw are NOT sampled and averaged when Harmonize_Contract_Stop_STL is False.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "IVT_Command_ISM = 0x0020, Harmonize_Contract_Stop_STL = False, Act_Disp_Raw = sample frames",
+          "expected_result": "50 frames (25 ms) of Act_Disp_Raw are NOT sampled and averaged.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_2_REQUIREMENT_ID_LRU_9169": {
+      "step_number": "2",
+      "requirement_id": "LRU-9169",
+      "step_description": "Requirement ID: LRU-9169",
+      "total_test_cases": 1,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9169_N1",
+          "requirement_id": "LRU-9169",
+          "description": "Verify that Act_Disp_Raw_Avg_Contract is computed correctly while commanded to the Contract position.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Average of Act_Disp_Raw from Step above, Harmonize_SFC_Default (as a function of Profile_Id), Harmonize_Offset_Default (as a function of Profile_Id), Profile_Id, Commanded to the Contract position.",
+          "expected_result": "Act_Disp_Raw_Avg_Contract is computed as (average of Act_Disp_Raw) * Harmonize_SFC_Default + Harmonize_Offset_Default. Contract_Stop_Collection_Complete is set to True.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_3_REQUIREMENT_ID_LRU_9170": {
+      "step_number": "3",
+      "requirement_id": "LRU-9170",
+      "step_description": "Requirement ID: LRU-9170",
+      "total_test_cases": 2,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9170_N1",
+          "requirement_id": "LRU-9170",
+          "description": "Verify that Act_Disp_Range_Contract_Fault is set to True when Act_Disp_Raw_Avg_Contract is outside the defined contract harmonizing ranges.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Act_Disp_Raw_Avg_Contract (in)",
+          "expected_result": "Act_Disp_Range_Contract_Fault is set to True.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9170_DC_Act_Disp_Raw_Avg_Contract_within_Ranges",
+          "requirement_id": "LRU-9170",
+          "description": "Verify that Act_Disp_Range_Contract_Fault is NOT set to True when Act_Disp_Raw_Avg_Contract is within the defined contract harmonizing ranges.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Act_Disp_Raw_Avg_Contract (in)",
+          "expected_result": "Act_Disp_Range_Contract_Fault is NOT set to True.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_4a_REQUIREMENT_ID_LRU_9171": {
+      "step_number": "4a",
+      "requirement_id": "LRU-9171",
+      "step_description": "Requirement ID: LRU-9171",
+      "total_test_cases": 1,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9171_Step_4a_N1",
+          "requirement_id": "LRU-9171",
+          "description": "Verify that IVT Response data is set and transmitted on STL_Bus as specified.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "",
+          "expected_result": "IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Contract_Stop_Collection_Complete = True, IVT_Receipt_Content is an accumulation of all applicable Harmonizing status Bits.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_4b_REQUIREMENT_ID_LRU_9171": {
+      "step_number": "4b",
+      "requirement_id": "LRU-9171",
+      "step_description": "Requirement ID: LRU-9171",
+      "total_test_cases": 2,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9171_Step_4b_N1",
+          "requirement_id": "LRU-9171",
+          "description": "Verify that IVT_Response data is set and transmitted on STL_Bus with Harmonizing_Failed = True when Act_Disp_Range_Contract_Fault is True.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Act_Disp_Range_Contract_Fault = True.",
+          "expected_result": "IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = True.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9171_Step_4b_DC_Act_Disp_Range_Contract_Fault",
+          "requirement_id": "LRU-9171",
+          "description": "Verify that IVT_Response data is set and transmitted on STL_Bus with Harmonizing_Failed = False when Act_Disp_Range_Contract_Fault is False.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Act_Disp_Range_Contract_Fault = False.",
+          "expected_result": "IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_5_REQUIREMENT_ID_LRU_9193": {
+      "step_number": "5",
+      "requirement_id": "LRU-9193",
+      "step_description": "Requirement ID: LRU-9193",
+      "total_test_cases": 2,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9193_N1",
+          "requirement_id": "LRU-9193",
+          "description": "Verify that an entry is created in the Fault_History_Table_PSR when Act_Disp_Range_Contract_Fault transitions to True.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Act_Disp_Range_Contract_Fault transitions to True.",
+          "expected_result": "Fault_History_Table_PSR entry is created.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9193_DC_Act_Disp_Range_Contract_Fault_Transitions_to_True",
+          "requirement_id": "LRU-9193",
+          "description": "Verify that no entry is created in the Fault_History_Table_PSR when Act_Disp_Range_Contract_Fault transitions to False.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Act_Disp_Range_Contract_Fault transitions to False.",
+          "expected_result": "Fault_History_Table_PSR entry is NOT created.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_6_REQUIREMENT_ID_LRU_9184": {
+      "step_number": "6",
+      "requirement_id": "LRU-9184",
+      "step_description": "Requirement ID: LRU-9184",
+      "total_test_cases": 3,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9184_N1",
+          "requirement_id": "LRU-9184",
+          "description": "Verify that 50 frames (25 ms) of Act_Disp_Raw are sampled and averaged when IVT_Command_ISM = 0x0020 and IVT_CmdData_ISM: Harmonize_Expand_Stop_STL = True.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "IVT_Command_ISM = 0x0020; IVT_CmdData_ISM: Harmonize_Expand_Stop_STL = True; Act_Disp_Raw = [frame data]",
+          "expected_result": "50 frames (25 ms) of Act_Disp_Raw are sampled and averaged.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9184_DC_IVT_Command_ISM",
+          "requirement_id": "LRU-9184",
+          "description": "Verify that 50 frames (25 ms) of Act_Disp_Raw are NOT sampled and averaged when IVT_Command_ISM is not 0x0020 while IVT_CmdData_ISM: Harmonize_Expand_Stop_STL = True.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "IVT_Command_ISM = 0x0031; IVT_CmdData_ISM: Harmonize_Expand_Stop_STL = True; Act_Disp_Raw = [frame data]",
+          "expected_result": "50 frames (25 ms) of Act_Disp_Raw are NOT sampled and averaged.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9184_DC_IVT_CmdData_ISM_Harmonize_Expand_Stop_STL",
+          "requirement_id": "LRU-9184",
+          "description": "Verify that 50 frames (25 ms) of Act_Disp_Raw are NOT sampled and averaged when IVT_CmdData_ISM: Harmonize_Expand_Stop_STL = False while IVT_Command_ISM = 0x0020.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "IVT_Command_ISM = 0x0020; IVT_CmdData_ISM: Harmonize_Expand_Stop_STL = False; Act_Disp_Raw = [frame data]",
+          "expected_result": "50 frames (25 ms) of Act_Disp_Raw are NOT sampled and averaged.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_7_REQUIREMENT_ID_LRU_9174": {
+      "step_number": "7",
+      "requirement_id": "LRU-9174",
+      "step_description": "Requirement ID: LRU-9174",
+      "total_test_cases": 2,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9174_N1",
+          "requirement_id": "LRU-9174",
+          "description": "Verify that Act_Disp_Raw_Avg_Expand is computed as the average of Act_Disp_Raw from the previous step multiplied by Harmonize_SFC_Default and added to Harmonize_Offset_Default while commanded to the Expanded position, and that Expand_Stop_Collection_Complete is set to True.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Average of Act_Disp_Raw from step above; Harmonize_SFC_Default derived from Profile_Id; Harmonize_Offset_Default derived from Profile_Id; Command = Expanded",
+          "expected_result": "Act_Disp_Raw_Avg_Expand is computed as the average of Act_Disp_Raw from step above multiplied by Harmonize_SFC_Default plus Harmonize_Offset_Default. Expand_Stop_Collection_Complete is set to True.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9174_DC_Expanded_Command",
+          "requirement_id": "LRU-9174",
+          "description": "Verify that Act_Disp_Raw_Avg_Expand is NOT computed when the system is NOT commanded to the Expanded position.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Average of Act_Disp_Raw from step above; Harmonize_SFC_Default derived from Profile_Id; Harmonize_Offset_Default derived from Profile_Id; Command = NOT Expanded",
+          "expected_result": "Act_Disp_Raw_Avg_Expand is NOT computed.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_8_REQUIREMENT_ID_LRU_9177": {
+      "step_number": "8",
+      "requirement_id": "LRU-9177",
+      "step_description": "Requirement ID: LRU-9177",
+      "total_test_cases": 2,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9177_N1",
+          "requirement_id": "LRU-9177",
+          "description": "Verify that Act_Disp_Range_Expand_Fault is set to True when Act_Disp_Raw_Avg_Expand is outside the harmonizing ranges defined in Table 1016 and Table 1017.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Act_Disp_Raw_Avg_Expand = value not within Table 1016 (Rev A) and Table 1017 (Rev NC) ranges.",
+          "expected_result": "Set Act_Disp_Range_Expand_Fault to True",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9177_DC_Act_Disp_Raw_Avg_Expand_NotWithinRange",
+          "requirement_id": "LRU-9177",
+          "description": "Verify that Act_Disp_Range_Expand_Fault is NOT set when Act_Disp_Raw_Avg_Expand is within the harmonizing ranges defined in Table 1016 and Table 1017.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Act_Disp_Raw_Avg_Expand = value within Table 1016 (Rev A) and Table 1017 (Rev NC) ranges.",
+          "expected_result": "Set Act_Disp_Range_Expand_Fault to True is NOT performed.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_9a_REQUIREMENT_ID_LRU_9895": {
+      "step_number": "9a",
+      "requirement_id": "LRU-9895",
+      "step_description": "Requirement ID: LRU-9895",
+      "total_test_cases": 1,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9895_Step_9a_N1",
+          "requirement_id": "LRU-9895",
+          "description": "Verify that IVT Response data is set and transmitted on STL_Bus with IVT_Receipt_Envelope = 0x0017 and IVT_Receipt_Content includes Expand_Stop_Collection_Complete = True.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "",
+          "expected_result": "IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Expand_Stop_Collection_Complete = True",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_9b_REQUIREMENT_ID_LRU_9895": {
+      "step_number": "9b",
+      "requirement_id": "LRU-9895",
+      "step_description": "Requirement ID: LRU-9895",
+      "total_test_cases": 2,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9895_Step_9b_N1",
+          "requirement_id": "LRU-9895",
+          "description": "Verify that when Act_Disp_Range_Expand_Fault is True, the system sets and transmits IVT_Receipt_Envelope to 0x0017 and sets Harmonizing_Failed to True.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Act_Disp_Range_Expand_Fault = True.",
+          "expected_result": "IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = True.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9895_Step_9b_DC_Act_Disp_Range_Expand_Fault",
+          "requirement_id": "LRU-9895",
+          "description": "Verify that when Act_Disp_Range_Expand_Fault is False, the system sets and transmits IVT_Receipt_Envelope to 0x0017 and sets Harmonizing_Failed to False.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Act_Disp_Range_Expand_Fault = False.",
+          "expected_result": "IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_10_REQUIREMENT_ID_LRU_9238": {
+      "step_number": "10",
+      "requirement_id": "LRU-9238",
+      "step_description": "Requirement ID: LRU-9238",
+      "total_test_cases": 2,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9238_N1",
+          "requirement_id": "LRU-9238",
+          "description": "Verify that an entry is created in the Fault_History_Table_PSR when Act_Disp_Range_Expand_Fault transitions to True.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Act_Disp_Range_Expand_Fault transitions to True.",
+          "expected_result": "Entry created in Fault_History_Table_PSR for Act_Disp_Range_Expand_Fault. This is the only entry of this fault in the Fault_History_Table_PSR for the current power-on session.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9238_DC_Act_Disp_Range_Expand_Fault",
+          "requirement_id": "LRU-9238",
+          "description": "Verify that no entry is created in the Fault_History_Table_PSR when Act_Disp_Range_Expand_Fault does not transition to True.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Act_Disp_Range_Expand_Fault transitions to False.",
+          "expected_result": "Entry in Fault_History_Table_PSR for Act_Disp_Range_Expand_Fault is NOT created.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_11_REQUIREMENT_ID_LRU_9205": {
+      "step_number": "11",
+      "requirement_id": "LRU-9205",
+      "step_description": "Requirement ID: LRU-9205",
+      "total_test_cases": 3,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9205_N1",
+          "requirement_id": "LRU-9205",
+          "description": "Verify that 50 frames (25 ms) of Act_Disp_Raw are sampled and averaged when IVT_Command_ISM equals 0x0020 and Harmonize_VOID_STL is True.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "IVT_Command_ISM = 0x0020; Harmonize_VOID_STL = True; Act_Disp_Raw = 50 frames (25 ms).",
+          "expected_result": "50 frames (25 ms) of Act_Disp_Raw are sampled and averaged.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9205_DC_IVT_Command_ISM",
+          "requirement_id": "LRU-9205",
+          "description": "Verify that 50 frames (25 ms) of Act_Disp_Raw are NOT sampled and averaged when IVT_Command_ISM is not 0x0020 while Harmonize_VOID_STL remains True.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "IVT_Command_ISM = 0x0021; Harmonize_VOID_STL = True; Act_Disp_Raw = 50 frames (25 ms).",
+          "expected_result": "50 frames (25 ms) of Act_Disp_Raw are NOT sampled and averaged.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9205_DC_Harmonize_VOID_STL",
+          "requirement_id": "LRU-9205",
+          "description": "Verify that 50 frames (25 ms) of Act_Disp_Raw are NOT sampled and averaged when Harmonize_VOID_STL is False while IVT_Command_ISM equals 0x0020.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "IVT_Command_ISM = 0x0020; Harmonize_VOID_STL = False; Act_Disp_Raw = 50 frames (25 ms).",
+          "expected_result": "50 frames (25 ms) of Act_Disp_Raw are NOT sampled and averaged.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_12_REQUIREMENT_ID_LRU_9222": {
+      "step_number": "12",
+      "requirement_id": "LRU-9222",
+      "step_description": "Requirement ID: LRU-9222",
+      "total_test_cases": 2,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9222_N1",
+          "requirement_id": "LRU-9222",
+          "description": "Verify that Act_Disp_Raw_Avg_VOID is computed as the average of Act_Disp_Raw from Step above multiplied by Harmonize_SFC_Default and added to Harmonize_Offset_Default when commanded to the VOID position.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Act_Disp_Raw_avg = 100, Profile_Id = 1, Commanded position = VOID.",
+          "expected_result": "Act_Disp_Raw_Avg_VOID equals [Act_Disp_Raw_avg * Harmonize_SFC_Default + Harmonize_Offset_Default] and VOID_Collection_Complete is True.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9222_DC_CommandedPosition_IS_VOID",
+          "requirement_id": "LRU-9222",
+          "description": "Verify that Act_Disp_Raw_Avg_VOID is NOT computed and VOID_Collection_Complete is NOT set when not commanded to the VOID position.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Act_Disp_Raw_avg = 100, Profile_Id = 1, Commanded position = NON_VOID.",
+          "expected_result": "Act_Disp_Raw_Avg_VOID equals [Act_Disp_Raw_avg * Harmonize_SFC_Default + Harmonize_Offset_Default] and VOID_Collection_Complete is True (NOT performed).",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_13_REQUIREMENT_ID_LRU_9209": {
+      "step_number": "13",
+      "requirement_id": "LRU-9209",
+      "step_description": "Requirement ID: LRU-9209",
+      "total_test_cases": 2,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9209_N1",
+          "requirement_id": "LRU-9209",
+          "description": "Verify that Act_Disp_Range_VOID_Fault is set to True when Act_Disp_Raw_Avg_VOID is outside the defined harmonizing ranges.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Act_Disp_Raw_Avg_VOID = value outside harmonizing range.",
+          "expected_result": "Act_Disp_Range_VOID_Fault is set to True.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9209_DC_Act_Disp_Raw_Avg_VOID_IS_NOT_WITHIN_RANGE",
+          "requirement_id": "LRU-9209",
+          "description": "Verify that Act_Disp_Range_VOID_Fault is not set to True when Act_Disp_Raw_Avg_VOID is within the defined harmonizing ranges.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Act_Disp_Raw_Avg_VOID = value within harmonizing range.",
+          "expected_result": "Act_Disp_Range_VOID_Fault is NOT set to True.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_14a_REQUIREMENT_ID_LRU_9210": {
+      "step_number": "14a",
+      "requirement_id": "LRU-9210",
+      "step_description": "Requirement ID: LRU-9210",
+      "total_test_cases": 3,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9210_Step_14a_N1",
+          "requirement_id": "LRU-9210",
+          "description": "Verify that IVT Response data is set and transmitted on STL_Bus when the LRU is applicable.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "LRU = 1",
+          "expected_result": "IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: VOID_Collection_Complete = True",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9210_Step_14a_DC_LRU_3",
+          "requirement_id": "LRU-9210",
+          "description": "Verify that IVT Response data is NOT transmitted when the LRU is 3.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "LRU = 3",
+          "expected_result": "IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: VOID_Collection_Complete = True is NOT transmitted.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9210_Step_14a_DC_LRU_4",
+          "requirement_id": "LRU-9210",
+          "description": "Verify that IVT Response data is NOT transmitted when the LRU is 4.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "LRU = 4",
+          "expected_result": "IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: VOID_Collection_Complete = True is NOT transmitted.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_14b_REQUIREMENT_ID_LRU_9210": {
+      "step_number": "14b",
+      "requirement_id": "LRU-9210",
+      "step_description": "Requirement ID: LRU-9210",
+      "total_test_cases": 2,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9210_Step_14b_N1",
+          "requirement_id": "LRU-9210",
+          "description": "Verify that the IVT Response data is set and transmitted on the STL_Bus with Harmonizing_Failed = True when Act_Disp_Range_VOID_Fault is True.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Act_Disp_Range_VOID_Fault = True.",
+          "expected_result": "IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = True.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be definedConexion by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9210_Step_14b_DC_Act_Disp_Range_VOID_Fault",
+          "requirement_id": "LRU-9210",
+          "description": "Verify that the IVT Response data is set and transmitted on the STL_Bus with Harmonizing_Failed = False when Act_Disp_Range_VOID_Fault is False.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Act_Disp_Range_VOID_Fault = False.",
+          "expected_result": "IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Failed = False.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_15_REQUIREMENT_ID_LRU_9235": {
+      "step_number": "15",
+      "requirement_id": "LRU-9235",
+      "step_description": "Requirement ID: LRU-9235",
+      "total_test_cases": 2,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9235_N1",
+          "requirement_id": "LRU-9235",
+          "description": "Verify that an entry is created in the Fault_History_Table_PSR when Act_Disp_Range_VOID_Fault transitions to True.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Act_Disp_Range_VOID_Fault = True.",
+          "expected_result": "Create an entry in the Fault_History_Table_PSR and it is the only entry for this fault in the current power-on session.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9235_DC_Act_Disp_Range_VOID_Fault",
+          "requirement_id": "LRU-9235",
+          "description": "Verify that no entry is created in the Fault_History_Table_PSR when Act_Disp_Range_VOID_Fault does not transition to True.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Act_Disp_Range_VOID_Fault = False.",
+          "expected_result": "Create an entry in the Fault_History_Table_PSR is NOT performed.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_16_REQUIREMENT_ID_LRU_9891": {
+      "step_number": "16",
+      "requirement_id": "LRU-9891",
+      "step_description": "Requirement ID: LRU-9891",
+      "total_test_cases": 7,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9891_N1",
+          "requirement_id": "LRU-9891",
+          "description": "Verify that Primary_Harmonize_Calc is set to True when all fault signals are False and all collection complete signals are True.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Act_Disp_Range_VOID_Fault = False, Act_Disp_Range_Contract_Fault = False, Act_Disp_Range_Expand_Fault = False, Contract_Stop_Collection_Complete = True, Expand_Stop_Collection_Complete = True, VOID_Collection_Complete = True.",
+          "expected_result": "Primary_Harmonize_Calc is set to True",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9891_DC_Act_Disp_Range_VOID_Fault",
+          "requirement_id": "LRU-9891",
+          "description": "Verify that Primary_Harmonize_Calc is NOT set to True when Act_Disp_Range_VOID_Fault is True.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Act_Disp_Range_VOID_Fault = True, Act_Disp_Range_Contract_Fault = False, Act_Disp_Range_Expand_Fault = False, Contract_Stop_Collection_Complete = True, Expand_Stop_Collection_Complete = True, VOID_Collection_Complete = True.",
+          "expected_result": "Primary_Harmonize_Calc is NOT set to True",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9891_DC_Act_Disp_Range_Contract_Fault",
+          "requirement_id": "LRU-9891",
+          "description": "Verify that Primary_Harmonize_Calc is NOT set to True when Act_Disp_Range_Contract_Fault is True.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Act_Disp_Range_VOID_Fault = False, Act_Disp_Range_Contract_Fault = True, Act_Disp_Range_Expand_Fault = False, Contract_Stop_Collection_Complete = True, Expand_Stop_Collection_Complete = True, VOID_Collection_Complete = True.",
+          "expected_result": "Primary_Harmonize_Calc is NOT set to True",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9891_DC_Act_Disp_Range_Expand_Fault",
+          "requirement_id": "LRU-9891",
+          "description": "Verify that Primary_Harmonize_Calc is NOT set to True when Act_Disp_Range_Expand_Fault is True.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Act_Disp_Range_VOID_Fault = False, Act_Disp_Range_Contract_Fault = False, Act_Disp_Range_Expand_Fault = True, Contract_Stop_Collection_Complete = True, Expand_Stop_Collection_Complete = True, VOID_Collection_Complete = True.",
+          "expected_result": "Primary_Harmonize_Calc is NOT set to True",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9891_DC_Contract_Stop_Collection_Complete",
+          "requirement_id": "LRU-9891",
+          "description": "Verify that Primary_Harmonize_Calc is NOT set to True when Contract_Stop_Collection_Complete is False.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Act_Disp_Range_VOID_Fault = False, Act_Disp_Range_Contract_Fault = False, Act_Disp_Range_Expand_Fault = False, Contract_Stop_Collection_Complete = False, Expand_Stop_Collection_Complete = True, VOID_Collection_Complete = True.",
+          "expected_result": "Primary_Harmonize_Calc is NOT set to True",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9891_DC_Expand_Stop_Collection_Complete",
+          "requirement_id": "LRU-9891",
+          "description": "Verify that Primary_Harmonize_Calc is NOT set to True when Expand_Stop_Collection_Complete is False.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Act_Disp_Range_VOID_Fault = False, Act_Disp_Range_Contract_Fault = False, Act_Disp_Range_Expand_Fault = False, Contract_Stop_Collection_Complete = True, Expand_Stop_Collection_Complete = False, VOID_Collection_Complete = True.",
+          "expected_result": "Primary_Harmonize_Calc is NOT set to True",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9891_DC_VOID_Collection_Complete",
+          "requirement_id": "LRU-9891",
+          "description": "Verify that Primary_Harmonize_Calc is NOT set to True when VOID_Collection_Complete is False.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Act_Disp_Range_VOID_Fault = False, Act_Disp_Range_Contract_Fault = False, Act_Disp_Range_Expand_Fault = False, Contract_Stop_Collection_Complete = True, Expand_Stop_Collection_Complete = True, VOID_Collection_Complete = False.",
+          "expected_result": "Primary_Harmonize_Calc is NOT set to True",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_17_REQUIREMENT_ID_LRU_9892": {
+      "step_number": "17",
+      "requirement_id": "LRU-9892",
+      "step_description": "Requirement ID: LRU-9892",
+      "total_test_cases": 5,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9892_N1_Spoiler",
+          "requirement_id": "LRU-9892",
+          "description": "Verify that Spoiler_Harmonize_Calc is set to True when Act_Disp_Range_Contract_Fault is False, Act_Disp_Range_Expand_Fault is False, Contract_Stop_Collection_Complete is True, and Expand_Stop_Collection_Complete is True.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU to be configured as Spoiler.",
+          "test_inputs": "Act_Disp_Range_Contract_Fault = False; Act_Disp_Range_Expand_Fault = False; Contract_Stop_Collection_Complete = True; Expand_Stop_Collection_Complete = True. Surface = Spoiler.",
+          "expected_result": "Spoiler_Harmonize_Calc is set to True.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9892_DC_Act_Disp_Range_Contract_Fault_Spoiler",
+          "requirement_id": "LRU-9892",
+          "description": "Verify that Spoiler_Harmonize_Calc is NOT set to True when Act_Disp_Range_Contract_Fault is True while other conditions are enabled.",
+          "test_type": "DC",
+          "initial_condition": "LRU to be configured as Spoiler.",
+          "test_inputs": "Act_Disp_Range_Contract_Fault = True; Act_Disp_Range_Expand_Fault = False; Contract_Stop_Collection_Complete = True; Expand_Stop_Collection_Complete = True. Surface = Spoiler.",
+          "expected_result": "Spoiler_Harmonize_Calc is NOT set to True.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9892_DC_Act_Disp_Range_Expand_Fault_Spoiler",
+          "requirement_id": "LRU-9892",
+          "description": "Verify that Spoiler_Harmonize_Calc is NOT set to True when Act_Disp_Range_Expand_Fault is True while other conditions are enabled.",
+          "test_type": "DC",
+          "initial_condition": "LRU to be configured as Spoiler.",
+          "test_inputs": "Act_Disp_Range_Contract_Fault = False; Act_Disp_Range_Expand_Fault = True; Contract_Stop_Collection_Complete = True; Expand_Stop_Collection_Complete = True. Surface = Spoiler.",
+          "expected_result": "Spoiler_Harmonize_Calc is NOT set to True.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9892_DC_Contract_Stop_Collection_Complete_Spoiler",
+          "requirement_id": "LRU-9892",
+          "description": "Verify that Spoiler_Harmonize_Calc is NOT set to True when Contract_Stop_Collection_Complete is False while other conditions are enabled.",
+          "test_type": "DC",
+          "initial_condition": "LRU to be configured as Spoiler.",
+          "test_inputs": "Act_Disp_Range_Contract_Fault = False; Act_Disp_Range_Expand_Fault = False; Contract_Stop_Collection_Complete = False; Expand_Stop_Collection_Complete = True. Surface = Spoiler.",
+          "expected_result": "Spoiler_Harmonize_Calc is NOT set to True.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9892_DC_Expand_Stop_Collection_Complete_Spoiler",
+          "requirement_id": "LRU-9892",
+          "description": "Verify that Spoiler_Harmonize_Calc is NOT set to True when Expand_Stop_Collection_Complete is False while other conditions are enabled.",
+          "test_type": "DC",
+          "initial_condition": "LRU to be configured as Spoiler.",
+          "test_inputs": "Act_Disp_Range_Contract_Fault = False; Act_Disp_Range_Expand_Fault = False; Contract_Stop_Collection_Complete = True; Expand_Stop_Collection_Complete = False. Surface = Spoiler.",
+          "expected_result": "Spoiler_Harmonize_Calc is NOT set to True.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_18_REQUIREMENT_ID_LRU_9176": {
+      "step_number": "18",
+      "requirement_id": "LRU-9176",
+      "step_description": "Requirement ID: LRU-9176",
+      "total_test_cases": 2,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9176_N1_Spoiler",
+          "requirement_id": "LRU-9176",
+          "description": "Verify that when Spoiler_Harmonize_Calc is True, K_Harmonize_New is computed as Max_Stroke divided by (Act_Disp_Raw_Avg_Expand - Act_Disp_Raw_Avg_Contract).",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU to be configured as Spoiler.",
+          "test_inputs": "Spoiler_Harmonize_Calc = True. Max_Stroke = X. Act_Disp_Raw_Avg_Expand = Y. Act_Disp_Raw_Avg_Contract = Z. Surface = Spoiler.",
+          "expected_result": "K_Harmonize_New equals Max_Stroke divided by (Act_Disp_Raw_Avg_Expand - Act_Disp_Raw_Avg_Contract).",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9176_DC_Spoiler_Harmonize_Calc",
+          "requirement_id": "LRU-9176",
+          "description": "Verify that when Spoiler_Harmonize_Calc is False, K_Harmonize_New is NOT computed.",
+          "test_type": "DC",
+          "initial_condition": "LRU to be configured as Spoiler.",
+          "test_inputs": "Spoiler_Harmonize_Calc = False. Max_Stroke = X. Act_Disp_Raw_Avg_Expand = Y. Act_Disp_Raw_Avg_Contract = Z. Surface = Spoiler.",
+          "expected_result": "K_Harmonize_New is NOT computed.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_19_REQUIREMENT_ID_LRU_6137": {
+      "step_number": "19",
+      "requirement_id": "LRU-6137",
+      "step_description": "Requirement ID: LRU-6137",
+      "total_test_cases": 2,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_6137_N1_Spoiler",
+          "requirement_id": "LRU-6137",
+          "description": "Verify that when Spoiler_Harmonize_Calc is True, the system calculates the new LVDT Harmonizing Offset using the formula Harmonize_Offset_New = (Harmonize_Offset_Default - Act_Disp_Raw_Avg_Contract) * K_Harmonize_New.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU to be configured as Spoiler.",
+          "test_inputs": "Spoiler_Harmonize_Calc = True; Profile_Id = 1; Act_Disp_Raw_Avg_Contract = 5.0; K_Harmonize_New = 0.8; Surface = Spoiler.",
+          "expected_result": "Harmonize_Offset_New is calculated as (Harmonize_Offset_Default - Act_Disp_Raw_Avg_Contract) * K_Harmonize_New.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_6137_DC_Spoiler_Harmonize_Calc_Spoiler",
+          "requirement_id": "LRU-6137",
+          "description": "Verify that when Spoiler_Harmonize_Calc is False, the system does not calculate the new LVDT Harmonizing Offset.",
+          "test_type": "DC",
+          "initial_condition": "LRU to be configured as Spoiler.",
+          "test_inputs": "Spoiler_Harmonize_Calc = False; Profile_Id = 1; Act_Disp_Raw_Avg_Contract = 5.0; K_Harmonize_New = 0.8; Surface = Spoiler.",
+          "expected_result": "Harmonize_Offset_New is NOT calculated as (Harmonize_Offset_Default - Act_Disp_Raw_Avg_Contract) * K_Harmonize_New.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_20_REQUIREMENT_ID_LRU_9212": {
+      "step_number": "20",
+      "requirement_id": "LRU-9212",
+      "step_description": "Requirement ID: LRU-9212",
+      "total_test_cases": 6,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9212_N1_Elevator",
+          "requirement_id": "LRU-9212",
+          "description": "Verify that K_Harmonize_New is calculated when Primary_Harmonize_Calc is True AND Profile_Id is one of LRU_1, LRU_2, LRU_5, LRU_6 for the Elevator.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU to be configured as Elevator.",
+          "test_inputs": "Primary_Harmonize_Calc = True; Profile_Id = LRU_2; LRU_2_Act_Disp_Raw_Avg_Expand = 10; LRU_2_Act_Disp_Raw_Avg_Contract = 8; Act_Disp_Raw_Avg_Expand = 12; Act_Disp_Raw_Avg_Contract = 9; Surface = Elevator.",
+          "expected_result": "K_Harmonize_New = (10 - 8) /(12 - 9).",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9212_N1_Aileron",
+          "requirement_id": "LRU-9212",
+          "description": "Verify that K_Harmonize_New is calculated when Primary_Harmonize_Calc is True AND Profile_Id is one of LRU_1, LRU_2, LRU_5, LRU_6 for the Aileron.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU to be configured as Aileron.",
+          "test_inputs": "Primary_Harmonize_Calc = True; Profile_Id = LRU_2; LRU_2_Act_Disp_Raw_Avg_Expand = 10; LRU_2_Act_Disp_Raw_Avg_Contract = 8; Act_Disp_Raw_Avg_Expand = 12; Act_Disp_Raw_Avg_Contract = 9; Surface = Aileron.",
+          "expected_result": "K_Harmonize_New = (10 - 8) /(12 - 9).",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9212_DC_Primary_Harmonize_Calc_Elevator",
+          "requirement_id": "LRU-9212",
+          "description": "Verify that K_Harmonize_New is NOT calculated when Primary_Harmonize_Calc is False for the Elevator.",
+          "test_type": "DC",
+          "initial_condition": "LRU to be configured as Elevator.",
+          "test_inputs": "Primary_Harmonize_Calc = False; Profile_Id = LRU_2; LRU_2_Act_Disp_Raw_Avg_Expand = 10; LRU_2_Act_Disp_Raw_Avg_Contract = 8; Act_Disp_Raw_Avg_Expand = 12; Act_Disp_Raw_Avg_Contract = 9; Surface = Elevator.",
+          "expected_result": "K_Harmonize_New = (10 - 8) /(12 - 9) NOT performed.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9212_DC_Primary_Harmonize_Calc_Aileron",
+          "requirement_id": "LRU-9212",
+          "description": "Verify that K_Harmonize_New is NOT calculated when Primary_Harmonize_Calc is False for the Aileron.",
+          "test_type": "DC",
+          "initial_condition": "LRU to be configured as Aileron.",
+          "test_inputs": "Primary_Harmonize_Calc = False; Profile_Id = LRU_2; LRU_2_Act_Disp_Raw_Avg_Expand = 10; LRU_2_Act_Disp_Raw_Avg_Contract = 8; Act_Disp_Raw_Avg_Expand = 12; Act_Disp_Raw_Avg_Contract = 9; Surface = Aileron.",
+          "expected_result": "K_Harmonize_New = (10 - 8) /(12 - 9) NOT performed.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9212_DC_Profile_Id_Elevator",
+          "requirement_id": "LRU-9212",
+          "description": "Verify that K_Harmonize_New is NOT calculated when Profile_Id is not one of LRU_1, LRU_2, LRU_5, LRU_6 for the Elevator.",
+          "test_type": "DC",
+          "initial_condition": "LRU to be configured as Elevator.",
+          "test_inputs": "Primary_Harmonize_Calc = True; Profile_Id = LRU_3; LRU_2_Act_Disp_Raw_Avg_Expand = 10; LRU_2_Act_Disp_Raw_Avg_Contract = 8; Act_Disp_Raw_Avg_Expand = 12; Act_Disp_Raw_Avg_Contract = 9; Surface = Elevator.",
+          "expected_result": "K_Harmonize_New = (10 - 8) /(12 - 9) NOT performed.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9212_DC_Profile_Id_Aileron",
+          "requirement_id": "LRU-9212",
+          "description": "Verify that K_Harmonize_New is NOT calculated when Profile_Id is not one of LRU_1, LRU_2, LRU_5, LRU_6 for the Aileron.",
+          "test_type": "DC",
+          "initial_condition": "LRU to be configured as Aileron.",
+          "test_inputs": "Primary_Harmonize_Calc = True; Profile_Id = LRU_3; LRU_2_Act_Disp_Raw_Avg_Expand = 10; LRU_2_Act_Disp_Raw_Avg_Contract = 8; Act_Disp_Raw_Avg_Expand = 12; Act_Disp_Raw_Avg_Contract = 9; Surface = Aileron.",
+          "expected_result": "K_Harmonize_New = (10 - 8) /(12 - 9) NOT performed.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_21_REQUIREMENT_ID_LRU_9944": {
+      "step_number": "21",
+      "requirement_id": "LRU-9944",
+      "step_description": "Requirement ID: LRU-9944",
+      "total_test_cases": 3,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9944_N1_Rudder",
+          "requirement_id": "LRU-9944",
+          "description": "Verify that K_Harmonize_New is calculated correctly when Primary_Harmonize_Calc is True and Profile_Id equals LRU_7.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU to be configured as Rudder.",
+          "test_inputs": "Primary_Harmonize_Calc = True; Profile_Id = LRU_7; Act_Disp_Raw_Avg_Expand = [value]; Act_Disp_Raw_Avg_Contract = [value]; Max_Stroke = [value]. Surface = Rudder.",
+          "expected_result": "K_Harmonize_New = Max_Stroke / [Act_Disp_Raw_Avg_Expand (in) \u2013 Act_Disp_Raw_Avg_Contract (in)].",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9944_DC_Primary_Harmonize_Calc_Rudder",
+          "requirement_id": "LRU-9944",
+          "description": "Verify that K_Harmonize_New calculation is not performed when Primary_Harmonize_Calc is False while Profile_Id equals LRU_7.",
+          "test_type": "DC",
+          "initial_condition": "LRU to be configured as Rudder.",
+          "test_inputs": "Primary_Harmonize_Calc = False; Profile_Id = LRU_7; Act_Disp_Raw_Avg_Expand = [value]; Act_Disp_Raw_Avg_Contract = [value]; Max_Stroke = [value]. Surface = Rudder.",
+          "expected_result": "K_Harmonize_New = Max_Stroke / [Act_Disp_Raw_Avg_Expand (in) \u2013 Act_Disp_Raw_Avg_Contract (in)] is NOT performed.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9944_DC_Profile_Id_Rudder",
+          "requirement_id": "LRU-9944",
+          "description": "Verify that K_Harmonize_New calculation is not performed when Profile_Id is not LRU_7 while Primary_Harmonize_Calc is True.",
+          "test_type": "DC",
+          "initial_condition": "LRU to be configured as Rudder.",
+          "test_inputs": "Primary_Harmonize_Calc = True; Profile_Id = LRU_X; Act_Disp_Raw_Avg_Expand = [value]; Act_Disp_Raw_Avg_Contract = [value]; Max_Stroke = [value]. Surface = Rudder.",
+          "expected_result": "K_Harmonize_New = Max_Stroke / [Act_Disp_Raw_Avg_Expand (in) \u2013 Act_Disp_Raw_Avg_Contract (in)] is NOT performed.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_22_REQUIREMENT_ID_LRU_9213": {
+      "step_number": "22",
+      "requirement_id": "LRU-9213",
+      "step_description": "Requirement ID: LRU-9213",
+      "total_test_cases": 6,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9213_N1_Aileron",
+          "requirement_id": "LRU-9213",
+          "description": "Verify that Harmonize_Offset_New is calculated when Primary_Harmonize_Calc is True.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU to be configured as Aileron.",
+          "test_inputs": "Primary_Harmonize_Calc = True; Harmonize_Offset_Default = <value based on Profile_Id>; Act_Disp_Raw_Avg_VOID = <value>; K_Harmonize_New = <value>; Surface = Aileron.",
+          "expected_result": "Harmonize_Offset_New  = (Harmonize_Offset_Default - Act_Disp_Raw_Avg_VOID)  * K_Harmonize_New.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9213_DC_Primary_Harmonize_Calc_Aileron",
+          "requirement_id": "LRU-9213",
+          "description": "Verify that Harmonize_Offset_New calculation is NOT performed when Primary_Harmonize_Calc is False.",
+          "test_type": "DC",
+          "initial_condition": "LRU to be configured as Aileron.",
+          "test_inputs": "Primary_Harmonize_Calc = False; Harmonize_Offset_Default = <value based on Profile_Id>; Act_Disp_Raw_Avg_VOID = <value>; K_Harmonize_New = <value>; Surface = Aileron.",
+          "expected_result": "Harmonize_Offset_New  = (Harmonize_Offset_Default - Act_Disp_Raw_Avg_VOID)  * K_Harmonize_New. Harmonize_Offset_New calculation is NOT performed.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9213_N1_Elevator",
+          "requirement_id": "LRU-9213",
+          "description": "Verify that Harmonize_Offset_New is calculated when Primary_Harmonize_Calc is True.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU to be configured as Elevator.",
+          "test_inputs": "Primary_Harmonize_Calc = True; Harmonize_Offset_Default = <value based on Profile_Id>; Act_Disp_Raw_Avg_VOID = <value>; K_Harmonize_New = <value>; Surface = Elevator.",
+          "expected_result": "Harmonize_Offset_New  = (Harmonize_Offset_Default - Act_Disp_Raw_Avg_VOID)  * K_Harmonize_New.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9213_DC_Primary_Harmonize_Calc_Elevator",
+          "requirement_id": "LRU-9213",
+          "description": "Verify that Harmonize_Offset_New calculation is NOT performed when Primary_Harmonize_Calc is False.",
+          "test_type": "DC",
+          "initial_condition": "LRU to be configured as Elevator.",
+          "test_inputs": "Primary_Harmonize_Calc = False; Harmonize_Offset_Default = <value based on Profile_Id>; Act_Disp_Raw_Avg_VOID = <value>; K_Harmonize_New = <value>; Surface = Elevator.",
+          "expected_result": "Harmonize_Offset_New  = (Harmonize_Offset_Default - Act_Disp_Raw_Avg_VOID)  * K_Harmonize_New. Harmonize_Offset_New calculation is NOT performed.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9213_N1_Rudder",
+          "requirement_id": "LRU-9213",
+          "description": "Verify that Harmonize_Offset_New is calculated when Primary_Harmonize_Calc is True.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU to be configured as Rudder.",
+          "test_inputs": "Primary_Harmonize_Calc = True; Harmonize_Offset_Default = <value based on Profile_Id>; Act_Disp_Raw_Avg_VOID = <value>; K_Harmonize_New = <value>; Surface = Rudder.",
+          "expected_result": "Harmonize_Offset_New  = (Harmonize_Offset_Default - Act_Disp_Raw_Avg_VOID)  * K_Harmonize_New.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9213_DC_Primary_Harmonize_Calc_Rudder",
+          "requirement_id": "LRU-9213",
+          "description": "Verify that Harmonize_Offset_New calculation is NOT performed when Primary_Harmonize_Calc is False.",
+          "test_type": "DC",
+          "initial_condition": "LRU to be configured as Rudder.",
+          "test_inputs": "Primary_Harmonize_Calc = False; Harmonize_Offset_Default = <value based on Profile_Id>; Act_Disp_Raw_Avg_VOID = <value>; K_Harmonize_New = <value>; Surface = Rudder.",
+          "expected_result": "Harmonize_Offset_New  = (Harmonize_Offset_Default - Act_Disp_Raw_Avg_VOID)  * K_Harmonize_New. Harmonize_Offset_New calculation is NOT performed.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_23_REQUIREMENT_ID_LRU_10915": {
+      "step_number": "23",
+      "requirement_id": "LRU-10915",
+      "step_description": "Requirement ID: LRU-10915",
+      "total_test_cases": 3,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_10915_N1",
+          "requirement_id": "LRU-10915",
+          "description": "Verify that Lower_Limit_LRU_PSR_New is calculated as Act_Disp_Raw_Avg_Contract + Contract_Error when LRU-1/2/5/6 is true and Primary_Harmonize_Calc is true.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "LRU-1/2/5/6=true; Primary_Harmonize_Calc=true; Act_Disp_Raw_Avg_Contract=<value>; Contract_Error=<value>.",
+          "expected_result": "Lower_Limit_LRU_PSR_New = Act_Disp_Raw_Avg_Contract + Contract_Error.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_10915_DC_LRU_1/2/5/6",
+          "requirement_id": "LRU-10915",
+          "description": "Verify that Lower_Limit_LRU_PSR_New is NOT calculated when LRU-1/2/5/6 is false while Primary_Harmonize_Calc is true.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "LRU-1/2/5/6=false; Primary_Harmonize_Calc=true; Act_Disp_Raw_Avg_Contract=<value>; Contract_Error=<value>.",
+          "expected_result": "Lower_Limit_LRU_PSR_New = Act_Disp_Raw_Avg_Contract + Contract_Error NOT performed.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_10915_DC_Primary_Harmonize_Calc",
+          "requirement_id": "LRU-10915",
+          "description": "Verify that Lower_Limit_LRU_PSR_New is NOT calculated when Primary_Harmonize_Calc is false while LRU-1/2/5/6 is true.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "LRU-1/2/5/6=true; Primary_Harmonize_Calc=false; Act_Disp_Raw_Avg_Contract=<value>; Contract_Error=<value>.",
+          "expected_result": "Lower_Limit_LRU_PSR_New = Act_Disp_Raw_Avg_Contract + Contract_Error NOT performed.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_24_REQUIREMENT_ID_LRU_10916": {
+      "step_number": "24",
+      "requirement_id": "LRU-10916",
+      "step_description": "Requirement ID: LRU-10916",
+      "total_test_cases": 2,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_10916_N1_Spoiler",
+          "requirement_id": "LRU-10916",
+          "description": "Verify that when LRU-3/4 is true, Upper_Limit_LRU_PSR_New and Lower_Limit_LRU_PSR_New are calculated as the harmonized limits based on Profile_Id for Spoiler surfaces.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU to be configured as Spoiler.",
+          "test_inputs": "LRU-3/4 = TRUE; Profile_Id = 1; Surface = Spoiler.",
+          "expected_result": "Upper_Limit_LRU_PSR_New = Upper_Limit_Harmonized; Lower_Limit_LRU_PSR_New = Lower_Limit_Harmonized.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_10916_DC_LRU_3_4_Spoiler",
+          "requirement_id": "LRU-10916",
+          "description": "Verify that when LRU-3/4 is false, Upper_Limit_LRU_PSR_New and Lower_Limit_LRU_PSR_New are not calculated as the harmonized limits for Spoiler surfaces.",
+          "test_type": "DC",
+          "initial_condition": "LRU to be configured as Spoiler.",
+          "test_inputs": "LRU-3/4 = FALSE; Profile_Id = 1; Surface = Spoiler.",
+          "expected_result": "Upper_Limit_LRU_PSR_New and Lower_Limit_LRU_PSR_New are NOT calculated as Upper_Limit_Harmonized and Lower_Limit_Harmonized.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_25_REQUIREMENT_ID_LRU_10917": {
+      "step_number": "25",
+      "requirement_id": "LRU-10917",
+      "step_description": "Requirement ID: LRU-10917",
+      "total_test_cases": 2,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_10917_N1_Rudder",
+          "requirement_id": "LRU-10917",
+          "description": "Verify that Lower_Limit_LRU_PSR_New is calculated when LRU-7 is true for Rudder.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU to be configured as Rudder.",
+          "test_inputs": "LRU-7 = TRUE, Profile_Id = <Profile_Id>. Surface = Rudder.",
+          "expected_result": "Lower_Limit_LRU_PSR_New is set to the value of Lower_Limit_Harmonized for the specified Profile_Id.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_10917_DC_LRU_7_Rudder",
+          "requirement_id": "LRU-10917",
+          "description": "Verify that Lower_Limit_LRU_PSR_New is NOT set when LRU-7 is false for Rudder.",
+          "test_type": "DC",
+          "initial_condition": "LRU to be configured as Rudder.",
+          "test_inputs": "LRU-7 = FALSE, Profile_Id = <Profile_Id>. Surface = Rudder.",
+          "expected_result": "Lower_Limit_LRU_PSR_New is NOT set to Lower_Limit_Harmonized.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_26_REQUIREMENT_ID_LRU_10918": {
+      "step_number": "26",
+      "requirement_id": "LRU-10918",
+      "step_description": "Requirement ID: LRU-10918",
+      "total_test_cases": 4,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_10918_N1_Aileron",
+          "requirement_id": "LRU-10918",
+          "description": "Verify that Upper_Limit_LRU_PSR_New is calculated using Act_Disp_Raw_Avg_Expand minus Expand_Error when LRU state is 1, 2, 5, or 6 for Aileron surface.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU to be configured as Aileron.",
+          "test_inputs": "LRU state = 1; Act_Disp_Raw_Avg_Expand = 100.0; Profile_Id = 1; Surface = Aileron.",
+          "expected_result": "Upper_Limit_LRU_PSR_New = Act_Disp_Raw_Avg_Expand \u2013 Expand_Error.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_10918_N1_Elevator",
+          "requirement_id": "LRU-10918",
+          "description": "Verify that Upper_Limit_LRU_PSR_New is calculated using Act_Disp_Raw_Avg_Expand minus Expand_Error when LRU state is 1, 2, 5, or 6 for Elevator surface.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU to be configured as Elevator.",
+          "test_inputs": "LRU state = 1; Act_Disp_Raw_Avg_Expand = 100.0; Profile_Id = 1; Surface = Elevator.",
+          "expected_result": "Upper_Limit_LRU_PSR_New = Act_Disp_Raw_Avg_Expand \u2013 Expand_Error.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_10918_DC_LRU_State_Not_1_2_5_6_Aileron",
+          "requirement_id": "LRU-10918",
+          "description": "Verify that Upper_Limit_LRU_PSR_New is NOT calculated when LRU state is not 1, 2, 5, or 6 for Aileron surface.",
+          "test_type": "DC",
+          "initial_condition": "LRU to be configured as Aileron.",
+          "test_inputs": "LRU state = 3; Act_Disp_Raw_Avg_Expand = 100.0; Profile_Id = 1; Surface = Aileron.",
+          "expected_result": "Upper_Limit_LRU_PSR_New = Act_Disp_Raw_Avg_Expand \u2013 Expand_Error is NOT performed.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_10918_DC_LRU_State_Not_1_2_5_6_Elevator",
+          "requirement_id": "LRU-10918",
+          "description": "Verify that Upper_Limit_LRU_PSR_New is NOT calculated when LRU state is not 1, 2, 5, or 6 for Elevator surface.",
+          "test_type": "DC",
+          "initial_condition": "LRU to be configured as Elevator.",
+          "test_inputs": "LRU state = 3; Act_Disp_Raw_Avg_Expand = 100.0; Profile_Id = 1; Surface = Elevator.",
+          "expected_result": "Upper_Limit_LRU_PSR_New = Act_Disp_Raw_Avg_Expand \u2013 Expand_Error is NOT performed.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_27_REQUIREMENT_ID_LRU_10921": {
+      "step_number": "27",
+      "requirement_id": "LRU-10921",
+      "step_description": "Requirement ID: LRU-10921",
+      "total_test_cases": 2,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_10921_N1_Rudder",
+          "requirement_id": "LRU-10921",
+          "description": "Verify that Upper_Limit_LRU_PSR_New is calculated as Upper_Limit_Harmonized when LRU-7 is true for the Rudder surface.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU to be configured as Rudder.",
+          "test_inputs": "LRU-7 = TRUE; Surface = Rudder Flora",
+          "expected_result": "Upper_Limit_LRU_PSR_New = Upper_Limit_Harmonized.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_10921_DC_LRU_7_Rudder",
+          "requirement_id": "LRU-10921",
+          "description": "Verify that Upper_Limit_LRU_PSR_New is NOT calculated as Upper_Limit_Harmonized when LRU-7 is false for the Rudder surface.",
+          "test_type": "DC",
+          "initial_condition": "LRU to be configured as Rudder.",
+          "test_inputs": "LRU-7 = FALSE; Surface = Rudder",
+          "expected_result": "Upper_Limit_LRU_PSR_New is NOT calculated as Upper_Limit_Harmonized.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_28_REQUIREMENT_ID_LRU_9215": {
+      "step_number": "28",
+      "requirement_id": "LRU-9215",
+      "step_description": "Requirement ID: LRU-9215",
+      "total_test_cases": 1,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9215_N1",
+          "requirement_id": "LRU-9215",
+          "description": "Verify that the LRU Harmonizing parameters are correctly stored in the PSR registers during Table 1001, Step 28.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "K_Harmonize_New, Harmonize_Offset_New, Asset_ID_STL, Profile_ID_Disc_Dbnce_Init, Lower_Limit_LRU_PSR_New, Upper_Limit_LRU_PSR_New, CRC for data above.",
+          "expected_result": "Harmonize_SFC_PSR = K_Harmonize_New\nHarmonize_Offset_PSR = Harmonize_Offset_New\nAsset_ID_PSR = Asset_ID_STL\nConfig_LRU_PSR = Profile_ID_Disc_Dbnce_Init\nLower_Limit_LRU_PSR = Lower_Limit_LRU_PSR_New\nUpper_Limit_LRU_PSR = Upper_Limit_LRU_PSR_New\nCRC_PSR = CRC for data above.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_29_REQUIREMENT_ID_LRU_9225": {
+      "step_number": "29",
+      "requirement_id": "LRU-9225",
+      "step_description": "Requirement ID: LRU-9225",
+      "total_test_cases": 1,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9225_N1",
+          "requirement_id": "LRU-9225",
+          "description": "Verify that the LRU reads back the data stored in PSR and re-computes the CRC of the PSR Harmonizing parameters.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "",
+          "expected_result": "LRU reads back the data stored in PSR and re-computes the CRC of the PSR Harmonizing parameters.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_30_REQUIREMENT_ID_LRU_9814": {
+      "step_number": "30",
+      "requirement_id": "LRU-9814",
+      "step_description": "Requirement ID: LRU-9814",
+      "total_test_cases": 1,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9814_N1",
+          "requirement_id": "LRU-9814",
+          "description": "Verify that a CRC check is performed on the specified Harmonizing parameters set in PSR to ensure they are not corrupted.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Harmonize_Offset_PSR, Harmonize_SFC_PSR, Asset_ID_PSR, Config_LRU_PSR, Lower_Limit_LRU_PSR, Upper_Limit_LRU_PSR",
+          "expected_result": "CRC check of the Harmonizing parameters set in PSR verifies they are not corrupted.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_31_REQUIREMENT_ID_LRU_9224": {
+      "step_number": "31",
+      "requirement_id": "LRU-9224",
+      "step_description": "Requirement ID: LRU-9224",
+      "total_test_cases": 2,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9224_N1",
+          "requirement_id": "LRU-9224",
+          "description": "Verify that Harmonizing_PSR_Data_Fault is set to True when the CRC check fails.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "CRC check result set to fail.",
+          "expected_result": "Harmonizing_PSR_Data_Fault is set to True.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9224_DC_CRC_Check_Fails",
+          "requirement_id": "LRU-9224",
+          "description": "Verify that Harmonizing_PSR_Data_Fault is set to False when the CRC check passes.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "CRC check result set to pass.",
+          "expected_result": "Harmonizing_PSR_Data_Fault is set to False.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_32_REQUIREMENT_ID_LRU_9249": {
+      "step_number": "32",
+      "requirement_id": "LRU-9249",
+      "step_description": "Requirement ID: LRU-9249",
+      "total_test_cases": 2,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9249_N1",
+          "requirement_id": "LRU-9249",
+          "description": "Verify that the system creates a Harmonizing_PSR_Data_Fault entry in the Fault_History_Table_PSR and reports Harmonizing Failed to the LRU_2 on STL_Bus when Harmonizing_PSR_Data_Fault transitions to True.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Harmonizing_PSR_Data_Fault transitions to True.",
+          "expected_result": "Create a Harmonizing_PSR_Data_Fault entry in the Fault_History_Table_PSR and report Harmonizing Failed to the LRU_2 on STL_Bus: IVT_Receipt_Envelope=0x0017, IVT_Receipt_Content: Harmonizing_Failed = True.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9249_DC_Harmonizing_PSR_Data_Fault",
+          "requirement_id": "LRU-9249",
+          "description": "Verify that the system does NOT create a Harmonizing_PSR_Data_Fault entry in the Fault_History_Table_PSR and does NOT report Harmonizing Failed to the LRU_2 on STL_Bus when Harmonizing_PSR_Data_Fault does NOT transition to True.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Harmonizing_PSR_Data_Fault does NOT transition to True.",
+          "expected_result": "Create a Harmonizing_PSR_Data_Fault entry in the Fault_History_Table_PSR is NOT performed. Report Harmonizing Failed to the LRU_2 on STL_Bus: IVT_Receipt_Envelope=0x0017, IVT_Receipt_Content: Harmonizing_Failed = True is NOT performed.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_33_REQUIREMENT_ID_LRU_9894": {
+      "step_number": "33",
+      "requirement_id": "LRU-9894",
+      "step_description": "Requirement ID: LRU-9894",
+      "total_test_cases": 2,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9894_N1",
+          "requirement_id": "LRU-9894",
+          "description": "Verify that LRU_Harmonizing_Needed_PIVT and Corrupt_PSR_Harmonizing_CIP_Fault_Init are set to False when Harmonizing_PSR_Data_Fault is False.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Harmonizing_PSR_Data_Fault = False.",
+          "expected_result": "LRU_Harmonizing_Needed_PIVT is set to False. Corrupt_PSR_Harmonizing_CIP_Fault_Init is set to False.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9894_DC_Harmonizing_PSR_Data_Fault",
+          "requirement_id": "LRU-9894",
+          "description": "Verify that LRU_Harmonizing_Needed_PIVT and Corrupt_PSR_Harmonizing_CIP_Fault_Init are NOT set to False when Harmonizing_PSR_Data_Fault is True.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Harmonizing_PSR_Data_Fault = True.",
+          "expected_result": "LRU_Harmonizing_Needed_PIVT is NOT set to False. Corrupt_PSR_Harmonizing_CIP_Fault_Init is NOT set to False.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_34_REQUIREMENT_ID_LRU_9247": {
+      "step_number": "34",
+      "requirement_id": "LRU-9247",
+      "step_description": "Requirement ID: LRU-9247",
+      "total_test_cases": 2,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9247_N1",
+          "requirement_id": "LRU-9247",
+          "description": "Verify that when Harmonizing_PSR_Data_Fault is False, the assignments K_Harmonize_ISM, Harmonize_Offset_ISM, Lower_Limit_LRU, and Upper_Limit_LRU are performed.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Harmonizing_PSR_Data_Fault = False.",
+          "expected_result": "K_Harmonize_ISM = Harmonize_SFC_PSR, Harmonize_Offset_ISM = Harmonize_Offset_PSR, Lower_Limit_LRU = Lower_Limit_LRU_PSR, Upper_Limit_LRU = Upper_Limit_EBMC_PSR.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9247_DC_Harmonizing_PSR_Data_Fault",
+          "requirement_id": "LRU-9247",
+          "description": "Verify that when Harmonizing_PSR_Data_Fault is True, the assignments K_Harmonize_ISM, Harmonize_Offset_ISM, Lower_Limit_LRU, and Upper_Limit_LRU are NOT performed.",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "Harmonizing_PSR_Data_Fault = True.",
+          "expected_result": "K_Harmonize_ISM = Harmonize_SFC_PSR, Harmonize_Offset_ISM = Harmonize_Offset_PSR, Lower_Limit_LRU = Lower_Limit_LRU_PSR, Upper_Limit_LRU = Upper_Limit_EBMC_PSR are NOT performed.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    },
+    "STEP_35_REQUIREMENT_ID_LRU_9239": {
+      "step_number": "35",
+      "requirement_id": "LRU-9239",
+      "step_description": "Requirement ID: LRU-9239",
+      "total_test_cases": 5,
+      "test_cases": [
+        {
+          "test_case_id": "LRU_9239_N1",
+          "requirement_id": "LRU-9239",
+          "description": "Verify that the LRU replies with the specified IVT messages when Harmonizing_PSR_Data_Fault is False, Step 34 is completed, and the Harmonizing_and_Configuration_Parameters_Request command is received with correct command and data.",
+          "test_type": "NORMAL",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "LRU receives Harmonizing_and_Configuration_Parameters_Request on STL_Bus with IVT_Command_ISM = 0x0012, IVT_CmdData_ISM = 0x0001; Harmonizing_PSR_Data_Fault = False; Step 34 completed.",
+          "expected_result": "IVT_Receipt_Envelope = 0x0011, IVT_Receipt_Content: LRU_Harmonizing_Needed_PIVT = False. IVT_Receipt_Envelope = 0x0012, IVT_Receipt_Content = Config_LRU_PSR (LRU Harmonizing Location and Asset type). IVT_Receipt_Envelope = 0x0013, IVT_Receipt_Content = Asset_ID_PSR. IVT_Receipt_Envelope = 0x0014, IVT_Receipt_Content = Harmonizing_SFC_PSR. IVT_Receipt_Envelope = 0x0015, IVT_Receipt_Content = Harmonizing_Offset_PSR. IVT_Receipt_Envelope = 0x0018, IVT_Receipt_Content = Lower_Limit_LRU_PSR. IVT_Receipt_Envelope = 0x0019, IVT_Receipt_Content = Upper_Limit_LRU_PSR. IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Complete = True.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9239_DC_Harmonizing_PSR_Data_Fault",
+          "requirement_id": "LRU-9239",
+          "description": "Verify that the LRU does NOT reply with the specified IVT messages when Harmonizing_PSR_Data_Fault is True (while other conditions true).",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "LRU receives Harmonizing_and_Configuration_Parameters_Request on STL_Bus with IVT_Command_ISM = 0x0012, IVT_CmdData_ISM = 0x0001; Harmonizing_PSR_Data_Fault = True; Step 34 completed.",
+          "expected_result": "IVT_Receipt_Envelope = 0x0011, IVT_Receipt_Content: LRU_Harmonizing_Needed_PIVT = False is NOT sent. IVT_Receipt_Envelope = 0x0012, IVT_Receipt_Content = Config_LRU_PSR (LRU Harmonizing Location and Asset type) is NOT sent. IVT_Receipt_Envelope = 0x0013, IVT_Receipt_Content = Asset_ID_PSR is NOT sent. IVT_Receipt_Envelope = 0x0014, IVT_Receipt_Content = Harmonizing_SFC_PSR is NOT sent. IVT_Receipt_Envelope = 0x0015, IVT_Receipt_Content = Harmonizing_Offset_PSR is NOT sent. IVT_Receipt_Envelope = 0x0018, IVT_Receipt_Content = Lower_Limit_LRU_PSR is NOT sent. IVT_Receipt_Envelope = 0x0019, IVT_Receipt_Content = Upper_Limit_LRU_PSR is NOT sent. IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Complete = True is NOT sent.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9239_DC_Step_34_Completed",
+          "requirement_id": "LRU-9239",
+          "description": "Verify that the LRU does NOT reply with the specified IVT messages when Step 34 is NOT completed (while other conditions true).",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "LRU receives Harmonizing_and_Configuration_Parameters_Request on STL_Bus with IVT_Command_ISM = 0x0012, IVT_CmdData_ISM = 0x0001; Harmonizing_PSR_Data_Fault = False; Step 34 NOT completed.",
+          "expected_result": "IVT_Receipt_Envelope = 0x0011, IVT_Receipt_Content: LRU_Harmonizing_Needed_PIVT = False is NOT sent. IVT_Receipt_Envelope = 0x0012, IVT_Receipt_Content = Config_LRU_PSR (LRU Harmonizing Location and Asset type) is NOT sent. IVT_Receipt_Envelope = 0x0013, IVT_Receipt_Content = Asset_ID_PSR is NOT sent. IVT_Receipt_Envelope = 0x0014, IVT_Receipt_Content = Harmonizing_SFC_PSR is NOT sent. IVT_Receipt_Envelope = 0x0015, IVT_Receipt_Content = Harmonizing_Offset_PSR is NOT sent. IVT_Receipt_Envelope = 0x0018, IVT_Receipt_Content = Lower_Limit_LRU_PSR is NOT sent. IVT_Receipt_Envelope = 0x0019, IVT_Receipt_Content = Upper_Limit_LRU_PSR is NOT sent. IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Complete = True is NOT sent.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9239_DC_IVT_Command_ISM",
+          "requirement_id": "LRU-9239",
+          "description": "Verify that the LRU does NOT reply with the specified IVT messages when IVT_Command_ISM is not 0x0012 (while other conditions true).",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "LRU receives Harmonizing_and_Configuration_Parameters_Request on STL_Bus with IVT_Command_ISM = 0x0013, IVT_CmdData_ISM = 0x0001; Harmonizing_PSR_Data_Fault = False; Step 34 completed.",
+          "expected_result": "IVT_Receipt_Envelope = 0x0011, IVT_Receipt_Content: LRU_Harmonizing_Needed_PIVT = False is NOT sent. IVT_Receipt_Envelope = 0x0012, IVT_Receipt_Content = Config_LRU_PSR (LRU Harmonizing Location and Asset type) is NOT sent. IVT_Receipt_Envelope = 0x0013, IVT_Receipt_Content = Asset_ID_PSR is NOT sent. IVT_Receipt_Envelope = 0x0014, IVT_Receipt_Content = Harmonizing_SFC_PSR is NOT sent. IVT_Receipt_Envelope = 0x0015, IVT_Receipt_Content = Harmonizing_Offset_PSR is NOT sent. IVT_Receipt_Envelope = 0x0018, IVT_Receipt_Content = Lower_Limit_LRU_PSR is NOT sent. IVT_Receipt_Envelope = 0x0019, IVT_Receipt_Content = Upper_Limit_LRU_PSR is NOT sent. IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Complete = True is NOT sent.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        },
+        {
+          "test_case_id": "LRU_9239_DC_IVT_CmdData_ISM",
+          "requirement_id": "LRU-9239",
+          "description": "Verify that the LRU does NOT reply with the specified IVT messages when IVT_CmdData_ISM is not 0x0001 (while other conditions true).",
+          "test_type": "DC",
+          "initial_condition": "LRU operating in Location_State_StateLgc mode.",
+          "test_inputs": "LRU receives Harmonizing_and_Configuration_Parameters_Request on STL_Bus with IVT_Command_ISM = 0x0012, IVT_CmdData_ISM = 0x0002; Harmonizing_PSR_Data_Fault = False; Step 34 completed.",
+          "expected_result": "IVT_Receipt_Envelope = 0x0011, IVT_Receipt_Content: LRU_Harmonizing_Needed_PIVT = False is NOT sent. IVT_Receipt_Envelope = 0x0012, IVT_Receipt_Content = Config_LRU_PSR (LRU Harmonizing Location and Asset type) is NOT sent. IVT_Receipt_Envelope = 0x0013, IVT_Receipt_Content = Asset_ID_PSR is NOT sent. IVT_Receipt_Envelope = 0x0014, IVT_Receipt_Content = Harmonizing_SFC_PSR is NOT sent. IVT_Receipt_Envelope = 0x0015, IVT_Receipt_Content = Harmonizing_Offset_PSR is NOT sent. IVT_Receipt_Envelope = 0x0018, IVT_Receipt_Content = Lower_Limit_LRU_PSR is NOT sent. IVT_Receipt_Envelope = 0x0019, IVT_Receipt_Content = Upper_Limit_LRU_PSR is NOT sent. IVT_Receipt_Envelope = 0x0017, IVT_Receipt_Content: Harmonizing_Complete = True is NOT sent.",
+          "pass_criteria": "Observed software behaviour matches expected_result.",
+          "related_requirements": "",
+          "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+        }
+      ]
+    }
+  }
+}

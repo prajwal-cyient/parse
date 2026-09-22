@@ -1,0 +1,151 @@
+{
+  "step_number": "20",
+  "requirement_id": "LRU-9212",
+  "total_test_cases": 12,
+  "test_cases": [
+    {
+      "test_case_id": "LRU_9212_N1_LRU_1",
+      "requirement_id": "LRU-9212",
+      "description": "Verify that the new LVDT Harmonizing Gain is calculated correctly when Primary_Harmonize_Calc is True and Profile_Id is LRU_1.",
+      "test_type": "NORMAL",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_1 (Left Aileron).",
+      "test_inputs": "Primary_Harmonize_Calc = True; Profile_Id = LRU_1; LRU_2_Act_Disp_Raw_Avg_Expand = value; LRU_2_Act_Disp_Raw_Avg_Contract = value; Act_Disp_Raw_Avg_Expand = value; Act_Disp_Raw_Avg_Contract = value; LRU Configuration = LRU_1 (Left Aileron).",
+      "expected_result": "K_Harmonize_New is calculated as (LRU_2_Act_Disp_Raw_Avg_Expand - LRU_2_Act_Disp_Raw_Avg_Contract) / (Act_Disp_Raw_Avg_Expand - Act_Disp_Raw_Avg_Contract).",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9212_DC_PrimaryFalse_LRU_1",
+      "requirement_id": "LRU-9212",
+      "description": "Verify that the new LVDT Harmonizing Gain calculation is NOT performed when Primary_Harmonize_Calc is False while Profile_Id is LRU_1.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_1 (Left Aileron).",
+      "test_inputs": "Primary_Harmonize_Calc = False; Profile_Id = LRU_1; LRU_2_Act_Disp_Raw_Avg_Expand = value; LRU_2_Act_Disp_Raw_Avg_Contract = value; Act_Disp_Raw_Avg_Expand = value; Act_Disp_Raw_Avg_Contract = value; LRU Configuration = LRU_1 (Left Aileron).",
+      "expected_result": "The calculation of K_Harmonize_New is NOT performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9212_DC_ProfileFalse_LRU_1",
+      "requirement_id": "LRU-9212",
+      "description": "Verify that the new LVDT Harmonizing Gain calculation is NOT performed when Profile_Id is not in the set while Primary_Harmonize_Calc is True.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_1 (Left Aileron).",
+      "test_inputs": "Primary_Harmonize_Calc = True; Profile_Id = LRU_3; LRU_2_Act_Disp_Raw_Avg_Expand = value; LRU_2_Act_Disp_Raw_Avg_Contract = value; Act_Disp_Raw_Avg_Expand = value; Act_Disp_Raw_Avg_Contract = value; LRU Configuration = LRU_1 (Left Aileron).",
+      "expected_result": "The calculation of K_Harmonize_New is NOT performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9212_N1_LRU_2",
+      "requirement_id": "LRU-9212",
+      "description": "Verify that the new LVDT Harmonizing Gain is calculated correctly when Primary_Harmonize_Calc is True and Profile_Id is LRU_2.",
+      "test_type": "NORMAL",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_2 (Right Aileron).",
+      "test_inputs": "Primary_Harmonize_Calc = True; Profile_Id = LRU_2; LRU_2_Act_Disp_Raw_Avg_Expand = value; LRU_2_Act_Disp_Raw_Avg_Contract = value; Act_Disp_Raw_Avg_Expand = value; Act_Disp_Raw_Avg_Contract = value; LRU Configuration = LRU_2 (Right Aileron).",
+      "expected_result": "K_Harmonize_New is calculated as (LRU_2_Act_Disp_Raw_Avg_Expand - LRU_2_Act_Disp_Raw_Avg_Contract) / (Act_Disp_Raw_Avg_Expand - Act_Disp_Raw_Avg_Contract).",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9212_DC_PrimaryFalse_LRU_2",
+      "requirement_id": "LRU-9212",
+      "description": "Verify that the new LVDT Harmonizing Gain calculation is NOT performed when Primary_Harmonize_Calc is False while Profile_Id is LRU_2.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_2 (Right Aileron).",
+      "test_inputs": "Primary_Harmonize_Calc = False; Profile_Id = LRU_2; LRU_2_Act_Disp_Raw_Avg_Expand = value; LRU_2_Act_Disp_Raw_Avg_Contract = value; Act_Disp_Raw_Avg_Expand = value; Act_Disp_Raw_Avg_Contract = value; LRU Configuration = LRU_2 (Right Aileron).",
+      "expected_result": "The calculation of K_Harmonize_New is NOT performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9212_DC_ProfileFalse_LRU_2",
+      "requirement_id": "LRU-9212",
+      "description": "Verify that the new LVDT Harmonizing Gain calculation is NOT performed when Profile_Id is not in the set while Primary_Harmonize_Calc is True.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_2 (Right Aileron).",
+      "test_inputs": "Primary_Harmonize_Calc = True; Profile_Id = LRU_3; LRU_2_Act_Disp_Raw_Avg_Expand = value; LRU_2_Act_Disp_Raw_Avg_Contract = value; Act_Disp_Raw_Avg_Expand = value; Act_Disp_Raw_Avg_Contract = value; LRU Configuration = LRU_2 (Right Aileron).",
+      "expected_result": "The calculation of K_Harmonize_New is NOT performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9212_N1_LRU_5",
+      "requirement_id": "LRU-9212",
+      "description": "Verify that the new LVDT Harmonizing Gain is calculated correctly when Primary_Harmonize_Calc is True and Profile_Id is LRU_5.",
+      "test_type": "NORMAL",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_5 (Left Elevator).",
+      "test_inputs": "Primary_Harmonize_Calc = True; Profile_Id = LRU_5; LRU_2_Act_Disp_Raw_Avg_Expand = value; LRU_2_Act_Disp_Raw_Avg_Contract = value; Act_Disp_Raw_Avg_Expand = value; Act_Disp_Raw_Avg_Contract = value; LRU Configuration = LRU_5 (Left Elevator).",
+      "expected_result": "K_Harmonize_New is calculated as (LRU_2_Act_Disp_Raw_Avg_Expand - LRU_2_Act_Disp_Raw_Avg_Contract) / (Act_Disp_Raw_Avg_Expand - Act_Disp_Raw_Avg_Contract).",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9212_DC_PrimaryFalse_LRU_5",
+      "requirement_id": "LRU-9212",
+      "description": "Verify that the new LVDT Harmonizing Gain calculation is NOT performed when Primary_Harmonize_Calc is False while Profile_Id is LRU_5.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_5 (Left Elevator).",
+      "test_inputs": "Primary_Harmonize_Calc = False; Profile_Id = LRU_5; LRU_2_Act_Disp_Raw_Avg_Expand = value; LRU_2_Act_Disp_Raw_Avg_Contract = value; Act_Disp_Raw_Avg_Expand = value; Act_Disp_Raw_Avg_Contract = value; LRU Configuration = LRU_5 (Left Elevator).",
+      "expected_result": "The calculation of K_Harmonize_New is NOT performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9212_DC_ProfileFalse_LRU_5",
+      "requirement_id": "LRU-9212",
+      "description": "Verify that the new LVDT Harmonizing Gain calculation is NOT performed when Profile_Id is not in the set while Primary_Harmonize_Calc is True.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_5 (Left Elevator).",
+      "test_inputs": "Primary_Harmonize_Calc = True; Profile_Id = LRU_3; LRU_2_Act_Disp_Raw_Avg_Expand = value; LRU_2_Act_Disp_Raw_Avg_Contract = value; Act_Disp_Raw_Avg_Expand = value; Act_Disp_Raw_Avg_Contract = value; LRU Configuration = LRU_5 (Left Elevator).",
+      "expected_result": "The calculation of K_Harmonize_New is NOT performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9212_N1_LRU_6",
+      "requirement_id": "LRU-9212",
+      "description": "Verify that the new LVDT Harmonizing Gain is calculated correctly when Primary_Harmonize_Calc is True and Profile_Id is LRU_6.",
+      "test_type": "NORMAL",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_6 (Right Elevator).",
+      "test_inputs": "Primary_Harmonize_Calc = True; Profile_Id = LRU_6; LRU_2_Act_Disp_Raw_Avg_Expand = value; LRU_2_Act_Disp_Raw_Avg_Contract = value; Act_Disp_Raw_Avg_Expand = value; Act_Disp_Raw_Avg_Contract = value; LRU Configuration = LRU_6 (Right Elevator).",
+      "expected_result": "K_Harmonize_New is calculated as (LRU_2_Act_Disp_Raw_Avg_Expand - LRU_2_Act_Disp_Raw_Avg_Contract) / (Act_Disp_Raw_Avg_Expand - Act_Disp_Raw_Avg_Contract).",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9212_DC_PrimaryFalse_LRU_6",
+      "requirement_id": "LRU-9212",
+      "description": "Verify that the new LVDT Harmonizing Gain calculation is NOT performed when Primary_Harmonize_Calc is False while Profile_Id is LRU_6.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_6 (Right Elevator).",
+      "test_inputs": "Primary_Harmonize_Calc = False; Profile_Id = LRU_6; LRU_2_Act_Disp_Raw_Avg_Expand = value; LRU_2_Act_Disp_Raw_Avg_Contract = value; Act_Disp_Raw_Avg_Expand = value; Act_Disp_Raw_Avg_Contract = value; LRU Configuration = LRU_6 (Right Elevator).",
+      "expected_result": "The calculation of K_Harmonize_New is NOT performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    },
+    {
+      "test_case_id": "LRU_9212_DC_ProfileFalse_LRU_6",
+      "requirement_id": "LRU-9212",
+      "description": "Verify that the new LVDT Harmonizing Gain calculation is NOT performed when Profile_Id is not in the set while Primary_Harmonize_Calc is True.",
+      "test_type": "DC",
+      "initial_condition": "LRU operating in Location_State_StateLgc mode; configured as LRU_6 (Right Elevator).",
+      "test_inputs": "Primary_Harmonize_Calc = True; Profile_Id = LRU_3; LRU_2_Act_Disp_Raw_Avg_Expand = value; LRU_2_Act_Disp_Raw_Avg_Contract = value; Act_Disp_Raw_Avg_Expand = value; Act_Disp_Raw_Avg_Contract = value; LRU Configuration = LRU_6 (Right Elevator).",
+      "expected_result": "The calculation of K_Harmonize_New is NOT performed.",
+      "pass_criteria": "Observed software behaviour matches expected_result.",
+      "related_requirements": ",",
+      "test_procedure_notes": "Verification mechanism to be defined by the verification environment."
+    }
+  ]
+}

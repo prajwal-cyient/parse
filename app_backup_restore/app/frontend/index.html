@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DO-178C Verification Test Case Generator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header Banner -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-icon">⚡</div>
+        <div class="brand-text">
+          <h1>DO-178C Test Case Generator & Audit System</h1>
+          <p>Automated Aerospace Software Verification Engine • Level B Certified</p>
+        </div>
+      </div>
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        <span id="tunnel-status">SSH Tunnel: http://localhost:11434 (Connected)</span>
+      </div>
+    </header>
+
+    <!-- Main Dashboard Grid -->
+    <div class="dashboard-grid">
+      <!-- Left Column: Controls & Progress -->
+      <div class="left-col">
+        <!-- Upload & Action Card -->
+        <div class="card">
+          <div class="card-title">
+            <span>📤</span> 1. Select Requirement Specification (.docx)
+          </div>
+          <div class="upload-zone" id="uploadZone">
+            <input type="file" id="fileInput" accept=".docx" hidden>
+            <div class="upload-icon">📄</div>
+            <div class="upload-text">
+              <h3 id="uploadTitleText">Click or Drag & Drop Word File</h3>
+              <p id="uploadSubText">Supports SW_Requirements_Sample_X.docx & custom specs</p>
+            </div>
+          </div>
+
+          <!-- File Info & Start Button -->
+          <div id="fileInfoSection" style="display: none; margin-top: 14px; text-align: center;">
+            <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 8px; padding: 10px; margin-bottom: 10px; font-size: 12px;">
+              <strong id="infoFileName" style="color: #38BDF8;">document.docx</strong>
+              <div id="infoFileDetails" style="color: #94A3B8; font-size: 11px; margin-top: 2px;">Found 0 Requirements & 0 Tables</div>
+            </div>
+            <button class="btn btn-primary" id="btnStartGeneration" style="width: 100%; justify-content: center; padding: 12px; font-size: 13px;">
+              <span>⚡</span> Start Test Case Generation
+            </button>
+          </div>
+
+          <!-- Progress Widget -->
+          <div class="progress-section" id="progressSection" style="display: none;">
+            <div class="progress-header">
+              <span id="progressStatusText">Parsing document...</span>
+              <span id="progressPctText">0%</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" id="progressBarFill"></div>
+            </div>
+            <div class="terminal-log" id="terminalLog">
+              <div class="log-line">> Ready to parse document.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Verification History Card -->
+        <div class="card" style="flex: 1; min-height: 0; display: flex; flex-direction: column;">
+          <div class="card-title">
+            <span>📜</span> Execution History
+          </div>
+          <div id="historyList" style="flex: 1; overflow-y: auto;">
+            <div class="history-item">
+              <div class="history-info">
+                <h4>No past runs yet</h4>
+                <p>Uploaded runs will appear here</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Live Results & Analytics -->
+      <div class="right-col">
+        <!-- Key Metrics Row -->
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-value" id="metricReqs">0</div>
+            <div class="metric-label">Requirements Found</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value" id="metricTCs">0</div>
+            <div class="metric-label">Generated Test Cases</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value" id="metricAccuracy" style="color: #10B981;">100%</div>
+            <div class="metric-label">Compliance Score</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value" id="metricTables">0</div>
+            <div class="metric-label">Extracted Tables</div>
+          </div>
+        </div>
+
+        <!-- Live Preview Table Card (Flex Expand) -->
+        <div class="card table-card">
+          <div class="table-controls">
+            <input type="text" class="search-input" id="tableSearch" placeholder="🔍 Search test cases, signals, IDs...">
+            <div class="export-btns">
+              <button class="btn btn-primary" id="btnExportExcel" disabled>
+                <span>📊</span> Export Excel (.xlsx)
+              </button>
+              <button class="btn btn-secondary" id="btnExportJSON" disabled>
+                <span>💾</span> Master JSON
+              </button>
+            </div>
+          </div>
+
+          <!-- Data Table Container -->
+          <div class="table-container">
+            <table id="tcTable">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Test Case ID</th>
+                  <th>Req Trace</th>
+                  <th>Type</th>
+                  <th>Description</th>
+                  <th>Inputs</th>
+                  <th>Expected Result</th>
+                  <th>Pass Criteria</th>
+                </tr>
+              </thead>
+              <tbody id="tableBody">
+                <tr>
+                  <td colspan="8" style="text-align: center; color: #94A3B8; padding: 40px;">
+                    Upload a .docx software requirement file to start parsing and live test case generation.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
